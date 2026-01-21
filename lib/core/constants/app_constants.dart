@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class AppConstants {
   static final List<String> ages = List.generate(
     83,
@@ -13,4 +15,6 @@ abstract class AppConstants {
     'O+',
     'O-',
   ];
+
+  static final PageController onbrdngPageCntroller = PageController();
 }

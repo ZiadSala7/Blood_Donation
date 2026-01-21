@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../onboarding/presentation/views/onboarding_view.dart';
+import '../../../../onboarding/presentation/views/onboarding_page_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -32,7 +32,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       end: 0.0,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 4), () {
       _controller.forward().whenComplete(() {});
     });
   }
@@ -47,7 +47,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const OnboardingView(),
+        const OnboardingPageView(),
         Positioned(
           top: -30, // from the top of the screen
           left: MediaQuery.of(context).size.width / 2 - 250, // center circle

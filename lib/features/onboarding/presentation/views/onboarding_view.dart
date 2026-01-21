@@ -1,14 +1,17 @@
-import 'package:blood_donation/core/utils/app_assets.dart';
-import 'package:blood_donation/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../generated/l10n.dart';
-import 'widgets/next_button.dart';
+import '../../data/onboarding_model.dart';
+import 'widgets/next_and_skip_button.dart';
 import 'widgets/page_indicator.dart';
 
 class OnboardingView extends StatelessWidget {
-  const OnboardingView({super.key});
+  final OnboardingModel model;
+  const OnboardingView({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -20,26 +23,36 @@ class OnboardingView extends StatelessWidget {
           const SizedBox(height: 150),
           SizedBox(
             height: MediaQuery.sizeOf(context).height / 3,
-            child: Image.asset(AppAssets.assetsImagesBldOnbrd1),
+            child: Image.asset(model.image),
           ),
           const SizedBox(height: 16),
-          const PageIndicator(currentIndex: 0),
+          PageIndicator(currentIndex: model.index.toInt()),
           const SizedBox(height: 25),
           Text(
-            S.of(context).onbrd1Title,
-            style: AppTextStyles.b28(context),
+            model.title,
+            style: AppTextStyles.b32(context),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           Text(
-            S.of(context).onbrd1Descr,
+            model.subTitle,
             style: AppTextStyles.b22(
               context,
             ).copyWith(color: AppColors.greyBorder),
             textAlign: TextAlign.center,
           ),
           const Spacer(),
-          const NextAndSkipButton(),
+          model.index != 3
+              ? NextAndSkipButton(index: model.index)
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: CustomButton(
+                    onPressed: () {
+                      context.pushReplacementNamed('register');
+                    },
+                    label: S.of(context).startNow,
+                  ),
+                ),
           const SizedBox(height: 25),
         ],
       ),

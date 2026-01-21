@@ -21,5 +21,9 @@ class AppAssets {
   /// Assets for assetsImagesBldOnbrd4
   /// assets/images/bldOnbrd4.png
   static const String assetsImagesBldOnbrd4 = "assets/images/bldOnbrd4.png";
+
+  /// Assets for assetsImagesGoogle
+  /// assets/images/google.png
+  static const String assetsImagesGoogle = "assets/images/google.png";
 }
 

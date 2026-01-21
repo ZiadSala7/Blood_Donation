@@ -11,10 +11,13 @@ class BloodDonationApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: AppRoutes.appRouter,
       debugShowCheckedModeBanner: false,
-      locale: const Locale('en'),
+      locale: const Locale('ar'),
       localizationsDelegates: localizationDelegatesList,
       supportedLocales: S.delegate.supportedLocales,
-      theme: ThemeData(fontFamily: 'Cairo'),
+      theme: ThemeData(
+        fontFamily: 'Cairo',
+        scaffoldBackgroundColor: Colors.white,
+      ),
     );
   }
 }

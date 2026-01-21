@@ -54,254 +54,254 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `تبرع بالدم بسهولة`
+  /// `Donate Blood Easily`
   String get onbrd1Title {
     return Intl.message(
-      'تبرع بالدم بسهولة',
+      'Donate Blood Easily',
       name: 'onbrd1Title',
       desc: '',
       args: [],
     );
   }
 
-  /// `ساعد في إنقاذ حياة غيرك \nبخطوة بسيطة!`
+  /// `Help save lives with a simple step!`
   String get onbrd1Descr {
     return Intl.message(
-      'ساعد في إنقاذ حياة غيرك \nبخطوة بسيطة!',
+      'Help save lives with a simple step!',
       name: 'onbrd1Descr',
       desc: '',
       args: [],
     );
   }
 
-  /// `اعرف أقرب شخص ليك`
+  /// `Find the Nearest Person`
   String get onbrd2Title {
     return Intl.message(
-      'اعرف أقرب شخص ليك',
+      'Find the Nearest Person',
       name: 'onbrd2Title',
       desc: '',
       args: [],
     );
   }
 
-  /// `بنحدد لك أقرب مكان للتبرع علشان تقدر تساعد بسرعة`
+  /// `We'll locate the nearest donation center so you can help quickly`
   String get onbrd2Descr {
     return Intl.message(
-      'بنحدد لك أقرب مكان للتبرع علشان تقدر تساعد بسرعة',
+      'We\'ll locate the nearest donation center so you can help quickly',
       name: 'onbrd2Descr',
       desc: '',
       args: [],
     );
   }
 
-  /// `تبرعك بيصنع فرق`
+  /// `Your Donation Makes a Difference`
   String get onbrd3Title {
     return Intl.message(
-      'تبرعك بيصنع فرق',
+      'Your Donation Makes a Difference',
       name: 'onbrd3Title',
       desc: '',
       args: [],
     );
   }
 
-  /// `كل تبرع ممكن ينقذ حياة`
+  /// `Every donation can save a life`
   String get onbrd3Descr {
     return Intl.message(
-      'كل تبرع ممكن ينقذ حياة',
+      'Every donation can save a life',
       name: 'onbrd3Descr',
       desc: '',
       args: [],
     );
   }
 
-  /// `أهلاً بك`
+  /// `Welcome`
   String get onbrd4Title {
-    return Intl.message('أهلاً بك', name: 'onbrd4Title', desc: '', args: []);
+    return Intl.message('Welcome', name: 'onbrd4Title', desc: '', args: []);
   }
 
-  /// `شكراً لانضمامك لرحلة العطاء والتغيير.`
+  /// `Thank you for joining the journey of giving and change.`
   String get onbrd4Descr {
     return Intl.message(
-      'شكراً لانضمامك لرحلة العطاء والتغيير.',
+      'Thank you for joining the journey of giving and change.',
       name: 'onbrd4Descr',
       desc: '',
       args: [],
     );
   }
 
-  /// `تخطي`
+  /// `Skip`
   String get skip {
-    return Intl.message('تخطي', name: 'skip', desc: '', args: []);
+    return Intl.message('Skip', name: 'skip', desc: '', args: []);
   }
 
-  /// `ابدأ الآن`
+  /// `Start Now`
   String get startNow {
-    return Intl.message('ابدأ الآن', name: 'startNow', desc: '', args: []);
+    return Intl.message('Start Now', name: 'startNow', desc: '', args: []);
   }
 
-  /// ` البريد الإلكتروني `
+  /// `Email`
   String get email {
-    return Intl.message(
-      ' البريد الإلكتروني ',
-      name: 'email',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Email', name: 'email', desc: '', args: []);
   }
 
-  /// `  كلمة السر`
+  /// `Password`
   String get password {
-    return Intl.message('  كلمة السر', name: 'password', desc: '', args: []);
+    return Intl.message('Password', name: 'password', desc: '', args: []);
   }
 
-  /// `أدخل البريد الإلكتروني`
+  /// `Enter your email`
   String get entrEmail {
     return Intl.message(
-      'أدخل البريد الإلكتروني',
+      'Enter your email',
       name: 'entrEmail',
       desc: '',
       args: [],
     );
   }
 
-  /// `............`
+  /// `***********`
   String get entrPassw {
-    return Intl.message('............', name: 'entrPassw', desc: '', args: []);
+    return Intl.message('***********', name: 'entrPassw', desc: '', args: []);
   }
 
-  /// `تذكرني`
+  /// `Remember Me`
   String get rememberMe {
-    return Intl.message('تذكرني', name: 'rememberMe', desc: '', args: []);
+    return Intl.message('Remember Me', name: 'rememberMe', desc: '', args: []);
   }
 
-  /// `هل نسيت كلمة السر ؟`
+  /// `Forgot your password?`
   String get doYouforgetPass {
     return Intl.message(
-      'هل نسيت كلمة السر ؟',
+      'Forgot your password?',
       name: 'doYouforgetPass',
       desc: '',
       args: [],
     );
   }
 
-  /// `تسجيل الدخول `
+  /// `Login`
   String get login {
-    return Intl.message('تسجيل الدخول ', name: 'login', desc: '', args: []);
+    return Intl.message('Login', name: 'login', desc: '', args: []);
   }
 
-  /// `تسجيل الدخول بواسطة جوجل `
+  /// `Login with Google`
   String get loginWithGoogle {
     return Intl.message(
-      'تسجيل الدخول بواسطة جوجل ',
+      'Login with Google',
       name: 'loginWithGoogle',
       desc: '',
       args: [],
     );
   }
 
-  /// `ليس لديك حساب ؟`
+  /// `Don't have an account?`
   String get dontHaveAcc {
     return Intl.message(
-      'ليس لديك حساب ؟',
+      'Don\'t have an account?',
       name: 'dontHaveAcc',
       desc: '',
       args: [],
     );
   }
 
-  /// `قم بإنشاء حساب `
+  /// `Create an account`
   String get makeAcc {
-    return Intl.message('قم بإنشاء حساب ', name: 'makeAcc', desc: '', args: []);
+    return Intl.message(
+      'Create an account',
+      name: 'makeAcc',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// ` تاكيد كلمةالسر `
+  /// `Confirm Password`
   String get confirmPass {
     return Intl.message(
-      ' تاكيد كلمةالسر ',
+      'Confirm Password',
       name: 'confirmPass',
       desc: '',
       args: [],
     );
   }
 
-  /// ` الاسم الكامل `
+  /// `Full Name`
   String get fullName {
-    return Intl.message(' الاسم الكامل ', name: 'fullName', desc: '', args: []);
+    return Intl.message('Full Name', name: 'fullName', desc: '', args: []);
   }
 
-  /// `ادخل اسمك بالكامل   `
+  /// `Enter your full name`
   String get entrFullName {
     return Intl.message(
-      'ادخل اسمك بالكامل   ',
+      'Enter your full name',
       name: 'entrFullName',
       desc: '',
       args: [],
     );
   }
 
-  /// ` رقم الهاتف `
+  /// `Phone Number`
   String get phoneNum {
-    return Intl.message(' رقم الهاتف ', name: 'phoneNum', desc: '', args: []);
+    return Intl.message('Phone Number', name: 'phoneNum', desc: '', args: []);
   }
 
-  /// `أدخل رقم الهاتف`
+  /// `Enter your phone number`
   String get entrPhoneNum {
     return Intl.message(
-      'أدخل رقم الهاتف',
+      'Enter your phone number',
       name: 'entrPhoneNum',
       desc: '',
       args: [],
     );
   }
 
-  /// `العمر`
+  /// `Age`
   String get age {
-    return Intl.message('العمر', name: 'age', desc: '', args: []);
+    return Intl.message('Age', name: 'age', desc: '', args: []);
   }
 
-  /// `النوع `
+  /// `Gender`
   String get gender {
-    return Intl.message('النوع ', name: 'gender', desc: '', args: []);
+    return Intl.message('Gender', name: 'gender', desc: '', args: []);
   }
 
-  /// `فصيلة الدم `
+  /// `Blood Type`
   String get bloodType {
-    return Intl.message('فصيلة الدم ', name: 'bloodType', desc: '', args: []);
+    return Intl.message('Blood Type', name: 'bloodType', desc: '', args: []);
   }
 
-  /// `المحافظة`
+  /// `Governorate`
   String get city {
-    return Intl.message('المحافظة', name: 'city', desc: '', args: []);
+    return Intl.message('Governorate', name: 'city', desc: '', args: []);
   }
 
-  /// `المدينة`
+  /// `City`
   String get town {
-    return Intl.message('المدينة', name: 'town', desc: '', args: []);
+    return Intl.message('City', name: 'town', desc: '', args: []);
   }
 
-  /// `إنشاء حساب`
+  /// `Create Account`
   String get createAcc {
-    return Intl.message('إنشاء حساب', name: 'createAcc', desc: '', args: []);
+    return Intl.message(
+      'Create Account',
+      name: 'createAcc',
+      desc: '',
+      args: [],
+    );
   }
 
-  /// `هل لديك حساب بالفعل؟`
+  /// `Already have an account?`
   String get haveAcc {
     return Intl.message(
-      'هل لديك حساب بالفعل؟',
+      'Already have an account?',
       name: 'haveAcc',
       desc: '',
       args: [],
     );
   }
 
-  /// `تسجيل الدخول من هنا`
+  /// `Login here`
   String get loginHere {
-    return Intl.message(
-      'تسجيل الدخول من هنا',
-      name: 'loginHere',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Login here', name: 'loginHere', desc: '', args: []);
   }
 }
 

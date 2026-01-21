@@ -15,7 +15,7 @@ class OnboardingModel {
   });
 }
 
-List<OnboardingModel> onbordingModels(BuildContext context) => [
+List<OnboardingModel> onboardingModels(BuildContext context) => [
   OnboardingModel(
     image: AppAssets.assetsImagesBldOnbrd1,
     title: S.of(context).onbrd1Title,

@@ -24,29 +24,44 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: AppTextStyles.b20(context)),
         const SizedBox(height: 8),
-        TextFormField(
-          controller: controller,
-          keyboardType: keyboardType,
-          textAlign: TextAlign.right,
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(color: AppColors.greyBorder, fontSize: 14),
-            filled: true,
-            fillColor: Colors.grey[50],
-            border: buildBorder(AppColors.greyBorder!, 0),
-            enabledBorder: buildBorder(AppColors.greyBorder!, 0),
-            focusedBorder: buildBorder(AppColors.commonClr, 2),
-            errorBorder: buildBorder(Colors.red, 1.5),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 16,
-            ),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                // ignore: deprecated_member_use
+                color: Colors.grey.withOpacity(0.20),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+                spreadRadius: 0,
+              ),
+            ],
           ),
-          validator: validator,
+          child: TextFormField(
+            controller: controller,
+            keyboardType: keyboardType,
+            textAlign: TextAlign.right,
+            decoration: InputDecoration(
+              hintText: hint,
+              hintStyle: TextStyle(color: AppColors.greyBorder, fontSize: 14),
+              filled: true,
+              fillColor: Colors.grey[50],
+              border: buildBorder(AppColors.greyBorder!, 0),
+              enabledBorder: buildBorder(AppColors.greyBorder!, 0),
+              focusedBorder: buildBorder(AppColors.commonClr, 2),
+              errorBorder: buildBorder(Colors.red, 1.5),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 16,
+              ),
+            ),
+            validator: validator,
+          ),
         ),
       ],
     );
