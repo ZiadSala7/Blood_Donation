@@ -1,5 +1,5 @@
 class TownModel {
-  final num id, govrnId;
+  final int id, govrnId;
   final String nameEn, nameAr;
 
   TownModel({

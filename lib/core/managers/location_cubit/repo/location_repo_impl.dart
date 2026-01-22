@@ -35,8 +35,9 @@ class LocationRepoImpl implements LocationRepo {
   ) async {
     try {
       final response = await dio.get(
-        "${EndPoints.citiesInGovr}$city",
+        EndPoints.citiesInGovr,
         data: {},
+        queryParameters: {"Id": city.toString()},
       );
       List<TownModel> cities = [];
       for (int i = 0; i < response.length; i++) {

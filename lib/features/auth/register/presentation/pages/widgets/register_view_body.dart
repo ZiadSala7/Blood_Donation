@@ -11,6 +11,7 @@ import '../../../../../../core/widgets/custom_drop_down.dart';
 import '../../../../../../core/widgets/custom_password_text_field.dart';
 import '../../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../../generated/l10n.dart';
+import '../../cubit/register_cubit.dart';
 
 // ============ MAIN SIGNUP VIEW ============
 class RegisterViewBody extends StatefulWidget {
@@ -38,7 +39,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<LocationCubit>();
+    final locCubit = context.watch<LocationCubit>();
+    final registerCubit = context.watch<RegisterCubit>();
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
@@ -48,7 +50,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             const SizedBox(height: 20),
             // الاسم الكامل
             CustomTextField(
-              controller: TextEditingController(),
+              controller: registerCubit.name,
               label: S.of(context).fullName,
               hint: S.of(context).entrFullName,
               validator: nameValidator,
@@ -57,7 +59,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
             // البريد الإلكتروني
             CustomTextField(
-              controller: TextEditingController(),
+              controller: registerCubit.email,
               label: S.of(context).email,
               hint: S.of(context).entrEmail,
               keyboardType: TextInputType.emailAddress,
@@ -67,7 +69,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
             // رقم الهاتف
             CustomTextField(
-              controller: TextEditingController(),
+              controller: registerCubit.phone,
               label: S.of(context).phoneNum,
               hint: S.of(context).entrPhoneNum,
               keyboardType: TextInputType.phone,
@@ -125,11 +127,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     label: S.of(context).city,
                     hint: S.of(context).city,
                     value: selectedGovernorate,
-                    items: cubit.cities,
+                    items: locCubit.cities,
                     onChanged: (value) {
                       setState(() {
                         selectedGovernorate = value;
-                        cubit.getTowns(cubit.cities.indexOf(value!) + 1);
+                        locCubit.getTowns(locCubit.cities.indexOf(value!) + 1);
                       });
                     },
                   ),
@@ -140,7 +142,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     label: S.of(context).town,
                     hint: S.of(context).town,
                     value: selectedCity,
-                    items: cubit.towns,
+                    items: locCubit.towns,
                     onChanged: (value) {
                       setState(() => selectedCity = value);
                     },
@@ -152,7 +154,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
             // كلمة السر
             CustomPasswordField(
-              controller: TextEditingController(),
+              controller: registerCubit.pass,
               label: S.of(context).password,
               hint: S.of(context).entrPassw,
               validator: passwordValidator,
@@ -161,7 +163,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
             // تأكيد كلمة السر
             CustomPasswordField(
-              controller: TextEditingController(),
+              controller: registerCubit.confirmPass,
               label: S.of(context).confirmPass,
               hint: S.of(context).entrPassw,
               validator: passwordValidator,
@@ -169,7 +171,27 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             const SizedBox(height: 30),
 
             // إنشاء حساب BUTTON
-            CustomButton(onPressed: () {}, label: S.of(context).createAcc),
+            CustomButton(
+              onPressed: () async {
+                if (_formKey.currentState!.validate() &&
+                    registerCubit.pass.text == registerCubit.confirmPass.text) {
+                  await registerCubit.register(
+                    fullName: registerCubit.name.text,
+                    email: registerCubit.email.text,
+                    age: int.parse(selectedAge!),
+                    bloodTypeId:
+                        AppConstants.bloodTypes.indexOf(selectedBloodType!) + 1,
+                    gender: genders.indexOf(selectedGender!) + 1,
+                    cityId: locCubit.townModels
+                        .firstWhere((t) => t.nameAr == selectedCity)
+                        .id,
+                    password: registerCubit.pass.text,
+                    phoneNum: registerCubit.phone.text,
+                  );
+                } else {}
+              },
+              label: S.of(context).createAcc,
+            ),
             const SizedBox(height: 20),
 
             // هل لديك حساب بالفعل؟

@@ -1,23 +1,16 @@
-class ApiKeys {
-  ///
-  static const token = 'token';
-  static const id = 'id';
-  static const name = 'name';
-  static const email = 'email';
-  static const password = 'password';
-  static const fullName = 'fullName';
-  static const profilePictureURL = 'profilePictureURL';
-  static const userName = 'userName';
-  static const String englishName = 'englishName';
-  static const String oldEnglishName = 'oldEnglishName';
-  static const String arabicName = 'arabicName';
-  static const String description = 'description';
-  static const String price = 'price';
-  static const String dosage = 'dosage';
-  static const String activeIngredient = 'activeIngredient';
-  static const String barCode = 'barCode';
-  static const String imageURL = 'imageURL';
-  static const String pageIndex = 'pageIndex';
-  static const String tolerance = 'tolerance';
-  static const String pageSize = 'pageSize';
+abstract class ApiKeys {
+  static const String token = 'token';
+
+  /// ============ Register API Keys ===============
+  static const String email = 'email';
+  static const String fullName = 'fullName';
+  static const String bldTypeId = 'bloodTypeId';
+  static const String age = 'age';
+  static const String gender = 'gender';
+  static const String latitude = 'latitude';
+  static const String longitude = 'longitude';
+  static const String cityId = 'cityId';
+  static const String pass = 'password';
+  static const String phnNum = 'PhoneNumber';
+  static const String deviceTkn = 'DeviceToken';
 }

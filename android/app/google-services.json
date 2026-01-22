@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "427636974612",
+    "project_id": "elixir-ca085",
+    "storage_bucket": "elixir-ca085.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427636974612:android:93b17961a030f43428f301",
+        "android_client_info": {
+          "package_name": "com.example.blood_donation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmf7kDPMy8P9EL2u-knCv0zFeLaUXn8Lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
