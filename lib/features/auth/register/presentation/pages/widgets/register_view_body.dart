@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constants/app_constants.dart';
+import '../../../../../../core/managers/location_cubit/cubit/location_cubit.dart';
 import '../../../../../../core/utils/validators.dart';
 import '../../../../../../core/widgets/custom_auth_nav_button.dart';
 import '../../../../../../core/widgets/custom_button.dart';
@@ -28,14 +30,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   String? selectedGovernorate;
 
   final List<String> genders = ['ذكر', 'أنثى'];
-  final List<String> governorates = [
-    'القاهرة',
-    'الجيزة',
-    'الإسكندرية',
-    'أسيوط',
-    'سوهاج',
-  ];
-  final List<String> cities = ['مدينة نصر', 'المعادي', 'الهرم', 'وسط البلد'];
 
   @override
   void dispose() {
@@ -44,6 +38,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.watch<LocationCubit>();
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
@@ -130,9 +125,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     label: S.of(context).city,
                     hint: S.of(context).city,
                     value: selectedGovernorate,
-                    items: governorates,
+                    items: cubit.cities,
                     onChanged: (value) {
-                      setState(() => selectedGovernorate = value);
+                      setState(() {
+                        selectedGovernorate = value;
+                        cubit.getTowns(cubit.cities.indexOf(value!) + 1);
+                      });
                     },
                   ),
                 ),
@@ -142,7 +140,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     label: S.of(context).town,
                     hint: S.of(context).town,
                     value: selectedCity,
-                    items: cities,
+                    items: cubit.towns,
                     onChanged: (value) {
                       setState(() => selectedCity = value);
                     },

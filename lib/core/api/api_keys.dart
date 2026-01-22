@@ -1,4 +1,5 @@
 class ApiKeys {
+  ///
   static const token = 'token';
   static const id = 'id';
   static const name = 'name';

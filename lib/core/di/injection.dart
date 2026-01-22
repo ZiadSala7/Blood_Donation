@@ -1,3 +1,5 @@
+import '../api/dio_consumer.dart';
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import '../databases/cach_helper.dart';
@@ -9,4 +11,6 @@ Future<void> setupDependencies() async {
   await cacheHelper.init(); // ✅ MUST INIT HERE BEFORE REGISTERING
   getIt.registerSingleton<CacheHelper>(cacheHelper);
   // You can add API service, Database, etc.
+  getIt.registerSingleton<Dio>(Dio());
+  getIt.registerSingleton<DioConsumer>(DioConsumer(dio: getIt.get<Dio>()));
 }
