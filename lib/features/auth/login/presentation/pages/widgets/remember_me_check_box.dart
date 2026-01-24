@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
 import '../../../../../../generated/l10n.dart';
+import '../../cubit/login_cubit.dart';
 
 class RememberMeCheckBox extends StatelessWidget {
   const RememberMeCheckBox({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final loginCubit = context.watch<LoginCubit>();
     return Row(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            loginCubit.rememberMe = !loginCubit.rememberMe;
+          },
           icon: Icon(
-            Icons.check_box_outline_blank,
-            color: AppColors.greyBorder,
+            loginCubit.rememberMe
+                ? Icons.check_box
+                : Icons.check_box_outline_blank,
+            color: loginCubit.rememberMe
+                ? AppColors.commonClr
+                : AppColors.greyBorder,
           ),
         ),
         Text(

@@ -32,17 +32,8 @@ class RegisterRepoImpl implements RegisterRepo {
 
       // double lat = position.latitude;
       // double lng = position.longitude;
-      log(fullName);
-      log(email);
-      log(age.toString());
-      log(bloodTypeId.toString());
-      log(gender.toString());
-      log(cityId.toString());
-      log(password);
-      log(phoneNum);
-      log(cityId.toString());
+
       final token = await getDeviceToken();
-      log(token!);
       final response = await dio.post(
         EndPoints.register,
         data: {
