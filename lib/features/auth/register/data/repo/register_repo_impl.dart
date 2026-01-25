@@ -7,7 +7,6 @@ import '../../../../../core/api/end_points.dart';
 import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/api/dio_consumer.dart';
 import '../../../../../core/errors/exception.dart';
-import '../../../../../core/helper/get_current_location.dart';
 import '../../../../../core/helper/get_device_token.dart';
 import '../models/register_model.dart';
 import '../../domain/repo/register_repo.dart';
