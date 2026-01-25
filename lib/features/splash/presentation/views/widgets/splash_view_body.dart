@@ -33,6 +33,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     Future.delayed(const Duration(seconds: 4), () {
+      
       _controller.forward().whenComplete(() {});
     });
   }

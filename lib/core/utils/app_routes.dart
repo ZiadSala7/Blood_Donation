@@ -13,7 +13,7 @@ abstract class AppRoutes {
   static const String homeView = '/homeView';
   static final appRouter = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const BottomNavBar()),
+      GoRoute(path: '/', builder: (context, state) => const SplashView()),
       GoRoute(
         path: register,
         name: 'register',

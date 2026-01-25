@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      // width: double.infinity,
       height: 60,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: const Color(0xFFB71C1C),
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
         child: Text(

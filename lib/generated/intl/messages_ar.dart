@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "hosName": MessageLookupByLibrary.simpleMessage("البحث باسم المستشفى"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول "),
     "loginHere": MessageLookupByLibrary.simpleMessage("تسجيل الدخول من هنا"),
+    "loginSucc": MessageLookupByLibrary.simpleMessage("تم تسجيل دخولك بنجاح"),
+    "loginSuccDesc": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك"),
     "loginWithGoogle": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول بواسطة جوجل ",
     ),
@@ -66,6 +68,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "onbrd4Title": MessageLookupByLibrary.simpleMessage("أهلاً بك"),
     "password": MessageLookupByLibrary.simpleMessage("  كلمة السر"),
     "phoneNum": MessageLookupByLibrary.simpleMessage(" رقم الهاتف "),
+    "regFail": MessageLookupByLibrary.simpleMessage("فشلت العملية"),
+    "regSucc": MessageLookupByLibrary.simpleMessage("تم انشاء حساب بنجاح"),
+    "regSuccDesc": MessageLookupByLibrary.simpleMessage(
+      "افحص رسائل الايميل لتفعيل الحساب ثم سجل دخولك",
+    ),
     "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),

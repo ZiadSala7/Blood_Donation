@@ -313,6 +313,51 @@ class S {
       args: [],
     );
   }
+
+  /// `Successful Register`
+  String get regSucc {
+    return Intl.message(
+      'Successful Register',
+      name: 'regSucc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify your account then go to login page`
+  String get regSuccDesc {
+    return Intl.message(
+      'Verify your account then go to login page',
+      name: 'regSuccDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register Failed`
+  String get regFail {
+    return Intl.message('Register Failed', name: 'regFail', desc: '', args: []);
+  }
+
+  /// `Successful Login`
+  String get loginSucc {
+    return Intl.message(
+      'Successful Login',
+      name: 'loginSucc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome back !`
+  String get loginSuccDesc {
+    return Intl.message(
+      'Welcome back !',
+      name: 'loginSuccDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

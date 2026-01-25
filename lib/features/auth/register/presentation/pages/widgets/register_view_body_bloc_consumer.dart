@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../../core/widgets/show_awesome_dialog.dart';
@@ -18,15 +19,17 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
           showAwesomeDialog(
             context,
             'تم انشاء حساب بنجاح',
-            'افحص رسائل الايميل لتفعيل الحساب',
+            'افحص رسائل الايميل لتفعيل الحساب ثم سجل دخولك',
             true,
-            () {},
+            () {
+              GoRouter.of(context).pushReplacementNamed('login');
+            },
           );
         } else if (state is RegisterFailure) {
           showAwesomeDialog(
             context,
             "فشلت العملية",
-            "state.message",
+            "حدث خطأ أثناء التسجيل , حاول مرة أخرى",
             false,
             () {},
           );

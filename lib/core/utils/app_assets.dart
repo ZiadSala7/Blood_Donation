@@ -26,6 +26,10 @@ class AppAssets {
   /// assets/images/google.png
   static const String assetsImagesGoogle = "assets/images/google.png";
 
+  /// Assets for assetsImagesHospital
+  /// assets/images/hospital.png
+  static const String assetsImagesHospital = "assets/images/hospital.png";
+
   /// Assets for assetsImagesSort
   /// assets/images/sort.png
   static const String assetsImagesSort = "assets/images/sort.png";

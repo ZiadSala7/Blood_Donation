@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "loginHere": MessageLookupByLibrary.simpleMessage("Login here"),
+    "loginSucc": MessageLookupByLibrary.simpleMessage("Successful Login"),
+    "loginSuccDesc": MessageLookupByLibrary.simpleMessage("Welcome back !"),
     "loginWithGoogle": MessageLookupByLibrary.simpleMessage(
       "Login with Google",
     ),
@@ -76,6 +78,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "onbrd4Title": MessageLookupByLibrary.simpleMessage("Welcome"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "phoneNum": MessageLookupByLibrary.simpleMessage("Phone Number"),
+    "regFail": MessageLookupByLibrary.simpleMessage("Register Failed"),
+    "regSucc": MessageLookupByLibrary.simpleMessage("Successful Register"),
+    "regSuccDesc": MessageLookupByLibrary.simpleMessage(
+      "Verify your account then go to login page",
+    ),
     "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),

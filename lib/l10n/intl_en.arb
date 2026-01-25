@@ -32,5 +32,10 @@
     "createAcc": "Create Account",
     "haveAcc": "Already have an account?",
     "loginHere": "Login here",
-    "hosName": "Search with hospital name"
+    "hosName": "Search with hospital name",
+    "regSucc": "Successful Register",
+    "regSuccDesc": "Verify your account then go to login page",
+    "regFail": "Register Failed",
+    "loginSucc": "Successful Login",
+    "loginSuccDesc": "Welcome back !"
 }

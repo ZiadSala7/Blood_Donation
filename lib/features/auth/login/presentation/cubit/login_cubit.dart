@@ -19,7 +19,7 @@ class LoginCubit extends Cubit<LoginStates> {
     final response = await repo.login(email: email, password: password);
     response.fold(
       (ifLeft) => emit(LoginFailure()),
-      (ifRight) => emit(LoginSuccess()),
+      (ifRight) => emit(LoginSuccess(model: ifRight)),
     );
   }
 }
