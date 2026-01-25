@@ -39,8 +39,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    final locCubit = context.watch<LocationCubit>();
-    final registerCubit = context.watch<RegisterCubit>();
+    var locCubit = context.watch<LocationCubit>();
+    var registerCubit = context.watch<RegisterCubit>();
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
@@ -131,7 +131,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     onChanged: (value) {
                       setState(() {
                         selectedGovernorate = value;
-                        locCubit.getTowns(locCubit.cities.indexOf(value!) + 1);
+                        locCubit.getTowns(
+                          locCubit.cities.indexOf(selectedGovernorate!) + 1,
+                        );
                       });
                     },
                   ),
@@ -184,7 +186,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                     gender: genders.indexOf(selectedGender!) + 1,
                     cityId: locCubit.townModels
                         .firstWhere((t) => t.nameAr == selectedCity)
-                        .id,
+                        .id!,
                     password: registerCubit.pass.text,
                     phoneNum: registerCubit.phone.text,
                   );

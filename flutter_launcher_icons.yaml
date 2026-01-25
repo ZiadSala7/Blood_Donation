@@ -1,0 +1,6 @@
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  background_color: "#B71C1C"
+  image_path: "assets/images/bldLogo.png"

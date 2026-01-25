@@ -11,15 +11,15 @@ class EndPoints {
 
   /// ================== lookup API ============================
   static const String governorates = 'Lookup/governorates';
-  static const String citiesInGovr = 'Lookup/governorate-cities/';
+  static const String citiesInGovr = 'Lookup/governorate-cities';
   static const String bloodTypes = 'Lookup/blood-types';
   static const String donationCat = 'Lookup/donation-categories';
 
   /// ================== blood request API ====================
   static const String createBldRqust = 'Request/create';
   static const String getBldRqust = 'Request/requests';
-  static const String getBldRqustById = 'Request/request?Id=';
-  static const String closeBldRqust = 'Request/close?RequestId=';
+  static const String getBldRqustById = 'Request/request';
+  static const String closeBldRqust = 'Request/close';
   static const String deleteBldRqust = 'Request?RequestId=';
 
   /// ================= blood response API ===================

@@ -21,19 +21,20 @@ class LocationCubit extends Cubit<LocationStates> {
     final response = await repo.getAllGovernorates();
     response.fold((ifLeft) => emit(FailureLocState()), (allCities) {
       cities = allCities;
-      emit(SuccessLocState());
+      emit(SuccessCityLocState());
     });
   }
 
   Future getTowns(num city) async {
     emit(LoadingLocState());
+    towns = [];
     final response = await repo.getTownsByGovrnrat(city);
     response.fold((ifLeft) => emit(FailureLocState()), (allTowns) {
       townModels = allTowns;
       for (int i = 0; i < townModels.length; i++) {
         towns.add(townModels[i].nameAr);
       }
-      emit(SuccessLocState());
+      emit(SuccessTownLocState());
     });
   }
 }

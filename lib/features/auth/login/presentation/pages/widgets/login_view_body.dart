@@ -18,12 +18,12 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     final loginCubit = context.watch<LoginCubit>();
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
-        key: _formKey,
+        key: formKey,
         child: Column(
           children: [
             /// FORM VALIDATION
@@ -61,7 +61,7 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(height: 30),
             CustomButton(
               onPressed: () async {
-                if (_formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                   await loginCubit.loginWithEmail(
                     email: loginCubit.email.text,
                     password: loginCubit.password.text,

@@ -303,6 +303,16 @@ class S {
   String get loginHere {
     return Intl.message('Login here', name: 'loginHere', desc: '', args: []);
   }
+
+  /// `Search with hospital name`
+  String get hosName {
+    return Intl.message(
+      'Search with hospital name',
+      name: 'hosName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

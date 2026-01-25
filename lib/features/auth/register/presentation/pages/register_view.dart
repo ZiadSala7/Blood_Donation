@@ -7,7 +7,7 @@ import '../../../../../core/di/injection.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../data/repo/register_repo_impl.dart';
 import '../cubit/register_cubit.dart';
-import 'widgets/register_view_body.dart';
+import 'widgets/register_view_body_bloc_consumer.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -19,7 +19,10 @@ class RegisterView extends StatelessWidget {
           RegisterCubit(RegisterRepoImpl(getIt.get<DioConsumer>())),
       child: const Scaffold(
         backgroundColor: AppColors.commonClr,
-        body: CustomAuthView(widget: RegisterViewBody(), barHeight: 120),
+        body: CustomAuthView(
+          widget: RegisterViewBodyBlocConsumer(),
+          barHeight: 120,
+        ),
       ),
     );
   }

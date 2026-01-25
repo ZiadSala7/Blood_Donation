@@ -8,6 +8,7 @@ import '../../../../../core/widgets/custom_auth_view.dart';
 import '../../data/repo/login_repo_impl.dart';
 import '../cubit/login_cubit.dart';
 import 'widgets/login_view_body.dart';
+import 'widgets/login_view_body_bloc_consumer.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -18,7 +19,9 @@ class LoginView extends StatelessWidget {
       create: (context) => LoginCubit(LoginRepoImpl(getIt.get<DioConsumer>())),
       child: const Scaffold(
         backgroundColor: AppColors.commonClr,
-        body: SafeArea(child: CustomAuthView(widget: LoginViewBody())),
+        body: SafeArea(
+          child: CustomAuthView(widget: LoginViewBodyBlocConsumer()),
+        ),
       ),
     );
   }

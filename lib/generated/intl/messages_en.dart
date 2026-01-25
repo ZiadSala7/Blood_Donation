@@ -45,6 +45,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "haveAcc": MessageLookupByLibrary.simpleMessage("Already have an account?"),
+    "hosName": MessageLookupByLibrary.simpleMessage(
+      "Search with hospital name",
+    ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "loginHere": MessageLookupByLibrary.simpleMessage("Login here"),
     "loginWithGoogle": MessageLookupByLibrary.simpleMessage(

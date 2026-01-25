@@ -6,9 +6,14 @@ import '../../../../../../core/utils/app_text_styles.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../cubit/login_cubit.dart';
 
-class RememberMeCheckBox extends StatelessWidget {
+class RememberMeCheckBox extends StatefulWidget {
   const RememberMeCheckBox({super.key});
 
+  @override
+  State<RememberMeCheckBox> createState() => _RememberMeCheckBoxState();
+}
+
+class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
   @override
   Widget build(BuildContext context) {
     final loginCubit = context.watch<LoginCubit>();
@@ -16,7 +21,9 @@ class RememberMeCheckBox extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {
-            loginCubit.rememberMe = !loginCubit.rememberMe;
+            setState(() {
+              loginCubit.rememberMe = !loginCubit.rememberMe;
+            });
           },
           icon: Icon(
             loginCubit.rememberMe

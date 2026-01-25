@@ -31,5 +31,6 @@
     "town": "City",
     "createAcc": "Create Account",
     "haveAcc": "Already have an account?",
-    "loginHere": "Login here"
+    "loginHere": "Login here",
+    "hosName": "Search with hospital name"
 }

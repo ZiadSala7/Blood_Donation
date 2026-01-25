@@ -2,14 +2,18 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/login/presentation/pages/login_view.dart';
 import '../../features/auth/register/presentation/pages/register_view.dart';
+import '../../features/home/presentation/pages/home_view.dart';
+import '../widgets/bottom_nav_bar.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRoutes {
   static const String register = '/register';
   static const String login = '/login';
+  static const String btmNavBar = '/btmNavBar';
+  static const String homeView = '/homeView';
   static final appRouter = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const SplashView()),
+      GoRoute(path: '/', builder: (context, state) => const BottomNavBar()),
       GoRoute(
         path: register,
         name: 'register',
@@ -19,6 +23,16 @@ abstract class AppRoutes {
         path: login,
         name: 'login',
         builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
+        path: btmNavBar,
+        name: 'btmNavBar',
+        builder: (context, state) => const BottomNavBar(),
+      ),
+      GoRoute(
+        path: homeView,
+        name: 'home',
+        builder: (context, state) => const HomeView(),
       ),
     ],
   );
