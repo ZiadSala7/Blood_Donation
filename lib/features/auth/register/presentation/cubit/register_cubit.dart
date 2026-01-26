@@ -38,7 +38,9 @@ class RegisterCubit extends Cubit<RegisterStates> {
       phoneNum: phoneNum,
     );
     response.fold(
-      (ifLeft) => emit(RegisterFailure()),
+      (ifLeft) => emit(
+        RegisterFailure(errMsg: ifLeft.errors![0] ?? "حدث حطأ .. حاول مرةاخرى"),
+      ),
       (ifRight) => emit(RegisterSuccess()),
     );
   }

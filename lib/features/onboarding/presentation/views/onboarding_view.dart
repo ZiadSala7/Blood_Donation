@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/databases/cach_helper.dart';
+import '../../../../core/di/injection.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -48,6 +50,8 @@ class OnboardingView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: CustomButton(
                     onPressed: () {
+                      final prefs = getIt.get<CacheHelper>();
+                      prefs.setBool('isOnbordActive', true);
                       context.pushReplacementNamed('register');
                     },
                     label: S.of(context).startNow,

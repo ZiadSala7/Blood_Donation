@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/helper/get_device_token.dart';
 import '../../../../../core/api/dio_consumer.dart';
 import '../../../../../core/api/api_keys.dart';
 import '../../../../../core/api/end_points.dart';
-import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/errors/exception.dart';
 import '../../../register/data/models/register_model.dart';
 import '../../domain/repo/login_repo.dart';

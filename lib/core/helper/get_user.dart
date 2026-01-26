@@ -7,7 +7,6 @@ import '../di/injection.dart';
 Future<RegisterModel?> getUser() async {
   final prefs = getIt.get<CacheHelper>();
   final jsonString = prefs.getString('user');
-
   if (jsonString == null) return null;
 
   final Map<String, dynamic> jsonMap = jsonDecode(jsonString);

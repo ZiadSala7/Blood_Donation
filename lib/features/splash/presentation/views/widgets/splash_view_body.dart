@@ -1,9 +1,11 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 
+import '../../../../../core/di/injection.dart';
 import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/databases/cach_helper.dart';
+import '../../../../../core/widgets/bottom_nav_bar.dart';
+import '../../../../auth/login/presentation/pages/login_view.dart';
 import '../../../../onboarding/presentation/views/onboarding_page_view.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -33,7 +35,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
     Future.delayed(const Duration(seconds: 4), () {
-      
       _controller.forward().whenComplete(() {});
     });
   }
@@ -46,9 +47,16 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   Widget build(BuildContext context) {
+    final prefs = getIt.get<CacheHelper>();
+    final isOnbordActive = prefs.getBool('isOnbordActive');
+    final remembered = prefs.getBool('rememberMe');
     return Stack(
       children: [
-        const OnboardingPageView(),
+        isOnbordActive != null
+            ? remembered != null
+                  ? const BottomNavBar()
+                  : const LoginView()
+            : const OnboardingPageView(),
         Positioned(
           top: -30, // from the top of the screen
           left: MediaQuery.of(context).size.width / 2 - 250, // center circle

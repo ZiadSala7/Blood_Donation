@@ -29,7 +29,7 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
           showAwesomeDialog(
             context,
             "فشلت العملية",
-            "حدث خطأ أثناء التسجيل , حاول مرة أخرى",
+            state.errMsg,
             false,
             () {},
           );

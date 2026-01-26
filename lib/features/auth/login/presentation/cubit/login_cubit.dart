@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/repo/login_repo_impl.dart';
 import 'login_states.dart';
+import '../../data/repo/login_repo_impl.dart';
+import '../../../../../core/di/injection.dart';
+import '../../../../../core/helper/get_user.dart';
+import '../../../../../core/databases/cach_helper.dart';
+import '../../../register/data/models/register_model.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   final LoginRepoImpl repo;
@@ -11,6 +15,14 @@ class LoginCubit extends Cubit<LoginStates> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool rememberMe = false;
+  late RegisterModel model;
+
+  Future<void> cachedData() async {
+    final prefs = getIt.get<CacheHelper>();
+    final rem = prefs.getBool('rememberMe');
+    rem == true ? model = await getUser() as RegisterModel : null;
+  }
+
   Future loginWithEmail({
     required String email,
     required String password,
@@ -18,8 +30,11 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(LoginLoading());
     final response = await repo.login(email: email, password: password);
     response.fold(
-      (ifLeft) => emit(LoginFailure()),
-      (ifRight) => emit(LoginSuccess(model: ifRight)),
+      (ifLeft) => emit(LoginFailure(errMsg: ifLeft.errorMessage!)),
+      (ifRight) {
+        model = ifRight;
+        emit(LoginSuccess(model: ifRight));
+      },
     );
   }
 }

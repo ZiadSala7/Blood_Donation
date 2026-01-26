@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../../../../core/databases/cach_helper.dart';
-import '../../../../../../core/di/injection.dart';
+import '../../../../../../core/helper/add_user_to_cache_helper.dart';
 import '../../../../../../core/widgets/show_awesome_dialog.dart';
 import '../../cubit/login_cubit.dart';
 import '../../cubit/login_states.dart';
@@ -20,9 +17,9 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) async {
         if (state is LoginSuccess) {
-          final prefs = getIt.get<CacheHelper>();
-          final jsonString = jsonEncode(state.model.toJson());
-          prefs.setString('user', jsonString);
+          if (context.read<LoginCubit>().rememberMe) {
+            addUserToCacheHelper(state);
+          }
           showAwesomeDialog(
             context,
             'تم تسجيل دخولك بنجاح',
@@ -36,7 +33,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
           showAwesomeDialog(
             context,
             "فشلت العملية",
-            "state.message",
+            state.errMsg,
             false,
             () {},
           );

@@ -4,3 +4,4 @@ flutter_launcher_icons:
   remove_alpha_ios: true
   background_color: "#B71C1C"
   image_path: "assets/images/bldLogo.png"
+  adaptive_icon_background: "#B71C1C"

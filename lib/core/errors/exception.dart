@@ -22,44 +22,58 @@ void handleDioException(DioException e) {
       throw ServerException(
         errorModel: ErrorModel(
           status: 499,
-          detail: 'Request was cancelled by the interceptor',
+          errorMessage: 'Request was cancelled by the interceptor',
+          errors: [],
         ),
       );
     case DioExceptionType.connectionError:
       e.response == null
           ? throw ServerException(
-              errorModel: ErrorModel(status: 500, detail: 'Lose Internet'))
+              errorModel: ErrorModel(
+                status: 500,
+                errorMessage: 'Lose Internet',
+                errors: [],
+              ),
+            )
           : throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+              errorModel: ErrorModel.fromJson(e.response!.data),
+            );
     case DioExceptionType.unknown:
       throw ServerException(errorModel: ErrorModel.fromJson(e.response!.data));
     case DioExceptionType.badResponse:
       switch (e.response?.statusCode) {
         case 400: // bad request
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
         case 401: // unauthorized
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
         case 403: // forbidden
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
         case 404: // not found
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
         case 409: // cofficient
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
         case 422: // unprocessable
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
         case 500:
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
         case 504: // server exception
           throw ServerException(
-              errorModel: ErrorModel.fromJson(e.response!.data));
+            errorModel: ErrorModel.fromJson(e.response!.data),
+          );
       }
   }
 }
- 

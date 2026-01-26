@@ -30,7 +30,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.label, style: AppTextStyles.b20(context)),
+        Text(widget.label, style: AppTextStyles.b18(context)),
         const SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(

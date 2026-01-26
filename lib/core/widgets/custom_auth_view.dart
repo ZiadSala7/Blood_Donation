@@ -18,6 +18,7 @@ class CustomAuthView extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          pinned: true,
           toolbarHeight: barHeight,
           backgroundColor: AppColors.commonClr,
           title: Image.asset(

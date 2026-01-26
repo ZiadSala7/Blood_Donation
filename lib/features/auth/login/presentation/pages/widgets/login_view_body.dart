@@ -59,16 +59,21 @@ class LoginViewBody extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 30),
-            CustomButton(
-              onPressed: () async {
-                if (formKey.currentState!.validate()) {
-                  await loginCubit.loginWithEmail(
-                    email: loginCubit.email.text,
-                    password: loginCubit.password.text,
-                  );
-                }
-              },
-              label: S.of(context).login,
+            Column(
+              crossAxisAlignment: .stretch,
+              children: [
+                CustomButton(
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      await loginCubit.loginWithEmail(
+                        email: loginCubit.email.text,
+                        password: loginCubit.password.text,
+                      );
+                    }
+                  },
+                  label: S.of(context).login,
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             Container(
