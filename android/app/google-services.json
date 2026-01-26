@@ -7,9 +7,28 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:427636974612:android:af9745b2ec7596e628f301",
+        "android_client_info": {
+          "package_name": "com.elixir.blood_donation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmf7kDPMy8P9EL2u-knCv0zFeLaUXn8Lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:427636974612:android:93b17961a030f43428f301",
         "android_client_info": {
-          "package_name": "com.example.blood_donation"
+          "package_name": "com.elixir.blood_donation"
         }
       },
       "oauth_client": [],
