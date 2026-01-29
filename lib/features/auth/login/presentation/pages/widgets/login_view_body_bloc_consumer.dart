@@ -25,10 +25,9 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
             'تم تسجيل دخولك بنجاح',
             'مرحبا بعودتك',
             true,
-            () {
-              GoRouter.of(context).pushNamed('btmNavBar');
-            },
+            () {},
           );
+          GoRouter.of(context).pushNamed('btmNavBar');
         } else if (state is LoginFailure) {
           showAwesomeDialog(
             context,

@@ -28,7 +28,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:427636974612:android:93b17961a030f43428f301",
         "android_client_info": {
-          "package_name": "com.elixir.blood_donation"
+          "package_name": "com.example.blood_donation"
         }
       },
       "oauth_client": [],

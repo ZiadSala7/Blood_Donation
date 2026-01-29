@@ -15,12 +15,13 @@ class LoginCubit extends Cubit<LoginStates> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool rememberMe = false;
-  late RegisterModel model;
+  RegisterModel? model;
 
   Future<void> cachedData() async {
     final prefs = getIt.get<CacheHelper>();
     final rem = prefs.getBool('rememberMe');
-    rem == true ? model = await getUser() as RegisterModel : null;
+    model = rem == true ? getCachedUser() : null;
+    emit(LoginSuccess(model: model!));
   }
 
   Future loginWithEmail({

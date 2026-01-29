@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../auth/login/presentation/cubit/login_cubit.dart';
+import '../../../../auth/register/data/models/register_model.dart';
 import 'nearby_requests_divider.dart';
 import 'request_card.dart';
 import 'search_and_filter_section.dart';
@@ -15,14 +16,16 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
+  late RegisterModel model;
+
   @override
   void initState() {
+    model = context.read<LoginCubit>().model!;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<LoginCubit>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView(
@@ -33,10 +36,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             crossAxisAlignment: .stretch,
             children: [
               Text(
-                '👋أهلا: ${cubit.model.name!}',
+                '👋أهلا: ${model.name ?? ""}',
                 style: AppTextStyles.b24(context),
               ),
-              const Text('       سوهاج : أخميم'),
+              Text('       ${model.governorateName} : ${model.cityName}'),
               const SearchAndFilterSection(),
               const SizedBox(height: 28),
               const NearbyRequestsDivider(),
