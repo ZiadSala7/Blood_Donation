@@ -41,48 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyClHM2Xj1fgGhtDgX8xdOKSycyvH7uc2l4',
-    appId: '1:427636974612:web:9913061bfdc02d0028f301',
-    messagingSenderId: '427636974612',
-    projectId: 'elixir-ca085',
-    authDomain: 'elixir-ca085.firebaseapp.com',
-    storageBucket: 'elixir-ca085.firebasestorage.app',
-    measurementId: 'G-M5T3C4JFXT',
+    apiKey: 'AIzaSyAmMrSt978jZ8epcvlLvqDE1v4N7x8pONw',
+    appId: '1:1077293288373:web:1eac44459b2ac56948a7fc',
+    messagingSenderId: '1077293288373',
+    projectId: 'elixir-a7849',
+    authDomain: 'elixir-a7849.firebaseapp.com',
+    storageBucket: 'elixir-a7849.firebasestorage.app',
+    measurementId: 'G-N37L36XDN9',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCmf7kDPMy8P9EL2u-knCv0zFeLaUXn8Lw',
-    appId: '1:427636974612:android:93b17961a030f43428f301',
-    messagingSenderId: '427636974612',
-    projectId: 'elixir-ca085',
-    storageBucket: 'elixir-ca085.firebasestorage.app',
+    apiKey: 'AIzaSyCLscUgakW3JaEcBs6Y315dUTbC6YMzqM4',
+    appId: '1:1077293288373:android:91a988dbe55eb6af48a7fc',
+    messagingSenderId: '1077293288373',
+    projectId: 'elixir-a7849',
+    storageBucket: 'elixir-a7849.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC0bneHrPDAtBoZVligCd6M2alN6mI_8SE',
-    appId: '1:427636974612:ios:3b411c40e2d12ddb28f301',
-    messagingSenderId: '427636974612',
-    projectId: 'elixir-ca085',
-    storageBucket: 'elixir-ca085.firebasestorage.app',
+    apiKey: 'AIzaSyARfF4HZFJ-cQuxJJ6--20f9zGgrw0yNAI',
+    appId: '1:1077293288373:ios:f7421d7e1fd672b548a7fc',
+    messagingSenderId: '1077293288373',
+    projectId: 'elixir-a7849',
+    storageBucket: 'elixir-a7849.firebasestorage.app',
     iosBundleId: 'com.example.bloodDonation',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC0bneHrPDAtBoZVligCd6M2alN6mI_8SE',
-    appId: '1:427636974612:ios:3b411c40e2d12ddb28f301',
-    messagingSenderId: '427636974612',
-    projectId: 'elixir-ca085',
-    storageBucket: 'elixir-ca085.firebasestorage.app',
+    apiKey: 'AIzaSyARfF4HZFJ-cQuxJJ6--20f9zGgrw0yNAI',
+    appId: '1:1077293288373:ios:f7421d7e1fd672b548a7fc',
+    messagingSenderId: '1077293288373',
+    projectId: 'elixir-a7849',
+    storageBucket: 'elixir-a7849.firebasestorage.app',
     iosBundleId: 'com.example.bloodDonation',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyClHM2Xj1fgGhtDgX8xdOKSycyvH7uc2l4',
-    appId: '1:427636974612:web:c939d435404ef54328f301',
-    messagingSenderId: '427636974612',
-    projectId: 'elixir-ca085',
-    authDomain: 'elixir-ca085.firebaseapp.com',
-    storageBucket: 'elixir-ca085.firebasestorage.app',
-    measurementId: 'G-HQHJJMXL4Z',
+    apiKey: 'AIzaSyAmMrSt978jZ8epcvlLvqDE1v4N7x8pONw',
+    appId: '1:1077293288373:web:179b27362cfca9ef48a7fc',
+    messagingSenderId: '1077293288373',
+    projectId: 'elixir-a7849',
+    authDomain: 'elixir-a7849.firebaseapp.com',
+    storageBucket: 'elixir-a7849.firebasestorage.app',
+    measurementId: 'G-8XL1FQTYP5',
   );
+
 }

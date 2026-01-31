@@ -7,6 +7,7 @@ import '../../../../../core/api/end_points.dart';
 import '../../../../../core/errors/error_model.dart';
 import '../../../../../core/api/dio_consumer.dart';
 import '../../../../../core/errors/exception.dart';
+import '../../../../../core/helper/get_current_location.dart';
 import '../../../../../core/helper/get_device_token.dart';
 import '../models/register_model.dart';
 import '../../domain/repo/register_repo.dart';
@@ -27,10 +28,10 @@ class RegisterRepoImpl implements RegisterRepo {
     required String phoneNum,
   }) async {
     try {
-      // final position = await getCurrentLocation();
+      final position = await getCurrentLocation();
 
-      // double lat = position.latitude;
-      // double lng = position.longitude;
+      double lat = position.latitude;
+      double lng = position.longitude;
 
       final token = await getDeviceToken();
       final response = await dio.post(
@@ -41,8 +42,8 @@ class RegisterRepoImpl implements RegisterRepo {
           ApiKeys.bldTypeId: bloodTypeId,
           ApiKeys.age: age,
           ApiKeys.gender: gender,
-          ApiKeys.latitude: 26.559074,
-          ApiKeys.longitude: 31.695671,
+          ApiKeys.latitude: lat,
+          ApiKeys.longitude: lng,
           ApiKeys.cityId: cityId,
           ApiKeys.pass: password,
           ApiKeys.phnNum: phoneNum,

@@ -11,7 +11,7 @@ class NearbyRequestsDivider extends StatelessWidget {
       height: 35,
       child: Row(
         mainAxisAlignment: .start,
-        crossAxisAlignment: .center,
+        crossAxisAlignment: .end,
         children: [
           const Expanded(child: Divider()),
           Text(

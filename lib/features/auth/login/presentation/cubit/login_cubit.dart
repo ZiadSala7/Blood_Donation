@@ -21,7 +21,6 @@ class LoginCubit extends Cubit<LoginStates> {
     final prefs = getIt.get<CacheHelper>();
     final rem = prefs.getBool('rememberMe');
     model = rem == true ? getCachedUser() : null;
-    emit(LoginSuccess(model: model!));
   }
 
   Future loginWithEmail({

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../features/home/presentation/pages/home_view.dart';
@@ -40,6 +41,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           onPressed: () {
             // Add action
+            GoRouter.of(context).pushNamed('addRequest');
           },
           backgroundColor: AppColors.commonClr,
           child: const Icon(Icons.add, size: 32, color: AppColors.white),

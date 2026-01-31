@@ -14,7 +14,7 @@ import 'core/managers/location_cubit/repo/location_repo_impl.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupDependencies();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.android);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiBlocProvider(
       providers: [
