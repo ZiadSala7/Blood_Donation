@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addRqustBtn": MessageLookupByLibrary.simpleMessage("Create Request"),
     "age": MessageLookupByLibrary.simpleMessage("Age"),
     "bloodType": MessageLookupByLibrary.simpleMessage("Blood Type"),
     "city": MessageLookupByLibrary.simpleMessage("Governorate"),

@@ -13,4 +13,6 @@ abstract class ApiKeys {
   static const String pass = 'password';
   static const String phnNum = 'PhoneNumber';
   static const String deviceTkn = 'DeviceToken';
+  static const String pageIndex = 'pageIndex';
+  static const String pageSize = 'pageSize';
 }

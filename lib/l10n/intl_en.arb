@@ -37,5 +37,6 @@
     "regSuccDesc": "Verify your account then go to login page",
     "regFail": "Register Failed",
     "loginSucc": "Successful Login",
-    "loginSuccDesc": "Welcome back !"
+    "loginSuccDesc": "Welcome back !",
+    "addRqustBtn": "Create Request"
 }

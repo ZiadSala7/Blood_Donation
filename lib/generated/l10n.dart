@@ -358,6 +358,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Create Request`
+  String get addRqustBtn {
+    return Intl.message(
+      'Create Request',
+      name: 'addRqustBtn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -85,5 +85,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'elixir-a7849.firebasestorage.app',
     measurementId: 'G-8XL1FQTYP5',
   );
-
 }

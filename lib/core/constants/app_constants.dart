@@ -17,4 +17,6 @@ abstract class AppConstants {
   ];
 
   static final PageController onbrdngPageCntroller = PageController();
+  static const String errMsg =
+      'حدث خطأ أثناء تحميل البيانات، يرجى إعادة المحاولة.';
 }

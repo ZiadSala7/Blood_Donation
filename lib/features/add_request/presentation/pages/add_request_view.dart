@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_button.dart';
+import '../../../../generated/l10n.dart';
 
 class AddRequestView extends StatelessWidget {
   const AddRequestView({super.key});
@@ -24,7 +25,7 @@ class AddRequestView extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(10),
-        child: CustomButton(onPressed: () {}, label: 'انشاء الطلب'),
+        child: CustomButton(onPressed: () {}, label: S.of(context).addRqustBtn),
       ),
     );
   }

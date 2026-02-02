@@ -11,20 +11,24 @@ class DioConsumer extends ApiConsumer {
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
     dio.interceptors.add(ApiInterceptor()); // user define
-    dio.interceptors.add(LogInterceptor(
-      request: true,
-      requestBody: true,
-      requestHeader: true,
-      responseBody: true,
-      responseHeader: true,
-      error: true,
-    )); // build in
+    dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestBody: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true,
+        error: true,
+      ),
+    ); // build in
   }
   @override
-  Future<T> delete<T>(String path,
-      {dynamic data,
-      Map<String, String>? queryParameters,
-      isFormData = false}) async {
+  Future<T> delete<T>(
+    String path, {
+    dynamic data,
+    Map<String, String>? queryParameters,
+    isFormData = false,
+  }) async {
     try {
       final response = await dio.delete(
         path,
@@ -39,10 +43,12 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<T> get<T>(String path,
-      {dynamic data,
-      Map<String, String>? queryParameters,
-      isFormData = false}) async {
+  Future<T> get<T>(
+    String path, {
+    dynamic data,
+    Map<String, String>? queryParameters,
+    isFormData = false,
+  }) async {
     try {
       final response = await dio.get(
         path,
@@ -57,10 +63,12 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<T> patch<T>(String path,
-      {dynamic data,
-      Map<String, String>? queryParameters,
-      isFormData = false}) async {
+  Future<T> patch<T>(
+    String path, {
+    dynamic data,
+    Map<String, String>? queryParameters,
+    isFormData = false,
+  }) async {
     try {
       final response = await dio.patch(
         path,
@@ -75,10 +83,12 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<T> post<T>(String path,
-      {dynamic data,
-      Map<String, String>? queryParameters,
-      isFormData = false}) async {
+  Future<T> post<T>(
+    String path, {
+    dynamic data,
+    Map<String, String>? queryParameters,
+    isFormData = false,
+  }) async {
     try {
       final response = await dio.post(
         path,
@@ -93,10 +103,12 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<T> put<T>(String path,
-      {dynamic data,
-      Map<String, String>? queryParameters,
-      isFormData = false}) async {
+  Future<T> put<T>(
+    String path, {
+    dynamic data,
+    Map<String, String>? queryParameters,
+    isFormData = false,
+  }) async {
     try {
       final response = await dio.put(
         path,

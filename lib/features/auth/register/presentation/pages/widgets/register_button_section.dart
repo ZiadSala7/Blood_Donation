@@ -50,8 +50,7 @@ class RegisterButtonSection extends StatelessWidget {
       fullName: registerCubit.name.text,
       email: registerCubit.email.text,
       age: int.parse(selectedAge!),
-      bloodTypeId:
-          AppConstants.bloodTypes.indexOf(selectedBloodType!) + 1,
+      bloodTypeId: AppConstants.bloodTypes.indexOf(selectedBloodType!) + 1,
       gender: genders.indexOf(selectedGender!) + 1,
       cityId: locCubit.townModels
           .firstWhere((t) => t.nameAr == selectedCity)
