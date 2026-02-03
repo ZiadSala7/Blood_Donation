@@ -3,6 +3,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../domain/entities/request_entity.dart';
 import 'blood_type_and_needed.dart';
 import 'hospital_and_location_with_icon.dart';
 import 'request_deadline.dart';
@@ -10,7 +11,8 @@ import 'request_title_and_status.dart';
 import 'slider_and_progress_count.dart';
 
 class RequestCard extends StatelessWidget {
-  const RequestCard({super.key});
+  final RequestEntity entity;
+  const RequestCard({super.key, required this.entity});
 
   @override
   Widget build(BuildContext context) {
@@ -22,29 +24,41 @@ class RequestCard extends StatelessWidget {
           crossAxisAlignment: .start,
           children: [
             /// request title and status of the request (open or close)
-            const RequestTitleAndStatus(),
+            RequestTitleAndStatus(
+              title: entity.patientName!,
+              status: entity.hospitalName!,
+            ),
 
             /// Hospital name and location
-            const HospitalAndLocationWithIcon(
-              widget: Icon(Symbols.location_city_rounded),
-              title: "مستشفى ابن سينا ",
+            HospitalAndLocationWithIcon(
+              widget: const Icon(Symbols.location_city_rounded),
+              title: entity.hospitalName!,
             ),
             HospitalAndLocationWithIcon(
               widget: Icon(Icons.location_on_rounded, color: AppColors.grey),
-              title: "سوهاج",
+              title: entity.cityAr!,
             ),
             const SizedBox(height: 10),
 
             /// recieve Blood type and kind of donation
-            const BloodTypeAndNeeded(),
+            BloodTypeAndNeeded(
+              bldType: entity.requiredBloodType!,
+              donationCat: entity.donationCategoryAr!,
+            ),
             const SizedBox(height: 15),
             Row(
               mainAxisAlignment: .spaceBetween,
               children: [
-                const Column(
+                Column(
                   spacing: 5,
                   crossAxisAlignment: .start,
-                  children: [SliderAndProgressCount(), RequestDeadline()],
+                  children: [
+                    SliderAndProgressCount(
+                      total: entity.bagsCnt!,
+                      collected: entity.collectedBags!,
+                    ),
+                    RequestDeadline(deadline: entity.deadline!),
+                  ],
                 ),
                 CustomButton(onPressed: () {}, label: "تبرع الاّن"),
               ],

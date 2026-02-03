@@ -15,17 +15,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupDependencies();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  var dioConsumer = getIt.get<DioConsumer>();
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) =>
-              LoginCubit(LoginRepoImpl(getIt.get<DioConsumer>()))..cachedData(),
+              LoginCubit(LoginRepoImpl(dioConsumer))..cachedData(),
         ),
         BlocProvider(
           create: (context) =>
-              LocationCubit(LocationRepoImpl(dio: getIt.get<DioConsumer>()))
-                ..getCities(),
+              LocationCubit(LocationRepoImpl(dio: dioConsumer))..getCities(),
         ),
       ],
       child: const BloodDonationApp(),

@@ -4,7 +4,12 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class BloodTypeAndNeeded extends StatelessWidget {
-  const BloodTypeAndNeeded({super.key});
+  final String bldType, donationCat;
+  const BloodTypeAndNeeded({
+    super.key,
+    required this.bldType,
+    required this.donationCat,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,8 @@ class ApiInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     // Attach token
-    options.headers[ApiKeys.token] = CacheHelper().getString(ApiKeys.token);
+    options.headers['Authorization'] =
+        "Bearer ${CacheHelper().getString(ApiKeys.token)}";
 
     // Generate unique key for this request
     final key = _buildRequestKey(options);

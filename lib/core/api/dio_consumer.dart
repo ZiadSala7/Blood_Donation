@@ -51,6 +51,7 @@ class DioConsumer extends ApiConsumer {
   }) async {
     try {
       final response = await dio.get(
+
         path,
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,

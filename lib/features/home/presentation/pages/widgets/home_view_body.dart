@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../auth/login/presentation/cubit/login_cubit.dart';
 import '../../../../auth/register/data/models/register_model.dart';
+import '../../cubit/home_cubit.dart';
+import '../../cubit/home_states.dart';
 import 'nearby_requests_divider.dart';
 import 'request_card.dart';
 import 'search_and_filter_section.dart';
@@ -26,30 +28,81 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ListView(
-        children: [
-          const SizedBox(height: 20),
-          Column(
-            mainAxisAlignment: .end,
-            crossAxisAlignment: .stretch,
-            children: [
-              Text(
-                '👋أهلا: ${model.name ?? ""}',
-                style: AppTextStyles.b24(context),
+    return BlocConsumer<HomeCubit, HomeStates>(
+      builder: (context, state) {
+        return CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              pinned: false,
+              floating: false,
+              snap: false,
+              backgroundColor: Colors.transparent,
+              toolbarHeight: 70,
+              automaticallyImplyLeading: false,
+              title: Column(
+                spacing: 5,
+                children: [
+                  Text(
+                    '👋أهلا: ${model.name ?? ""}',
+                    style: AppTextStyles.b24(context),
+                  ),
+                  Text(
+                    '${model.governorateName} : ${model.cityName}',
+                    style: AppTextStyles.r20(context),
+                  ),
+                ],
               ),
-              Text('       ${model.governorateName} : ${model.cityName}'),
-              const SearchAndFilterSection(),
-              const SizedBox(height: 28),
-              const NearbyRequestsDivider(),
-
-              /// Card of Blood Donation request
-              const RequestCard(),
-            ],
-          ),
-        ],
-      ),
+            ),
+            const SliverAppBar(
+              pinned: true,
+              floating: false,
+              snap: false,
+              scrolledUnderElevation: 0,
+              toolbarHeight: 100,
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: false,
+              title: SearchAndFilterSection(),
+            ),
+            const SliverToBoxAdapter(child: NearbyRequestsDivider()),
+            SliverToBoxAdapter(
+              child: state is HomeSuccess
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
+                      child: SizedBox(
+                        height: 500,
+                        child: ListView.builder(
+                          itemCount: state.requestEntities.length,
+                          itemBuilder: (context, index) =>
+                              RequestCard(entity: state.requestEntities[index]),
+                        ),
+                      ),
+                    )
+                  : state is HomeLoading
+                  ? const SizedBox(
+                      height: 500,
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        crossAxisAlignment: .center,
+                        children: [
+                          CircularProgressIndicator(),
+                          Text('جار التحميل ....'),
+                        ],
+                      ),
+                    )
+                  : state is HomeFailure
+                  ? SizedBox(
+                      height: 500,
+                      child: Center(child: Text(state.errMsg)),
+                    )
+                  : const SizedBox(),
+            ),
+          ],
+        );
+      },
+      listener: (context, state) {},
     );
   }
 }

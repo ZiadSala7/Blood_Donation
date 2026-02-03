@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'login_states.dart';
 import '../../data/repo/login_repo_impl.dart';
+import '../../../../../core/api/api_keys.dart';
 import '../../../../../core/di/injection.dart';
 import '../../../../../core/helper/get_user.dart';
 import '../../../../../core/databases/cach_helper.dart';
@@ -21,6 +22,7 @@ class LoginCubit extends Cubit<LoginStates> {
     final prefs = getIt.get<CacheHelper>();
     final rem = prefs.getBool('rememberMe');
     model = rem == true ? getCachedUser() : null;
+    rem == true ? prefs.setString(ApiKeys.token, model!.token!) : null;
   }
 
   Future loginWithEmail({
@@ -33,6 +35,7 @@ class LoginCubit extends Cubit<LoginStates> {
       (ifLeft) => emit(LoginFailure(errMsg: ifLeft.errorMessage!)),
       (ifRight) {
         model = ifRight;
+        CacheHelper().setString(ApiKeys.token, model!.token!);
         emit(LoginSuccess(model: ifRight));
       },
     );

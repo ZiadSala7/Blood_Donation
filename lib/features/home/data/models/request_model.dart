@@ -16,7 +16,7 @@ class RequestModel {
   String? requiredBloodType;
   String? cityAr;
   String? cityEn;
-  String? deadline;
+  DateTime? deadline;
 
   RequestModel({
     this.id,
@@ -44,24 +44,24 @@ class RequestModel {
     return RequestModel(
       id: json['id'] as int?,
       status: json['status'] as String?,
-      patientName: json['patient_name'] as String?,
-      hospitalName: json['hospital_name'] as String?,
+      patientName: json['patientName'] as String?,
+      hospitalName: json['hospitalName'] as String?,
       description: json['description'] as String?,
-      bagsCount: json['bags_count'] as int?,
-      responsesCount: json['responses_count'] as int?,
-      collectedBags: json['collected_bags'] as int?,
-      phoneNumber: json['phone_number'] as String?,
+      bagsCount: json['bagsCount'] as int?,
+      responsesCount: json['responsesCount'] as int?,
+      collectedBags: json['collectedBags'] as int?,
+      phoneNumber: json['phoneNumber'] as String?,
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
-      createdAt: json['created_at'] != null
-          ? DateTime.parse(json['created_at'] as String)
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'] as String)
           : null,
-      requesterName: json['requester_name'] as String?,
-      donationCategoryAr: json['donation_category_ar'] as String?,
-      requiredBloodType: json['required_blood_type'] as String?,
-      cityAr: json['city_ar'] as String?,
-      cityEn: json['city_en'] as String?,
-      deadline: json['deadline'] as String?,
+      requesterName: json['requesterName'] as String?,
+      donationCategoryAr: json['donationCategoryAr'] as String?,
+      requiredBloodType: json['requiredBloodType'] as String?,
+      cityAr: json['cityAr'] as String?,
+      cityEn: json['cityEn'] as String?,
+      deadline: DateTime.parse(json['deadline']),
     );
   }
 

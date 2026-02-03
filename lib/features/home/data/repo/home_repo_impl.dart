@@ -1,12 +1,11 @@
-import 'package:blood_donation/core/api/dio_consumer.dart';
-import 'package:blood_donation/features/home/data/models/request_model.dart';
-
 import 'package:dartz/dartz.dart';
 
+import '../models/request_model.dart';
+import '../../domain/repo/home_repo.dart';
 import '../../../../core/api/api_keys.dart';
 import '../../../../core/api/end_points.dart';
+import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/constants/app_constants.dart';
-import '../../domain/repo/home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final DioConsumer dio;
@@ -25,11 +24,11 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final response = await dio.get(
         EndPoints.getBldRqust,
-        data: {ApiKeys.pageIndex: pageIndex, ApiKeys.pageSize: 5},
+        data: {ApiKeys.pageIndex: pageIndex, ApiKeys.pageSize: 3},
       );
       List<RequestModel> models = [];
-      for (int i = 0; i < response['items'].length!; i++) {
-        RequestModel model = RequestModel.fromJson(response['items'][i]);
+      for (int i = 0; i < response['data'].length!; i++) {
+        RequestModel model = RequestModel.fromJson(response['data'][i]);
         models.add(model);
       }
       return right(models);

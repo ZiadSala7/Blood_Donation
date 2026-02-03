@@ -4,7 +4,8 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class RequestTitleAndStatus extends StatelessWidget {
-  const RequestTitleAndStatus({super.key});
+  final String title, status;
+  const RequestTitleAndStatus({super.key, required this.title, required this.status});
 
   @override
   Widget build(BuildContext context) {

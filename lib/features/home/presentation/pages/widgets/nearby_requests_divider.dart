@@ -13,13 +13,13 @@ class NearbyRequestsDivider extends StatelessWidget {
         mainAxisAlignment: .start,
         crossAxisAlignment: .end,
         children: [
-          const Expanded(child: Divider()),
+          const Expanded(child: Divider(indent: 16)),
           Text(
             "طلبات التبرع القريبة منك",
             style: AppTextStyles.b22(context),
             textAlign: TextAlign.center,
           ),
-          const Expanded(child: Divider()),
+          const Expanded(child: Divider(endIndent: 16)),
         ],
       ),
     );
