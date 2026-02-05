@@ -10,6 +10,7 @@ class CustomDropdown extends StatelessWidget {
   final String? value;
   final List<String> items;
   final void Function(String?) onChanged;
+  final Color? hintClr;
 
   const CustomDropdown({
     super.key,
@@ -18,6 +19,7 @@ class CustomDropdown extends StatelessWidget {
     required this.value,
     required this.items,
     required this.onChanged,
+    this.hintClr,
   });
 
   @override
@@ -47,7 +49,10 @@ class CustomDropdown extends StatelessWidget {
               value: value,
               hint: Text(
                 hint,
-                style: TextStyle(color: AppColors.greyBorder, fontSize: 14),
+                style: TextStyle(
+                  color: hintClr ?? AppColors.greyBorder,
+                  fontSize: 14,
+                ),
               ),
               isExpanded: true,
               icon: Icon(Icons.keyboard_arrow_down, color: AppColors.grey),

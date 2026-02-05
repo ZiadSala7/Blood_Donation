@@ -22,7 +22,7 @@ class BloodTypeAndNeeded extends StatelessWidget {
             color: AppColors.greyInCard,
             borderRadius: BorderRadius.circular(15),
           ),
-          child: Text("بلازما", style: AppTextStyles.b18(context)),
+          child: Text(donationCat, style: AppTextStyles.b18(context)),
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -30,7 +30,7 @@ class BloodTypeAndNeeded extends StatelessWidget {
             border: Border.all(width: 2, color: AppColors.commonClr),
             borderRadius: BorderRadius.circular(15),
           ),
-          child: Text("+A", style: AppTextStyles.b24(context)),
+          child: Text(bldType, style: AppTextStyles.b24(context)),
         ),
       ],
     );

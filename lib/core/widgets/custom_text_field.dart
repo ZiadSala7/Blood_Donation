@@ -1,9 +1,9 @@
 // ============ CUSTOM TEXT FIELD WIDGET ============
-import 'package:blood_donation/core/utils/app_colors.dart';
-import 'package:blood_donation/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import 'build_border.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -11,6 +11,8 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
+  final int maxLines;
+  final Color? hintClr;
 
   const CustomTextField({
     super.key,
@@ -19,6 +21,8 @@ class CustomTextField extends StatelessWidget {
     required this.hint,
     this.keyboardType,
     this.validator,
+    this.maxLines = 1,
+    this.hintClr,
   });
 
   @override
@@ -43,12 +47,16 @@ class CustomTextField extends StatelessWidget {
             ],
           ),
           child: TextFormField(
+            maxLines: maxLines,
             controller: controller,
             keyboardType: keyboardType,
             textAlign: TextAlign.right,
             decoration: InputDecoration(
               hintText: hint,
-              hintStyle: TextStyle(color: AppColors.greyBorder, fontSize: 14),
+              hintStyle: TextStyle(
+                color: hintClr ?? AppColors.greyBorder,
+                fontSize: 14,
+              ),
               filled: true,
               fillColor: Colors.grey[50],
               border: buildBorder(AppColors.greyBorder!, 0),

@@ -8,4 +8,6 @@ abstract class AppColors {
   static const Color white = Colors.white;
   static const Color green = Color(0xffA5E594);
   static const Color greyInCard = Color(0xffE6E5E5);
+  static const Color text = Color(0xff1F2937);
+  static const Color hintClr = Color(0xff6B7280);
 }
