@@ -63,7 +63,7 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                 items: towns,
                 onChanged: (value) {
                   setState(() {
-                    cubit.selectedTown = value ?? "value";
+                    cubit.selectedTown = value;
                   });
                 },
               ),
@@ -75,7 +75,9 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                 value: cubit.selectedDonCat,
                 items: donationCats,
                 onChanged: (value) {
-                  cubit.selectedDonCat = value!;
+                  setState(() {
+                    cubit.selectedDonCat = value;
+                  });
                 },
               ),
               CustomDropdown(
@@ -86,12 +88,12 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                 items: AppConstants.bloodTypes,
                 onChanged: (value) {
                   setState(() {
-                    cubit.selectedBloodType = value!;
+                    cubit.selectedBloodType = value;
                   });
                 },
               ),
               const SizedBox(height: 16),
-               DonorsCounter(cubit : cubit),
+              DonorsCounter(cubit: cubit),
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(left: 100),
