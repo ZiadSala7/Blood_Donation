@@ -41,4 +41,14 @@ class AddRequestCubit extends Cubit<AddRequestStates> {
       (ifRight) => emit(SuccessAddRequestState()),
     );
   }
+
+  void clearData() {
+    patientName.clear();
+    dscrptionName.clear();
+    hsptalName.clear();
+    phoneNum.clear();
+    selectedBloodType = selectedDonCat = selectedTown = null;
+    deadline = null;
+    bagsCount = 2;
+  }
 }

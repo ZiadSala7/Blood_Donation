@@ -11,11 +11,12 @@ class DetailsSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: false,
+      pinned: true,
       floating: false,
       snap: false,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       toolbarHeight: 70,
+      scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       title: Column(
         spacing: 5,

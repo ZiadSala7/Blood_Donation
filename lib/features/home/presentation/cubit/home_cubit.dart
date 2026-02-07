@@ -6,6 +6,7 @@ import 'home_states.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
   final HomeRepoImpl repo;
+  List<RequestEntity> allEntities = [];
   HomeCubit(this.repo) : super(HomeInitial());
 
   Future<void> getRequestsWithPagination({int index = 1}) async {
@@ -27,6 +28,7 @@ class HomeCubit extends Cubit<HomeStates> {
           requiredBloodType: requests[i].requiredBloodType,
         );
         entities.add(entity);
+        allEntities.addAll(entities);
       }
       emit(HomeSuccess(requestEntities: entities));
     });

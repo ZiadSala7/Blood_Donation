@@ -86,9 +86,6 @@ Future getTowns(LocationRepoImpl repo, int city) async {
 /// =================== to init towns ======================
 Future<void> initTowns() async {
   final cityNum = getIt.get<CacheHelper>().getInt(CachKeys.firstCityId);
-  log("message : $cityNum");
-  cityNum != null
-      ? await getTowns(LocationRepoImpl(dio: DioConsumer(dio: Dio())), cityNum)
-      : log("message");
-  log(towns.toString());
+  cityNum ??
+      await getTowns(LocationRepoImpl(dio: DioConsumer(dio: Dio())), cityNum!);
 }

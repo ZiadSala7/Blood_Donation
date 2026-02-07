@@ -19,61 +19,78 @@ class HomeViewBody extends StatefulWidget {
 
 class _HomeViewBodyState extends State<HomeViewBody> {
   late RegisterModel model;
+  late final ScrollController scrollController;
+
+  int nextPage = 2;
+  bool isLoading = false;
+  bool hasMore = true;
 
   @override
   void initState() {
-    model = context.read<LoginCubit>().model!;
     super.initState();
+    model = context.read<LoginCubit>().model!;
+    scrollController = ScrollController();
+    scrollController.addListener(scrollListener);
+  }
+
+  void scrollListener() {
+    if (!scrollController.hasClients || isLoading || !hasMore) return;
+
+    final currentPosition = scrollController.position.pixels;
+    final maxScroll = scrollController.position.maxScrollExtent;
+
+    if (currentPosition >= maxScroll - 200) {
+      isLoading = true;
+      context.read<HomeCubit>().getRequestsWithPagination(index: nextPage++);
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
+      listener: (context, state) {
+        if (state is HomeSuccess) {
+          isLoading = false;
+          if (state.requestEntities.isEmpty) {
+            hasMore = false;
+          }
+        } else if (state is HomeFailure) {
+          isLoading = false;
+        }
+      },
       builder: (context, state) {
+        final requests = context.read<HomeCubit>().allEntities;
         return CustomScrollView(
+          controller: scrollController,
           slivers: [
             DetailsSliverAppBar(model: model),
             const SearchAndFilteringSliverAppBar(),
             const SliverToBoxAdapter(child: NearbyRequestsDivider()),
-            SliverToBoxAdapter(
-              child: state is HomeSuccess
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      child: SizedBox(
-                        height: 500,
-                        child: ListView.builder(
-                          itemCount: state.requestEntities.length,
-                          itemBuilder: (context, index) =>
-                              RequestCard(entity: state.requestEntities[index]),
-                        ),
-                      ),
-                    )
-                  : state is HomeLoading
-                  ? const SizedBox(
-                      height: 500,
-                      child: Column(
-                        mainAxisAlignment: .center,
-                        crossAxisAlignment: .center,
-                        children: [
-                          CircularProgressIndicator(),
-                          Text('جار التحميل ....'),
-                        ],
-                      ),
-                    )
-                  : state is HomeFailure
-                  ? SizedBox(
-                      height: 500,
-                      child: Center(child: Text(state.errMsg)),
-                    )
-                  : const SizedBox(),
+
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                if (index < requests.length) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: RequestCard(entity: requests[index]),
+                  );
+                } else {
+                  return const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                }
+              }, childCount: requests.length + (hasMore ? 1 : 0)),
             ),
           ],
         );
       },
-      listener: (context, state) {},
     );
   }
 }

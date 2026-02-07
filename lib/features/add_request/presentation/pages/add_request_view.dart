@@ -55,6 +55,7 @@ class AddRequestView extends StatelessWidget {
                 cubit.selectedTown != "value" &&
                 cubit.deadline != null) {
               await cubit.createRequest();
+              cubit.clearData();
             }
           },
           label: S.of(context).addRqustBtn,

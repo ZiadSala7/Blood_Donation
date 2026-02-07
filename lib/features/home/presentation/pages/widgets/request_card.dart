@@ -26,7 +26,7 @@ class RequestCard extends StatelessWidget {
             /// request title and status of the request (open or close)
             RequestTitleAndStatus(
               title: entity.patientName!,
-              status: entity.hospitalName!,
+              status: entity.status!,
             ),
 
             /// Hospital name and location
