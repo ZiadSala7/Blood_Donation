@@ -7,6 +7,7 @@ import '../../../../../core/api/api_keys.dart';
 import '../../../../../core/di/injection.dart';
 import '../../../../../core/helper/get_user.dart';
 import '../../../../../core/databases/cach_helper.dart';
+import '../../../../../core/constants/app_constants.dart';
 import '../../../register/data/models/register_model.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
@@ -32,7 +33,9 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(LoginLoading());
     final response = await repo.login(email: email, password: password);
     response.fold(
-      (ifLeft) => emit(LoginFailure(errMsg: ifLeft.errorMessage!)),
+      (ifLeft) => emit(
+        LoginFailure(errMsg: ifLeft.errorMessage ?? AppConstants.errMsg),
+      ),
       (ifRight) {
         model = ifRight;
         CacheHelper().setString(ApiKeys.token, model!.token!);

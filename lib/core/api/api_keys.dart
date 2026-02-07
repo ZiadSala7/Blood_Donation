@@ -15,4 +15,12 @@ abstract class ApiKeys {
   static const String deviceTkn = 'DeviceToken';
   static const String pageIndex = 'pageIndex';
   static const String pageSize = 'pageSize';
+  static const String patientName = 'patientName';
+  static const String hospitalName = 'hospitalName';
+  static const String description = 'description';
+  static const String bagsCount = 'bagsCount';
+  static const String donationCategoryId = 'donationCategoryId';
+  static const String requiredBloodTypeId = 'requiredBloodTypeId';
+  static const String deadline = 'deadline';
+  static const String phoneNumber = 'phoneNumber';
 }

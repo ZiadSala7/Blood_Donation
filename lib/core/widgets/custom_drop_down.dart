@@ -61,7 +61,7 @@ class CustomDropdown extends StatelessWidget {
               items: items.map((String item) {
                 return DropdownMenuItem<String>(
                   value: item,
-                  alignment: AlignmentDirectional.centerEnd,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(item, style: const TextStyle(fontSize: 14)),
                 );
               }).toList(),

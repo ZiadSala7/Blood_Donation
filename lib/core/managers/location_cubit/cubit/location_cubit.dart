@@ -1,5 +1,7 @@
+import 'package:blood_donation/core/helper/lookup_api_functions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../databases/cach_keys.dart';
 import '../models/town_model.dart';
 import '../repo/location_repo_impl.dart';
 import '../../../databases/cach_helper.dart';
@@ -17,23 +19,21 @@ class LocationCubit extends Cubit<LocationStates> {
 
   void initLists() {}
   Future getCities() async {
-    emit(LoadingLocState());
-    final response = await repo.getAllGovernorates();
-    response.fold((ifLeft) => emit(FailureLocState()), (allCities) {
-      cities = allCities;
-      emit(SuccessCityLocState());
-    });
+    cities = getAllCachedGovs();
+    emit(SuccessCityLocState());
   }
 
-  Future getTowns(num city) async {
+  Future getTowns(int city) async {
     emit(LoadingLocState());
     towns = [];
     final response = await repo.getTownsByGovrnrat(city);
     response.fold((ifLeft) => emit(FailureLocState()), (allTowns) {
       townModels = allTowns;
-      for (int i = 0; i < townModels.length; i++) {
-        towns.add(townModels[i].nameAr);
-      }
+      List.generate(
+        allTowns.length,
+        (index) => towns.add(townModels[index].nameAr),
+      );
+      prefs.setInt(CachKeys.firstCityId, city);
       emit(SuccessTownLocState());
     });
   }

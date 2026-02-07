@@ -6,14 +6,14 @@ abstract class AppConstants {
     (index) => '${index + 18}',
   );
   static final List<String> bloodTypes = [
-    'A+',
+    "A+",
     'A-',
     'B+',
-    'B-',
+    "B-",
     'AB+',
-    'AB-',
+    "AB-",
     'O+',
-    'O-',
+    "O-",
   ];
 
   static final PageController onbrdngPageCntroller = PageController();

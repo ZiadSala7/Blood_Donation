@@ -26,6 +26,11 @@ class CacheHelper {
   Future<bool> setInt(String key, int value) async =>
       _prefs!.setInt(key, value);
 
+  Future<void> setStringList(String key, List<String> lst) async =>
+      _prefs!.setStringList(key, lst);
+
+  List<String>? getStringList(String key) => _prefs!.getStringList(key);
+
   /// Get methods
   String? getString(String key) => _prefs!.getString(key);
   bool? getBool(String key) => _prefs!.getBool(key);

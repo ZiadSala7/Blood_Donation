@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../cubit/add_request_cubit.dart';
 
 class DonorsCounter extends StatefulWidget {
-  const DonorsCounter({super.key});
+  final AddRequestCubit cubit;
+  const DonorsCounter({super.key, required this.cubit});
 
   @override
   State<DonorsCounter> createState() => _DonorsCounterState();
@@ -15,12 +17,14 @@ class _DonorsCounterState extends State<DonorsCounter> {
 
   void increment() {
     setState(() => count++);
+    widget.cubit.bagsCount = count;
   }
 
   void decrement() {
     if (count > 1) {
       setState(() => count--);
     }
+    widget.cubit.bagsCount = count;
   }
 
   @override
