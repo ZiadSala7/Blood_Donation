@@ -1,3 +1,4 @@
+import 'package:blood_donation/main.dart';
 import 'package:flutter/material.dart';
 import 'core/constants/localization_delegates_list.dart';
 import 'core/utils/app_routes.dart';
@@ -9,6 +10,7 @@ class BloodDonationApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      key: navigatorKey,
       routerConfig: AppRoutes.appRouter,
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
