@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../../core/notifications/api_notification_handler.dart';
+import '../../main.dart';
 import 'api_notification.dart';
 
 class AppNotificationHandler extends ApiNotificationHandler {
@@ -97,7 +98,7 @@ class AppNotificationHandler extends ApiNotificationHandler {
     if (context == null) return;
 
     // Show SnackBar or custom notification widget
-    ScaffoldMessenger.of(context).showSnackBar(
+    scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
         content: Column(
           mainAxisSize: MainAxisSize.min,

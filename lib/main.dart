@@ -19,6 +19,8 @@ import 'features/auth/login/data/repo/login_repo_impl.dart';
 import 'features/auth/login/presentation/cubit/login_cubit.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+    GlobalKey<ScaffoldMessengerState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupDependencies();

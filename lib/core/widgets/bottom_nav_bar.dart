@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../features/home/presentation/pages/home_view.dart';
+import '../../features/profile/presentation/pages/profile_view.dart';
 import '../utils/app_colors.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -19,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     const HomeView(),
     const Center(child: Text('الطلبات', style: TextStyle(fontSize: 24))),
     const Center(child: Text('الإشعارات', style: TextStyle(fontSize: 24))),
-    const Center(child: Text('الحساب', style: TextStyle(fontSize: 24))),
+    const ProfileView(),
   ];
 
   void _onItemTapped(int index) {

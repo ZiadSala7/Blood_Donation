@@ -11,6 +11,7 @@ class BloodDonationApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       key: navigatorKey,
+      scaffoldMessengerKey: scaffoldMessengerKey,
       routerConfig: AppRoutes.appRouter,
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
