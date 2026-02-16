@@ -7,7 +7,7 @@ import 'app_notification_handler.dart';
 // Top-level background handler (must be top-level function)
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  final notification = ApiNotification.fromJson({
+  final _ = ApiNotification.fromJson({
     'id': message.messageId,
     'title': message.notification?.title ?? 'Notification',
     'body': message.notification?.body ?? '',
