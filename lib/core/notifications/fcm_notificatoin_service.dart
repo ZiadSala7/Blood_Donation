@@ -7,8 +7,6 @@ import 'app_notification_handler.dart';
 // Top-level background handler (must be top-level function)
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('🔔 Background message: ${message.messageId}');
-
   final notification = ApiNotification.fromJson({
     'id': message.messageId,
     'title': message.notification?.title ?? 'Notification',
@@ -52,31 +50,24 @@ class FCMNotificationService {
     FirebaseMessaging.onMessageOpenedApp.listen(_handleNotificationTap);
 
     // Get FCM token
-    final token = await _messaging.getToken();
-    print('📱 FCM Token: $token');
+    await _messaging.getToken();
   }
 
   Future<void> _requestPermissions() async {
-    final settings = await _messaging.requestPermission(
+    await _messaging.requestPermission(
       alert: true,
       badge: true,
       sound: true,
       provisional: false,
     );
-
-    print('📋 Permission status: ${settings.authorizationStatus}');
   }
 
   void _handleForegroundMessage(RemoteMessage message) {
-    print('📱 Foreground message received: ${message.messageId}');
-
     final notification = _convertToApiNotification(message);
     _handler.handleForegroundNotification(notification);
   }
 
   void _handleNotificationTap(RemoteMessage message) {
-    print('👆 Notification opened: ${message.messageId}');
-
     final notification = _convertToApiNotification(message);
     _handler.handleNotificationTap(notification);
   }

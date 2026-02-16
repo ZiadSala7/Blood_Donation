@@ -25,14 +25,13 @@ class EndPoints {
   /// ================= blood response API ===================
   static const String getRspnsToRqust = 'Request/Responses?RequestId=';
   static const String createRspnsToRqust = 'Response/respond?RequestId=';
-  static const String confirmRqust =
-      'Response/confirm?RequestId=8&DonorId={5b5fcbd4-f99e-4c71-7f58-08de5096cbeb}&HasDonated=';
+  static const String confirmRqust = 'Response/confirm';
 
   /// ================= notifications =========================
   static const String getAllNotifications = 'Notification/notifications';
   static const String getAllNorificationCnt =
       'Notification/notifications-count';
-  static const String readNotification = 'Notification/read?Id=';
+  static const String readNotification = 'Notification/read';
   static const String readAllNotifications = 'Notification/read-all';
 
   /// ================= account API ===========================

@@ -15,20 +15,20 @@ class AddRequestCubit extends Cubit<AddRequestStates> {
   TextEditingController hsptalName = TextEditingController();
   TextEditingController phoneNum = TextEditingController();
   int bagsCount = 0;
-  String? selectedTown, selectedBloodType, selectedDonCat;
+  String? selectedGovernorate, selectedTown, selectedBloodType, selectedDonCat;
   late DateTime? deadline;
   List<String> donationCats = [];
   final addRqstFormKey = GlobalKey<FormState>();
 
   /// here we make a function to create request
-  Future<void> createRequest() async {
+  Future<void> createRequest({required int cityId}) async {
     emit(LoadingAddRequestState());
     int donCatIndx = getAllCachedCats().indexOf(selectedDonCat!);
     final response = await repo.createBloodRequest(
       patientName: patientName.text,
       descriptionName: dscrptionName.text,
       hospitalName: hsptalName.text,
-      cityId: townModels.firstWhere((t) => t.nameAr == selectedTown).id!,
+      cityId: cityId,
       bagsCount: bagsCount,
       donationCategoryId: donCatIndx + 1,
       requiredBloodTypeId:
@@ -47,7 +47,8 @@ class AddRequestCubit extends Cubit<AddRequestStates> {
     dscrptionName.clear();
     hsptalName.clear();
     phoneNum.clear();
-    selectedBloodType = selectedDonCat = selectedTown = null;
+    selectedBloodType = selectedDonCat = selectedGovernorate = selectedTown =
+        null;
     deadline = null;
     bagsCount = 2;
   }

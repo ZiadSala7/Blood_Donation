@@ -12,16 +12,17 @@ class ApiInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // Attach token
-    options.headers['Authorization'] =
-        "Bearer ${CacheHelper().getString(ApiKeys.token)}";
+    // Attach auth token for all API calls (e.g. notifications, requests, account)
+    final token = CacheHelper().getString(ApiKeys.token);
+    if (token != null && token.isNotEmpty) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
 
     // Generate unique key for this request
     final key = _buildRequestKey(options);
 
     // Cancel previous request if it exists
     if (_activeRequests.containsKey(key)) {
-      // log("🚫 Cancelling duplicate request: $key");
       _activeRequests[key]?.cancel("Duplicate request");
       _activeRequests.remove(key);
     }
@@ -31,8 +32,6 @@ class ApiInterceptor extends Interceptor {
     options.cancelToken = cancelToken;
     _activeRequests[key] = cancelToken;
 
-    // log("➡️ New request started: $key");
-
     handler.next(options);
   }
 
@@ -40,7 +39,6 @@ class ApiInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     final key = _buildRequestKey(response.requestOptions);
     _activeRequests.remove(key);
-    // log("✅ Request completed: $key");
     handler.next(response);
   }
 
@@ -48,7 +46,6 @@ class ApiInterceptor extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     final key = _buildRequestKey(err.requestOptions);
     _activeRequests.remove(key);
-    // log("❌ Request error: $key");
     handler.next(err);
   }
 }

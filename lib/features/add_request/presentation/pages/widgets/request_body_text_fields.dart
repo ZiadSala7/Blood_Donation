@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/app_constants.dart';
 import '../../../../../core/helper/lookup_api_functions.dart';
+import '../../../../../core/managers/location_cubit/cubit/location_cubit.dart';
+import '../../../../../core/managers/location_cubit/cubit/location_states.dart';
 import '../../../../../core/utils/validators.dart';
 import 'donors_counter.dart';
 import 'custom_date_time_picker.dart';
@@ -23,6 +25,7 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
   Widget build(BuildContext context) {
     List<String> donationCats = getAllCachedCats();
     final cubit = context.watch<AddRequestCubit>();
+    final locCubit = context.watch<LocationCubit>();
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -58,9 +61,31 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
               CustomDropdown(
                 hintClr: AppColors.hintClr,
                 label: '',
-                hint: 'اختر المدينة ',
+                hint: 'اختر المحافظة ',
+                value: cubit.selectedGovernorate,
+                items: locCubit.cities,
+                onChanged: (value) {
+                  setState(() {
+                    cubit.selectedGovernorate = value;
+                    cubit.selectedTown = null;
+                    if (value != null && value.isNotEmpty) {
+                      final idx = locCubit.cities.indexOf(value);
+                      if (idx >= 0) {
+                        locCubit.getTowns(idx + 1);
+                      }
+                    }
+                  });
+                },
+              ),
+              CustomDropdown(
+                hintClr: AppColors.hintClr,
+                label: '',
+                hint: locCubit.state is LoadingLocState &&
+                        cubit.selectedGovernorate != null
+                    ? 'جاري التحميل...'
+                    : 'اختر المدينة ',
                 value: cubit.selectedTown,
-                items: towns,
+                items: locCubit.towns,
                 onChanged: (value) {
                   setState(() {
                     cubit.selectedTown = value;

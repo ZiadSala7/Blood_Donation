@@ -1,25 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../api/dio_consumer.dart';
+import '../di/injection.dart';
+import '../../features/home/data/repo/home_repo_impl.dart';
+import '../../features/home/presentation/cubit/home_cubit.dart';
 import '../../features/home/presentation/pages/home_view.dart';
+import '../../features/notifications/presentation/pages/notifications_view.dart';
 import '../../features/profile/presentation/pages/profile_view.dart';
 import '../utils/app_colors.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  final int initialTab;
+
+  const BottomNavBar({super.key, this.initialTab = 0});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialTab.clamp(0, 3);
+  }
+
+  @override
+  void didUpdateWidget(BottomNavBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialTab != widget.initialTab) {
+      _selectedIndex = widget.initialTab.clamp(0, 3);
+    }
+  }
 
   final List<Widget> _pages = [
     const HomeView(),
     const Center(child: Text('الطلبات', style: TextStyle(fontSize: 24))),
-    const Center(child: Text('الإشعارات', style: TextStyle(fontSize: 24))),
+    const NotificationsView(),
     const ProfileView(),
   ];
 
@@ -31,7 +53,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
+    return BlocProvider(
+      create: (context) => HomeCubit(
+        HomeRepoImpl(dio: getIt.get<DioConsumer>()),
+      )..getRequestsWithPagination(),
+      child: Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: Colors.grey[100],
@@ -68,6 +94,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

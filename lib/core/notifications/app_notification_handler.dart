@@ -1,7 +1,10 @@
 // lib/services/notifications/app_notification_handler.dart
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../core/notifications/api_notification_handler.dart';
+import '../../core/utils/app_routes.dart';
 import '../../main.dart';
 import 'api_notification.dart';
 
@@ -20,8 +23,6 @@ class AppNotificationHandler extends ApiNotificationHandler {
   Future<void> handleForegroundNotification(
     ApiNotification notification,
   ) async {
-    print('📱 Foreground notification: ${notification.title}');
-
     // Save to local database or state
     await _saveNotificationToLocal(notification);
 
@@ -39,8 +40,6 @@ class AppNotificationHandler extends ApiNotificationHandler {
   Future<void> handleBackgroundNotification(
     ApiNotification notification,
   ) async {
-    print('🔔 Background notification: ${notification.title}');
-
     // Save to local database
     await _saveNotificationToLocal(notification);
 
@@ -55,8 +54,6 @@ class AppNotificationHandler extends ApiNotificationHandler {
   Future<void> handleTerminatedNotification(
     ApiNotification notification,
   ) async {
-    print('💀 Terminated notification: ${notification.title}');
-
     // Save to local database
     await _saveNotificationToLocal(notification);
 
@@ -66,8 +63,6 @@ class AppNotificationHandler extends ApiNotificationHandler {
 
   @override
   Future<void> handleNotificationTap(ApiNotification notification) async {
-    print('👆 Notification tapped: ${notification.title}');
-
     // Mark as read
     await _markAsRead(notification.id);
 
@@ -80,17 +75,14 @@ class AppNotificationHandler extends ApiNotificationHandler {
 
   Future<void> _saveNotificationToLocal(ApiNotification notification) async {
     // TODO: Save to local database (Hive, SharedPreferences, SQLite, etc.)
-    print('💾 Saving notification to local storage: ${notification.id}');
   }
 
   Future<void> _markAsRead(String notificationId) async {
     // TODO: Mark notification as read in local database
-    print('✅ Marking notification as read: $notificationId');
   }
 
   Future<void> _updateBadgeCount() async {
     // TODO: Update app badge count
-    print('🔢 Updating badge count');
   }
 
   void _showInAppNotification(ApiNotification notification) {
@@ -128,37 +120,11 @@ class AppNotificationHandler extends ApiNotificationHandler {
     final context = navigatorKey.currentContext;
     if (context == null) return;
 
-    // Navigate based on notification screen field or type
-    String? targetScreen = notification.screen;
-
-    targetScreen ??= _getScreenForNotificationType(notification.type);
-
-    if (targetScreen != null) {
-      Navigator.of(
-        context,
-      ).pushNamed(targetScreen, arguments: notification.data);
-    }
-  }
-
-  String? _getScreenForNotificationType(NotificationType type) {
-    switch (type) {
-      case NotificationType.bloodRequest:
-        return '/blood-request-details';
-      case NotificationType.bloodRequestAccepted:
-        return '/my-donations';
-      case NotificationType.bloodRequestCompleted:
-        return '/donation-history';
-      case NotificationType.newDonor:
-        return '/donors';
-      case NotificationType.reminder:
-        return '/reminders';
-      case NotificationType.announcement:
-        return '/announcements';
-      case NotificationType.emergency:
-        return '/emergency-requests';
-      default:
-        return '/notifications';
-    }
+    // Navigate to notifications tab in bottom nav bar (tab index 2)
+    GoRouter.of(context).go(
+      AppRoutes.btmNavBar,
+      extra: {'tab': '2'},
+    );
   }
 
   Future<void> _handleNotificationByType(ApiNotification notification) async {
@@ -173,30 +139,26 @@ class AppNotificationHandler extends ApiNotificationHandler {
         await _handleEmergencyNotification(notification);
         break;
       default:
-        print('ℹ️ General notification: ${notification.type}');
+        break;
     }
   }
 
   Future<void> _handleBloodRequestNotification(
     ApiNotification notification,
   ) async {
-    print('🩸 Handling blood request notification');
     // TODO: Update blood requests list, show alert, etc.
   }
 
   Future<void> _handleBloodRequestAcceptedNotification(
     ApiNotification notification,
   ) async {
-    print('✅ Handling blood request accepted notification');
     // TODO: Update donations list, show confirmation, etc.
   }
 
   Future<void> _handleEmergencyNotification(
     ApiNotification notification,
   ) async {
-    print('🚨 Handling emergency notification');
     // TODO: Show emergency alert dialog, play sound, etc.
-
     final context = navigatorKey.currentContext;
     if (context == null) return;
 
@@ -237,14 +199,12 @@ class AppNotificationHandler extends ApiNotificationHandler {
       switch (action) {
         case 'refresh_requests':
           // TODO: Refresh blood requests
-          print('🔄 Refreshing blood requests');
           break;
         case 'update_profile':
           // TODO: Navigate to profile update
-          print('👤 Navigating to profile update');
           break;
         default:
-          print('❓ Unknown action: $action');
+          break;
       }
     }
   }
@@ -252,6 +212,5 @@ class AppNotificationHandler extends ApiNotificationHandler {
   @override
   void dispose() {
     // Clean up resources if needed
-    print('🧹 Disposing AppNotificationHandler');
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+import '../../../../core/managers/location_cubit/cubit/location_cubit.dart';
 import '../../../../core/widgets/show_awesome_dialog.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../core/widgets/custom_button.dart';
@@ -15,6 +16,7 @@ class AddRequestView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.watch<AddRequestCubit>();
+    final locCubit = context.watch<LocationCubit>();
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<AddRequestCubit, AddRequestStates>(
@@ -50,12 +52,22 @@ class AddRequestView extends StatelessWidget {
         child: CustomButton(
           onPressed: () async {
             if (cubit.addRqstFormKey.currentState!.validate() &&
-                cubit.selectedBloodType != "value" &&
-                cubit.selectedDonCat != "value" &&
-                cubit.selectedTown != "value" &&
+                cubit.selectedBloodType != null &&
+                cubit.selectedBloodType!.isNotEmpty &&
+                cubit.selectedDonCat != null &&
+                cubit.selectedDonCat!.isNotEmpty &&
+                cubit.selectedGovernorate != null &&
+                cubit.selectedGovernorate!.isNotEmpty &&
+                cubit.selectedTown != null &&
+                cubit.selectedTown!.isNotEmpty &&
                 cubit.deadline != null) {
-              await cubit.createRequest();
-              cubit.clearData();
+              final matchingTowns = locCubit.townModels
+                  .where((t) => t.nameAr == cubit.selectedTown)
+                  .toList();
+              if (matchingTowns.isNotEmpty) {
+                await cubit.createRequest(cityId: matchingTowns.first.id!);
+                cubit.clearData();
+              }
             }
           },
           label: S.of(context).addRqustBtn,

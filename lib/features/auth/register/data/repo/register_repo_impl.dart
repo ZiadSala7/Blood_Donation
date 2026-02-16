@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/api/api_keys.dart';
@@ -53,7 +51,6 @@ class RegisterRepoImpl implements RegisterRepo {
       RegisterModel model = RegisterModel.fromJson(response);
       return Right(model);
     } on ServerException catch (e) {
-      log(e.toString());
       return Left(e.errorModel);
     }
   }

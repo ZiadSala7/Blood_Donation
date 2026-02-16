@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 
 import '../di/injection.dart';
@@ -24,7 +22,6 @@ Future<void> getAllGovs(DioConsumer dio) async {
       (index) => governorates.add(response[index]['NameAr']),
     );
     prefs.setStringList(CachKeys.governorates, governorates);
-    log(governorates.toString());
   } catch (e) {
     return;
   }

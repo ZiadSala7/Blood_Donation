@@ -29,7 +29,11 @@ abstract class AppRoutes {
       GoRoute(
         path: btmNavBar,
         name: 'btmNavBar',
-        builder: (context, state) => const BottomNavBar(),
+        builder: (context, state) {
+          final tab =
+              int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0;
+          return BottomNavBar(initialTab: tab.clamp(0, 3));
+        },
       ),
       GoRoute(
         path: homeView,
