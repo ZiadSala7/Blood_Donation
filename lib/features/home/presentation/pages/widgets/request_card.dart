@@ -16,6 +16,10 @@ class RequestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    final buttonHeight =
+        (size.shortestSide * 0.06).clamp(36.0, 52.0); // responsive height
+
     return Card(
       color: AppColors.white,
       child: Container(
@@ -60,7 +64,11 @@ class RequestCard extends StatelessWidget {
                     RequestDeadline(deadline: entity.deadline!),
                   ],
                 ),
-                CustomButton(onPressed: () {}, label: "تبرع الاّن"),
+                CustomButton(
+                  onPressed: () {},
+                  label: "تبرع الاّن",
+                  height: buttonHeight,
+                ),
               ],
             ),
           ],

@@ -68,6 +68,14 @@ class AddRequestView extends StatelessWidget {
                 await cubit.createRequest(cityId: matchingTowns.first.id!);
                 cubit.clearData();
               }
+            } else {
+              showAwesomeDialog(
+                context,
+                "بيانات غير مكتملة",
+                "من فضلك اكمل كل الحقول المطلوبة قبل إرسال الطلب.",
+                false,
+                () {},
+              );
             }
           },
           label: S.of(context).addRqustBtn,

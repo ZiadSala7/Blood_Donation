@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/managers/location_cubit/cubit/location_cubit.dart';
+import '../../../../../../core/managers/location_cubit/cubit/location_states.dart';
 import '../../../../../../core/widgets/custom_auth_nav_button.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../cubit/register_cubit.dart';
@@ -56,17 +57,34 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             ),
             const SizedBox(height: 16),
             // locationSection
-            LocationSection(
-              locCubit: locCubit,
-              selectedGovernorate: selectedGovernorate,
-              selectedCity: selectedCity,
-              onGovernorateChanged: (v) {
-                setState(() {
-                  selectedGovernorate = v;
-                  locCubit.getTowns(locCubit.cities.indexOf(v!) + 1);
-                });
+            BlocListener<LocationCubit, LocationStates>(
+              listenWhen: (previous, current) => current is SuccessTownLocState,
+              listener: (context, state) {
+                final loc = context.read<LocationCubit>();
+                if (loc.towns.isNotEmpty) {
+                  setState(() {
+                    selectedCity = loc.towns.first;
+                  });
+                }
               },
-              onCityChanged: (v) => setState(() => selectedCity = v),
+              child: LocationSection(
+                locCubit: locCubit,
+                selectedGovernorate: selectedGovernorate,
+                selectedCity: selectedCity,
+                onGovernorateChanged: (v) {
+                  setState(() {
+                    selectedGovernorate = v;
+                    selectedCity = null;
+                    if (v != null) {
+                      final idx = locCubit.cities.indexOf(v);
+                      if (idx >= 0) {
+                        locCubit.getTowns(idx + 1);
+                      }
+                    }
+                  });
+                },
+                onCityChanged: (v) => setState(() => selectedCity = v),
+              ),
             ),
             const SizedBox(height: 16),
             // pass section

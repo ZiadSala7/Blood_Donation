@@ -47,6 +47,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final circleDiameter = size.longestSide * 1.2;
+    final logoHeight = (size.shortestSide * 0.12).clamp(50.0, 160.0);
+
     final prefs = getIt.get<CacheHelper>();
     final isOnbordActive = prefs.getBool('isOnbordActive');
     final remembered = prefs.getBool('rememberMe');
@@ -58,13 +62,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
                   : const LoginView()
             : const OnboardingPageView(),
         Positioned(
-          top: -30, // from the top of the screen
-          left: MediaQuery.of(context).size.width / 2 - 250, // center circle
+          top: -circleDiameter * 0.2, // pull circle slightly above the top
+          left: size.width / 2 - circleDiameter / 2, // center circle horizontally
           child: ScaleTransition(
             scale: _scaleAnimation,
             child: Container(
-              width: 500,
-              height: 500,
+              width: circleDiameter,
+              height: circleDiameter,
               decoration: const BoxDecoration(
                 color: AppColors.commonClr,
                 shape: BoxShape.circle,
@@ -75,7 +79,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
         ScaleTransition(
           scale: _scaleAnimation,
           child: Center(
-            child: Image.asset(AppAssets.assetsImagesBldLogo, height: 50),
+            child: Image.asset(
+              AppAssets.assetsImagesBldLogo,
+              height: logoHeight,
+            ),
           ),
         ),
       ],

@@ -5,13 +5,20 @@ import '../utils/app_text_styles.dart';
 class CustomButton extends StatelessWidget {
   final Function() onPressed;
   final String label;
-  const CustomButton({super.key, required this.onPressed, required this.label});
+  final double? height;
+
+  const CustomButton({
+    super.key,
+    required this.onPressed,
+    required this.label,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       // width: double.infinity,
-      height: 60,
+      height: height ?? 60,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(

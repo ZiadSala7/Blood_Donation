@@ -31,9 +31,10 @@ NotificationCardType _mapApiTypeToCardType(NotificationType type) {
     case NotificationType.bloodRequestCancelled:
     case NotificationType.reminder:
     case NotificationType.emergency:
-      return NotificationCardType.importantAlert;
     case NotificationType.announcement:
     case NotificationType.general:
-      return NotificationCardType.thankYou;
+      // Map all generic/announcement types to an alert-style card
+      // instead of the "شكرا لك" thank-you card to avoid wrong wording.
+      return NotificationCardType.importantAlert;
   }
 }

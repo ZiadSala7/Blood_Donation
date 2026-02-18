@@ -39,6 +39,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     final currentPosition = scrollController.position.pixels;
     final maxScroll = scrollController.position.maxScrollExtent;
 
+    // On larger screens (e.g. tablets) the list might not be scrollable at all.
+    // In that case maxScroll will be 0, so we avoid triggering pagination
+    // to prevent showing a loading indicator without real pagination.
+    if (maxScroll <= 0) return;
+
     if (currentPosition >= maxScroll - 200) {
       isLoading = true;
       context.read<HomeCubit>().getRequestsWithPagination(index: nextPage++);
