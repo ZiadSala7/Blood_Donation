@@ -33,6 +33,14 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
             false,
             () {},
           );
+        } else if (state is RegisterTimeout) {
+          showAwesomeDialog(
+            context,
+            "استغرقت العملية وقتاً طويلاً",
+            "يبدو أن الاتصال بالانترنت بطيء أو منقطع، حاول مرة أخرى لاحقاً.",
+            false,
+            () {},
+          );
         }
       },
       builder: (context, state) {

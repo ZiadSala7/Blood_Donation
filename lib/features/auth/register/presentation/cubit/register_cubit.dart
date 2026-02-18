@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,22 +28,36 @@ class RegisterCubit extends Cubit<RegisterStates> {
     required String phoneNum,
   }) async {
     emit(RegisterLoading());
+    try {
+      final response = await repo
+          .createAccount(
+            fullName: fullName,
+            email: email,
+            age: age,
+            bloodTypeId: bloodTypeId,
+            gender: gender,
+            cityId: cityId,
+            password: password,
+            phoneNum: phoneNum,
+          )
+          .timeout(const Duration(seconds: 15));
 
-    final response = await repo.createAccount(
-      fullName: fullName,
-      email: email,
-      age: age,
-      bloodTypeId: bloodTypeId,
-      gender: gender,
-      cityId: cityId,
-      password: password,
-      phoneNum: phoneNum,
-    );
-    response.fold(
-      (ifLeft) => emit(
-        RegisterFailure(errMsg: ifLeft.errors![0] ?? "حدث حطأ .. حاول مرةاخرى"),
-      ),
-      (ifRight) => emit(RegisterSuccess()),
-    );
+      response.fold(
+        (ifLeft) => emit(
+          RegisterFailure(
+            errMsg: ifLeft.errors![0] ?? "حدث حطأ .. حاول مرةاخرى",
+          ),
+        ),
+        (ifRight) => emit(RegisterSuccess()),
+      );
+    } on TimeoutException {
+      emit(RegisterTimeout());
+    } catch (_) {
+      emit(
+        RegisterFailure(
+          errMsg: "حدث خطأ غير متوقع، حاول مرة اخرى",
+        ),
+      );
+    }
   }
 }

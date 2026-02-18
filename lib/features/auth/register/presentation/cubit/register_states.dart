@@ -11,3 +11,5 @@ class RegisterFailure extends RegisterStates {
 }
 
 class RegisterSuccess extends RegisterStates {}
+
+class RegisterTimeout extends RegisterStates {}
