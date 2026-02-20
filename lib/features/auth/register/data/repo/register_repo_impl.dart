@@ -31,7 +31,7 @@ class RegisterRepoImpl implements RegisterRepo {
       double lng = position.longitude;
 
       final token = await getDeviceToken();
-      final response = await dio.post(
+      final _ = await dio.post(
         EndPoints.register,
         data: {
           ApiKeys.email: email,
