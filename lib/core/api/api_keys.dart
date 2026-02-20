@@ -1,8 +1,11 @@
 abstract class ApiKeys {
   static const String token = 'token';
+  static const String refreshToken = 'refreshToken';
+  static const String refreshTokenExpiration = 'refreshTokenExpiration';
 
   /// ============ Register API Keys ===============
   static const String email = 'email';
+  static const String idToken = 'IdToken';
   static const String fullName = 'fullName';
   static const String bldTypeId = 'bloodTypeId';
   static const String age = 'age';

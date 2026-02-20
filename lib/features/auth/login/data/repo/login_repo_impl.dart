@@ -33,4 +33,43 @@ class LoginRepoImpl implements LoginRepo {
       return Left(e.errorModel);
     }
   }
+
+  @override
+  Future<Either<ErrorModel, RegisterModel>> loginWithGoogle({
+    required String idToken,
+  }) async {
+    try {
+      final token = await getDeviceToken();
+      final response = await dio.post(
+        EndPoints.googleSignIn,
+        data: {
+          ApiKeys.idToken: idToken,
+          ApiKeys.deviceTkn: token,
+        },
+      );
+      RegisterModel model = RegisterModel.fromJson(response);
+      return Right(model);
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+  }
+
+  @override
+  Future<Either<ErrorModel, Map<String, dynamic>>> refreshToken({
+    required String token,
+    required String refreshToken,
+  }) async {
+    try {
+      final response = await dio.post(
+        EndPoints.refreshToken,
+        data: {
+          ApiKeys.token: token,
+          ApiKeys.refreshToken: refreshToken,
+        },
+      );
+      return Right(Map<String, dynamic>.from(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel);
+    }
+  }
 }

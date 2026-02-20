@@ -1,10 +1,9 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/errors/error_model.dart';
-import '../../data/models/register_model.dart';
 
 abstract class RegisterRepo {
-  Future<Either<ErrorModel, RegisterModel>> createAccount({
+  Future<Either<ErrorModel, bool>> createAccount({
     required String fullName,
     required String email,
     required num age,

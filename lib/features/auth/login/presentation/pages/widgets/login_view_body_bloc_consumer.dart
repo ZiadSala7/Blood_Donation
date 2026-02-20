@@ -16,9 +16,11 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) async {
-        if (state is LoginSuccess) {
+        if (state is LoginSuccess || state is LoginGoogleSuccess) {
           if (context.read<LoginCubit>().rememberMe) {
-            addUserToCacheHelper(state);
+            if (state is LoginSuccess) {
+              addUserToCacheHelper(state);
+            }
           }
           showAwesomeDialog(
             context,
@@ -40,7 +42,8 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
       },
       builder: (context, state) {
         return ModalProgressHUD(
-          inAsyncCall: state is LoginLoading ? true : false,
+          inAsyncCall:
+              state is LoginLoading || state is LoginGoogleLoading ? true : false,
           child: const LoginViewBody(),
         );
       },

@@ -11,10 +11,12 @@ class DioConsumer extends ApiConsumer {
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
     dio.options.headers.addAll({
+      'x-api-key':
+          '1s7t+V8wKatkOr1f0AcO1CSUkIXgy7WPD8tSdxfOHh4UaPgfdiQHNQ3c3VqwaCYxboCt7XZ8/ym7NlPtLjtO2Q==',
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     });
-    dio.interceptors.add(ApiInterceptor()); // user define
+    dio.interceptors.add(ApiInterceptor(dio: dio)); // user define
     dio.interceptors.add(
       LogInterceptor(
         request: true,
@@ -55,7 +57,6 @@ class DioConsumer extends ApiConsumer {
   }) async {
     try {
       final response = await dio.get(
-
         path,
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,

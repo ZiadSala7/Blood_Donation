@@ -6,6 +6,8 @@ class LoginInitial extends LoginStates {}
 
 class LoginLoading extends LoginStates {}
 
+class LoginGoogleLoading extends LoginStates {}
+
 class LoginFailure extends LoginStates {
   final String errMsg;
 
@@ -17,3 +19,5 @@ class LoginSuccess extends LoginStates {
 
   LoginSuccess({required this.model});
 }
+
+class LoginGoogleSuccess extends LoginStates {}

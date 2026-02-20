@@ -8,6 +8,8 @@ class EndPoints {
   static const String forgPass = 'Authentication/forget-otp';
   static const String verifyOtp = 'Authentication/verify-otp';
   static const String resetPass = 'Authentication/reset';
+  static const String googleSignIn = 'Authentication/google-login';
+  static const String refreshToken = 'Authentication/refresh-token';
 
   /// ================== lookup API ============================
   static const String governorates = 'Lookup/governorates';

@@ -34,15 +34,6 @@ class CustomHomeTextField extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                // ignore: deprecated_member_use
-                color: Colors.grey.withOpacity(0.20),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-                spreadRadius: 0,
-              ),
-            ],
           ),
           child: TextFormField(
             onChanged: onChange,

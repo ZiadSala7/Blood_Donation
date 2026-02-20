@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,12 +53,8 @@ class RegisterCubit extends Cubit<RegisterStates> {
       );
     } on TimeoutException {
       emit(RegisterTimeout());
-    } catch (_) {
-      emit(
-        RegisterFailure(
-          errMsg: "حدث خطأ غير متوقع، حاول مرة اخرى",
-        ),
-      );
+    } catch (e) {
+      emit(RegisterFailure(errMsg: "حدث خطأ غير متوقع، حاول مرة اخرى"));
     }
   }
 }

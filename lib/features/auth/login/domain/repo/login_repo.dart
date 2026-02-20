@@ -8,4 +8,15 @@ abstract class LoginRepo {
     required String email,
     required String password,
   });
+
+  Future<Either<ErrorModel, RegisterModel>> loginWithGoogle({
+    required String idToken,
+  });
+
+  /// Refreshes the token using the current token and refresh token.
+  /// Returns new token, refreshToken, and refreshTokenExpiration.
+  Future<Either<ErrorModel, Map<String, dynamic>>> refreshToken({
+    required String token,
+    required String refreshToken,
+  });
 }

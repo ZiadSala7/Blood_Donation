@@ -15,7 +15,7 @@ class DetailsSliverAppBar extends StatelessWidget {
       floating: false,
       snap: false,
       backgroundColor: Colors.white,
-      toolbarHeight: 70,
+      toolbarHeight: 60,
       scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       title: Column(

@@ -1,5 +1,6 @@
 // lib/services/notifications/fcm_notification_service.dart
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'api_notification.dart';
 import 'app_notification_handler.dart';
@@ -30,27 +31,34 @@ class FCMNotificationService {
     : _handler = handler;
 
   Future<void> initialize() async {
-    // Request permissions
-    await _requestPermissions();
+    try {
+      // Request permissions
+      await _requestPermissions();
 
-    // Set background handler
-    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+      // Set background handler
+      FirebaseMessaging.onBackgroundMessage(
+        firebaseMessagingBackgroundHandler,
+      );
 
-    // Get initial message (app opened from terminated state)
-    final initialMessage = await _messaging.getInitialMessage();
-    if (initialMessage != null) {
-      final notification = _convertToApiNotification(initialMessage);
-      await _handler.handleTerminatedNotification(notification);
+      // Get initial message (app opened from terminated state)
+      final initialMessage = await _messaging.getInitialMessage();
+      if (initialMessage != null) {
+        final notification = _convertToApiNotification(initialMessage);
+        await _handler.handleTerminatedNotification(notification);
+      }
+
+      // Handle foreground messages
+      FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+
+      // Handle notification tap (app in background)
+      FirebaseMessaging.onMessageOpenedApp.listen(_handleNotificationTap);
+
+      // Get FCM token (may fail on devices without Play Services; ignore error)
+      await _messaging.getToken();
+    } on FirebaseException {
+      // Ignore FCM initialization/token errors so they don't crash the app.
+      // Notifications simply won't work if FCM is unavailable.
     }
-
-    // Handle foreground messages
-    FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
-
-    // Handle notification tap (app in background)
-    FirebaseMessaging.onMessageOpenedApp.listen(_handleNotificationTap);
-
-    // Get FCM token
-    await _messaging.getToken();
   }
 
   Future<void> _requestPermissions() async {

@@ -1,5 +1,6 @@
 class RegisterModel {
-  final String? token, name, email, cityName, governorateName;
+  final String? token, name, email, cityName, governorateName, refreshToken;
+  final DateTime? refreshTokenExpiration;
 
   RegisterModel({
     required this.token,
@@ -7,6 +8,8 @@ class RegisterModel {
     required this.email,
     this.cityName,
     this.governorateName,
+    this.refreshToken,
+    this.refreshTokenExpiration,
   });
 
   Map<String, dynamic> toJson() => {
@@ -15,6 +18,8 @@ class RegisterModel {
     'email': email,
     'cityName': cityName,
     'governorateName': governorateName,
+    'refreshToken': refreshToken,
+    'refreshTokenExpiration': refreshTokenExpiration?.toIso8601String(),
   };
 
   factory RegisterModel.fromJson(Map<String, dynamic> jsonData) =>
@@ -24,5 +29,9 @@ class RegisterModel {
         email: jsonData['email'],
         cityName: jsonData['cityName'],
         governorateName: jsonData['governorateName'],
+        refreshToken: jsonData['refreshToken'],
+        refreshTokenExpiration: DateTime.parse(
+          jsonData['refreshTokenExpiration'],
+        ),
       );
 }

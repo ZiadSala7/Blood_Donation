@@ -91,16 +91,22 @@ class LoginViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Row(
-                spacing: 10,
-                mainAxisAlignment: .center,
-                children: [
-                  Image.asset(AppAssets.assetsImagesGoogle),
-                  Text(
-                    S.of(context).loginWithGoogle,
-                    style: AppTextStyles.b20(context),
-                  ),
-                ],
+              child: InkWell(
+                borderRadius: BorderRadius.circular(16),
+                onTap: () async {
+                  await context.read<LoginCubit>().signInWithGoogle();
+                },
+                child: Row(
+                  spacing: 10,
+                  mainAxisAlignment: .center,
+                  children: [
+                    Image.asset(AppAssets.assetsImagesGoogle),
+                    Text(
+                      S.of(context).loginWithGoogle,
+                      style: AppTextStyles.b20(context),
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 35),
