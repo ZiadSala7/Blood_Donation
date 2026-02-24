@@ -43,6 +43,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "entrPhoneNum": MessageLookupByLibrary.simpleMessage(
       "Enter your phone number",
     ),
+    "forgPassValidate": MessageLookupByLibrary.simpleMessage(
+      "Enter your email address and we will send you an OTP code to reset your password.",
+    ),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "haveAcc": MessageLookupByLibrary.simpleMessage("Already have an account?"),

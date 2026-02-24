@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "entrPassw": MessageLookupByLibrary.simpleMessage("***********"),
     "entrPhoneNum": MessageLookupByLibrary.simpleMessage("أدخل رقم الهاتف"),
+    "forgPassValidate": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريدك الإلكتروني وسنرسل لك رمز تحقق (OTP) لإعادة تعيين كلمة المرور الخاصة بك.",
+    ),
     "fullName": MessageLookupByLibrary.simpleMessage(" الاسم الكامل "),
     "gender": MessageLookupByLibrary.simpleMessage("النوع "),
     "haveAcc": MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),

@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/utils/app_routes.dart';
 import '../../../../../../core/widgets/custom_button.dart';
 import '../../../../../../core/widgets/custom_auth_nav_button.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
@@ -65,7 +66,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               children: [
                 const RememberMeCheckBox(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                   context.pushNamed(AppRoutes.forgPasswordName);
+                  },
                   child: Text(
                     S.of(context).doYouforgetPass,
                     style: AppTextStyles.b18(context),

@@ -38,5 +38,6 @@
     "regFail": "Register Failed",
     "loginSucc": "Successful Login",
     "loginSuccDesc": "Welcome back !",
-    "addRqustBtn": "Create Request"
+    "addRqustBtn": "Create Request",
+    "forgPassValidate" : "Enter your email address and we will send you an OTP code to reset your password."
 }
