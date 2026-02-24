@@ -10,6 +10,8 @@ class CustomPasswordField extends StatefulWidget {
   final String label;
   final String hint;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final AutovalidateMode autovalidateMode;
 
   const CustomPasswordField({
     super.key,
@@ -17,6 +19,8 @@ class CustomPasswordField extends StatefulWidget {
     required this.label,
     required this.hint,
     this.validator,
+    this.onChanged,
+    this.autovalidateMode = AutovalidateMode.disabled,
   });
 
   @override
@@ -50,6 +54,8 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
             obscureText: !isVisible,
             controller: widget.controller,
             textAlign: TextAlign.right,
+            autovalidateMode: widget.autovalidateMode,
+            onChanged: widget.onChanged,
             decoration: InputDecoration(
               hintText: widget.hint,
               hintStyle: TextStyle(color: AppColors.greyBorder, fontSize: 16),

@@ -22,13 +22,6 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
               addUserToCacheHelper(state);
             }
           }
-          showAwesomeDialog(
-            context,
-            'تم تسجيل دخولك بنجاح',
-            'مرحبا بعودتك',
-            true,
-            () {},
-          );
           GoRouter.of(context).pushNamed('btmNavBar');
         } else if (state is LoginFailure) {
           showAwesomeDialog(
@@ -42,8 +35,9 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
       },
       builder: (context, state) {
         return ModalProgressHUD(
-          inAsyncCall:
-              state is LoginLoading || state is LoginGoogleLoading ? true : false,
+          inAsyncCall: state is LoginLoading || state is LoginGoogleLoading
+              ? true
+              : false,
           child: const LoginViewBody(),
         );
       },

@@ -39,13 +39,12 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
         key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
             const SizedBox(height: 20),
-            // personalInfp
             PersonalInfoSection(registerCubit: registerCubit),
             const SizedBox(height: 16),
-            // dropdowns menus
             DropdownsSection(
               genders: genders,
               selectedAge: selectedAge,
@@ -56,7 +55,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               onBloodChanged: (v) => setState(() => selectedBloodType = v),
             ),
             const SizedBox(height: 16),
-            // locationSection
             BlocListener<LocationCubit, LocationStates>(
               listenWhen: (previous, current) => current is SuccessTownLocState,
               listener: (context, state) {
@@ -87,12 +85,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               ),
             ),
             const SizedBox(height: 16),
-            // pass section
             PasswordSection(registerCubit: registerCubit),
             const SizedBox(height: 30),
-            // register btn
             Column(
-              crossAxisAlignment: .stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 RegisterButtonSection(
                   formKey: _formKey,

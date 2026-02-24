@@ -30,7 +30,9 @@ class LocationSection extends StatelessWidget {
             hint: S.of(context).city,
             value: selectedGovernorate,
             items: locCubit.cities,
-            onChanged: onGovernorateChanged,
+            onChanged: (value) {
+              onGovernorateChanged(value);
+            },
           ),
         ),
         const SizedBox(width: 12),
@@ -40,7 +42,9 @@ class LocationSection extends StatelessWidget {
             hint: S.of(context).town,
             value: selectedCity,
             items: locCubit.towns,
-            onChanged: onCityChanged,
+            onChanged: (value) {
+              onCityChanged(value);
+            },
           ),
         ),
       ],

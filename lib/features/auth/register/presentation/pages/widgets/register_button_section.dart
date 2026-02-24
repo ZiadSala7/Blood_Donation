@@ -33,28 +33,28 @@ class RegisterButtonSection extends StatelessWidget {
     return CustomButton(
       label: S.of(context).createAcc,
       onPressed: () async {
-        if (formKey.currentState!.validate() &&
-            registerCubit.pass.text == registerCubit.confirmPass.text) {
-          await registerProcess();
-        } else {
+        if (!formKey.currentState!.validate()) return;
+
+        if (registerCubit.pass.text != registerCubit.confirmPass.text) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('كلمة السر غير متطابقة')),
+            const SnackBar(content: Text('كلمتا المرور غير متطابقتين')),
           );
+          return;
         }
+
+        await registerProcess();
       },
     );
   }
 
-  Future<void> registerProcess() async {
+  Future registerProcess() async {
     await registerCubit.register(
       fullName: registerCubit.name.text,
       email: registerCubit.email.text,
       age: int.parse(selectedAge!),
       bloodTypeId: AppConstants.bloodTypes.indexOf(selectedBloodType!) + 1,
       gender: genders.indexOf(selectedGender!) + 1,
-      cityId: locCubit.townModels
-          .firstWhere((t) => t.nameAr == selectedCity)
-          .id!,
+      cityId: locCubit.townModels.firstWhere((t) => t.nameAr == selectedCity).id!,
       password: registerCubit.pass.text,
       phoneNum: registerCubit.phone.text,
     );

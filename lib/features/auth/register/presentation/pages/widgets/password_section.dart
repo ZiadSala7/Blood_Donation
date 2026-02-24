@@ -19,13 +19,16 @@ class PasswordSection extends StatelessWidget {
           label: S.of(context).password,
           hint: S.of(context).entrPassw,
           validator: passwordValidator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
         const SizedBox(height: 16),
         CustomPasswordField(
           controller: registerCubit.confirmPass,
           label: S.of(context).confirmPass,
           hint: S.of(context).entrPassw,
-          validator: passwordValidator,
+          validator: (value) =>
+              confirmPasswordValidator(value, registerCubit.pass.text),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
       ],
     );

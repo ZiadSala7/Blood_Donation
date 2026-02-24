@@ -13,36 +13,51 @@ import '../../../../../../generated/l10n.dart';
 import '../../cubit/login_cubit.dart';
 import 'remember_me_check_box.dart';
 
-class LoginViewBody extends StatelessWidget {
+class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
 
   @override
+  State<LoginViewBody> createState() => _LoginViewBodyState();
+}
+
+class _LoginViewBodyState extends State<LoginViewBody> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void _validateLive(String? _) {
+    _formKey.currentState?.validate();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
     final loginCubit = context.watch<LoginCubit>();
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
-        key: formKey,
+        key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
             /// FORM VALIDATION
             const SizedBox(height: 20),
-            // البريد الإلكتروني
+            // Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ
             CustomTextField(
               controller: loginCubit.email,
               label: S.of(context).email,
               hint: S.of(context).entrEmail,
               keyboardType: TextInputType.emailAddress,
               validator: emailValidator,
+              onChanged: _validateLive,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(height: 16),
-            // كلمة السر
+            // ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø±
             CustomPasswordField(
               controller: loginCubit.password,
               label: S.of(context).password,
               hint: S.of(context).entrPassw,
               validator: passwordValidator,
+              onChanged: _validateLive,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(height: 16),
             Row(
@@ -64,7 +79,7 @@ class LoginViewBody extends StatelessWidget {
               children: [
                 CustomButton(
                   onPressed: () async {
-                    if (formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       await loginCubit.loginWithEmail(
                         email: loginCubit.email.text,
                         password: loginCubit.password.text,

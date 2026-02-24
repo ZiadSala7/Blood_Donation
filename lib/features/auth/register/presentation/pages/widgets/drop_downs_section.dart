@@ -34,27 +34,33 @@ class DropdownsSection extends StatelessWidget {
             hint: S.of(context).age,
             value: selectedAge,
             items: AppConstants.ages,
-            onChanged: onAgeChanged,
+            onChanged: (value) {
+              onAgeChanged(value);
+            },
           ),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 8),
         Expanded(
           child: CustomDropdown(
             label: S.of(context).gender,
             hint: S.of(context).gender,
             value: selectedGender,
             items: genders,
-            onChanged: onGenderChanged,
+            onChanged: (value) {
+              onGenderChanged(value);
+            },
           ),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 8),
         Expanded(
           child: CustomDropdown(
             label: S.of(context).bloodType,
             hint: S.of(context).bloodType,
             value: selectedBloodType,
             items: AppConstants.bloodTypes,
-            onChanged: onBloodChanged,
+            onChanged: (value) {
+              onBloodChanged(value);
+            },
           ),
         ),
       ],

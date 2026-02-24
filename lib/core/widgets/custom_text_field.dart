@@ -11,6 +11,8 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final AutovalidateMode autovalidateMode;
   final int maxLines;
   final Color? hintClr;
 
@@ -21,6 +23,8 @@ class CustomTextField extends StatelessWidget {
     required this.hint,
     this.keyboardType,
     this.validator,
+    this.onChanged,
+    this.autovalidateMode = AutovalidateMode.disabled,
     this.maxLines = 1,
     this.hintClr,
   });
@@ -51,6 +55,8 @@ class CustomTextField extends StatelessWidget {
             controller: controller,
             keyboardType: keyboardType,
             textAlign: TextAlign.right,
+            autovalidateMode: autovalidateMode,
+            onChanged: onChanged,
             decoration: InputDecoration(
               hintText: hint,
               hintStyle: TextStyle(

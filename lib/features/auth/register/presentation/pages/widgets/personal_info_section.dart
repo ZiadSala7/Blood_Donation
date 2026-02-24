@@ -19,6 +19,7 @@ class PersonalInfoSection extends StatelessWidget {
           label: S.of(context).fullName,
           hint: S.of(context).entrFullName,
           validator: nameValidator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
         const SizedBox(height: 16),
         CustomTextField(
@@ -27,6 +28,7 @@ class PersonalInfoSection extends StatelessWidget {
           hint: S.of(context).entrEmail,
           keyboardType: TextInputType.emailAddress,
           validator: emailValidator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
         const SizedBox(height: 16),
         CustomTextField(
@@ -34,7 +36,8 @@ class PersonalInfoSection extends StatelessWidget {
           label: S.of(context).phoneNum,
           hint: S.of(context).entrPhoneNum,
           keyboardType: TextInputType.phone,
-          validator: emailValidator,
+          validator: phoneValidator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
       ],
     );
