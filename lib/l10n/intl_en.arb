@@ -39,5 +39,9 @@
     "loginSucc": "Successful Login",
     "loginSuccDesc": "Welcome back !",
     "addRqustBtn": "Create Request",
-    "forgPassValidate" : "Enter your email address and we will send you an OTP code to reset your password."
+    "forgPassValidate" : "Enter your email address and we will send you an OTP code to reset your password.",
+    "areForgPass" : "Forget Password?",
+    "sendOtp" : "Send OTP",
+    "confirmPassForget" : "Confirm your email"
+
 }

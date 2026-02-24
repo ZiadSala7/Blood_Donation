@@ -24,9 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addRqustBtn": MessageLookupByLibrary.simpleMessage("Create Request"),
     "age": MessageLookupByLibrary.simpleMessage("Age"),
+    "areForgPass": MessageLookupByLibrary.simpleMessage("Forget Password?"),
     "bloodType": MessageLookupByLibrary.simpleMessage("Blood Type"),
     "city": MessageLookupByLibrary.simpleMessage("Governorate"),
     "confirmPass": MessageLookupByLibrary.simpleMessage("Confirm Password"),
+    "confirmPassForget": MessageLookupByLibrary.simpleMessage(
+      "Confirm your email",
+    ),
     "createAcc": MessageLookupByLibrary.simpleMessage("Create Account"),
     "doYouforgetPass": MessageLookupByLibrary.simpleMessage(
       "Forgot your password?",
@@ -88,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Verify your account then go to login page",
     ),
     "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
+    "sendOtp": MessageLookupByLibrary.simpleMessage("Send OTP"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
     "town": MessageLookupByLibrary.simpleMessage("City"),

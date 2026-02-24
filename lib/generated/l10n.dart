@@ -378,6 +378,31 @@ class S {
       args: [],
     );
   }
+
+  /// `Forget Password?`
+  String get areForgPass {
+    return Intl.message(
+      'Forget Password?',
+      name: 'areForgPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send OTP`
+  String get sendOtp {
+    return Intl.message('Send OTP', name: 'sendOtp', desc: '', args: []);
+  }
+
+  /// `Confirm your email`
+  String get confirmPassForget {
+    return Intl.message(
+      'Confirm your email',
+      name: 'confirmPassForget',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

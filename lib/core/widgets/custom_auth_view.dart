@@ -21,6 +21,7 @@ class CustomAuthView extends StatelessWidget {
           pinned: true,
           toolbarHeight: barHeight,
           backgroundColor: AppColors.commonClr,
+          automaticallyImplyLeading: false,
           title: Image.asset(
             AppAssets.assetsImagesBldLogo,
             height: imageHeight,

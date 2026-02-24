@@ -24,9 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addRqustBtn": MessageLookupByLibrary.simpleMessage("انشاء الطلب"),
     "age": MessageLookupByLibrary.simpleMessage("العمر"),
+    "areForgPass": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "bloodType": MessageLookupByLibrary.simpleMessage("فصيلة الدم "),
     "city": MessageLookupByLibrary.simpleMessage("المحافظة"),
     "confirmPass": MessageLookupByLibrary.simpleMessage(" تاكيد كلمةالسر "),
+    "confirmPassForget": MessageLookupByLibrary.simpleMessage(
+      "تأكيد البريد الإلكتروني",
+    ),
     "createAcc": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "doYouforgetPass": MessageLookupByLibrary.simpleMessage(
       "هل نسيت كلمة السر ؟",
@@ -40,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "entrPassw": MessageLookupByLibrary.simpleMessage("***********"),
     "entrPhoneNum": MessageLookupByLibrary.simpleMessage("أدخل رقم الهاتف"),
     "forgPassValidate": MessageLookupByLibrary.simpleMessage(
-      "أدخل بريدك الإلكتروني وسنرسل لك رمز تحقق (OTP) لإعادة تعيين كلمة المرور الخاصة بك.",
+      "أدخل بريدك الإلكتروني لإرسال رمز التحقق",
     ),
     "fullName": MessageLookupByLibrary.simpleMessage(" الاسم الكامل "),
     "gender": MessageLookupByLibrary.simpleMessage("النوع "),
@@ -78,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "افحص رسائل الايميل لتفعيل الحساب ثم سجل دخولك",
     ),
     "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+    "sendOtp": MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "town": MessageLookupByLibrary.simpleMessage("المدينة"),
