@@ -17,7 +17,6 @@ class LocationCubit extends Cubit<LocationStates> {
   List<TownModel> townModels = [];
   final prefs = getIt.get<CacheHelper>();
 
-  void initLists() {}
   Future getCities() async {
     cities = getAllCachedGovs();
     emit(SuccessCityLocState());
@@ -25,13 +24,13 @@ class LocationCubit extends Cubit<LocationStates> {
 
   Future getTowns(int city) async {
     emit(LoadingLocState());
-    towns = [];
+    towns.clear();
     final response = await repo.getTownsByGovrnrat(city);
     response.fold((ifLeft) => emit(FailureLocState()), (allTowns) {
       townModels = allTowns;
       List.generate(
         allTowns.length,
-        (index) => towns.add(townModels[index].nameAr),
+        (index) => towns.add(townModels[index].nameAr!),
       );
       prefs.setInt(CachKeys.firstCityId, city);
       emit(SuccessTownLocState());

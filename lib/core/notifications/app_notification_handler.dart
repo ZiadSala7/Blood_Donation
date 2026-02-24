@@ -1,7 +1,6 @@
 // lib/services/notifications/app_notification_handler.dart
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../core/notifications/api_notification_handler.dart';
 import '../../core/utils/app_routes.dart';
@@ -117,13 +116,10 @@ class AppNotificationHandler extends ApiNotificationHandler {
   }
 
   Future<void> _navigateToScreen(ApiNotification notification) async {
-    final context = navigatorKey.currentContext;
-    if (context == null) return;
-
     // Navigate to notifications tab in bottom nav bar (tab index 2)
-    GoRouter.of(context).go(
-      AppRoutes.btmNavBar,
-      extra: {'tab': '2'},
+    AppRoutes.appRouter.goNamed(
+      AppRoutes.btmNavBarName,
+      queryParameters: {'tab': '2'},
     );
   }
 

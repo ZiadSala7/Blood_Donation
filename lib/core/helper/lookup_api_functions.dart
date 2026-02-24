@@ -59,7 +59,7 @@ Future<void> getTownsInGovernorate(LocationRepoImpl repo, int city) async {
     townModels = twnModels;
     List.generate(
       twnModels.length,
-      (index) => towns.add(twnModels[index].nameAr),
+      (index) => towns.add(twnModels[index].nameAr!),
     );
     prefs.setStringList(CachKeys.citiesInGov, towns);
     prefs.setInt(CachKeys.firstCityId, townModels[0].id!);
@@ -74,7 +74,7 @@ Future getTowns(LocationRepoImpl repo, int city) async {
     townModels = allTowns;
     List.generate(
       allTowns.length,
-      (index) => towns.add(townModels[index].nameAr),
+      (index) => towns.add(townModels[index].nameAr!),
     );
     prefs.setInt(CachKeys.firstCityId, city);
   });

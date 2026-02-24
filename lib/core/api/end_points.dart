@@ -1,6 +1,6 @@
 class EndPoints {
   /// ================= BaseUrl ===============================
-  static const String baseUrl = 'http://elixir.runasp.net/api/';
+  static const String baseUrl = 'https://elixir.runasp.net/api/';
 
   /// ================= auth endpoints =========================
   static const String register = 'Authentication/register';

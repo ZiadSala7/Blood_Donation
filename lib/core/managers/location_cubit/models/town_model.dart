@@ -1,6 +1,6 @@
 class TownModel {
   final int? id, govrnId;
-  final String nameEn, nameAr;
+  final String? nameEn, nameAr;
 
   TownModel({
     required this.id,

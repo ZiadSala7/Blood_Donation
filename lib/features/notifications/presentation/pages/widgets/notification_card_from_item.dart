@@ -27,7 +27,7 @@ class NotificationCardFromItem extends StatelessWidget {
           subtitle: item.subtitle,
           timeAgo: item.timeAgo,
           isRead: item.isRead,
-          onTap: onTap,
+        onTap: onTap,
         );
       case NotificationCardType.donorAccepted:
         return DonorAcceptedNotificationCard(

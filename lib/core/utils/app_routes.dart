@@ -13,22 +13,29 @@ abstract class AppRoutes {
   static const String btmNavBar = '/btmNavBar';
   static const String homeView = '/homeView';
   static const String addRqust = '/addRequest';
+
+  static const String registerName = 'register';
+  static const String loginName = 'login';
+  static const String btmNavBarName = 'btmNavBar';
+  static const String homeName = 'home';
+  static const String addRequestName = 'addRequest';
+
   static final appRouter = GoRouter(
     routes: [
       GoRoute(path: '/', builder: (context, state) => const SplashView()),
       GoRoute(
         path: register,
-        name: 'register',
+        name: registerName,
         builder: (context, state) => const RegisterView(),
       ),
       GoRoute(
         path: login,
-        name: 'login',
+        name: loginName,
         builder: (context, state) => const LoginView(),
       ),
       GoRoute(
         path: btmNavBar,
-        name: 'btmNavBar',
+        name: btmNavBarName,
         builder: (context, state) {
           final tab =
               int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0;
@@ -37,12 +44,12 @@ abstract class AppRoutes {
       ),
       GoRoute(
         path: homeView,
-        name: 'home',
+        name: homeName,
         builder: (context, state) => const HomeView(),
       ),
       GoRoute(
         path: addRqust,
-        name: 'addRequest',
+        name: addRequestName,
         builder: (context, state) => const AddRequestView(),
       ),
     ],
