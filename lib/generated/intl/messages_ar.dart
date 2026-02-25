@@ -27,6 +27,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "areForgPass": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "bloodType": MessageLookupByLibrary.simpleMessage("فصيلة الدم "),
     "city": MessageLookupByLibrary.simpleMessage("المحافظة"),
+    "confirmNewPass": MessageLookupByLibrary.simpleMessage(
+      " تأكيد كلمة المرور الجديدة",
+    ),
     "confirmPass": MessageLookupByLibrary.simpleMessage(" تاكيد كلمةالسر "),
     "confirmPassForget": MessageLookupByLibrary.simpleMessage(
       "تأكيد البريد الإلكتروني",
@@ -37,6 +40,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "dontHaveAcc": MessageLookupByLibrary.simpleMessage("ليس لديك حساب ؟"),
     "email": MessageLookupByLibrary.simpleMessage(" البريد الإلكتروني "),
+    "enterNewPass": MessageLookupByLibrary.simpleMessage(
+      "أدخل كلمة مرور جديدة لحسابك",
+    ),
     "entrEmail": MessageLookupByLibrary.simpleMessage("أدخل البريد الإلكتروني"),
     "entrFullName": MessageLookupByLibrary.simpleMessage(
       "ادخل اسمك بالكامل   ",
@@ -58,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تسجيل الدخول بواسطة جوجل ",
     ),
     "makeAcc": MessageLookupByLibrary.simpleMessage("قم بإنشاء حساب "),
+    "newPass": MessageLookupByLibrary.simpleMessage(" كلمة المرور الجديدة "),
     "onbrd1Descr": MessageLookupByLibrary.simpleMessage(
       "ساعد في إنقاذ حياة غيرك \nبخطوة بسيطة!",
     ),
@@ -82,6 +89,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "افحص رسائل الايميل لتفعيل الحساب ثم سجل دخولك",
     ),
     "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+    "resetPass": MessageLookupByLibrary.simpleMessage(
+      "إعادة تعيين كلمة المرور",
+    ),
+    "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+    "savePass": MessageLookupByLibrary.simpleMessage("حفظ كلمة المرور "),
     "sendOtp": MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),

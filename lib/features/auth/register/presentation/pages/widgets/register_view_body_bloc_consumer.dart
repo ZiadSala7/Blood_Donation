@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+import '../../../../../../core/utils/app_routes.dart';
 import '../../../../../../core/widgets/show_awesome_dialog.dart';
 import '../../cubit/register_cubit.dart';
 import '../../cubit/register_states.dart';
@@ -16,19 +17,14 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterStates>(
       listener: (context, state) {
         if (state is RegisterSuccess) {
-          showAwesomeDialog(
-            context,
-            'تم انشاء حساب بنجاح',
-            'افحص رسائل الايميل لتفعيل الحساب ثم سجل دخولك',
-            true,
-            () {
-              GoRouter.of(context).pushReplacementNamed('login');
-            },
+          GoRouter.of(context).pushReplacementNamed(
+            AppRoutes.loginName,
+            extra: {'showRegisterSuccessDialog': true},
           );
         } else if (state is RegisterFailure) {
           showAwesomeDialog(
             context,
-            "فشلت العملية",
+            "خطأ",
             state.errMsg,
             false,
             () {},
@@ -36,8 +32,8 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
         } else if (state is RegisterTimeout) {
           showAwesomeDialog(
             context,
-            "استغرقت العملية وقتاً طويلاً",
-            "يبدو أن الاتصال بالانترنت بطيء أو منقطع، حاول مرة أخرى لاحقاً.",
+            "فشل الاتصال بالخادم",
+            "تأكد من الاتصال بالإنترنت ثم حاول مرة أخرى.",
             false,
             () {},
           );

@@ -27,6 +27,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "areForgPass": MessageLookupByLibrary.simpleMessage("Forget Password?"),
     "bloodType": MessageLookupByLibrary.simpleMessage("Blood Type"),
     "city": MessageLookupByLibrary.simpleMessage("Governorate"),
+    "confirmNewPass": MessageLookupByLibrary.simpleMessage(
+      "Confirm new password",
+    ),
     "confirmPass": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "confirmPassForget": MessageLookupByLibrary.simpleMessage(
       "Confirm your email",
@@ -39,6 +42,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Don\'t have an account?",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "enterNewPass": MessageLookupByLibrary.simpleMessage(
+      "Enter a new password for your account",
+    ),
     "entrEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
     "entrFullName": MessageLookupByLibrary.simpleMessage(
       "Enter your full name",
@@ -64,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Login with Google",
     ),
     "makeAcc": MessageLookupByLibrary.simpleMessage("Create an account"),
+    "newPass": MessageLookupByLibrary.simpleMessage("New passowrd"),
     "onbrd1Descr": MessageLookupByLibrary.simpleMessage(
       "Help save lives with a simple step!",
     ),
@@ -92,6 +99,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Verify your account then go to login page",
     ),
     "rememberMe": MessageLookupByLibrary.simpleMessage("Remember Me"),
+    "resetPass": MessageLookupByLibrary.simpleMessage("Reset Password"),
+    "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
+    "savePass": MessageLookupByLibrary.simpleMessage("Save Password"),
     "sendOtp": MessageLookupByLibrary.simpleMessage("Send OTP"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),

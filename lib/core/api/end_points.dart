@@ -7,7 +7,7 @@ class EndPoints {
   static const String login = 'Authentication/login';
   static const String forgPass = 'Authentication/forget-otp';
   static const String verifyOtp = 'Authentication/verify-otp';
-  static const String resetPass = 'Authentication/reset';
+  static const String resetPass = 'Authentication/reset-password';
   static const String googleSignIn = 'Authentication/google-login';
   static const String refreshToken = 'Authentication/refresh-token';
 

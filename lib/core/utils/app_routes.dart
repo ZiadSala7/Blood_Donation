@@ -5,6 +5,7 @@ import '../../features/auth/forget_password/presentation/screens/forget_view.dar
 import '../../features/auth/login/presentation/pages/login_view.dart';
 import '../../features/auth/otp_verification/presentation/screens/otp_verification_view.dart';
 import '../../features/auth/register/presentation/pages/register_view.dart';
+import '../../features/auth/reset_password/presentation/screens/reset_passwod_view.dart';
 import '../../features/home/presentation/pages/home_view.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
@@ -17,6 +18,7 @@ abstract class AppRoutes {
   static const String addRqust = '/addRequest';
   static const String forgPassword = '/forgetPassword';
   static const String otpVerification = '/otpVerificaion';
+  static const String resetPassView = '/resetPassView';
 
   static const String registerName = 'register';
   static const String loginName = 'login';
@@ -25,6 +27,7 @@ abstract class AppRoutes {
   static const String addRequestName = 'addRequest';
   static const String forgPasswordName = 'forgetPassword';
   static const String otpVerificationName = 'otpVerificaion';
+  static const String resetPasswordName = 'resetPasswordName';
 
   static final appRouter = GoRouter(
     routes: [
@@ -37,7 +40,19 @@ abstract class AppRoutes {
       GoRoute(
         path: login,
         name: loginName,
-        builder: (context, state) => const LoginView(),
+        builder: (context, state) {
+          final extra = state.extra;
+          final showResetSuccessDialog =
+              extra is Map<String, dynamic> &&
+              extra['showResetSuccessDialog'] == true;
+          final showRegisterSuccessDialog =
+              extra is Map<String, dynamic> &&
+              extra['showRegisterSuccessDialog'] == true;
+          return LoginView(
+            showResetSuccessDialog: showResetSuccessDialog,
+            showRegisterSuccessDialog: showRegisterSuccessDialog,
+          );
+        },
       ),
       GoRoute(
         path: btmNavBar,
@@ -67,6 +82,17 @@ abstract class AppRoutes {
         name: otpVerificationName,
         builder: (context, state) =>
             OtpVerificationView(email: state.extra as String),
+      ),
+      GoRoute(
+        path: resetPassView,
+        name: resetPasswordName,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return ResetPasswodView(
+            resetToken: data['resetToken'] as String,
+            email: data['email'] as String,
+          );
+        },
       ),
     ],
   );

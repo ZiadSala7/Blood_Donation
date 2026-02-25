@@ -42,6 +42,11 @@
     "forgPassValidate" : "Enter your email address and we will send you an OTP code to reset your password.",
     "areForgPass" : "Forget Password?",
     "sendOtp" : "Send OTP",
-    "confirmPassForget" : "Confirm your email"
-
+    "confirmPassForget" : "Confirm your email",
+    "resetPass" : "Reset Password",
+    "enterNewPass" : "Enter a new password for your account",
+    "newPass" : "New passowrd",
+    "confirmNewPass": "Confirm new password",
+    "savePass" : "Save Password",
+    "saveChanges" : "Save Changes"
 }

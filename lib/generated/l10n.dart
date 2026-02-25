@@ -403,6 +403,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Reset Password`
+  String get resetPass {
+    return Intl.message(
+      'Reset Password',
+      name: 'resetPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a new password for your account`
+  String get enterNewPass {
+    return Intl.message(
+      'Enter a new password for your account',
+      name: 'enterNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New passowrd`
+  String get newPass {
+    return Intl.message('New passowrd', name: 'newPass', desc: '', args: []);
+  }
+
+  /// `Confirm new password`
+  String get confirmNewPass {
+    return Intl.message(
+      'Confirm new password',
+      name: 'confirmNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Password`
+  String get savePass {
+    return Intl.message('Save Password', name: 'savePass', desc: '', args: []);
+  }
+
+  /// `Save Changes`
+  String get saveChanges {
+    return Intl.message(
+      'Save Changes',
+      name: 'saveChanges',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

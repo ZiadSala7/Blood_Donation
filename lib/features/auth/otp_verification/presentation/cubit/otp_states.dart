@@ -10,6 +10,10 @@ class OtpFailure extends OtpStates {
   OtpFailure({required this.errMsg});
 }
 
-class OtpSuccess extends OtpStates {}
+class OtpSuccess extends OtpStates {
+  final String resetToken;
+
+  OtpSuccess({required this.resetToken});
+}
 
 class OtpResendSuccess extends OtpStates {}

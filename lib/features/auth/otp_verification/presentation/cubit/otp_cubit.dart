@@ -14,7 +14,7 @@ class OtpCubit extends Cubit<OtpStates> {
     final response = await repo.verifyOtp(email: email, otp: otp);
     response.fold((ifLeft) => emit(OtpFailure(errMsg: ifLeft)), (token) {
       resetToken = token;
-      emit(OtpSuccess());
+      emit(OtpSuccess(resetToken: token));
     });
   }
 
