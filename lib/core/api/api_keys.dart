@@ -26,4 +26,5 @@ abstract class ApiKeys {
   static const String requiredBloodTypeId = 'requiredBloodTypeId';
   static const String deadline = 'deadline';
   static const String phoneNumber = 'phoneNumber';
+  static const String otp = 'OTP';
 }

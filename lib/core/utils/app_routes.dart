@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/add_request/presentation/pages/add_request_view.dart';
 import '../../features/auth/forget_password/presentation/screens/forget_view.dart';
 import '../../features/auth/login/presentation/pages/login_view.dart';
+import '../../features/auth/otp_verification/presentation/screens/otp_verification_view.dart';
 import '../../features/auth/register/presentation/pages/register_view.dart';
 import '../../features/home/presentation/pages/home_view.dart';
 import '../widgets/bottom_nav_bar.dart';
@@ -15,6 +16,7 @@ abstract class AppRoutes {
   static const String homeView = '/homeView';
   static const String addRqust = '/addRequest';
   static const String forgPassword = '/forgetPassword';
+  static const String otpVerification = '/otpVerificaion';
 
   static const String registerName = 'register';
   static const String loginName = 'login';
@@ -22,6 +24,7 @@ abstract class AppRoutes {
   static const String homeName = 'home';
   static const String addRequestName = 'addRequest';
   static const String forgPasswordName = 'forgetPassword';
+  static const String otpVerificationName = 'otpVerificaion';
 
   static final appRouter = GoRouter(
     routes: [
@@ -58,6 +61,12 @@ abstract class AppRoutes {
         path: forgPassword,
         name: forgPasswordName,
         builder: (context, state) => const ForgetPasswordView(),
+      ),
+      GoRoute(
+        path: otpVerification,
+        name: otpVerificationName,
+        builder: (context, state) =>
+            OtpVerificationView(email: state.extra as String),
       ),
     ],
   );
