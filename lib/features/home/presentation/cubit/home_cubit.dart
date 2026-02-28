@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/models/request_model.dart';
 import '../../data/repo/home_repo_impl.dart';
 import '../../domain/entities/request_entity.dart';
 import 'home_states.dart';
@@ -7,6 +8,7 @@ import 'home_states.dart';
 class HomeCubit extends Cubit<HomeStates> {
   final HomeRepoImpl repo;
   List<RequestEntity> allEntities = [];
+  List<RequestModel> allModels = [];
   HomeCubit(this.repo) : super(HomeInitial());
 
   Future<void> getRequestsWithPagination({int index = 1}) async {
@@ -29,6 +31,7 @@ class HomeCubit extends Cubit<HomeStates> {
         );
         entities.add(entity);
         allEntities.addAll(entities);
+        allModels.addAll(requests);
       }
       emit(HomeSuccess(requestEntities: entities));
     });

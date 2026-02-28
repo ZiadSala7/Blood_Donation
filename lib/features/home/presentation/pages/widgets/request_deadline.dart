@@ -23,14 +23,14 @@ class RequestDeadline extends StatelessWidget {
           "$day $monthName",
           style: AppTextStyles.b14(context).copyWith(color: AppColors.grey),
         ),
-        const SizedBox(width: 5),
-        InkWell(
-          onTap: () {},
-          child: Text(
-            "عرض المزيد",
-            style: AppTextStyles.b14(context).copyWith(color: AppColors.grey2),
-          ),
-        ),
+        // const SizedBox(width: 5),
+        // InkWell(
+        //   onTap: () {},
+        //   child: Text(
+        //     "عرض المزيد",
+        //     style: AppTextStyles.b14(context).copyWith(color: AppColors.grey2),
+        //   ),
+        // ),
       ],
     );
   }

@@ -7,7 +7,9 @@ import '../../features/auth/login/presentation/pages/login_view.dart';
 import '../../features/auth/otp_verification/presentation/screens/otp_verification_view.dart';
 import '../../features/auth/register/presentation/pages/register_view.dart';
 import '../../features/auth/reset_password/presentation/screens/reset_passwod_view.dart';
+import '../../features/home/data/models/request_model.dart';
 import '../../features/home/presentation/pages/home_view.dart';
+import '../../features/request_details/presentation/pages/request_details_view.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
@@ -21,6 +23,7 @@ abstract class AppRoutes {
   static const String otpVerification = '/otpVerificaion';
   static const String resetPassView = '/resetPassView';
   static const String changePass = '/changePassword';
+  static const String requestDetails = '/requestDetails';
 
   static const String registerName = 'register';
   static const String loginName = 'login';
@@ -31,6 +34,7 @@ abstract class AppRoutes {
   static const String otpVerificationName = 'otpVerificaion';
   static const String resetPasswordName = 'resetPasswordName';
   static const String changePassName = 'changePasswordName';
+  static const String requestDetailsName = 'requestDetailsName';
 
   static final appRouter = GoRouter(
     routes: [
@@ -101,6 +105,12 @@ abstract class AppRoutes {
         path: changePass,
         name: changePassName,
         builder: (context, state) => const ChangePasswordView(),
+      ),
+      GoRoute(
+        path: requestDetails,
+        name: requestDetailsName,
+        builder: (context, state) =>
+            RequestDetailsView(model: state.extra as RequestModel),
       ),
     ],
   );

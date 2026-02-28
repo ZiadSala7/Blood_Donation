@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_routes.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../data/models/request_model.dart';
 import '../../../domain/entities/request_entity.dart';
+import '../../cubit/home_cubit.dart';
 import 'blood_type_and_needed.dart';
 import 'hospital_and_location_with_icon.dart';
 import 'request_deadline.dart';
@@ -67,8 +72,17 @@ class RequestCard extends StatelessWidget {
                   ],
                 ),
                 CustomButton(
-                  onPressed: () {},
-                  label: "تبرع الآن",
+                  onPressed: () {
+                    final cubit = context.read<HomeCubit>();
+                    RequestModel model = cubit.allModels.firstWhere(
+                      (model) => model.id == entity.id,
+                    );
+                    context.pushNamed(
+                      AppRoutes.requestDetailsName,
+                      extra: model,
+                    );
+                  },
+                  label: "عرض المزيد",
                   height: buttonHeight,
                 ),
               ],
