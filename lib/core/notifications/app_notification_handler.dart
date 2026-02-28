@@ -73,15 +73,15 @@ class AppNotificationHandler extends ApiNotificationHandler {
   }
 
   Future<void> _saveNotificationToLocal(ApiNotification notification) async {
-    // TODO: Save to local database (Hive, SharedPreferences, SQLite, etc.)
+    // todo: Save to local database (Hive, SharedPreferences, SQLite, etc.)
   }
 
   Future<void> _markAsRead(String notificationId) async {
-    // TODO: Mark notification as read in local database
+    // todo: Mark notification as read in local database
   }
 
   Future<void> _updateBadgeCount() async {
-    // TODO: Update app badge count
+    // todo: Update app badge count
   }
 
   void _showInAppNotification(ApiNotification notification) {
@@ -142,19 +142,19 @@ class AppNotificationHandler extends ApiNotificationHandler {
   Future<void> _handleBloodRequestNotification(
     ApiNotification notification,
   ) async {
-    // TODO: Update blood requests list, show alert, etc.
+    // todo: Update blood requests list, show alert, etc.
   }
 
   Future<void> _handleBloodRequestAcceptedNotification(
     ApiNotification notification,
   ) async {
-    // TODO: Update donations list, show confirmation, etc.
+    // todo: Update donations list, show confirmation, etc.
   }
 
   Future<void> _handleEmergencyNotification(
     ApiNotification notification,
   ) async {
-    // TODO: Show emergency alert dialog, play sound, etc.
+    // todo: Show emergency alert dialog, play sound, etc.
     final context = navigatorKey.currentContext;
     if (context == null) return;
 
@@ -194,10 +194,10 @@ class AppNotificationHandler extends ApiNotificationHandler {
     if (action != null) {
       switch (action) {
         case 'refresh_requests':
-          // TODO: Refresh blood requests
+          // todo: Refresh blood requests
           break;
         case 'update_profile':
-          // TODO: Navigate to profile update
+          // todo: Navigate to profile update
           break;
         default:
           break;
