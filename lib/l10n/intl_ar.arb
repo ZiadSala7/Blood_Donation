@@ -48,5 +48,9 @@
     "newPass" : " كلمة المرور الجديدة ",
     "confirmNewPass": " تأكيد كلمة المرور الجديدة",
     "savePass" : "حفظ كلمة المرور ",
-    "saveChanges" : "حفظ التغييرات"
+    "saveChanges" : "حفظ التغييرات",
+    "change_password": "تغيير كلمة المرور",
+    "changePass": "تغيير كلمة المرور",
+    "changePassDesc": "أدخل كلمة المرور الحالية ثم الجديدة",
+    "currentPass": "كلمة المرور الحالية"
 }

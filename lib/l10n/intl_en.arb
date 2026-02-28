@@ -48,5 +48,9 @@
     "newPass" : "New passowrd",
     "confirmNewPass": "Confirm new password",
     "savePass" : "Save Password",
-    "saveChanges" : "Save Changes"
+    "saveChanges" : "Save Changes",
+    "change_password": "Change Password",
+    "changePass": "Change Password",
+    "changePassDesc": "Enter your current password, then the new one",
+    "currentPass": "Current Password"
 }

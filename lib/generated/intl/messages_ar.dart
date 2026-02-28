@@ -26,6 +26,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "age": MessageLookupByLibrary.simpleMessage("العمر"),
     "areForgPass": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "bloodType": MessageLookupByLibrary.simpleMessage("فصيلة الدم "),
+    "changePass": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+    "changePassDesc": MessageLookupByLibrary.simpleMessage(
+      "أدخل كلمة المرور الحالية ثم الجديدة",
+    ),
+    "change_password": MessageLookupByLibrary.simpleMessage(
+      "تغيير كلمة المرور",
+    ),
     "city": MessageLookupByLibrary.simpleMessage("المحافظة"),
     "confirmNewPass": MessageLookupByLibrary.simpleMessage(
       " تأكيد كلمة المرور الجديدة",
@@ -35,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تأكيد البريد الإلكتروني",
     ),
     "createAcc": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "currentPass": MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية"),
     "doYouforgetPass": MessageLookupByLibrary.simpleMessage(
       "هل نسيت كلمة السر ؟",
     ),

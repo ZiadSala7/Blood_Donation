@@ -39,7 +39,7 @@ class EndPoints {
   /// ================= account API ===========================
   static const String getUserProfile = 'Account/profile';
   static const String updateAccProfile = 'Account/profile';
-  static const String changePass = 'Account/change-password';
+  static const String changePass = 'Authentication/change-password';
   static const String refreshNtfctionTknAndLction = 'Account/location-fcm';
   static const String getDonationHstory = 'Account/donation-history';
 }

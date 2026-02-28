@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../../features/add_request/presentation/pages/add_request_view.dart';
+import '../../features/auth/change_password/presentation/screens/change_password_view.dart';
 import '../../features/auth/forget_password/presentation/screens/forget_view.dart';
 import '../../features/auth/login/presentation/pages/login_view.dart';
 import '../../features/auth/otp_verification/presentation/screens/otp_verification_view.dart';
@@ -19,6 +20,7 @@ abstract class AppRoutes {
   static const String forgPassword = '/forgetPassword';
   static const String otpVerification = '/otpVerificaion';
   static const String resetPassView = '/resetPassView';
+  static const String changePass = '/changePassword';
 
   static const String registerName = 'register';
   static const String loginName = 'login';
@@ -28,6 +30,7 @@ abstract class AppRoutes {
   static const String forgPasswordName = 'forgetPassword';
   static const String otpVerificationName = 'otpVerificaion';
   static const String resetPasswordName = 'resetPasswordName';
+  static const String changePassName = 'changePasswordName';
 
   static final appRouter = GoRouter(
     routes: [
@@ -93,6 +96,11 @@ abstract class AppRoutes {
             email: data['email'] as String,
           );
         },
+      ),
+      GoRoute(
+        path: changePass,
+        name: changePassName,
+        builder: (context, state) => const ChangePasswordView(),
       ),
     ],
   );

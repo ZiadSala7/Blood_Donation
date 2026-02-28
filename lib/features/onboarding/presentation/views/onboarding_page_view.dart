@@ -11,6 +11,7 @@ class OnboardingPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<OnboardingModel> onbrdngs = onboardingModels(context);
     return PageView(
+      physics: const NeverScrollableScrollPhysics(),
       controller: AppConstants.onbrdngPageCntroller,
       scrollDirection: Axis.horizontal,
       children: List.generate(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_routes.dart';
 import '../../cubit/profile_view_model.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -20,7 +21,9 @@ class ProfileHeader extends StatelessWidget {
             top: 0,
             child: IconButton(
               icon: Icon(Icons.settings, color: Colors.grey[700]),
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(AppRoutes.changePassName);
+              },
             ),
           ),
           Positioned(

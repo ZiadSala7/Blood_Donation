@@ -26,6 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "age": MessageLookupByLibrary.simpleMessage("Age"),
     "areForgPass": MessageLookupByLibrary.simpleMessage("Forget Password?"),
     "bloodType": MessageLookupByLibrary.simpleMessage("Blood Type"),
+    "changePass": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "changePassDesc": MessageLookupByLibrary.simpleMessage(
+      "Enter your current password, then the new one",
+    ),
+    "change_password": MessageLookupByLibrary.simpleMessage("Change Password"),
     "city": MessageLookupByLibrary.simpleMessage("Governorate"),
     "confirmNewPass": MessageLookupByLibrary.simpleMessage(
       "Confirm new password",
@@ -35,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Confirm your email",
     ),
     "createAcc": MessageLookupByLibrary.simpleMessage("Create Account"),
+    "currentPass": MessageLookupByLibrary.simpleMessage("Current Password"),
     "doYouforgetPass": MessageLookupByLibrary.simpleMessage(
       "Forgot your password?",
     ),
