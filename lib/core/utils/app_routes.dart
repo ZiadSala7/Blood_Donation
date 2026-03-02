@@ -110,7 +110,7 @@ abstract class AppRoutes {
         path: requestDetails,
         name: requestDetailsName,
         builder: (context, state) =>
-            RequestDetailsView(model: state.extra as RequestModel),
+            RequestDetailsView(request: state.extra as RequestModel),
       ),
     ],
   );

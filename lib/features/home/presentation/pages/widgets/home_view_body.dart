@@ -6,6 +6,7 @@ import '../../../../auth/register/data/models/register_model.dart';
 import '../../cubit/home_cubit.dart';
 import '../../cubit/home_states.dart';
 import 'details_sliver_appbar.dart';
+import 'home_empty_state.dart';
 import 'nearby_requests_divider.dart';
 import 'request_card.dart';
 import 'search_and_filtering_sliver_appbar.dart';
@@ -61,16 +62,25 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
         if (state is HomeSuccess) {
-          isLoading = false;
+          setState(() {
+            isLoading = false;
+          });
           if (state.requestEntities.isEmpty) {
-            hasMore = false;
+            setState(() {
+              hasMore = false;
+            });
           }
         } else if (state is HomeFailure) {
-          isLoading = false;
+          setState(() {
+            isLoading = false;
+          });
         }
       },
       builder: (context, state) {
         final requests = context.read<HomeCubit>().allEntities;
+        final isInitialLoading = state is HomeLoading && requests.isEmpty;
+        final showEmptyState = requests.isEmpty && !isInitialLoading;
+
         return CustomScrollView(
           controller: scrollController,
           slivers: [
@@ -78,21 +88,36 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             const SearchAndFilteringSliverAppBar(),
             const SliverToBoxAdapter(child: NearbyRequestsDivider()),
 
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                if (index < requests.length) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    child: RequestCard(entity: requests[index]),
-                  );
-                } else {
-                  return const Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                }
-              }, childCount: requests.length + (hasMore ? 1 : 0)),
-            ),
+            if (isInitialLoading)
+              const SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(child: CircularProgressIndicator()),
+              )
+            else if (showEmptyState)
+              const SliverFillRemaining(
+                hasScrollBody: false,
+                child: HomeEmptyState(),
+              )
+            else
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  if (index < requests.length) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: RequestCard(entity: requests[index]),
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Center(
+                        child: isLoading
+                            ? const CircularProgressIndicator()
+                            : const SizedBox(),
+                      ),
+                    );
+                  }
+                }, childCount: requests.length + (hasMore ? 1 : 0)),
+              ),
           ],
         );
       },

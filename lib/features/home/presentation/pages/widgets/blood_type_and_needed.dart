@@ -5,15 +5,18 @@ import '../../../../../core/utils/app_text_styles.dart';
 
 class BloodTypeAndNeeded extends StatelessWidget {
   final String bldType, donationCat;
+  final bool isRequest;
   const BloodTypeAndNeeded({
     super.key,
     required this.bldType,
     required this.donationCat,
+    this.isRequest = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: isRequest ? .center : .start,
       spacing: 6,
       children: [
         Container(

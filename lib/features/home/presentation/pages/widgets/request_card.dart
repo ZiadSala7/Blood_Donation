@@ -82,7 +82,7 @@ class RequestCard extends StatelessWidget {
                       extra: model,
                     );
                   },
-                  label: "عرض المزيد",
+                  label: "تبرّع الآن",
                   height: buttonHeight,
                 ),
               ],

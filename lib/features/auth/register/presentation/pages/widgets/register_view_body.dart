@@ -58,6 +58,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   setState(() => selectedDateOfBirth = selectedDate);
                   registerCubit.dateOfBirth.text = DateFormat(
                     'yyyy-MM-dd',
+                    'en',
                   ).format(selectedDate);
                 }
               },

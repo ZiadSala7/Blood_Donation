@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/widgets/custom_buttom_sheet.dart';
 import '../../cubit/profile_view_model.dart';
 import 'settings_tile.dart';
 
@@ -79,7 +80,18 @@ class ProfileSettingsCard extends StatelessWidget {
                   iconColor: Colors.red,
                   title: 'تسجيل الخروج',
                   titleColor: Colors.red,
-                  onTap: () => vm.logout(context),
+                  // onTap: () => vm.logout(context),
+                  onTap: () {
+                    showBottomSheet(
+                      context: context,
+                      builder: (context) => CustomBottomSheetBody(
+                        message: "هل تريد تسجيل الخروج",
+                        onTapYes: () {
+                          vm.logout(context);
+                        },
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
