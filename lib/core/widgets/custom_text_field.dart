@@ -12,6 +12,8 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final VoidCallback? onTap;
+  final bool readOnly;
   final AutovalidateMode autovalidateMode;
   final int maxLines;
   final Color? hintClr;
@@ -24,6 +26,8 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.validator,
     this.onChanged,
+    this.onTap,
+    this.readOnly = false,
     this.autovalidateMode = AutovalidateMode.disabled,
     this.maxLines = 1,
     this.hintClr,
@@ -57,6 +61,8 @@ class CustomTextField extends StatelessWidget {
             textAlign: TextAlign.right,
             autovalidateMode: autovalidateMode,
             onChanged: onChanged,
+            onTap: onTap,
+            readOnly: readOnly,
             decoration: InputDecoration(
               hintText: hint,
               hintStyle: TextStyle(

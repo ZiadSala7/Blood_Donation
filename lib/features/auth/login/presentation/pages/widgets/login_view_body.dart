@@ -24,10 +24,6 @@ class LoginViewBody extends StatefulWidget {
 class _LoginViewBodyState extends State<LoginViewBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _validateLive(String? _) {
-    _formKey.currentState?.validate();
-  }
-
   @override
   Widget build(BuildContext context) {
     final loginCubit = context.watch<LoginCubit>();
@@ -35,7 +31,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
         key: _formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
             /// FORM VALIDATION
@@ -47,8 +42,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               hint: S.of(context).entrEmail,
               keyboardType: TextInputType.emailAddress,
               validator: emailValidator,
-              onChanged: _validateLive,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(height: 16),
             // ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø±
@@ -57,8 +50,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               label: S.of(context).password,
               hint: S.of(context).entrPassw,
               validator: passwordValidator,
-              onChanged: _validateLive,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(height: 16),
             Row(

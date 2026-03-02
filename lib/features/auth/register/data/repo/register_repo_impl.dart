@@ -17,7 +17,7 @@ class RegisterRepoImpl implements RegisterRepo {
   Future<Either<ErrorModel, bool>> createAccount({
     required String fullName,
     required String email,
-    required num age,
+    required DateTime dateOfBirth,
     required num bloodTypeId,
     required num gender,
     required num cityId,
@@ -37,7 +37,7 @@ class RegisterRepoImpl implements RegisterRepo {
           ApiKeys.email: email,
           ApiKeys.fullName: fullName,
           ApiKeys.bldTypeId: bloodTypeId,
-          ApiKeys.age: age,
+          ApiKeys.dateOfBirth: dateOfBirth.toIso8601String(),
           ApiKeys.gender: gender,
           ApiKeys.latitude: lat,
           ApiKeys.longitude: lng,

@@ -9,6 +9,7 @@ abstract class ApiKeys {
   static const String fullName = 'fullName';
   static const String bldTypeId = 'bloodTypeId';
   static const String age = 'age';
+  static const String dateOfBirth = 'dateOfBirth';
   static const String gender = 'gender';
   static const String latitude = 'latitude';
   static const String longitude = 'longitude';

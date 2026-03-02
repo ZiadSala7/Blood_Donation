@@ -32,6 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "change_password": MessageLookupByLibrary.simpleMessage("Change Password"),
     "city": MessageLookupByLibrary.simpleMessage("Governorate"),
+    "completeRequiredFields": MessageLookupByLibrary.simpleMessage(
+      "Please complete all required fields",
+    ),
     "confirmNewPass": MessageLookupByLibrary.simpleMessage(
       "Confirm new password",
     ),
@@ -41,6 +44,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "createAcc": MessageLookupByLibrary.simpleMessage("Create Account"),
     "currentPass": MessageLookupByLibrary.simpleMessage("Current Password"),
+    "dateOfBirth": MessageLookupByLibrary.simpleMessage("Date of Birth"),
+    "dateOfBirthRequired": MessageLookupByLibrary.simpleMessage(
+      "Please select your date of birth",
+    ),
     "doYouforgetPass": MessageLookupByLibrary.simpleMessage(
       "Forgot your password?",
     ),
@@ -97,6 +104,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Thank you for joining the journey of giving and change.",
     ),
     "onbrd4Title": MessageLookupByLibrary.simpleMessage("Welcome"),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords do not match",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "phoneNum": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "regFail": MessageLookupByLibrary.simpleMessage("Register Failed"),
@@ -108,6 +118,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "resetPass": MessageLookupByLibrary.simpleMessage("Reset Password"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
     "savePass": MessageLookupByLibrary.simpleMessage("Save Password"),
+    "selectDateOfBirth": MessageLookupByLibrary.simpleMessage(
+      "Select date of birth",
+    ),
+    "selectValidCity": MessageLookupByLibrary.simpleMessage(
+      "Please select a valid city",
+    ),
     "sendOtp": MessageLookupByLibrary.simpleMessage("Send OTP"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),

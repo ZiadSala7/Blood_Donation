@@ -6,7 +6,7 @@ abstract class RegisterRepo {
   Future<Either<ErrorModel, bool>> createAccount({
     required String fullName,
     required String email,
-    required num age,
+    required DateTime dateOfBirth,
     required num bloodTypeId,
     required num gender,
     required num cityId,

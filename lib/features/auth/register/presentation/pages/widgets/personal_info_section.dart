@@ -7,8 +7,15 @@ import '../../cubit/register_cubit.dart';
 
 class PersonalInfoSection extends StatelessWidget {
   final RegisterCubit registerCubit;
+  final DateTime? selectedDateOfBirth;
+  final Future<void> Function() onSelectDateOfBirth;
 
-  const PersonalInfoSection({super.key, required this.registerCubit});
+  const PersonalInfoSection({
+    super.key,
+    required this.registerCubit,
+    required this.selectedDateOfBirth,
+    required this.onSelectDateOfBirth,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,6 @@ class PersonalInfoSection extends StatelessWidget {
           label: S.of(context).fullName,
           hint: S.of(context).entrFullName,
           validator: nameValidator,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
         const SizedBox(height: 16),
         CustomTextField(
@@ -28,7 +34,6 @@ class PersonalInfoSection extends StatelessWidget {
           hint: S.of(context).entrEmail,
           keyboardType: TextInputType.emailAddress,
           validator: emailValidator,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
         ),
         const SizedBox(height: 16),
         CustomTextField(
@@ -37,7 +42,21 @@ class PersonalInfoSection extends StatelessWidget {
           hint: S.of(context).entrPhoneNum,
           keyboardType: TextInputType.phone,
           validator: phoneValidator,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+        ),
+        const SizedBox(height: 16),
+        CustomTextField(
+          controller: registerCubit.dateOfBirth,
+          label: S.of(context).dateOfBirth,
+          hint: S.of(context).selectDateOfBirth,
+          readOnly: true,
+          onTap: onSelectDateOfBirth,
+          hintClr: selectedDateOfBirth == null ? null : Colors.black,
+          validator: (value) {
+            if (selectedDateOfBirth == null) {
+              return S.of(context).dateOfBirthRequired;
+            }
+            return null;
+          },
         ),
       ],
     );

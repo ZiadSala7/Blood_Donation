@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,23 +21,22 @@ import 'features/add_request/presentation/cubit/add_request_cubit.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
     GlobalKey<ScaffoldMessengerState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await setupDependencies();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  var dioConsumer = getIt.get<DioConsumer>();
-  await getAllGovs(dioConsumer);
-  await getAllDonationCats(dioConsumer);
 
-  // Initialize notification handler
+  final dioConsumer = getIt.get<DioConsumer>();
+
+  // Keep required cached data ready before creating cubits that depend on it.
+  await Future.wait([getAllGovs(dioConsumer), getAllDonationCats(dioConsumer)]);
+
   final notificationHandler = AppNotificationHandler(
     navigatorKey: navigatorKey,
   );
-
-  // Initialize FCM service
   final fcmService = FCMNotificationService(handler: notificationHandler);
-  await fcmService.initialize();
-  await initTowns();
 
   runApp(
     MultiBlocProvider(
@@ -56,4 +57,11 @@ void main() async {
       child: const BloodDonationApp(),
     ),
   );
+
+  // Run non-critical startup work after first frame scheduling.
+  unawaited(_runDeferredStartupTasks(fcmService));
+}
+
+Future<void> _runDeferredStartupTasks(FCMNotificationService fcmService) async {
+  await Future.wait([fcmService.initialize(), initTowns()]);
 }

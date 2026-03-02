@@ -493,6 +493,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Date of Birth`
+  String get dateOfBirth {
+    return Intl.message(
+      'Date of Birth',
+      name: 'dateOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select date of birth`
+  String get selectDateOfBirth {
+    return Intl.message(
+      'Select date of birth',
+      name: 'selectDateOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your date of birth`
+  String get dateOfBirthRequired {
+    return Intl.message(
+      'Please select your date of birth',
+      name: 'dateOfBirthRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get passwordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'passwordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please complete all required fields`
+  String get completeRequiredFields {
+    return Intl.message(
+      'Please complete all required fields',
+      name: 'completeRequiredFields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a valid city`
+  String get selectValidCity {
+    return Intl.message(
+      'Please select a valid city',
+      name: 'selectValidCity',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

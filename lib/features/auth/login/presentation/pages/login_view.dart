@@ -33,8 +33,8 @@ class _LoginViewState extends State<LoginView> {
         if (!mounted) return;
         showAwesomeDialog(
           context,
-          "تم بنجاح",
-          "تم إنشاء الحساب بنجاح",
+          "تم انشاء الحساب بنجاح",
+          "افحص رسائل بريدك الالكنروني لتفعيل حسابك",
           true,
           () {},
         );

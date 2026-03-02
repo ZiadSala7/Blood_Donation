@@ -11,7 +11,7 @@ class RegisterButtonSection extends StatelessWidget {
   final RegisterCubit registerCubit;
   final LocationCubit locCubit;
   final List<String> genders;
-  final String? selectedAge;
+  final DateTime? selectedDateOfBirth;
   final String? selectedBloodType;
   final String? selectedGender;
   final String? selectedCity;
@@ -22,7 +22,7 @@ class RegisterButtonSection extends StatelessWidget {
     required this.registerCubit,
     required this.locCubit,
     required this.genders,
-    required this.selectedAge,
+    required this.selectedDateOfBirth,
     required this.selectedBloodType,
     required this.selectedGender,
     required this.selectedCity,
@@ -37,24 +37,44 @@ class RegisterButtonSection extends StatelessWidget {
 
         if (registerCubit.pass.text != registerCubit.confirmPass.text) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('كلمتا المرور غير متطابقتين')),
+            SnackBar(content: Text(S.of(context).passwordsDoNotMatch)),
           );
           return;
         }
 
-        await registerProcess();
+        if (selectedDateOfBirth == null ||
+            selectedBloodType == null ||
+            selectedGender == null ||
+            selectedCity == null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(S.of(context).completeRequiredFields)),
+          );
+          return;
+        }
+
+        await registerProcess(context);
       },
     );
   }
 
-  Future registerProcess() async {
+  Future<void> registerProcess(BuildContext context) async {
+    final selectedTownIndex = locCubit.townModels.indexWhere(
+      (town) => town.nameAr == selectedCity,
+    );
+    if (selectedTownIndex == -1) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(S.of(context).selectValidCity)),
+      );
+      return;
+    }
+
     await registerCubit.register(
       fullName: registerCubit.name.text,
       email: registerCubit.email.text,
-      age: int.parse(selectedAge!),
+      dateOfBirth: selectedDateOfBirth!,
       bloodTypeId: AppConstants.bloodTypes.indexOf(selectedBloodType!) + 1,
       gender: genders.indexOf(selectedGender!) + 1,
-      cityId: locCubit.townModels.firstWhere((t) => t.nameAr == selectedCity).id!,
+      cityId: locCubit.townModels[selectedTownIndex].id!,
       password: registerCubit.pass.text,
       phoneNum: registerCubit.phone.text,
     );

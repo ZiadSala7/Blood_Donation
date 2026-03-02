@@ -52,5 +52,11 @@
     "change_password": "Change Password",
     "changePass": "Change Password",
     "changePassDesc": "Enter your current password, then the new one",
-    "currentPass": "Current Password"
+    "currentPass": "Current Password",
+    "dateOfBirth": "Date of Birth",
+    "selectDateOfBirth": "Select date of birth",
+    "dateOfBirthRequired": "Please select your date of birth",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "completeRequiredFields": "Please complete all required fields",
+    "selectValidCity": "Please select a valid city"
 }

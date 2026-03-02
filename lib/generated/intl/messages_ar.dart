@@ -106,5 +106,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
     "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "town": MessageLookupByLibrary.simpleMessage("المدينة"),
+    "completeRequiredFields": MessageLookupByLibrary.simpleMessage(
+      "من فضلك أكمل جميع الحقول المطلوبة",
+    ),
+    "dateOfBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "dateOfBirthRequired": MessageLookupByLibrary.simpleMessage(
+      "من فضلك اختر تاريخ الميلاد",
+    ),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "كلمتا المرور غير متطابقتين",
+    ),
+    "selectDateOfBirth": MessageLookupByLibrary.simpleMessage(
+      "اختر تاريخ الميلاد",
+    ),
+    "selectValidCity": MessageLookupByLibrary.simpleMessage(
+      "من فضلك اختر مدينة صحيحة",
+    ),
   };
 }

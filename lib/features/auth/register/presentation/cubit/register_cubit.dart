@@ -14,13 +14,14 @@ class RegisterCubit extends Cubit<RegisterStates> {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
+  TextEditingController dateOfBirth = TextEditingController();
   TextEditingController pass = TextEditingController();
   TextEditingController confirmPass = TextEditingController();
 
-  Future register({
+  Future<void> register({
     required String fullName,
     required String email,
-    required num age,
+    required DateTime dateOfBirth,
     required num bloodTypeId,
     required num gender,
     required num cityId,
@@ -33,7 +34,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
           .createAccount(
             fullName: fullName,
             email: email,
-            age: age,
+            dateOfBirth: dateOfBirth,
             bloodTypeId: bloodTypeId,
             gender: gender,
             cityId: cityId,
@@ -45,7 +46,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       response.fold(
         (ifLeft) => emit(
           RegisterFailure(
-            errMsg: ifLeft.errors![0] ?? "حدث حطأ .. حاول مرةاخرى",
+            errMsg: ifLeft.errorMessage ?? "حدث حطأ .. حاول مرةاخرى",
           ),
         ),
         (ifRight) => emit(RegisterSuccess()),
@@ -53,7 +54,18 @@ class RegisterCubit extends Cubit<RegisterStates> {
     } on TimeoutException {
       emit(RegisterTimeout());
     } catch (e) {
-      emit(RegisterFailure(errMsg: "حدث خطأ غير متوقع، حاول مرة اخرى"));
+      emit(RegisterFailure(errMsg: e.toString()));
     }
+  }
+
+  @override
+  Future<void> close() {
+    name.dispose();
+    email.dispose();
+    phone.dispose();
+    dateOfBirth.dispose();
+    pass.dispose();
+    confirmPass.dispose();
+    return super.close();
   }
 }

@@ -53,4 +53,10 @@
     "changePass": "تغيير كلمة المرور",
     "changePassDesc": "أدخل كلمة المرور الحالية ثم الجديدة",
     "currentPass": "كلمة المرور الحالية"
+    ,"dateOfBirth": "تاريخ الميلاد",
+    "selectDateOfBirth": "اختر تاريخ الميلاد",
+    "dateOfBirthRequired": "من فضلك اختر تاريخ الميلاد",
+    "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين",
+    "completeRequiredFields": "من فضلك أكمل جميع الحقول المطلوبة",
+    "selectValidCity": "من فضلك اختر مدينة صحيحة"
 }

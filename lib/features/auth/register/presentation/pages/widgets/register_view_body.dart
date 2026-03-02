@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../core/managers/location_cubit/cubit/location_cubit.dart';
 import '../../../../../../core/managers/location_cubit/cubit/location_states.dart';
@@ -23,7 +24,7 @@ class RegisterViewBody extends StatefulWidget {
 class _RegisterViewBodyState extends State<RegisterViewBody> {
   final _formKey = GlobalKey<FormState>();
 
-  String? selectedAge;
+  DateTime? selectedDateOfBirth;
   String? selectedBloodType;
   String? selectedGender;
   String? selectedCity;
@@ -39,18 +40,33 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
         key: _formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
             const SizedBox(height: 20),
-            PersonalInfoSection(registerCubit: registerCubit),
+            PersonalInfoSection(
+              registerCubit: registerCubit,
+              selectedDateOfBirth: selectedDateOfBirth,
+              onSelectDateOfBirth: () async {
+                final selectedDate = await showDatePicker(
+                  context: context,
+                  initialDate: selectedDateOfBirth ?? _latestAllowedBirthDate,
+                  firstDate: _earliestAllowedBirthDate,
+                  lastDate: _latestAllowedBirthDate,
+                );
+
+                if (selectedDate != null) {
+                  setState(() => selectedDateOfBirth = selectedDate);
+                  registerCubit.dateOfBirth.text = DateFormat(
+                    'yyyy-MM-dd',
+                  ).format(selectedDate);
+                }
+              },
+            ),
             const SizedBox(height: 16),
             DropdownsSection(
               genders: genders,
-              selectedAge: selectedAge,
               selectedGender: selectedGender,
               selectedBloodType: selectedBloodType,
-              onAgeChanged: (v) => setState(() => selectedAge = v),
               onGenderChanged: (v) => setState(() => selectedGender = v),
               onBloodChanged: (v) => setState(() => selectedBloodType = v),
             ),
@@ -95,7 +111,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   registerCubit: registerCubit,
                   locCubit: locCubit,
                   genders: genders,
-                  selectedAge: selectedAge,
+                  selectedDateOfBirth: selectedDateOfBirth,
                   selectedBloodType: selectedBloodType,
                   selectedGender: selectedGender,
                   selectedCity: selectedCity,
@@ -113,5 +129,15 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         ),
       ),
     );
+  }
+
+  DateTime get _latestAllowedBirthDate {
+    final now = DateTime.now();
+    return DateTime(now.year - 18, now.month, now.day);
+  }
+
+  DateTime get _earliestAllowedBirthDate {
+    final now = DateTime.now();
+    return DateTime(now.year - 100, now.month, now.day);
   }
 }
