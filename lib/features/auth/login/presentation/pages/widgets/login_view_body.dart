@@ -35,7 +35,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           children: [
             /// FORM VALIDATION
             const SizedBox(height: 20),
-            // Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ
+            // email
             CustomTextField(
               controller: loginCubit.email,
               label: S.of(context).email,
@@ -44,7 +44,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               validator: emailValidator,
             ),
             const SizedBox(height: 16),
-            // ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø±
+            // password
             CustomPasswordField(
               controller: loginCubit.password,
               label: S.of(context).password,
@@ -58,7 +58,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 const RememberMeCheckBox(),
                 InkWell(
                   onTap: () {
-                   context.pushNamed(AppRoutes.forgPasswordName);
+                    context.pushNamed(AppRoutes.forgPasswordName);
                   },
                   child: Text(
                     S.of(context).doYouforgetPass,
