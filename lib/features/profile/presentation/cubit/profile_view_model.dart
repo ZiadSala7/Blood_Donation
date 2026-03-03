@@ -84,7 +84,7 @@ class ProfileViewModel extends ChangeNotifier {
     prefs.remove('user');
     prefs.remove(ApiKeys.token);
     if (context.mounted) {
-      GoRouter.of(context).go(AppRoutes.login);
+      GoRouter.of(context).pushReplacementNamed(AppRoutes.login);
     }
   }
 }

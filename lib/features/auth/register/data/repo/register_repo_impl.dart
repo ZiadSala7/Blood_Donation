@@ -13,6 +13,7 @@ class RegisterRepoImpl implements RegisterRepo {
   final DioConsumer dio;
 
   RegisterRepoImpl(this.dio);
+
   @override
   Future<Either<ErrorModel, bool>> createAccount({
     required String fullName,
@@ -27,8 +28,8 @@ class RegisterRepoImpl implements RegisterRepo {
     try {
       final position = await getCurrentLocation();
 
-      double lat = position.latitude;
-      double lng = position.longitude;
+      final double lat = position.latitude;
+      final double lng = position.longitude;
 
       final token = await getDeviceToken();
       final _ = await dio.post(

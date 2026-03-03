@@ -1,16 +1,17 @@
 import 'package:dartz/dartz.dart';
+import 'package:location/location.dart';
 
 import '../../../../core/api/api_keys.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../../domain/repo/add_request_repo.dart';
 import '../../../../core/constants/app_constants.dart';
-import '../../../../core/helper/get_current_location.dart';
 
 class AddRequestRepoImpl implements AddRequestRepo {
   final DioConsumer dio;
 
   AddRequestRepoImpl({required this.dio});
+
   @override
   Future<Either<String, bool>> createBloodRequest({
     required String patientName,
@@ -24,10 +25,11 @@ class AddRequestRepoImpl implements AddRequestRepo {
     required String phoneNumber,
   }) async {
     try {
-      final position = await getCurrentLocation();
+      Location location = Location();
+      LocationData data = await location.getLocation();
 
-      double lat = position.latitude;
-      double lng = position.longitude;
+      final double lat = data.latitude!;
+      final double lng = data.longitude!;
       await dio.post(
         EndPoints.createBldRqust,
         data: {

@@ -29,7 +29,7 @@ class StackWithStatCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 0,
+          top: 5,
           left: 20,
           right: 20,
           child: Container(
