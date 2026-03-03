@@ -104,10 +104,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Thank you for joining the journey of giving and change.",
     ),
     "onbrd4Title": MessageLookupByLibrary.simpleMessage("Welcome"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
     ),
-    "password": MessageLookupByLibrary.simpleMessage("Password"),
     "phoneNum": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "regFail": MessageLookupByLibrary.simpleMessage("Register Failed"),
     "regSucc": MessageLookupByLibrary.simpleMessage("Successful Register"),

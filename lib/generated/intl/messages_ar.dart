@@ -34,6 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تغيير كلمة المرور",
     ),
     "city": MessageLookupByLibrary.simpleMessage("المحافظة"),
+    "completeRequiredFields": MessageLookupByLibrary.simpleMessage(
+      "من فضلك أكمل جميع الحقول المطلوبة",
+    ),
     "confirmNewPass": MessageLookupByLibrary.simpleMessage(
       " تأكيد كلمة المرور الجديدة",
     ),
@@ -43,6 +46,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "createAcc": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "currentPass": MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية"),
+    "dateOfBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+    "dateOfBirthRequired": MessageLookupByLibrary.simpleMessage(
+      "من فضلك اختر تاريخ الميلاد",
+    ),
     "doYouforgetPass": MessageLookupByLibrary.simpleMessage(
       "هل نسيت كلمة السر ؟",
     ),
@@ -90,6 +97,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "onbrd4Title": MessageLookupByLibrary.simpleMessage("أهلاً بك"),
     "password": MessageLookupByLibrary.simpleMessage("  كلمة السر"),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "كلمتا المرور غير متطابقتين",
+    ),
     "phoneNum": MessageLookupByLibrary.simpleMessage(" رقم الهاتف "),
     "regFail": MessageLookupByLibrary.simpleMessage("فشلت العملية"),
     "regSucc": MessageLookupByLibrary.simpleMessage("تم انشاء حساب بنجاح"),
@@ -102,25 +112,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
     "savePass": MessageLookupByLibrary.simpleMessage("حفظ كلمة المرور "),
-    "sendOtp": MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
-    "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
-    "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
-    "town": MessageLookupByLibrary.simpleMessage("المدينة"),
-    "completeRequiredFields": MessageLookupByLibrary.simpleMessage(
-      "من فضلك أكمل جميع الحقول المطلوبة",
-    ),
-    "dateOfBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
-    "dateOfBirthRequired": MessageLookupByLibrary.simpleMessage(
-      "من فضلك اختر تاريخ الميلاد",
-    ),
-    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
-      "كلمتا المرور غير متطابقتين",
-    ),
     "selectDateOfBirth": MessageLookupByLibrary.simpleMessage(
       "اختر تاريخ الميلاد",
     ),
     "selectValidCity": MessageLookupByLibrary.simpleMessage(
       "من فضلك اختر مدينة صحيحة",
     ),
+    "sendOtp": MessageLookupByLibrary.simpleMessage("إرسال رمز التحقق"),
+    "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+    "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+    "town": MessageLookupByLibrary.simpleMessage("المدينة"),
   };
 }
