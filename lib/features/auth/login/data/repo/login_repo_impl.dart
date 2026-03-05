@@ -42,10 +42,7 @@ class LoginRepoImpl implements LoginRepo {
       final token = await getDeviceToken();
       final response = await dio.post(
         EndPoints.googleSignIn,
-        data: {
-          ApiKeys.idToken: idToken,
-          ApiKeys.deviceTkn: token,
-        },
+        data: {ApiKeys.idToken: idToken, ApiKeys.deviceTkn: token},
       );
       RegisterModel model = RegisterModel.fromJson(response);
       return Right(model);
@@ -62,10 +59,7 @@ class LoginRepoImpl implements LoginRepo {
     try {
       final response = await dio.post(
         EndPoints.refreshToken,
-        data: {
-          ApiKeys.token: token,
-          ApiKeys.refreshToken: refreshToken,
-        },
+        data: {ApiKeys.token: token, ApiKeys.refreshToken: refreshToken},
       );
       return Right(Map<String, dynamic>.from(response));
     } on ServerException catch (e) {

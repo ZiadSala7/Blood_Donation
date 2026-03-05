@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../../core/helper/add_user_to_cache_helper.dart';
+import '../../../../../../core/utils/app_routes.dart';
 import '../../../../../../core/widgets/show_awesome_dialog.dart';
 import '../../cubit/login_cubit.dart';
 import '../../cubit/login_states.dart';
@@ -22,7 +23,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
               addUserToCacheHelper(state);
             }
           }
-          GoRouter.of(context).pushNamed('btmNavBar');
+          GoRouter.of(context).replaceNamed(AppRoutes.btmNavBarName);
         } else if (state is LoginFailure) {
           showAwesomeDialog(
             context,

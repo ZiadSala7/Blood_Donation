@@ -1,4 +1,4 @@
-import '../../../../core/notifications/api_notification.dart';
+import '../../../../core/services/notifications/api_notification.dart';
 import '../utils/time_ago_utils.dart';
 import 'notification_item.dart';
 

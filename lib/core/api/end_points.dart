@@ -25,8 +25,8 @@ class EndPoints {
   static const String deleteBldRqust = 'Request?RequestId=';
 
   /// ================= blood response API ===================
-  static const String getRspnsToRqust = 'Request/Responses?RequestId=';
-  static const String createRspnsToRqust = 'Response/respond?RequestId=';
+  static const String getRspnsToRqust = 'Request/Responses';
+  static const String createRspnsToRqust = 'Response/respond';
   static const String confirmRqust = 'Response/confirm';
 
   /// ================= notifications =========================

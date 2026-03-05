@@ -80,14 +80,16 @@ class ProfileSettingsCard extends StatelessWidget {
                   iconColor: Colors.red,
                   title: 'تسجيل الخروج',
                   titleColor: Colors.red,
-                  // onTap: () => vm.logout(context),
                   onTap: () {
-                    showBottomSheet(
+                    final parentContext = context;
+                    showModalBottomSheet<void>(
                       context: context,
-                      builder: (context) => CustomBottomSheetBody(
+                      backgroundColor: Colors.transparent,
+                      builder: (sheetContext) => CustomBottomSheetBody(
                         message: "هل تريد تسجيل الخروج",
-                        onTapYes: () {
-                          vm.logout(context);
+                        onTapYes: () async {
+                          Navigator.of(sheetContext).pop();
+                          await vm.logout(parentContext);
                         },
                       ),
                     );

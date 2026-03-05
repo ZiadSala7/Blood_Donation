@@ -5,7 +5,7 @@ abstract class ApiKeys {
 
   /// ============ Register API Keys ===============
   static const String email = 'email';
-  static const String idToken = 'IdToken';
+  static const String idToken = 'idToken';
   static const String fullName = 'fullName';
   static const String bldTypeId = 'bloodTypeId';
   static const String age = 'age';
@@ -16,7 +16,7 @@ abstract class ApiKeys {
   static const String cityId = 'cityId';
   static const String pass = 'password';
   static const String phnNum = 'PhoneNumber';
-  static const String deviceTkn = 'DeviceToken';
+  static const String deviceTkn = 'deviceToken';
   static const String pageIndex = 'pageNumber';
   static const String pageSize = 'pageSize';
   static const String patientName = 'patientName';

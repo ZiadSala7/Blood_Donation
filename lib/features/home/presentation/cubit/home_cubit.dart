@@ -11,6 +11,12 @@ class HomeCubit extends Cubit<HomeStates> {
   List<RequestModel> allModels = [];
   HomeCubit(this.repo) : super(HomeInitial());
 
+  Future<void> refreshRequests() async {
+    allEntities.clear();
+    allModels.clear();
+    await getRequestsWithPagination(index: 1);
+  }
+
   Future<void> getRequestsWithPagination({int index = 1}) async {
     emit(HomeLoading());
     final response = await repo.getRequests(pageIndex: index);
@@ -30,9 +36,9 @@ class HomeCubit extends Cubit<HomeStates> {
           requiredBloodType: requests[i].requiredBloodType,
         );
         entities.add(entity);
-        allEntities.addAll(entities);
-        allModels.addAll(requests);
       }
+      allEntities.addAll(entities);
+      allModels.addAll(requests);
       emit(HomeSuccess(requestEntities: entities));
     });
   }

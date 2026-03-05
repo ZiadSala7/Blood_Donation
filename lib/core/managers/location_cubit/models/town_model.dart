@@ -10,9 +10,9 @@ class TownModel {
   });
 
   factory TownModel.fromJson(Map<String, dynamic> jsonDate) => TownModel(
-    id: jsonDate['Id'],
-    govrnId: jsonDate['GovernorateId'],
-    nameEn: jsonDate['NameEn'],
-    nameAr: jsonDate['NameAr'],
+    id: jsonDate['id'],
+    govrnId: jsonDate['governorateId'],
+    nameEn: jsonDate['nameEn'],
+    nameAr: jsonDate['nameAr'],
   );
 }

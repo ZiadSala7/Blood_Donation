@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-import '../../core/notifications/api_notification_handler.dart';
-import '../../core/utils/app_routes.dart';
-import '../../main.dart';
+import 'api_notification_handler.dart';
+import '../../utils/app_routes.dart';
+import '../../../main.dart';
 import 'api_notification.dart';
 
 class AppNotificationHandler extends ApiNotificationHandler {

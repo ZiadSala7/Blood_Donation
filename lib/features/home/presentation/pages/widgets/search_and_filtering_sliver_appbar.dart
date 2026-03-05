@@ -3,11 +3,18 @@ import 'package:flutter/material.dart';
 import 'search_and_filter_section.dart';
 
 class SearchAndFilteringSliverAppBar extends StatelessWidget {
-  const SearchAndFilteringSliverAppBar({super.key});
+  final TextEditingController searchController;
+  final ValueChanged<String> onSearchChanged;
+
+  const SearchAndFilteringSliverAppBar({
+    super.key,
+    required this.searchController,
+    required this.onSearchChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const SliverAppBar(
+    return SliverAppBar(
       pinned: true,
       floating: false,
       snap: false,
@@ -16,7 +23,10 @@ class SearchAndFilteringSliverAppBar extends StatelessWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       automaticallyImplyLeading: false,
-      title: SearchAndFilterSection(),
+      title: SearchAndFilterSection(
+        searchController: searchController,
+        onSearchChanged: onSearchChanged,
+      ),
     );
   }
 }

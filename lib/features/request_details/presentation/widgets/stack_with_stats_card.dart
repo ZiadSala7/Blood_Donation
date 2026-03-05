@@ -21,15 +21,18 @@ class StackWithStatCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             color: AppColors.rqstRed,
           ),
-          child: StatBody(
-            "في الطريق",
-            request.collectedBags,
-            widget: Image.asset(AppAssets.assetsImagesComeSoon),
-            desc: 'متبرعين',
+          child: Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: StatBody(
+              "في الطريق",
+              request.collectedBags,
+              widget: Image.asset(AppAssets.assetsImagesComeSoon),
+              desc: 'متبرعين',
+            ),
           ),
         ),
         Positioned(
-          top: 5,
+          top: 3,
           left: 20,
           right: 20,
           child: Container(

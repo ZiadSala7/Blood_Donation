@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/constants/app_constants.dart';
-import '../../../../core/notifications/api_notification.dart';
+import '../../../../core/services/notifications/api_notification.dart';
 import '../models/notification_api_model.dart';
 import '../models/notification_item.dart';
 import 'notifications_repo.dart';

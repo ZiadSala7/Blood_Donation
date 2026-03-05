@@ -56,13 +56,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
     final remembered = prefs.getBool('rememberMe');
     return Stack(
       children: [
-        isOnbordActive != null && isOnbordActive
-            ? const LoginView()
-            : isOnbordActive == false
-            ? const OnboardingPageView()
-            : remembered != null && remembered
+        remembered != null && remembered != false
             ? const BottomNavBar()
-            : const LoginView(),
+            : isOnbordActive != null
+            ? const LoginView()
+            : const OnboardingPageView(),
 
         Positioned(
           top: -circleDiameter * 0.2, // pull circle slightly above the top

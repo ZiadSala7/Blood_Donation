@@ -6,7 +6,14 @@ import '../../../../../generated/l10n.dart';
 import 'custom_home_text_field.dart';
 
 class SearchAndFilterSection extends StatelessWidget {
-  const SearchAndFilterSection({super.key});
+  final TextEditingController searchController;
+  final ValueChanged<String> onSearchChanged;
+
+  const SearchAndFilterSection({
+    super.key,
+    required this.searchController,
+    required this.onSearchChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +27,10 @@ class SearchAndFilterSection extends StatelessWidget {
           Expanded(
             flex: 5,
             child: CustomHomeTextField(
-              controller: TextEditingController(),
+              controller: searchController,
               label: '',
               hint: S.of(context).hosName,
-              onChange: (String value) {},
+              onChange: onSearchChanged,
             ),
           ),
           Expanded(

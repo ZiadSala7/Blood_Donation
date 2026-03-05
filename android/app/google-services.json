@@ -12,7 +12,20 @@
           "package_name": "com.elixir.blood_donation"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1077293288373-q5enp8n0m7eq39knmo4dtbsauiti3gic.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elixir.blood_donation",
+            "certificate_hash": "bd97adda264d67b86ff4a697ed6a32bb30e38c9b"
+          }
+        },
+        {
+          "client_id": "1077293288373-tefk1e0hoo8uqo0h0rti1qpu7ek1vlqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCLscUgakW3JaEcBs6Y315dUTbC6YMzqM4"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077293288373-tefk1e0hoo8uqo0h0rti1qpu7ek1vlqm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

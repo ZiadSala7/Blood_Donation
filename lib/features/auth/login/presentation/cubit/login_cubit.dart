@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -22,6 +23,16 @@ class LoginCubit extends Cubit<LoginStates> {
   bool rememberMe = false;
   RegisterModel? model;
   final _googleSignIn = GoogleSignIn.instance;
+  static const String _googleWebClientId =
+      "1077293288373-thpj26s8j0u3ho9mg0l3f72hf9hlhq9t.apps.googleusercontent.com";
+  bool _isGoogleSignInInitialized = false;
+
+  Future<void> _ensureGoogleSignInInitialized() async {
+    if (_isGoogleSignInInitialized) return;
+    await _googleSignIn.initialize(serverClientId: _googleWebClientId);
+    _isGoogleSignInInitialized = true;
+    log("Google Sign-In initialized.");
+  }
 
   Future<void> cachedData() async {
     final prefs = getIt.get<CacheHelper>();
@@ -51,18 +62,16 @@ class LoginCubit extends Cubit<LoginStates> {
   Future<void> signInWithGoogle() async {
     try {
       emit(LoginGoogleLoading());
-      log("Loading ....");
-      // Initialize Google Sign-In (must be called once before use)
-      await _googleSignIn.initialize(
-        serverClientId:
-            "1077293288373-tefk1e0hoo8uqo0h0rti1qpu7ek1vlqm.apps.googleusercontent.com",
-      );
-      log("Initializing ... $_googleSignIn");
+      await _ensureGoogleSignInInitialized();
 
       // Trigger the authentication flow
-      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
-      log("GoogleUser ... $googleUser");
-      log("IdToken ... ${googleUser.authentication.idToken}");
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate(
+        scopeHint: [
+          "https://accounts.google.com/o/oauth2/auth",
+          "https://oauth2.googleapis.com/token",
+          "https://www.googleapis.com/oauth2/v1/certs",
+        ],
+      );
 
       if (googleUser.authentication.idToken == null) {
         emit(
@@ -80,11 +89,27 @@ class LoginCubit extends Cubit<LoginStates> {
         ),
         (ifRight) {
           model = ifRight;
-          CacheHelper().setString(ApiKeys.token, model!.token!);
+          final prefs = getIt.get<CacheHelper>();
+          rememberMe = true;
+          prefs.setBool('rememberMe', true);
+          prefs.setString('user', jsonEncode(model!.toJson()));
+          prefs.setString(ApiKeys.token, model!.token!);
           emit(LoginSuccess(model: ifRight));
         },
       );
-    } catch (e) {
+    } on GoogleSignInException catch (e, st) {
+      log("Google sign-in failed: $e");
+      log("Google sign-in stack trace: $st");
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        emit(LoginInitial());
+        return;
+      }
+      emit(
+        LoginFailure(errMsg: "فشل تسجيل الدخول باستخدام جوجل، حاول مرة أخرى."),
+      );
+    } catch (e, st) {
+      log("Google sign-in failed: $e");
+      log("Google sign-in stack trace: $st");
       emit(
         LoginFailure(errMsg: "فشل تسجيل الدخول باستخدام جوجل، حاول مرة أخرى."),
       );

@@ -78,13 +78,12 @@ class ProfileViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logout(BuildContext context) {
+  Future<void> logout(BuildContext context) async {
     final prefs = getIt.get<CacheHelper>();
-    prefs.setBool('rememberMe', false);
-    prefs.remove('user');
-    prefs.remove(ApiKeys.token);
-    if (context.mounted) {
-      GoRouter.of(context).pushReplacementNamed(AppRoutes.login);
-    }
+    await prefs.setBool('rememberMe', false);
+    await prefs.remove('user');
+    await prefs.remove(ApiKeys.token);
+    if (!context.mounted) return;
+    GoRouter.of(context).replaceNamed(AppRoutes.loginName);
   }
 }

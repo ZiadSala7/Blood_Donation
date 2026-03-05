@@ -24,11 +24,14 @@ class StatsCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               color: AppColors.rqstGrey,
             ),
-            child: StatBody(
-              'المطلوب',
-              request.bagsCount,
-              widget: Image.asset(AppAssets.assetsImagesMatlop),
-              desc: 'متبرعين',
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: StatBody(
+                'المطلوب',
+                request.bagsCount,
+                widget: Image.asset(AppAssets.assetsImagesMatlop),
+                desc: 'متبرعين',
+              ),
             ),
           ),
         ),
@@ -40,11 +43,14 @@ class StatsCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               color: AppColors.rqstGrey,
             ),
-            child: StatBody(
-              'تم وصول',
-              request.responsesCount,
-              widget: Image.asset(AppAssets.assetsImagesArriveDone),
-              desc: 'متبرعين',
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: StatBody(
+                'تم وصول',
+                request.responsesCount,
+                widget: Image.asset(AppAssets.assetsImagesArriveDone),
+                desc: 'متبرعين',
+              ),
             ),
           ),
         ),
