@@ -67,5 +67,21 @@ List<SingleChildWidget> multiBlocProviderList(DioConsumer dioConsumer) {
 }
 
 Future<void> _runDeferredStartupTasks(FCMNotificationService fcmService) async {
-  await Future.wait([fcmService.initialize(), initTowns()]);
+  await Future.wait([
+    _runStartupTask('fcmService.initialize', () => fcmService.initialize()),
+    _runStartupTask('initTowns', initTowns),
+  ]);
+}
+
+Future<void> _runStartupTask(
+  String taskName,
+  Future<void> Function() task,
+) async {
+  try {
+    await task();
+  } catch (e, stackTrace) {
+    debugPrint(
+      'Deferred startup task failed ($taskName): $e\n$stackTrace',
+    );
+  }
 }

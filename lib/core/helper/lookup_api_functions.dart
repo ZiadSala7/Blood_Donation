@@ -82,8 +82,13 @@ Future getTowns(LocationRepoImpl repo, int city) async {
 
 /// =================== to init towns ======================
 Future<void> initTowns() async {
-  var cityNum = getIt.get<CacheHelper>().getInt(CachKeys.firstCityId);
-  cityNum != null
-      ? await getTowns(LocationRepoImpl(dio: DioConsumer(dio: Dio())), cityNum)
-      : null;
+  try {
+    final cityNum = getIt.get<CacheHelper>().getInt(CachKeys.firstCityId);
+    if (cityNum == null) return;
+
+    await getTowns(LocationRepoImpl(dio: DioConsumer(dio: Dio())), cityNum);
+  } catch (_) {
+    // Non-critical startup prefetch; ignore failures.
+    return;
+  }
 }
