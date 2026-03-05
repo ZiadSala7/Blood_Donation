@@ -16,7 +16,9 @@ class DonationRepoImpl implements DonationRepo {
         EndPoints.createRspnsToRqust,
         queryParameters: {'id': id.toString()},
       );
-      return Right()
-    } on ServerException catch (e) {}
+      return const Right("");
+    } on ServerException catch (e) {
+      return Left(e.errorModel.errorMessage!);
+    }
   }
 }
