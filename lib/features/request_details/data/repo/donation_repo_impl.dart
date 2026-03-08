@@ -10,7 +10,7 @@ class DonationRepoImpl implements DonationRepo {
 
   DonationRepoImpl({required this.dio});
   @override
-  Future<Either<String, String>> donateTo(int id) async {
+  Future<Either<String, String>> donateTo({required int id}) async {
     try {
       await dio.post(
         EndPoints.createRspnsToRqust,

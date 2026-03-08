@@ -34,7 +34,17 @@ class SignalRService {
   Future<void> joinRequest(int requestId) async {
     if (!isConnected) await connect();
 
-    await _connection!.invoke("JoinRequestRealTime");
+    try {
+      await _connection!.invoke("JoinRequestRealTime");
+    } catch (_) {
+      // Fallback for backends that define JoinRequestRealTime with no args.
+      try {
+        await _connection!.invoke("JoinRequestRealTime");
+      } catch (e) {
+        print("⚠️ JoinRequestRealTime failed: $e");
+        return;
+      }
+    }
 
     print("📌 Joined Request Group: $requestId");
   }
@@ -45,7 +55,18 @@ class SignalRService {
   Future<void> leaveRequest(int requestId) async {
     if (!isConnected) return;
 
-    await _connection!.invoke("LeaveRequestRealTime", args: [requestId]);
+    try {
+      await _connection!.invoke("LeaveRequestRealTime", args: [requestId]);
+    } catch (_) {
+      // Fallback for backends that define LeaveRequestRealTime with no args,
+      // or do not implement leave at all.
+      try {
+        await _connection!.invoke("LeaveRequestRealTime");
+      } catch (e) {
+        print("⚠️ LeaveRequestRealTime is unavailable on server: $e");
+        return;
+      }
+    }
 
     print("🚪 Left Request Group: $requestId");
   }

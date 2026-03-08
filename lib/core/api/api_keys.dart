@@ -31,4 +31,5 @@ abstract class ApiKeys {
   static const String deadline = 'deadline';
   static const String phoneNumber = 'phoneNumber';
   static const String otp = 'OTP';
+  static const String search = 'search';
 }

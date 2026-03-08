@@ -46,7 +46,7 @@ class ProfileViewModel extends ChangeNotifier {
 
   String get formattedDateOfBirth {
     if (_dateOfBirth == null) return '-';
-    return formatDateDMYLocale(_dateOfBirth!);
+    return formatDateDMYLocale(_dateOfBirth!, isArabic: false);
   }
 
   Future<void> loadProfile() async {
@@ -71,7 +71,9 @@ class ProfileViewModel extends ChangeNotifier {
       if (cachedUser != null) {
         _name = cachedUser.name ?? '';
         _phone = cachedUser.email ?? '';
-        _city = '${cachedUser.cityName ?? ''}، ${cachedUser.governorateName ?? ''}'.trim();
+        _city =
+            '${cachedUser.cityName ?? ''}، ${cachedUser.governorateName ?? ''}'
+                .trim();
         if (_city == '،') _city = '-';
         _bloodType = 'A+';
         _lastDonationDate = DateTime.now();

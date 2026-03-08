@@ -32,7 +32,7 @@ class HomeRepoImpl implements HomeRepo {
         ApiKeys.pageSize: 3,
       };
       if (patientName != null && patientName.trim().isNotEmpty) {
-        payload[ApiKeys.patientName] = patientName.trim();
+        payload[ApiKeys.search] = patientName.trim();
       }
       if (suitableRequests != null) {
         payload[ApiKeys.suitableRequests] = suitableRequests;
@@ -47,10 +47,7 @@ class HomeRepoImpl implements HomeRepo {
         payload[ApiKeys.cityId] = cityId;
       }
 
-      final response = await dio.get(
-        EndPoints.getBldRqust,
-        data: payload,
-      );
+      final response = await dio.get(EndPoints.getBldRqust, data: payload);
       List<RequestModel> models = [];
       for (int i = 0; i < response['data'].length!; i++) {
         RequestModel model = RequestModel.fromJson(response['data'][i]);
