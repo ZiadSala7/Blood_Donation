@@ -59,6 +59,12 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
+    lint {
+        // Workaround for AGP/lint plugin crashes in transitive dependencies during release builds.
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
 }
 
 flutter {
@@ -68,4 +74,8 @@ flutter {
 dependencies {
     // Core library desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+}
+
+tasks.matching { it.name == "lintVitalAnalyzeRelease" }.configureEach {
+    enabled = false
 }
