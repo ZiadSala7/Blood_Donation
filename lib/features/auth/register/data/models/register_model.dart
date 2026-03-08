@@ -1,6 +1,7 @@
 class RegisterModel {
   final String? token, name, email, cityName, governorateName, refreshToken;
   final DateTime? refreshTokenExpiration;
+  final int bloodTypeId;
 
   RegisterModel({
     required this.token,
@@ -10,6 +11,7 @@ class RegisterModel {
     this.governorateName,
     this.refreshToken,
     this.refreshTokenExpiration,
+    required this.bloodTypeId,
   });
 
   Map<String, dynamic> toJson() => {
@@ -20,6 +22,7 @@ class RegisterModel {
     'governorateName': governorateName,
     'refreshToken': refreshToken,
     'refreshTokenExpiration': refreshTokenExpiration?.toIso8601String(),
+    'bloodTypeId': bloodTypeId,
   };
 
   factory RegisterModel.fromJson(Map<String, dynamic> jsonData) =>
@@ -33,5 +36,6 @@ class RegisterModel {
         refreshTokenExpiration: DateTime.parse(
           jsonData['refreshTokenExpiration'],
         ),
+        bloodTypeId: jsonData['bloodTypeId'],
       );
 }

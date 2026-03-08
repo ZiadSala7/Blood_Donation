@@ -11,6 +11,7 @@ class CustomDropdown extends StatelessWidget {
   final List<String> items;
   final void Function(String?) onChanged;
   final Color? hintClr;
+  final bool isFiltration;
 
   const CustomDropdown({
     super.key,
@@ -20,6 +21,7 @@ class CustomDropdown extends StatelessWidget {
     required this.items,
     required this.onChanged,
     this.hintClr,
+    this.isFiltration = false,
   });
 
   @override
@@ -27,7 +29,12 @@ class CustomDropdown extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: AppTextStyles.b20(context)),
+        Text(
+          label,
+          style: isFiltration
+              ? AppTextStyles.r18(context)
+              : AppTextStyles.b20(context),
+        ),
         const SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(

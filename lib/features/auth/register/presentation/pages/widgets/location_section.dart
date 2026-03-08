@@ -6,18 +6,20 @@ import '../../../../../../generated/l10n.dart';
 
 class LocationSection extends StatelessWidget {
   final LocationCubit locCubit;
+  final bool isLoadingTowns;
   final String? selectedGovernorate;
-  final String? selectedCity;
+  final String? selectedTown;
   final ValueChanged<String?> onGovernorateChanged;
-  final ValueChanged<String?> onCityChanged;
+  final ValueChanged<String?> onTownChanged;
 
   const LocationSection({
     super.key,
     required this.locCubit,
+    required this.isLoadingTowns,
     required this.selectedGovernorate,
-    required this.selectedCity,
+    required this.selectedTown,
     required this.onGovernorateChanged,
-    required this.onCityChanged,
+    required this.onTownChanged,
   });
 
   @override
@@ -39,11 +41,11 @@ class LocationSection extends StatelessWidget {
         Expanded(
           child: CustomDropdown(
             label: S.of(context).town,
-            hint: S.of(context).town,
-            value: selectedCity,
+            hint: isLoadingTowns ? 'جاري التحميل...' : S.of(context).town,
+            value: selectedTown,
             items: locCubit.towns,
             onChanged: (value) {
-              onCityChanged(value);
+              onTownChanged(value);
             },
           ),
         ),

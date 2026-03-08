@@ -14,7 +14,8 @@ class RegisterButtonSection extends StatelessWidget {
   final DateTime? selectedDateOfBirth;
   final String? selectedBloodType;
   final String? selectedGender;
-  final String? selectedCity;
+  final String? selectedGovernorate;
+  final String? selectedTown;
 
   const RegisterButtonSection({
     super.key,
@@ -25,7 +26,8 @@ class RegisterButtonSection extends StatelessWidget {
     required this.selectedDateOfBirth,
     required this.selectedBloodType,
     required this.selectedGender,
-    required this.selectedCity,
+    required this.selectedGovernorate,
+    required this.selectedTown,
   });
 
   @override
@@ -45,7 +47,8 @@ class RegisterButtonSection extends StatelessWidget {
         if (selectedDateOfBirth == null ||
             selectedBloodType == null ||
             selectedGender == null ||
-            selectedCity == null) {
+            selectedGovernorate == null ||
+            selectedTown == null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(S.of(context).completeRequiredFields)),
           );
@@ -59,7 +62,7 @@ class RegisterButtonSection extends StatelessWidget {
 
   Future<void> registerProcess(BuildContext context) async {
     final selectedTownIndex = locCubit.townModels.indexWhere(
-      (town) => town.nameAr == selectedCity,
+      (town) => town.nameAr == selectedTown,
     );
     if (selectedTownIndex == -1) {
       ScaffoldMessenger.of(context).showSnackBar(

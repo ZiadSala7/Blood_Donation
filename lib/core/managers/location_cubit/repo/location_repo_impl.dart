@@ -19,7 +19,7 @@ class LocationRepoImpl implements LocationRepo {
       final response = await dio.get(EndPoints.governorates, data: {});
       List<String> cities = [];
       for (int i = 0; i < response.length; i++) {
-        String city = response[i]['nameAr'];
+        String city = response[i]['NameAr'];
         cities.add(city);
       }
       return Right(cities);
@@ -37,7 +37,7 @@ class LocationRepoImpl implements LocationRepo {
       final response = await dio.get(
         EndPoints.citiesInGovr,
         data: {},
-        queryParameters: {"id": city.toString()},
+        queryParameters: {"Id": city.toString()},
       );
       List<TownModel> cities = [];
       for (int i = 0; i < response.length; i++) {

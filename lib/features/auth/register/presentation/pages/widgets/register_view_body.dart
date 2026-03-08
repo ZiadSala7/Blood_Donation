@@ -27,10 +27,18 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   DateTime? selectedDateOfBirth;
   String? selectedBloodType;
   String? selectedGender;
-  String? selectedCity;
+  String? selectedTown;
   String? selectedGovernorate;
 
   final List<String> genders = ['ذكر', 'أنثى'];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<LocationCubit>().getCities();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,33 +82,36 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             const SizedBox(height: 16),
             BlocListener<LocationCubit, LocationStates>(
               listenWhen: (previous, current) => current is SuccessTownLocState,
-              listener: (context, state) {
-                final loc = context.read<LocationCubit>();
-                if (loc.towns.isNotEmpty) {
-                  setState(() {
-                    selectedCity = loc.towns.first;
-                  });
-                }
-              },
-              child: LocationSection(
-                locCubit: locCubit,
-                selectedGovernorate: selectedGovernorate,
-                selectedCity: selectedCity,
-                onGovernorateChanged: (v) {
-                  setState(() {
-                    selectedGovernorate = v;
-                    selectedCity = null;
-                    if (v != null) {
-                      final idx = locCubit.cities.indexOf(v);
-                      if (idx >= 0) {
-                        locCubit.getTowns(idx + 1);
-                      }
-                    }
-                  });
+                listener: (context, state) {
+                  final loc = context.read<LocationCubit>();
+                  if (loc.towns.isNotEmpty) {
+                    setState(() {
+                      selectedTown = loc.towns.first;
+                    });
+                  }
                 },
-                onCityChanged: (v) => setState(() => selectedCity = v),
+                child: LocationSection(
+                  locCubit: locCubit,
+                  isLoadingTowns:
+                      locCubit.state is LoadingLocState &&
+                      selectedGovernorate != null,
+                  selectedGovernorate: selectedGovernorate,
+                  selectedTown: selectedTown,
+                  onGovernorateChanged: (v) {
+                    setState(() {
+                      selectedGovernorate = v;
+                      selectedTown = null;
+                      if (v != null) {
+                        final idx = locCubit.cities.indexOf(v);
+                        if (idx >= 0) {
+                          locCubit.getTowns(idx + 1);
+                        }
+                      }
+                    });
+                  },
+                  onTownChanged: (v) => setState(() => selectedTown = v),
+                ),
               ),
-            ),
             const SizedBox(height: 16),
             PasswordSection(registerCubit: registerCubit),
             const SizedBox(height: 30),
@@ -115,7 +126,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   selectedDateOfBirth: selectedDateOfBirth,
                   selectedBloodType: selectedBloodType,
                   selectedGender: selectedGender,
-                  selectedCity: selectedCity,
+                  selectedGovernorate: selectedGovernorate,
+                  selectedTown: selectedTown,
                 ),
               ],
             ),

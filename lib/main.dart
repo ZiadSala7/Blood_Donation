@@ -80,8 +80,6 @@ Future<void> _runStartupTask(
   try {
     await task();
   } catch (e, stackTrace) {
-    debugPrint(
-      'Deferred startup task failed ($taskName): $e\n$stackTrace',
-    );
+    debugPrint('Deferred startup task failed ($taskName): $e\n$stackTrace');
   }
 }

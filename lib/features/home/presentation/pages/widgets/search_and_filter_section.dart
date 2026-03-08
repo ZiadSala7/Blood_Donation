@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../generated/l10n.dart';
 import 'custom_home_text_field.dart';
+import 'filtration_bottom_sheet.dart';
 
 class SearchAndFilterSection extends StatelessWidget {
   final TextEditingController searchController;
@@ -36,7 +37,14 @@ class SearchAndFilterSection extends StatelessWidget {
           Expanded(
             flex: 1,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (_) => const FilterBottomSheet(),
+                );
+              },
               child: Container(
                 height: 48,
                 decoration: BoxDecoration(
