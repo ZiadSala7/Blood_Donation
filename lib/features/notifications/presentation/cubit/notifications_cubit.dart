@@ -9,11 +9,13 @@ class NotificationsCubit extends Cubit<NotificationsState> {
 
   List<NotificationItem> _todayItems = [];
   List<NotificationItem> _yesterdayItems = [];
+  List<NotificationItem> _olderItems = [];
 
   NotificationsCubit(this.repo) : super(NotificationsInitial());
 
   List<NotificationItem> get todayItems => _todayItems;
   List<NotificationItem> get yesterdayItems => _yesterdayItems;
+  List<NotificationItem> get olderItems => _olderItems;
 
   Future<void> loadNotifications() async {
     emit(NotificationsLoading());
@@ -39,11 +41,20 @@ class NotificationsCubit extends Cubit<NotificationsState> {
         );
         return d == yesterday;
       }).toList();
+      _olderItems = items.where((e) {
+        final d = DateTime(
+          e.receivedAt.year,
+          e.receivedAt.month,
+          e.receivedAt.day,
+        );
+        return d != today && d != yesterday;
+      }).toList();
 
       emit(
         NotificationsLoaded(
           todayItems: _todayItems,
           yesterdayItems: _yesterdayItems,
+          olderItems: _olderItems,
         ),
       );
     });
@@ -80,10 +91,25 @@ class NotificationsCubit extends Cubit<NotificationsState> {
             ),
           )
           .toList();
+      _olderItems = _olderItems
+          .map(
+            (e) => NotificationItem(
+              id: e.id,
+              type: e.type,
+              title: e.title,
+              body: e.body,
+              subtitle: e.subtitle,
+              timeAgo: e.timeAgo,
+              isRead: true,
+              receivedAt: e.receivedAt,
+            ),
+          )
+          .toList();
       emit(
         NotificationsLoaded(
           todayItems: _todayItems,
           yesterdayItems: _yesterdayItems,
+          olderItems: _olderItems,
         ),
       );
     });
@@ -109,12 +135,18 @@ class NotificationsCubit extends Cubit<NotificationsState> {
         final yi = _yesterdayItems.indexOf(item);
         if (yi >= 0) {
           _yesterdayItems = List.from(_yesterdayItems)..[yi] = updated;
+        } else {
+          final oi = _olderItems.indexOf(item);
+          if (oi >= 0) {
+            _olderItems = List.from(_olderItems)..[oi] = updated;
+          }
         }
       }
       emit(
         NotificationsLoaded(
           todayItems: _todayItems,
           yesterdayItems: _yesterdayItems,
+          olderItems: _olderItems,
         ),
       );
     });

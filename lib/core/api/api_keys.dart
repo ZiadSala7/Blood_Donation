@@ -19,6 +19,9 @@ abstract class ApiKeys {
   static const String deviceTkn = 'deviceToken';
   static const String pageIndex = 'pageNumber';
   static const String pageSize = 'pageSize';
+  static const String suitableRequests = 'suitableRequests';
+  static const String sortingOption = 'sortingOption';
+  static const String governorateId = 'governorateId';
   static const String patientName = 'patientName';
   static const String hospitalName = 'hospitalName';
   static const String description = 'description';

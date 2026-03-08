@@ -10,7 +10,15 @@ import 'filtration_medical_only_switch.dart';
 import 'filtration_sort_section.dart';
 
 class FilterBottomSheet extends StatefulWidget {
-  const FilterBottomSheet({super.key});
+  const FilterBottomSheet({super.key, required this.onApply});
+
+  final Future<void> Function(
+    bool suitableRequests,
+    int sortingOption,
+    int? governorateId,
+    int? cityId,
+  )
+  onApply;
 
   @override
   State<FilterBottomSheet> createState() => _FilterBottomSheetState();
@@ -39,6 +47,25 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
       selectedTown = null;
       selectedSort = 0;
     });
+  }
+
+  int _mapSortingOption(int selectedIndex) {
+    switch (selectedIndex) {
+      case 0:
+        return 2; // dataTimeDesc (الأحدث)
+      case 1:
+        return 1; // dataTimeAsc (الأقدم)
+      case 2:
+        return 3; // deadlineAsc
+      case 3:
+        return 4; // deadlineDesc
+      case 4:
+        return 6; // collectedCountDesc (الأكثر اكتمالاً)
+      case 5:
+        return 5; // collectedCountAsc (الأقل اكتمالاً)
+      default:
+        return 2;
+    }
   }
 
   @override
@@ -116,7 +143,45 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 
           Column(
             crossAxisAlignment: .stretch,
-            children: [CustomButton(label: "عرض النتائج", onPressed: () {})],
+            children: [
+              CustomButton(
+                label: "عرض النتائج",
+                onPressed: () async {
+                  final sortingOption = _mapSortingOption(selectedSort);
+                  int? governorateId;
+                  int? cityId;
+
+                  if (selectedGovernorate != null &&
+                      selectedGovernorate!.isNotEmpty) {
+                    final governorateIndex = locCubit.cities.indexOf(
+                      selectedGovernorate!,
+                    );
+                    if (governorateIndex >= 0) {
+                      governorateId = governorateIndex + 1;
+                    }
+                  }
+
+                  if (selectedTown != null && selectedTown!.isNotEmpty) {
+                    for (final town in locCubit.townModels) {
+                      if (town.nameAr == selectedTown) {
+                        cityId = town.id?.toInt();
+                        break;
+                      }
+                    }
+                  }
+
+                  await widget.onApply(
+                    isMedicalOnly,
+                    sortingOption,
+                    governorateId,
+                    cityId,
+                  );
+                  if (mounted) {
+                    Navigator.of(context).pop();
+                  }
+                },
+              ),
+            ],
           ),
 
           const SizedBox(height: 10),

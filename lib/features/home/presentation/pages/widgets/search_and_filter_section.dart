@@ -9,11 +9,21 @@ import 'filtration_bottom_sheet.dart';
 class SearchAndFilterSection extends StatelessWidget {
   final TextEditingController searchController;
   final ValueChanged<String> onSearchChanged;
+  final ValueChanged<String> onSearchSubmitted;
+  final Future<void> Function(
+    bool suitableRequests,
+    int sortingOption,
+    int? governorateId,
+    int? cityId,
+  )
+  onApplyFiltration;
 
   const SearchAndFilterSection({
     super.key,
     required this.searchController,
     required this.onSearchChanged,
+    required this.onSearchSubmitted,
+    required this.onApplyFiltration,
   });
 
   @override
@@ -32,6 +42,7 @@ class SearchAndFilterSection extends StatelessWidget {
               label: '',
               hint: S.of(context).hosName,
               onChange: onSearchChanged,
+              onSubmit: onSearchSubmitted,
             ),
           ),
           Expanded(
@@ -42,7 +53,7 @@ class SearchAndFilterSection extends StatelessWidget {
                   context: context,
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
-                  builder: (_) => const FilterBottomSheet(),
+                  builder: (_) => FilterBottomSheet(onApply: onApplyFiltration),
                 );
               },
               child: Container(

@@ -76,7 +76,7 @@ class ProfileInfoCard extends StatelessWidget {
                 _buildRow(
                   icon: Icons.calendar_today,
                   iconColor: const Color(0xFFE53935),
-                  text: vm.formattedLastDonationDate,
+                  text: vm.formattedDateOfBirth,
                 ),
               ],
             ),

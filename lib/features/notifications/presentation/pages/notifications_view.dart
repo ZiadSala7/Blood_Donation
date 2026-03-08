@@ -54,7 +54,9 @@ class NotificationsView extends StatelessWidget {
                 }
                 if (state is NotificationsLoaded) {
                   final isEmpty =
-                      state.todayItems.isEmpty && state.yesterdayItems.isEmpty;
+                      state.todayItems.isEmpty &&
+                      state.yesterdayItems.isEmpty &&
+                      state.olderItems.isEmpty;
                   if (isEmpty) {
                     return Center(
                       child: Column(
@@ -80,6 +82,7 @@ class NotificationsView extends StatelessWidget {
                   return NotificationsViewBody(
                     todayItems: state.todayItems,
                     yesterdayItems: state.yesterdayItems,
+                    olderItems: state.olderItems,
                     onMarkAllRead: () =>
                         context.read<NotificationsCubit>().markAllAsRead(),
                     onNotificationTap: (item) =>

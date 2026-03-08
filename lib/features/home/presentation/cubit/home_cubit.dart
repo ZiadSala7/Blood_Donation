@@ -9,6 +9,12 @@ class HomeCubit extends Cubit<HomeStates> {
   final HomeRepoImpl repo;
   List<RequestEntity> allEntities = [];
   List<RequestModel> allModels = [];
+  String? searchFilter;
+  bool? suitableRequestsFilter;
+  int? sortingOptionFilter;
+  int? governorateIdFilter;
+  int? cityIdFilter;
+
   HomeCubit(this.repo) : super(HomeInitial());
 
   Future<void> refreshRequests() async {
@@ -17,9 +23,35 @@ class HomeCubit extends Cubit<HomeStates> {
     await getRequestsWithPagination(index: 1);
   }
 
+  Future<void> applyFiltration({
+    required bool suitableRequests,
+    required int sortingOption,
+    int? governorateId,
+    int? cityId,
+  }) async {
+    suitableRequestsFilter = suitableRequests;
+    sortingOptionFilter = sortingOption;
+    governorateIdFilter = governorateId;
+    cityIdFilter = cityId;
+    await refreshRequests();
+  }
+
+  Future<void> applySearch(String query) async {
+    final trimmed = query.trim();
+    searchFilter = trimmed.isEmpty ? null : trimmed;
+    await refreshRequests();
+  }
+
   Future<void> getRequestsWithPagination({int index = 1}) async {
     emit(HomeLoading());
-    final response = await repo.getRequests(pageIndex: index);
+    final response = await repo.getRequests(
+      pageIndex: index,
+      patientName: searchFilter,
+      suitableRequests: suitableRequestsFilter,
+      sortingOption: sortingOptionFilter,
+      governorateId: governorateIdFilter,
+      cityId: cityIdFilter,
+    );
     response.fold((error) => emit(HomeFailure(errMsg: error)), (requests) {
       List<RequestEntity> entities = [];
       for (int i = 0; i < requests.length; i++) {

@@ -3,7 +3,7 @@ class UserProfileModel {
   final String phone;
   final String city;
   final String bloodType;
-  final DateTime? lastDonation;
+  final DateTime? lastDonation, dateOfBirth;
   final int donationsCount;
   final int requestsCount;
 
@@ -14,7 +14,8 @@ class UserProfileModel {
     required this.bloodType,
     this.lastDonation,
     required this.donationsCount,
-    required this.requestsCount,
+    required this.requestsCount, 
+    required this.dateOfBirth,
   });
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
@@ -25,15 +26,12 @@ class UserProfileModel {
     final donations = json['donationsCount'] ?? json['donationCount'] ?? 0;
     final requests = json['requestsCount'] ?? json['helpCasesCount'] ?? json['helpCases'] ?? 0;
 
-    DateTime? lastDonation;
-    final dateStr = json['lastDonationDate'] ?? json['lastDonation'] ?? json['date'];
-    if (dateStr != null) {
-      if (dateStr is DateTime) {
-        lastDonation = dateStr;
-      } else if (dateStr is String) {
-        lastDonation = DateTime.tryParse(dateStr);
-      }
-    }
+    final lastDonation = _parseDateTime(
+      json['lastDonationDate'] ?? json['lastDonation'] ?? json['date'],
+    );
+    final dateOfBirth = _parseDateTime(
+      json['dateOfBirth'] ?? json['birthDate'] ?? json['dob'],
+    );
 
     return UserProfileModel(
       name: name.toString(),
@@ -43,6 +41,13 @@ class UserProfileModel {
       lastDonation: lastDonation ?? DateTime.now(),
       donationsCount: (donations is int) ? donations : int.tryParse(donations.toString()) ?? 0,
       requestsCount: (requests is int) ? requests : int.tryParse(requests.toString()) ?? 0,
+      dateOfBirth: dateOfBirth,
     );
+  }
+
+  static DateTime? _parseDateTime(dynamic value) {
+    if (value is DateTime) return value;
+    if (value is String && value.isNotEmpty) return DateTime.tryParse(value);
+    return null;
   }
 }

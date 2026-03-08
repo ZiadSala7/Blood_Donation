@@ -5,11 +5,21 @@ import 'search_and_filter_section.dart';
 class SearchAndFilteringSliverAppBar extends StatelessWidget {
   final TextEditingController searchController;
   final ValueChanged<String> onSearchChanged;
+  final ValueChanged<String> onSearchSubmitted;
+  final Future<void> Function(
+    bool suitableRequests,
+    int sortingOption,
+    int? governorateId,
+    int? cityId,
+  )
+  onApplyFiltration;
 
   const SearchAndFilteringSliverAppBar({
     super.key,
     required this.searchController,
     required this.onSearchChanged,
+    required this.onSearchSubmitted,
+    required this.onApplyFiltration,
   });
 
   @override
@@ -26,6 +36,8 @@ class SearchAndFilteringSliverAppBar extends StatelessWidget {
       title: SearchAndFilterSection(
         searchController: searchController,
         onSearchChanged: onSearchChanged,
+        onSearchSubmitted: onSearchSubmitted,
+        onApplyFiltration: onApplyFiltration,
       ),
     );
   }

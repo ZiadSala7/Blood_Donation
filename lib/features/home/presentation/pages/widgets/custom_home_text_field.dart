@@ -12,6 +12,7 @@ class CustomHomeTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final Function(String)? onChange;
+  final Function(String)? onSubmit;
 
   const CustomHomeTextField({
     super.key,
@@ -21,6 +22,7 @@ class CustomHomeTextField extends StatelessWidget {
     this.keyboardType,
     this.validator,
     required this.onChange,
+    this.onSubmit,
   });
 
   @override
@@ -37,8 +39,10 @@ class CustomHomeTextField extends StatelessWidget {
           ),
           child: TextFormField(
             onChanged: onChange,
+            onFieldSubmitted: onSubmit,
             controller: controller,
             keyboardType: keyboardType,
+            textInputAction: TextInputAction.search,
             textAlign: TextAlign.right,
             decoration: InputDecoration(
               hintText: hint,

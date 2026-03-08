@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../core/api/api_keys.dart';
 import '../../../../core/databases/cach_helper.dart';
 import '../../../../core/di/injection.dart';
+import '../../../../core/helper/date_time_helper.dart';
 import '../../../../core/helper/get_user.dart';
 import '../../../../core/utils/app_routes.dart';
 import '../../data/models/user_profile_model.dart';
@@ -22,6 +21,7 @@ class ProfileViewModel extends ChangeNotifier {
   String _city = '';
   String _bloodType = 'A+';
   DateTime? _lastDonationDate;
+  DateTime? _dateOfBirth;
   int _donationsCount = 0;
   int _requestsCount = 0;
 
@@ -34,17 +34,22 @@ class ProfileViewModel extends ChangeNotifier {
   String get city => _city;
   String get bloodType => _bloodType;
   DateTime? get lastDonationDate => _lastDonationDate;
+  DateTime? get dateOfBirth => _dateOfBirth;
   int get donationsCount => _donationsCount;
   int get requestsCount => _requestsCount;
   UserProfileModel? get profile => _profile;
 
   String get formattedLastDonationDate {
     if (_lastDonationDate == null) return '-';
-    return DateFormat('d MMMM yyyy', 'ar').format(_lastDonationDate!);
+    return formatDateDMYLocale(_lastDonationDate!);
+  }
+
+  String get formattedDateOfBirth {
+    if (_dateOfBirth == null) return '-';
+    return formatDateDMYLocale(_dateOfBirth!);
   }
 
   Future<void> loadProfile() async {
-    await initializeDateFormatting('ar', null);
     _isLoading = true;
     _error = null;
     notifyListeners();
@@ -57,6 +62,7 @@ class ProfileViewModel extends ChangeNotifier {
       _city = apiProfile.city;
       _bloodType = apiProfile.bloodType;
       _lastDonationDate = apiProfile.lastDonation;
+      _dateOfBirth = apiProfile.dateOfBirth;
       _donationsCount = apiProfile.donationsCount;
       _requestsCount = apiProfile.requestsCount;
     } else {
@@ -69,6 +75,7 @@ class ProfileViewModel extends ChangeNotifier {
         if (_city == '،') _city = '-';
         _bloodType = 'A+';
         _lastDonationDate = DateTime.now();
+        _dateOfBirth = null;
         _donationsCount = 0;
         _requestsCount = 0;
       }

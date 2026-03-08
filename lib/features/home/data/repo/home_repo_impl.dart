@@ -20,11 +20,36 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<String, List<RequestModel>>> getRequests({
     int pageIndex = 1,
+    String? patientName,
+    bool? suitableRequests,
+    int? sortingOption,
+    int? governorateId,
+    int? cityId,
   }) async {
     try {
+      final Map<String, dynamic> payload = {
+        ApiKeys.pageIndex: pageIndex,
+        ApiKeys.pageSize: 3,
+      };
+      if (patientName != null && patientName.trim().isNotEmpty) {
+        payload[ApiKeys.patientName] = patientName.trim();
+      }
+      if (suitableRequests != null) {
+        payload[ApiKeys.suitableRequests] = suitableRequests;
+      }
+      if (sortingOption != null) {
+        payload[ApiKeys.sortingOption] = sortingOption;
+      }
+      if (governorateId != null) {
+        payload[ApiKeys.governorateId] = governorateId;
+      }
+      if (cityId != null) {
+        payload[ApiKeys.cityId] = cityId;
+      }
+
       final response = await dio.get(
         EndPoints.getBldRqust,
-        data: {ApiKeys.pageIndex: pageIndex, ApiKeys.pageSize: 3},
+        data: payload,
       );
       List<RequestModel> models = [];
       for (int i = 0; i < response['data'].length!; i++) {

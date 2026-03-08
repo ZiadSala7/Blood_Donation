@@ -5,7 +5,6 @@ import '../../../../auth/login/presentation/cubit/login_cubit.dart';
 import '../../../../auth/register/data/models/register_model.dart';
 import '../../cubit/home_cubit.dart';
 import '../../cubit/home_states.dart';
-import '../../../domain/entities/request_entity.dart';
 import 'details_sliver_appbar.dart';
 import 'home_empty_state.dart';
 import 'nearby_requests_divider.dart';
@@ -27,7 +26,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   int nextPage = 2;
   bool isLoading = false;
   bool hasMore = true;
-  String searchQuery = '';
 
   @override
   void initState() {
@@ -36,21 +34,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     scrollController = ScrollController();
     searchController = TextEditingController();
     scrollController.addListener(scrollListener);
-  }
-
-  bool _matchesSearch(String source) {
-    return source.toLowerCase().contains(searchQuery);
-  }
-
-  List<RequestEntity> _applySearch(List<RequestEntity> requests) {
-    if (searchQuery.isEmpty) return requests;
-    return requests.where((request) {
-      return _matchesSearch(request.hospitalName!) ||
-          _matchesSearch(request.patientName!) ||
-          _matchesSearch(request.cityAr!) ||
-          _matchesSearch(request.donationCategoryAr ?? '') ||
-          _matchesSearch(request.requiredBloodType ?? '');
-    }).toList();
   }
 
   void scrollListener() {
@@ -77,6 +60,34 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       hasMore = true;
     });
     await context.read<HomeCubit>().refreshRequests();
+  }
+
+  Future<void> _onApplyFiltration(
+    bool suitableRequests,
+    int sortingOption,
+    int? governorateId,
+    int? cityId,
+  ) async {
+    setState(() {
+      nextPage = 2;
+      isLoading = false;
+      hasMore = true;
+    });
+    await context.read<HomeCubit>().applyFiltration(
+      suitableRequests: suitableRequests,
+      sortingOption: sortingOption,
+      governorateId: governorateId,
+      cityId: cityId,
+    );
+  }
+
+  Future<void> _onSearchSubmitted(String value) async {
+    setState(() {
+      nextPage = 2;
+      isLoading = false;
+      hasMore = true;
+    });
+    await context.read<HomeCubit>().applySearch(value);
   }
 
   @override
@@ -107,7 +118,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       },
       builder: (context, state) {
         final allRequests = context.read<HomeCubit>().allEntities;
-        final requests = _applySearch(allRequests);
+        final requests = allRequests;
         final isInitialLoading = state is HomeLoading && allRequests.isEmpty;
         final showEmptyState = requests.isEmpty && !isInitialLoading;
 
@@ -120,11 +131,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               DetailsSliverAppBar(model: model),
               SearchAndFilteringSliverAppBar(
                 searchController: searchController,
-                onSearchChanged: (value) {
-                  setState(() {
-                    searchQuery = value.trim().toLowerCase();
-                  });
-                },
+                onSearchChanged: (_) {},
+                onSearchSubmitted: (value) => _onSearchSubmitted(value),
+                onApplyFiltration: _onApplyFiltration,
               ),
               const SliverToBoxAdapter(child: NearbyRequestsDivider()),
 

@@ -7,6 +7,7 @@ import 'notification_card_from_item.dart';
 class NotificationsViewBody extends StatelessWidget {
   final List<NotificationItem> todayItems;
   final List<NotificationItem> yesterdayItems;
+  final List<NotificationItem> olderItems;
   final VoidCallback? onMarkAllRead;
   final void Function(NotificationItem)? onNotificationTap;
 
@@ -14,6 +15,7 @@ class NotificationsViewBody extends StatelessWidget {
     super.key,
     required this.todayItems,
     required this.yesterdayItems,
+    required this.olderItems,
     this.onMarkAllRead,
     this.onNotificationTap,
   });
@@ -114,6 +116,38 @@ class NotificationsViewBody extends StatelessWidget {
                   ),
                 );
               }, childCount: yesterdayItems.length),
+            ),
+          ),
+        ],
+        if (olderItems.isNotEmpty) ...[
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
+              child: Text(
+                'سابقاً',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.text,
+                ),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final item = olderItems[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: NotificationCardFromItem(
+                    item: item,
+                    onTap: onNotificationTap != null
+                        ? () => onNotificationTap!(item)
+                        : null,
+                  ),
+                );
+              }, childCount: olderItems.length),
             ),
           ),
         ],
