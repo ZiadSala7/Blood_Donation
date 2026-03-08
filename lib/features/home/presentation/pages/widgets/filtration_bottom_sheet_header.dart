@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -13,11 +14,11 @@ class FilterBottomSheetHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(Icons.close),
-        Text(
-          'تصفية وترتيب',
-          style: AppTextStyles.b18(context),
+        IconButton(
+          onPressed: () => context.pop(),
+          icon: const Icon(Icons.close),
         ),
+        Text('تصفية وترتيب', style: AppTextStyles.b18(context)),
         TextButton(
           onPressed: onReset,
           child: Text(

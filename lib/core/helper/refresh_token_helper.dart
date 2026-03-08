@@ -83,6 +83,7 @@ Future<bool> refreshTokenIfNeeded() async {
       governorateName: cachedUser.governorateName,
       refreshToken: newRefreshToken,
       refreshTokenExpiration: newRefreshTokenExpiration,
+      bloodTypeId: cachedUser.bloodTypeId,
     );
     final jsonString = jsonEncode(updatedUser.toJson());
     await prefs.setString('user', jsonString);

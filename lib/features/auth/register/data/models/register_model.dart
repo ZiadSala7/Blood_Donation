@@ -33,9 +33,17 @@ class RegisterModel {
         cityName: jsonData['cityName'],
         governorateName: jsonData['governorateName'],
         refreshToken: jsonData['refreshToken'],
-        refreshTokenExpiration: DateTime.parse(
+        refreshTokenExpiration: _parseDateTime(
           jsonData['refreshTokenExpiration'],
         ),
-        bloodTypeId: jsonData['bloodTypeId'],
+        bloodTypeId: (jsonData['bloodTypeId'] as num?)?.toInt() ?? 0,
       );
+
+  static DateTime? _parseDateTime(dynamic value) {
+    if (value is DateTime) return value;
+    if (value is String && value.isNotEmpty) {
+      return DateTime.tryParse(value);
+    }
+    return null;
+  }
 }

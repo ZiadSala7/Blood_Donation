@@ -47,13 +47,13 @@ class LoginCubit extends Cubit<LoginStates> {
   }) async {
     emit(LoginLoading());
     final response = await repo.login(email: email, password: password);
-    response.fold(
-      (ifLeft) => emit(
+    await response.fold(
+      (ifLeft) async => emit(
         LoginFailure(errMsg: ifLeft.errorMessage ?? AppConstants.errMsg),
       ),
-      (ifRight) {
+      (ifRight) async {
         model = ifRight;
-        CacheHelper().setString(ApiKeys.token, model!.token!);
+        await _cacheAuthenticatedUser(ifRight);
         emit(LoginSuccess(model: ifRight));
       },
     );
@@ -83,17 +83,14 @@ class LoginCubit extends Cubit<LoginStates> {
       final response = await repo.loginWithGoogle(
         idToken: googleUser.authentication.idToken!,
       );
-      response.fold(
-        (ifLeft) => emit(
+      await response.fold(
+        (ifLeft) async => emit(
           LoginFailure(errMsg: ifLeft.errorMessage ?? AppConstants.errMsg),
         ),
-        (ifRight) {
+        (ifRight) async {
           model = ifRight;
-          final prefs = getIt.get<CacheHelper>();
           rememberMe = true;
-          prefs.setBool('rememberMe', true);
-          prefs.setString('user', jsonEncode(model!.toJson()));
-          prefs.setString(ApiKeys.token, model!.token!);
+          await _cacheAuthenticatedUser(ifRight);
           emit(LoginSuccess(model: ifRight));
         },
       );
@@ -114,5 +111,17 @@ class LoginCubit extends Cubit<LoginStates> {
         LoginFailure(errMsg: "فشل تسجيل الدخول باستخدام جوجل، حاول مرة أخرى."),
       );
     }
+  }
+
+  Future<void> _cacheAuthenticatedUser(RegisterModel user) async {
+    final prefs = getIt.get<CacheHelper>();
+    await prefs.setString(ApiKeys.token, user.token!);
+    if (rememberMe) {
+      await prefs.setBool('rememberMe', true);
+      await prefs.setString('user', jsonEncode(user.toJson()));
+      return;
+    }
+    await prefs.setBool('rememberMe', false);
+    await prefs.remove('user');
   }
 }
