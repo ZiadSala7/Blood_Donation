@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../../generated/l10n.dart';
 import '../cubit/change_password_cubit.dart';
 import '../cubit/change_password_states.dart';
 import 'change_password_view_body.dart';
@@ -17,13 +18,19 @@ class ChangePasswordBlocConsumer extends StatelessWidget {
         if (state is ChangeSuccess) {
           showAwesomeDialog(
             context,
-            "عملية ناجحة",
+            S.of(context).operationSuccessTitle,
             state.successMsg,
             true,
             () {},
           );
         } else if (state is ChangeFailure) {
-          showAwesomeDialog(context, "خطأ", state.errMsg, false, () {});
+          showAwesomeDialog(
+            context,
+            S.of(context).errorTitle,
+            state.errMsg,
+            false,
+            () {},
+          );
         }
       },
       builder: (context, state) {

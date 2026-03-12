@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class NearbyRequestsDivider extends StatelessWidget {
   const NearbyRequestsDivider({super.key});
@@ -15,7 +16,7 @@ class NearbyRequestsDivider extends StatelessWidget {
         children: [
           const Expanded(child: Divider(indent: 16)),
           Text(
-            "طلبات التبرع القريبة منك",
+            S.of(context).nearbyRequestsTitle,
             style: AppTextStyles.b22(context),
             textAlign: TextAlign.center,
           ),

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_routes.dart';
+import '../../../../../generated/l10n.dart';
 import '../../cubit/profile_view_model.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -86,7 +87,7 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  vm.name.isNotEmpty ? vm.name : 'المستخدم',
+                  vm.name.isNotEmpty ? vm.name : S.of(context).defaultUserName,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

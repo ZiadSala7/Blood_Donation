@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_drop_down.dart';
+import '../../../../../generated/l10n.dart';
 
 class FiltrationLocationSection extends StatelessWidget {
   const FiltrationLocationSection({
@@ -29,13 +30,13 @@ class FiltrationLocationSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('الموقع الجغرافي', style: AppTextStyles.r18(context)),
+        Text(S.of(context).locationTitle, style: AppTextStyles.r18(context)),
         const SizedBox(height: 20),
         CustomDropdown(
           isFiltration: true,
           hintClr: AppColors.hintClr,
-          label: 'المحافظة',
-          hint: 'اختر المحافظة',
+          label: S.of(context).governorateLabel,
+          hint: S.of(context).selectGovernorate,
           value: selectedGovernorate,
           items: cities,
           onChanged: onGovernorateChanged,
@@ -44,8 +45,10 @@ class FiltrationLocationSection extends StatelessWidget {
         CustomDropdown(
           isFiltration: true,
           hintClr: AppColors.hintClr,
-          label: "المدينة / المركز",
-          hint: isTownsLoading ? 'جاري التحميل...' : 'اختر المدينة',
+          label: S.of(context).cityCenterLabel,
+          hint: isTownsLoading
+              ? S.of(context).loadingLabel
+              : S.of(context).selectCity,
           value: selectedTown,
           items: towns,
           onChanged: onTownChanged,

@@ -63,17 +63,15 @@ class ResponseDto {
 
   factory ResponseDto.fromJson(Map<String, dynamic> json) {
     final name =
-        json['donorName']?.toString() ?? json['name']?.toString() ?? 'متبرع';
+        json['donorName']?.toString() ?? json['name']?.toString() ?? '';
     final status =
-        json['statusAr']?.toString() ??
-        json['status']?.toString() ??
-        'قيد الانتظار';
+        json['statusAr']?.toString() ?? json['status']?.toString() ?? '';
     final createdAt = _parseDate(json['createdAt'] ?? json['created_at']);
     return ResponseDto(
       name: name,
       status: status,
       createdAt: createdAt,
-      avatarText: _initials(name),
+      avatarText: name.isEmpty ? null : _initials(name),
       avatarColorHex: json['avatarColor']?.toString(),
     );
   }
@@ -86,7 +84,7 @@ class ResponseDto {
 
   static String _initials(String name) {
     final trimmed = name.trim();
-    if (trimmed.isEmpty) return 'م';
+    if (trimmed.isEmpty) return '';
     return trimmed[0];
   }
 }

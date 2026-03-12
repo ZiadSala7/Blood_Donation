@@ -88,7 +88,7 @@ class NotificationCardBase extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          timeAgoFromDateTime(receivedAt),
+                          timeAgoFromDateTime(context, receivedAt),
                           style: TextStyle(fontSize: 12, color: AppColors.grey),
                         ),
                         const SizedBox(width: 6),

@@ -12,6 +12,7 @@ import '../../../../../core/di/injection.dart';
 import '../../../../../core/helper/get_user.dart';
 import '../../../../../core/databases/cach_helper.dart';
 import '../../../../../core/constants/app_constants.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../register/data/models/register_model.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
@@ -75,7 +76,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
       if (googleUser.authentication.idToken == null) {
         emit(
-          LoginFailure(errMsg: "تعذر الحصول على رمز Google، حاول مرة أخرى."),
+          LoginFailure(errMsg: S.current.googleTokenError),
         );
         return;
       }
@@ -102,13 +103,13 @@ class LoginCubit extends Cubit<LoginStates> {
         return;
       }
       emit(
-        LoginFailure(errMsg: "فشل تسجيل الدخول باستخدام جوجل، حاول مرة أخرى."),
+        LoginFailure(errMsg: S.current.googleLoginFailed),
       );
     } catch (e, st) {
       log("Google sign-in failed: $e");
       log("Google sign-in stack trace: $st");
       emit(
-        LoginFailure(errMsg: "فشل تسجيل الدخول باستخدام جوجل، حاول مرة أخرى."),
+        LoginFailure(errMsg: S.current.googleLoginFailed),
       );
     }
   }

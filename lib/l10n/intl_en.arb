@@ -58,5 +58,220 @@
     "dateOfBirthRequired": "Please select your date of birth",
     "passwordsDoNotMatch": "Passwords do not match",
     "completeRequiredFields": "Please complete all required fields",
-    "selectValidCity": "Please select a valid city"
+    "selectValidCity": "Please select a valid city",
+    "bloodTypeLabel": "Blood type",
+    "caseDescriptionHint": "Enter case description",
+    "caseDescriptionLabel": "Case description",
+    "caseDetailsTitle": "Case details",
+    "caseInfoLabel": "Case information",
+    "caseNameHint": "Enter case name",
+    "caseNameLabel": "Case name",
+    "cityCenterLabel": "City center",
+    "cityLabel": "City",
+    "collectedBagsCount": "Collected {collected} / {total}",
+    "@collectedBagsCount": {
+        "placeholders": {
+            "collected": {},
+            "total": {}
+        }
+    },
+    "confirmLabel": "Confirm",
+    "createDonationRequestTitle": "Create donation request",
+    "dash": "-",
+    "defaultAvatarInitial": "D",
+    "defaultCity": "Unknown city",
+    "defaultUserName": "User",
+    "descriptionLabel": "Description",
+    "donateNow": "Donate now",
+    "donationDeadlineLabel": "Donation deadline:",
+    "donationInfoLabel": "Donation information",
+    "donationsCountLabel": "Donations",
+    "donationSuccessMessage": "Donation recorded successfully",
+    "donationTypeHint": "Select donation type",
+    "donorResponsesTitle": "Donor responses",
+    "donorsLabel": "Donors",
+    "earlierLabel": "Earlier",
+    "endsInDays": "Ends in {days} days",
+    "@endsInDays": {
+        "placeholders": {
+            "days": {}
+        }
+    },
+    "errorTitle": "Error",
+    "filterSortTitle": "Filter & Sort",
+    "genderFemale": "Female",
+    "genderMale": "Male",
+    "genericErrorRetry": "Something went wrong. Try again.",
+    "genericLoadError": "Failed to load data",
+    "googleLoginFailed": "Google login failed",
+    "googleTokenError": "Google token error",
+    "governorateLabel": "Governorate",
+    "greeting": "Hello, {name}",
+    "@greeting": {
+        "placeholders": {
+            "name": {}
+        }
+    },
+    "helpCasesLabel": "Helped cases",
+    "hospitalNameHint": "Hospital name",
+    "incompleteDataDesc": "Please complete all required fields",
+    "incompleteDataTitle": "Incomplete data",
+    "lastDeadlineLabel": "Last deadline",
+    "liveLabel": "Live",
+    "loadingLabel": "Loading...",
+    "locationTitle": "Location",
+    "logoutConfirmMessage": "Are you sure you want to log out?",
+    "logoutLabel": "Logout",
+    "markAllAsRead": "Mark all as read",
+    "matchingBloodType": "Matching blood type: {bloodType}",
+    "@matchingBloodType": {
+        "placeholders": {
+            "bloodType": {}
+        }
+    },
+    "motivationalStart": "Start your first donation today",
+    "motivationalThanks": "Thank you for your help",
+    "motivationalTopDonor": "You're a top donor!",
+    "myBloodTypeOnly": "My blood type only",
+    "myInfoTitle": "My information",
+    "myRequestsTitle": "My requests",
+    "navHome": "Home",
+    "navNotifications": "Notifications",
+    "navProfile": "Profile",
+    "navRequests": "Requests",
+    "nearbyRequestsTitle": "Nearby requests",
+    "noLabel": "No",
+    "noNotifications": "No notifications",
+    "noRequestsDescription": "No requests available right now",
+    "noRequestsTitle": "No requests",
+    "noRequestsYet": "No requests yet",
+    "noResponsesYet": "No responses yet",
+    "notificationBloodRequestTitle": "Blood request",
+    "notificationDetailsTitle": "Notification details",
+    "notificationDonorAcceptedTitle": "Donor accepted",
+    "notificationImportantAlertTitle": "Important alert",
+    "notificationRequestCompletedTitle": "Request completed",
+    "notificationSettingsTitle": "Notification settings",
+    "notificationsTitle": "Notifications",
+    "notificationThankYouTitle": "Thank you",
+    "onTheWay": "On the way",
+    "operationFailedTitle": "Operation failed",
+    "operationSuccessTitle": "Operation successful",
+    "otpEnterCode": "Enter the code sent to {email}",
+    "@otpEnterCode": {
+        "placeholders": {
+            "email": {}
+        }
+    },
+    "otpResendCode": "Resend code",
+    "otpResendIn": "Resend in {time}",
+    "@otpResendIn": {
+        "placeholders": {
+            "time": {}
+        }
+    },
+    "otpResent": "Code resent",
+    "paginationNext": "Next",
+    "paginationPrev": "Previous",
+    "passwordChangedSuccess": "Password changed successfully",
+    "patientNameLabel": "Patient name",
+    "phoneNumberLabel": "Phone number",
+    "placeInfoLabel": "Location information",
+    "privacyPolicy": "Privacy policy",
+    "profileActivityTitle": "Activity",
+    "registerSuccessDesc": "Verify your account then log in",
+    "registerSuccessTitle": "Registration successful",
+    "requestArrived": "Arrived",
+    "requestClosedMessage": "No longer accepting requests",
+    "requestCompletionPercent": "Completion {percent}%",
+    "@requestCompletionPercent": {
+        "placeholders": {
+            "percent": {}
+        }
+    },
+    "requestCreatedSuccessDesc": "Request created successfully",
+    "requestDate": "Request date: {date}",
+    "@requestDate": {
+        "placeholders": {
+            "date": {}
+        }
+    },
+    "requestDetailsTitle": "Request details",
+    "requestPublisher": "Request publisher",
+    "requestRequired": "Required",
+    "requiredDonorsCount": "Required donors",
+    "resetLabel": "Reset",
+    "resetPasswordSuccessDesc": "Password reset successful",
+    "retryLabel": "Retry",
+    "selectCity": "Select city",
+    "selectDate": "Select date",
+    "selectGovernorate": "Select governorate",
+    "serverConnectionFailedDesc": "Unable to reach server. Try again.",
+    "serverConnectionFailedTitle": "Connection failed",
+    "showResults": "Show results",
+    "sortByLabel": "Sort by",
+    "sortFarthestDeadline": "Farthest deadline",
+    "sortLeastComplete": "Least complete",
+    "sortMostComplete": "Most complete",
+    "sortNearestDeadline": "Nearest deadline",
+    "sortNewest": "Newest",
+    "sortOldest": "Oldest",
+    "statusClosed": "Closed",
+    "statusCompleted": "Completed",
+    "statusInTransit": "In transit",
+    "statusOpen": "Open",
+    "statusPending": "Pending",
+    "statusUnknown": "Unknown",
+    "successTitle": "Success",
+    "termsAndConditions": "Terms & Conditions",
+    "timeAgoDay": "a day ago",
+    "timeAgoDays": "{days} days ago",
+    "@timeAgoDays": {
+        "placeholders": {
+            "days": {}
+        }
+    },
+    "timeAgoHours": "{hours} hours ago",
+    "@timeAgoHours": {
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "timeAgoMinutes": "{minutes} minutes ago",
+    "@timeAgoMinutes": {
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "timeAgoMonth": "a month ago",
+    "timeAgoMonths": "{months} months ago",
+    "@timeAgoMonths": {
+        "placeholders": {
+            "months": {}
+        }
+    },
+    "timeAgoNow": "just now",
+    "timeAgoTwoDays": "two days ago",
+    "timeAgoYears": "{years} years ago",
+    "@timeAgoYears": {
+        "placeholders": {
+            "years": {}
+        }
+    },
+    "todayLabel": "Today",
+    "userNotFoundByEmail": "No user found for this email",
+    "validationEnterEmail": "Please enter your email",
+    "validationEnterFullName": "Please enter your full name",
+    "validationEnterPassword": "Please enter your password",
+    "validationEnterPhone": "Please enter your phone number",
+    "validationEnterValidEmail": "Please enter a valid email",
+    "validationEnterValidPhone": "Please enter a valid phone number",
+    "validationNameMinLength": "Name must be at least 3 characters",
+    "validationPasswordLowercase": "Include a lowercase letter",
+    "validationPasswordMinLength": "Password must be at least 8 characters",
+    "validationPasswordNumber": "Include a number",
+    "validationPasswordSpecial": "Include a special character",
+    "validationPasswordUppercase": "Include an uppercase letter",
+    "yesLabel": "Yes",
+    "yesterdayLabel": "Yesterday"
 }

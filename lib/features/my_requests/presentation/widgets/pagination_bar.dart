@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 
 class PaginationBar extends StatelessWidget {
   final int currentPage;
@@ -25,7 +26,7 @@ class PaginationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _NavButton(
-            label: 'السابق',
+            label: S.of(context).paginationPrev,
             enabled: currentPage > 1,
             onTap: () => onPageSelected(currentPage - 1),
           ),
@@ -39,7 +40,7 @@ class PaginationBar extends StatelessWidget {
             const SizedBox(width: 8),
           ],
           _NavButton(
-            label: 'التالي',
+            label: S.of(context).paginationNext,
             enabled: currentPage < totalPages,
             onTap: () => onPageSelected(currentPage + 1),
           ),

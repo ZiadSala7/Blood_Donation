@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/models/notification_item.dart';
 import '../../data/utils/time_ago_utils.dart';
 
@@ -16,7 +17,7 @@ class NotificationDetailsView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.white,
         scrolledUnderElevation: 0,
-        title: const Text('تفاصيل الإشعار'),
+        title: Text(S.of(context).notificationDetailsTitle),
         centerTitle: true,
       ),
       body: ListView(
@@ -34,7 +35,7 @@ class NotificationDetailsView extends StatelessWidget {
                 Text(item.title, style: AppTextStyles.b20(context)),
                 const SizedBox(height: 6),
                 Text(
-                  timeAgoFromDateTime(item.receivedAt),
+                  timeAgoFromDateTime(context, item.receivedAt),
                   style: AppTextStyles.r14(context).copyWith(
                     color: AppColors.grey,
                   ),

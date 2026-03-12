@@ -10,7 +10,7 @@ class CustomHomeTextField extends StatelessWidget {
   final String label;
   final String hint;
   final TextInputType? keyboardType;
-  final String? Function(String?)? validator;
+  final String? Function(BuildContext, String?)? validator;
   final Function(String)? onChange;
   final Function(String)? onSubmit;
 
@@ -59,7 +59,7 @@ class CustomHomeTextField extends StatelessWidget {
                 vertical: 16,
               ),
             ),
-            validator: validator,
+            validator: (value) => validator?.call(context, value),
           ),
         ),
       ],

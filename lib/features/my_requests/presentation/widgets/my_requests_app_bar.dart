@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
+
 class MyRequestsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyRequestsAppBar({super.key});
 
@@ -12,7 +14,7 @@ class MyRequestsAppBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 0,
       backgroundColor: Colors.white,
       centerTitle: true,
-      title: const Text('طلبات التبرع الخاصة بي'),
+      title: Text(S.of(context).myRequestsTitle),
       leading: const Icon(Icons.arrow_back_ios),
       actions: const [Icon(Icons.share), SizedBox(width: 12)],
     );

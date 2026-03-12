@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/notification_item.dart';
@@ -17,9 +18,9 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   List<NotificationItem> get yesterdayItems => _yesterdayItems;
   List<NotificationItem> get olderItems => _olderItems;
 
-  Future<void> loadNotifications() async {
+  Future<void> loadNotifications(BuildContext context) async {
     emit(NotificationsLoading());
-    final result = await repo.getAllNotifications();
+    final result = await repo.getAllNotifications(context);
     result.fold((error) => emit(NotificationsError(error)), (items) {
       final now = DateTime.now();
       final today = DateTime(now.year, now.month, now.day);

@@ -25,7 +25,7 @@ class PersonalInfoSection extends StatelessWidget {
           controller: registerCubit.name,
           label: S.of(context).fullName,
           hint: S.of(context).entrFullName,
-          validator: nameValidator,
+          validator: (context, value) => nameValidator(context, value),
         ),
         const SizedBox(height: 16),
         CustomTextField(
@@ -33,7 +33,7 @@ class PersonalInfoSection extends StatelessWidget {
           label: S.of(context).email,
           hint: S.of(context).entrEmail,
           keyboardType: TextInputType.emailAddress,
-          validator: emailValidator,
+          validator: (context, value) => emailValidator(context, value),
         ),
         const SizedBox(height: 16),
         CustomTextField(
@@ -41,7 +41,7 @@ class PersonalInfoSection extends StatelessWidget {
           label: S.of(context).phoneNum,
           hint: S.of(context).entrPhoneNum,
           keyboardType: TextInputType.phone,
-          validator: phoneValidator,
+          validator: (context, value) => phoneValidator(context, value),
         ),
         const SizedBox(height: 16),
         CustomTextField(
@@ -51,7 +51,7 @@ class PersonalInfoSection extends StatelessWidget {
           readOnly: true,
           onTap: onSelectDateOfBirth,
           hintClr: selectedDateOfBirth == null ? null : Colors.black,
-          validator: (value) {
+          validator: (context, value) {
             if (selectedDateOfBirth == null) {
               return S.of(context).dateOfBirthRequired;
             }

@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../core/utils/app_routes.dart';
 import '../../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../../generated/l10n.dart';
 import '../cubit/otp_cubit.dart';
 import '../cubit/otp_states.dart';
 import 'otp_verification_view_body.dart';
@@ -25,7 +26,7 @@ class OtpVerificationBlocConsumer extends StatelessWidget {
           );
         } else if (state is OtpResendSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("تم إرسال الكود مرة أخرى")),
+            SnackBar(content: Text(S.of(context).otpResent)),
           );
         } else if (state is OtpFailure) {
           ScaffoldMessenger.of(
@@ -33,7 +34,7 @@ class OtpVerificationBlocConsumer extends StatelessWidget {
           ).showSnackBar(SnackBar(content: Text(state.errMsg)));
           showAwesomeDialog(
             context,
-            "فشلت العملية",
+            S.of(context).operationFailedTitle,
             state.errMsg,
             false,
             () {},

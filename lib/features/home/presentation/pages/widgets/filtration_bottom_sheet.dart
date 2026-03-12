@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/managers/location_cubit/cubit/location_cubit.dart';
 import '../../../../../core/managers/location_cubit/cubit/location_states.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../generated/l10n.dart';
 import 'filtration_bottom_sheet_header.dart';
 import 'filtration_location_section.dart';
 import 'filtration_medical_only_switch.dart';
@@ -145,7 +146,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             crossAxisAlignment: .stretch,
             children: [
               CustomButton(
-                label: "عرض النتائج",
+                label: S.of(context).showResults,
                 onPressed: () async {
                   final sortingOption = _mapSortingOption(selectedSort);
                   int? governorateId;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
 import 'live_padge.dart';
 import 'stat_body.dart';
@@ -87,10 +88,10 @@ class _StackWithStatCardState extends State<StackWithStatCard>
       child: Padding(
         padding: const EdgeInsets.only(top: 8),
         child: StatBody(
-          "في الطريق",
+          S.of(context).onTheWay,
           widget.request.collectedBags,
           widget: Image.asset(AppAssets.assetsImagesComeSoon),
-          desc: 'متبرعين',
+          desc: S.of(context).donorsLabel,
         ),
       ),
     );

@@ -1,64 +1,72 @@
-String? emailValidator(String? value) {
+import 'package:flutter/material.dart';
+
+import '../../generated/l10n.dart';
+
+String? emailValidator(BuildContext context, String? value) {
   if (value == null || value.trim().isEmpty) {
-    return 'من فضلك أدخل البريد الإلكتروني';
+    return S.of(context).validationEnterEmail;
   }
 
   final emailRegex = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
   if (!emailRegex.hasMatch(value.trim())) {
-    return 'من فضلك أدخل بريدًا إلكترونيًا صحيحًا';
+    return S.of(context).validationEnterValidEmail;
   }
   return null;
 }
 
-String? phoneValidator(String? value) {
+String? phoneValidator(BuildContext context, String? value) {
   if (value == null || value.trim().isEmpty) {
-    return 'من فضلك أدخل رقم الهاتف';
+    return S.of(context).validationEnterPhone;
   }
 
   final normalized = value.replaceAll(RegExp(r'\s+'), '');
   if (!RegExp(r'^\d{10,15}$').hasMatch(normalized)) {
-    return 'من فضلك أدخل رقم هاتف صحيحًا';
+    return S.of(context).validationEnterValidPhone;
   }
   return null;
 }
 
-String? passwordValidator(String? value) {
+String? passwordValidator(BuildContext context, String? value) {
   if (value == null || value.isEmpty) {
-    return 'من فضلك أدخل كلمة المرور';
+    return S.of(context).validationEnterPassword;
   }
   if (value.length < 8) {
-    return 'كلمة المرور يجب أن تكون 8 أحرف على الأقل';
+    return S.of(context).validationPasswordMinLength;
   }
   if (!RegExp(r'[A-Z]').hasMatch(value)) {
-    return 'كلمة المرور يجب أن تحتوي على حرف كبير';
+    return S.of(context).validationPasswordUppercase;
   }
   if (!RegExp(r'[a-z]').hasMatch(value)) {
-    return 'كلمة المرور يجب أن تحتوي على حرف صغير';
+    return S.of(context).validationPasswordLowercase;
   }
   if (!RegExp(r'\d').hasMatch(value)) {
-    return 'كلمة المرور يجب أن تحتوي على رقم';
+    return S.of(context).validationPasswordNumber;
   }
   if (!RegExp(r'[!@#$%^&*(),.?":{}|<>\[\]\\/_\-+=`~;]').hasMatch(value)) {
-    return 'كلمة المرور يجب أن تحتوي على رمز خاص';
+    return S.of(context).validationPasswordSpecial;
   }
   return null;
 }
 
-String? confirmPasswordValidator(String? value, String originalPassword) {
-  final passwordError = passwordValidator(value);
+String? confirmPasswordValidator(
+  BuildContext context,
+  String? value,
+  String originalPassword,
+) {
+  final passwordError = passwordValidator(context, value);
   if (passwordError != null) return passwordError;
   if (value != originalPassword) {
-    return 'كلمتا المرور غير متطابقتين';
+    return S.of(context).passwordsDoNotMatch;
   }
   return null;
 }
 
-String? nameValidator(String? value) {
+String? nameValidator(BuildContext context, String? value) {
   if (value == null || value.trim().isEmpty) {
-    return 'من فضلك أدخل الاسم الكامل';
+    return S.of(context).validationEnterFullName;
   }
   if (value.trim().length < 3) {
-    return 'الاسم يجب أن يكون 3 أحرف على الأقل';
+    return S.of(context).validationNameMinLength;
   }
   return null;
 }

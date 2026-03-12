@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 import '../../../request_details/presentation/widgets/header_card.dart';
 import '../../../request_details/presentation/widgets/progress_card.dart';
 import '../../../request_details/presentation/widgets/stats_card.dart';
@@ -39,9 +40,9 @@ class MyRequestsContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'استجابات المتبرعين',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Text(
+            S.of(context).donorResponsesTitle,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           RequestResponsesList(item: item),
@@ -49,7 +50,7 @@ class MyRequestsContent extends StatelessWidget {
           const SizedBox(height: 30),
           Center(
             child: Text(
-              'لا توجد طلبات حالياً',
+              S.of(context).noRequestsYet,
               style: AppTextStyles.r16(context),
             ),
           ),

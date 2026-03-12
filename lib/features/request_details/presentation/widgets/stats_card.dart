@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
 import 'stack_with_stats_card.dart';
 import 'stat_body.dart';
@@ -27,10 +28,10 @@ class StatsCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 5),
               child: StatBody(
-                'المطلوب',
+                S.of(context).requestRequired,
                 request.bagsCount,
                 widget: Image.asset(AppAssets.assetsImagesMatlop),
-                desc: 'متبرعين',
+                desc: S.of(context).donorsLabel,
               ),
             ),
           ),
@@ -46,10 +47,10 @@ class StatsCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 5),
               child: StatBody(
-                'تم وصول',
+                S.of(context).requestArrived,
                 request.responsesCount,
                 widget: Image.asset(AppAssets.assetsImagesArriveDone),
-                desc: 'متبرعين',
+                desc: S.of(context).donorsLabel,
               ),
             ),
           ),

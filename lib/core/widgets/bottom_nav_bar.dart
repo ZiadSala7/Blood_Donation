@@ -12,6 +12,7 @@ import '../../features/my_requests/presentation/pages/my_requests_view.dart';
 import '../../features/notifications/presentation/pages/notifications_view.dart';
 import '../../features/profile/presentation/pages/profile_view.dart';
 import '../utils/app_colors.dart';
+import '../../generated/l10n.dart';
 
 class BottomNavBar extends StatefulWidget {
   final int initialTab;
@@ -86,11 +87,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(0, Symbols.home, 'الرئيسية'),
-                _buildNavItem(1, Symbols.checklist, 'الطلبات'),
+                _buildNavItem(0, Symbols.home, S.of(context).navHome),
+                _buildNavItem(1, Symbols.checklist, S.of(context).navRequests),
                 const SizedBox(width: 40), // Space for FAB
-                _buildNavItem(2, Symbols.notifications, 'الإشعارات'),
-                _buildNavItem(3, Symbols.person, 'الحساب'),
+                _buildNavItem(
+                  2,
+                  Symbols.notifications,
+                  S.of(context).navNotifications,
+                ),
+                _buildNavItem(3, Symbols.person, S.of(context).navProfile),
               ],
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class SliderAndProgressCount extends StatefulWidget {
   final int total, collected;
@@ -22,7 +23,7 @@ class _SliderAndProgressCountState extends State<SliderAndProgressCount> {
       spacing: 16,
       children: [
         Text(
-          "تم ${widget.collected} من ${widget.total}",
+          S.of(context).collectedBagsCount(widget.collected, widget.total),
           style: AppTextStyles.b16(context),
         ),
         SizedBox(

@@ -41,7 +41,9 @@ class LocationSection extends StatelessWidget {
         Expanded(
           child: CustomDropdown(
             label: S.of(context).town,
-            hint: isLoadingTowns ? 'جاري التحميل...' : S.of(context).town,
+            hint: isLoadingTowns
+                ? S.of(context).loadingLabel
+                : S.of(context).town,
             value: selectedTown,
             items: locCubit.towns,
             onChanged: (value) {

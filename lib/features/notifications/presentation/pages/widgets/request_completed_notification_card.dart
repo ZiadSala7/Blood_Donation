@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../../../../generated/l10n.dart';
 import 'notification_card_base.dart';
 
 /// Request completion notification (اكتمال الطلب).
@@ -29,7 +30,7 @@ class RequestCompletedNotificationCard extends StatelessWidget {
         size: 24,
       ),
       iconBackgroundColor: const Color(0xFFE8F5E9),
-      title: 'اكتمال الطلب',
+      title: S.of(context).notificationRequestCompletedTitle,
       body: body,
       subtitle: subtitle,
       receivedAt: receivedAt,

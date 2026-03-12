@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 import 'custom_button.dart';
+import '../../generated/l10n.dart';
 
 class CustomBottomSheetBody extends StatelessWidget {
   const CustomBottomSheetBody({
@@ -34,14 +35,17 @@ class CustomBottomSheetBody extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: CustomButton(label: 'نعم', onPressed: onTapYes!),
+                    child: CustomButton(
+                      label: S.of(context).yesLabel,
+                      onPressed: onTapYes!,
+                    ),
                   ),
                   const SizedBox(width: 100),
                   Expanded(
                     flex: 1,
                     child: CustomButton(
                       bkgrndClr: AppColors.greyBorder!,
-                      label: 'لا',
+                      label: S.of(context).noLabel,
                       onPressed: () => Navigator.pop(context),
                     ),
                   ),

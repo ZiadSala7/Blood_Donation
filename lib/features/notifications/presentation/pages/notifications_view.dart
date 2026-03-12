@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/di/injection.dart';
 import '../../../../core/utils/app_routes.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/repo/notifications_repo_impl.dart';
 import '../cubit/notifications_cubit.dart';
 import '../cubit/notifications_states.dart';
@@ -18,7 +19,7 @@ class NotificationsView extends StatelessWidget {
     return BlocProvider(
       create: (context) => NotificationsCubit(
         NotificationsRepoImpl(dio: getIt.get<DioConsumer>()),
-      )..loadNotifications(),
+      )..loadNotifications(context),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
@@ -45,9 +46,9 @@ class NotificationsView extends StatelessWidget {
                           TextButton.icon(
                             onPressed: () => context
                                 .read<NotificationsCubit>()
-                                .loadNotifications(),
+                                .loadNotifications(context),
                             icon: const Icon(Icons.refresh),
-                            label: const Text('إعادة المحاولة'),
+                            label: Text(S.of(context).retryLabel),
                           ),
                         ],
                       ),
@@ -71,7 +72,7 @@ class NotificationsView extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'لا توجد إشعارات',
+                            S.of(context).noNotifications,
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey[600],

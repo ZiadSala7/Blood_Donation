@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../data/repo/register_repo_impl.dart';
 import 'register_states.dart';
 
@@ -46,7 +47,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       response.fold(
         (ifLeft) => emit(
           RegisterFailure(
-            errMsg: ifLeft.errorMessage ?? "حدث حطأ .. حاول مرةاخرى",
+            errMsg: ifLeft.errorMessage ?? S.current.genericErrorRetry,
           ),
         ),
         (ifRight) => emit(RegisterSuccess()),

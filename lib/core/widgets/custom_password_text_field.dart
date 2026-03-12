@@ -9,7 +9,7 @@ class CustomPasswordField extends StatefulWidget {
   final TextEditingController controller;
   final String label;
   final String hint;
-  final String? Function(String?)? validator;
+  final String? Function(BuildContext, String?)? validator;
   final void Function(String)? onChanged;
   final AutovalidateMode autovalidateMode;
 
@@ -83,7 +83,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
                 vertical: 16,
               ),
             ),
-            validator: widget.validator,
+            validator: (value) => widget.validator?.call(context, value),
           ),
         ),
       ],

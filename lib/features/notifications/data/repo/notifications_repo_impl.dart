@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
@@ -14,7 +15,9 @@ class NotificationsRepoImpl implements NotificationsRepo {
   NotificationsRepoImpl({required this.dio});
 
   @override
-  Future<Either<String, List<NotificationItem>>> getAllNotifications() async {
+  Future<Either<String, List<NotificationItem>>> getAllNotifications(
+    BuildContext context,
+  ) async {
     try {
       final response = await dio.get<dynamic>(
         EndPoints.getAllNotifications,
@@ -34,7 +37,8 @@ class NotificationsRepoImpl implements NotificationsRepo {
               raw['isRead'] == true ||
               raw['is_read'] == true ||
               raw['read'] == true;
-          items.add(notificationItemFromApi(api, isRead: isRead));
+          // ignore: use_build_context_synchronously
+          items.add(notificationItemFromApi(api, context, isRead: isRead));
         } catch (_) {
           // skip malformed item
         }

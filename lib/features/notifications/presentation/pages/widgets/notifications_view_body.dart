@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../data/models/notification_item.dart';
 import 'notification_card_from_item.dart';
 
@@ -24,12 +25,12 @@ class NotificationsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverAppBar(
+        SliverAppBar(
           pinned: true,
           floating: false,
           snap: false,
           scrolledUnderElevation: 0,
-          title: Text('الإشعارات'),
+          title: Text(S.of(context).notificationsTitle),
           centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 1,
@@ -43,9 +44,9 @@ class NotificationsViewBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'اليوم',
-                    style: TextStyle(
+                  Text(
+                    S.of(context).todayLabel,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: AppColors.text,
@@ -59,7 +60,7 @@ class NotificationsViewBody extends StatelessWidget {
                         Icon(Icons.circle, size: 6, color: AppColors.grey),
                         const SizedBox(width: 8),
                         Text(
-                          'تحديد الكل كمقروء',
+                          S.of(context).markAllAsRead,
                           style: TextStyle(fontSize: 13, color: AppColors.grey),
                         ),
                       ],
@@ -88,12 +89,12 @@ class NotificationsViewBody extends StatelessWidget {
           ),
         ],
         if (yesterdayItems.isNotEmpty) ...[
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
+              padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
               child: Text(
-                'الأمس',
-                style: TextStyle(
+                S.of(context).yesterdayLabel,
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: AppColors.text,
@@ -120,12 +121,12 @@ class NotificationsViewBody extends StatelessWidget {
           ),
         ],
         if (olderItems.isNotEmpty) ...[
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 24, 16, 8),
+              padding: const EdgeInsets.fromLTRB(16, 24, 16, 8),
               child: Text(
-                'سابقاً',
-                style: TextStyle(
+                S.of(context).earlierLabel,
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: AppColors.text,

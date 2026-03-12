@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class FilterBottomSheetHeader extends StatelessWidget {
   const FilterBottomSheetHeader({super.key, required this.onReset});
@@ -18,11 +19,11 @@ class FilterBottomSheetHeader extends StatelessWidget {
           onPressed: () => context.pop(),
           icon: const Icon(Icons.close),
         ),
-        Text('تصفية وترتيب', style: AppTextStyles.b18(context)),
+        Text(S.of(context).filterSortTitle, style: AppTextStyles.b18(context)),
         TextButton(
           onPressed: onReset,
           child: Text(
-            'إعادة ضبط',
+            S.of(context).resetLabel,
             style: AppTextStyles.r16(
               context,
             ).copyWith(color: AppColors.commonClr),

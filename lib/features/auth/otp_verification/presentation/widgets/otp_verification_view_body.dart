@@ -60,7 +60,7 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody>
           const SizedBox(height: 16),
 
           Text(
-            "أدخل الكود المرسل إلى \n$encodedEmail",
+            S.of(context).otpEnterCode(encodedEmail),
             style: AppTextStyles.r20(context),
             textAlign: TextAlign.center,
           ),
@@ -83,7 +83,7 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody>
           const SizedBox(height: 32),
 
           CustomButton(
-            label: "تأكيد",
+            label: S.of(context).confirmLabel,
             height: 56,
             onPressed: () async {
               if (otpController.text.length == 6) {

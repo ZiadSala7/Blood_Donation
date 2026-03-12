@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 import '../../cubit/add_request_cubit.dart';
 
 class DonorsCounter extends StatefulWidget {
@@ -43,7 +44,10 @@ class _DonorsCounterState extends State<DonorsCounter> {
           const SizedBox(width: 12),
           _iconButton(icon: Icons.remove, onTap: decrement),
           const SizedBox(width: 6),
-          Text('عدد المتبرعين المطلوبين', style: AppTextStyles.b18(context)),
+          Text(
+            S.of(context).requiredDonorsCount,
+            style: AppTextStyles.b18(context),
+          ),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../../../../generated/l10n.dart';
 import 'notification_card_base.dart';
 
 /// Thank you notification (شكرا لك).
@@ -29,7 +30,7 @@ class ThankYouNotificationCard extends StatelessWidget {
         size: 24,
       ),
       iconBackgroundColor: const Color(0xFFE3F2FD),
-      title: 'شكرا لك',
+      title: S.of(context).notificationThankYouTitle,
       body: body,
       subtitle: subtitle,
       receivedAt: receivedAt,

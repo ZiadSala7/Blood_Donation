@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../core/utils/request_status_utils.dart';
 
 class RequestStatusInfo extends StatelessWidget {
   final String name;
-  final String status;
+  final RequestStatusType statusType;
   final String time;
 
   const RequestStatusInfo({
     super.key,
     required this.name,
-    required this.status,
+    required this.statusType,
     required this.time,
   });
 
   @override
   Widget build(BuildContext context) {
-    final statusColor = _statusColor(status);
+    final statusColorValue = statusColor(statusType);
+    final statusText = statusLabel(context, statusType);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -34,14 +36,15 @@ class RequestStatusInfo extends StatelessWidget {
               width: 6,
               height: 6,
               decoration: BoxDecoration(
-                color: statusColor,
+                color: statusColorValue,
                 shape: BoxShape.circle,
               ),
             ),
             const SizedBox(width: 6),
             Text(
-              status,
-              style: AppTextStyles.s14(context).copyWith(color: statusColor),
+              statusText,
+              style:
+                  AppTextStyles.s14(context).copyWith(color: statusColorValue),
               textDirection: TextDirection.rtl,
             ),
           ],
@@ -54,18 +57,5 @@ class RequestStatusInfo extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  Color _statusColor(String status) {
-    switch (status) {
-      case 'في الطريق':
-        return Colors.green;
-      case 'قيد الانتظار':
-        return Colors.orange;
-      case 'مكتمل':
-        return Colors.grey;
-      default:
-        return AppColors.commonClr;
-    }
   }
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../generated/l10n.dart';
 import '../../cubit/profile_view_model.dart';
 
 class ProfileInfoCard extends StatelessWidget {
@@ -32,14 +33,17 @@ class ProfileInfoCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.edit_outlined, size: 20),
-                  SizedBox(width: 8),
+                  const Icon(Icons.edit_outlined, size: 20),
+                  const SizedBox(width: 8),
                   Text(
-                    'بياناتي',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    S.of(context).myInfoTitle,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -64,7 +68,8 @@ class ProfileInfoCard extends StatelessWidget {
                 _buildRow(
                   icon: Icons.location_on,
                   iconColor: const Color(0xFF2196F3),
-                  text: vm.city.isNotEmpty ? vm.city : 'سوهاج، سوهاج',
+                  text:
+                      vm.city.isNotEmpty ? vm.city : S.of(context).defaultCity,
                 ),
                 const Divider(height: 20),
                 _buildRow(

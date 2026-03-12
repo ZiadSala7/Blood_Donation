@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class CreateDonationRequestDivider extends StatelessWidget {
   const CreateDonationRequestDivider({super.key});
@@ -20,7 +21,7 @@ class CreateDonationRequestDivider extends StatelessWidget {
           Align(
             alignment: Alignment.topCenter,
             child: Text(
-              "إنشاء طلب تبرع",
+              S.of(context).createDonationRequestTitle,
               style: AppTextStyles.b24(context),
               textAlign: .center,
             ),

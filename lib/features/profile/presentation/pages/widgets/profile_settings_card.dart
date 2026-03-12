@@ -5,6 +5,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_buttom_sheet.dart';
+import '../../../../../generated/l10n.dart';
 import '../../cubit/profile_view_model.dart';
 import 'settings_tile.dart';
 
@@ -35,17 +36,20 @@ class ProfileSettingsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Symbols.notifications_rounded,
                     color: AppColors.commonClr,
                     size: 22,
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
-                    'إعدادات الإشعارات',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    S.of(context).notificationSettingsTitle,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -64,21 +68,21 @@ class ProfileSettingsCard extends StatelessWidget {
                 SettingsTile(
                   icon: Symbols.privacy_tip_rounded,
                   iconColor: const Color(0xFF4CAF50),
-                  title: 'سياسة الخصوصية',
+                  title: S.of(context).privacyPolicy,
                   onTap: () {},
                 ),
                 const Divider(height: 20),
                 SettingsTile(
                   icon: Symbols.description_rounded,
                   iconColor: const Color(0xFF4CAF50),
-                  title: 'الشروط والأحكام',
+                  title: S.of(context).termsAndConditions,
                   onTap: () {},
                 ),
                 const Divider(height: 20),
                 SettingsTile(
                   icon: Symbols.logout_rounded,
                   iconColor: Colors.red,
-                  title: 'تسجيل الخروج',
+                  title: S.of(context).logoutLabel,
                   titleColor: Colors.red,
                   onTap: () {
                     final parentContext = context;
@@ -86,7 +90,7 @@ class ProfileSettingsCard extends StatelessWidget {
                       context: context,
                       backgroundColor: Colors.transparent,
                       builder: (sheetContext) => CustomBottomSheetBody(
-                        message: "هل تريد تسجيل الخروج",
+                        message: S.of(context).logoutConfirmMessage,
                         onTapYes: () async {
                           Navigator.of(sheetContext).pop();
                           await vm.logout(parentContext);

@@ -30,8 +30,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   String? selectedTown;
   String? selectedGovernorate;
 
-  final List<String> genders = ['ذكر', 'أنثى'];
-
   @override
   void initState() {
     super.initState();
@@ -44,6 +42,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   Widget build(BuildContext context) {
     final locCubit = context.watch<LocationCubit>();
     final registerCubit = context.watch<RegisterCubit>();
+    final genders = [S.of(context).genderMale, S.of(context).genderFemale];
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(

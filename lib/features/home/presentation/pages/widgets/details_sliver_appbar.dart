@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../auth/register/data/models/register_model.dart';
 
 class DetailsSliverAppBar extends StatelessWidget {
@@ -22,7 +23,7 @@ class DetailsSliverAppBar extends StatelessWidget {
         spacing: 5,
         children: [
           Text(
-            '👋أهلا: ${model.name ?? ""}',
+            S.of(context).greeting(model.name ?? ''),
             style: AppTextStyles.b24(context),
           ),
           Text(

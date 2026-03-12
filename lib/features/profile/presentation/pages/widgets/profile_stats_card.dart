@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../generated/l10n.dart';
 import '../../cubit/profile_view_model.dart';
 
 class ProfileStatsCard extends StatelessWidget {
@@ -33,14 +34,14 @@ class ProfileStatsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Icon(Symbols.notifications_rounded,
+                  const Icon(Symbols.notifications_rounded,
                       color: AppColors.commonClr, size: 22),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
-                    'نشاطي',
-                    style: TextStyle(
+                    S.of(context).profileActivityTitle,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -60,7 +61,7 @@ class ProfileStatsCard extends StatelessWidget {
                     Color(0xFFF48FB1),
                   ],
                   icon: Symbols.water_drop_rounded,
-                  title: 'مرات التبرع',
+                  title: S.of(context).donationsCountLabel,
                   value: vm.donationsCount.toString(),
                 ),
               ),
@@ -72,7 +73,7 @@ class ProfileStatsCard extends StatelessWidget {
                     Color(0xFF90CAF9),
                   ],
                   icon: Symbols.favorite_rounded,
-                  title: 'حالات المساعدة',
+                  title: S.of(context).helpCasesLabel,
                   value: vm.requestsCount.toString(),
                 ),
               ),
@@ -80,7 +81,7 @@ class ProfileStatsCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            _getMotivationalMessage(),
+            _getMotivationalMessage(context),
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[700],
@@ -92,14 +93,14 @@ class ProfileStatsCard extends StatelessWidget {
     );
   }
 
-  String _getMotivationalMessage() {
+  String _getMotivationalMessage(BuildContext context) {
     if (vm.donationsCount >= 3 || vm.requestsCount >= 3) {
-      return 'أنت متبرع مميز، بارك الله فيك ووفقك لعمل الخير دائماً.';
+      return S.of(context).motivationalTopDonor;
     }
     if (vm.donationsCount > 0 || vm.requestsCount > 0) {
-      return 'شكراً لمساهمتك في إنقاذ حياة الآخرين.';
+      return S.of(context).motivationalThanks;
     }
-    return 'ابدأ رحلتك في العطاء وساهم في إنقاذ حياة.';
+    return S.of(context).motivationalStart;
   }
 }
 

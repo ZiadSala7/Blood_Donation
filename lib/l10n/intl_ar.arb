@@ -58,5 +58,220 @@
     "dateOfBirthRequired": "من فضلك اختر تاريخ الميلاد",
     "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين",
     "completeRequiredFields": "من فضلك أكمل جميع الحقول المطلوبة",
-    "selectValidCity": "من فضلك اختر مدينة صحيحة"
+    "selectValidCity": "من فضلك اختر مدينة صحيحة",
+    "bloodTypeLabel": "فصيلة الدم",
+    "caseDescriptionHint": "أدخل وصف الحالة",
+    "caseDescriptionLabel": "وصف الحالة",
+    "caseDetailsTitle": "تفاصيل الحالة",
+    "caseInfoLabel": "بيانات الحالة",
+    "caseNameHint": "أدخل اسم الحالة",
+    "caseNameLabel": "اسم الحالة",
+    "cityCenterLabel": "مركز المدينة",
+    "cityLabel": "المدينة",
+    "collectedBagsCount": "تم جمع {collected} / {total}",
+    "@collectedBagsCount": {
+        "placeholders": {
+            "collected": {},
+            "total": {}
+        }
+    },
+    "confirmLabel": "تأكيد",
+    "createDonationRequestTitle": "إنشاء طلب تبرع",
+    "dash": "-",
+    "defaultAvatarInitial": "م",
+    "defaultCity": "مدينة غير محددة",
+    "defaultUserName": "مستخدم",
+    "descriptionLabel": "الوصف",
+    "donateNow": "تبرع الآن",
+    "donationDeadlineLabel": "آخر موعد للتبرع:",
+    "donationInfoLabel": "بيانات التبرع",
+    "donationsCountLabel": "التبرعات",
+    "donationSuccessMessage": "تم تسجيل التبرع بنجاح",
+    "donationTypeHint": "اختر نوع التبرع",
+    "donorResponsesTitle": "استجابات المتبرعين",
+    "donorsLabel": "المتبرعون",
+    "earlierLabel": "أقدم",
+    "endsInDays": "ينتهي خلال {days} أيام",
+    "@endsInDays": {
+        "placeholders": {
+            "days": {}
+        }
+    },
+    "errorTitle": "خطأ",
+    "filterSortTitle": "تصفية وترتيب",
+    "genderFemale": "أنثى",
+    "genderMale": "ذكر",
+    "genericErrorRetry": "حدث خطأ. حاول مرة أخرى.",
+    "genericLoadError": "فشل تحميل البيانات",
+    "googleLoginFailed": "فشل تسجيل الدخول بجوجل",
+    "googleTokenError": "خطأ في رمز جوجل",
+    "governorateLabel": "المحافظة",
+    "greeting": "🖐 اهلا {name}",
+    "@greeting": {
+        "placeholders": {
+            "name": {}
+        }
+    },
+    "helpCasesLabel": "حالات تم المساعدة",
+    "hospitalNameHint": "اسم المستشفى",
+    "incompleteDataDesc": "يرجى إكمال كل الحقول المطلوبة",
+    "incompleteDataTitle": "بيانات غير مكتملة",
+    "lastDeadlineLabel": "آخر موعد",
+    "liveLabel": "مباشر",
+    "loadingLabel": "جارٍ التحميل...",
+    "locationTitle": "الموقع",
+    "logoutConfirmMessage": "هل تريد تسجيل الخروج؟",
+    "logoutLabel": "تسجيل الخروج",
+    "markAllAsRead": "تحديد الكل كمقروء",
+    "matchingBloodType": "فصيلة مطابقة: {bloodType}",
+    "@matchingBloodType": {
+        "placeholders": {
+            "bloodType": {}
+        }
+    },
+    "motivationalStart": "أنت متبرع مميز، بارك الله فيك ووفقك لعمل الخير دائمًا.",
+    "motivationalThanks": "شكراً لمساهمتك",
+    "motivationalTopDonor": "أنت من أفضل المتبرعين!",
+    "myBloodTypeOnly": "فصيلتي فقط",
+    "myInfoTitle": "بياناتي",
+    "myRequestsTitle": "طلبات التبرع الخاصة بي ",
+    "navHome": "الرئيسية",
+    "navNotifications": "الإشعارات",
+    "navProfile": "الحساب",
+    "navRequests": "الطلبات",
+    "nearbyRequestsTitle": "طلبات التبرع القريبة منك",
+    "noLabel": "لا",
+    "noNotifications": "لا توجد إشعارات",
+    "noRequestsDescription": "لا توجد طلبات متاحة حالياً",
+    "noRequestsTitle": "لا توجد طلبات",
+    "noRequestsYet": "لا توجد طلبات بعد",
+    "noResponsesYet": "لا توجد استجابات بعد",
+    "notificationBloodRequestTitle": "طلب تبرع بالدم",
+    "notificationDetailsTitle": "تفاصيل الإشعار",
+    "notificationDonorAcceptedTitle": "متبرع وافق",
+    "notificationImportantAlertTitle": "تنبيه هام",
+    "notificationRequestCompletedTitle": "اكتمال الطلب",
+    "notificationSettingsTitle": "إعدادات الإشعارات",
+    "notificationsTitle": "الإشعارات",
+    "notificationThankYouTitle": "شكراً لك",
+    "onTheWay": "في الطريق",
+    "operationFailedTitle": "فشلت العملية",
+    "operationSuccessTitle": "تمت العملية بنجاح",
+    "otpEnterCode": "أدخل الرمز المرسل إلى {email}",
+    "@otpEnterCode": {
+        "placeholders": {
+            "email": {}
+        }
+    },
+    "otpResendCode": "إعادة إرسال الرمز",
+    "otpResendIn": "إعادة الإرسال خلال {time}",
+    "@otpResendIn": {
+        "placeholders": {
+            "time": {}
+        }
+    },
+    "otpResent": "تمت إعادة إرسال الرمز",
+    "paginationNext": "التالي",
+    "paginationPrev": "السابق",
+    "passwordChangedSuccess": "تم تغيير كلمة المرور بنجاح",
+    "patientNameLabel": "اسم المريض",
+    "phoneNumberLabel": "رقم الهاتف",
+    "placeInfoLabel": "معلومات المكان",
+    "privacyPolicy": "سياسة الخصوصية",
+    "profileActivityTitle": "النشاط",
+    "registerSuccessDesc": "فعّل حسابك ثم سجّل الدخول",
+    "registerSuccessTitle": "تم التسجيل بنجاح",
+    "requestArrived": "وصلوا",
+    "requestClosedMessage": "لم تعد الحالة تستقبل الطلبات",
+    "requestCompletionPercent": "نسبة الاكتمال {percent}%",
+    "@requestCompletionPercent": {
+        "placeholders": {
+            "percent": {}
+        }
+    },
+    "requestCreatedSuccessDesc": "تم إنشاء الطلب بنجاح",
+    "requestDate": "تاريخ الطلب: {date}",
+    "@requestDate": {
+        "placeholders": {
+            "date": {}
+        }
+    },
+    "requestDetailsTitle": "تفاصيل الطلب",
+    "requestPublisher": "ناشر الطلب",
+    "requestRequired": "المطلوب",
+    "requiredDonorsCount": "عدد المتبرعين المطلوب",
+    "resetLabel": "إعادة ضبط",
+    "resetPasswordSuccessDesc": "تمت إعادة تعيين كلمة المرور بنجاح",
+    "retryLabel": "إعادة المحاولة",
+    "selectCity": "اختر المدينة",
+    "selectDate": "اختر التاريخ",
+    "selectGovernorate": "اختر المحافظة",
+    "serverConnectionFailedDesc": "تعذر الاتصال بالخادم. حاول مرة أخرى.",
+    "serverConnectionFailedTitle": "فشل الاتصال",
+    "showResults": "عرض النتائج",
+    "sortByLabel": "ترتيب حسب",
+    "sortFarthestDeadline": "الأبعد موعداً",
+    "sortLeastComplete": "الأقل اكتمالاً",
+    "sortMostComplete": "الأكثر اكتمالاً",
+    "sortNearestDeadline": "الأقرب موعداً",
+    "sortNewest": "الأحدث",
+    "sortOldest": "الأقدم",
+    "statusClosed": "مغلق",
+    "statusCompleted": "مكتمل",
+    "statusInTransit": "في الطريق",
+    "statusOpen": "مفتوح",
+    "statusPending": "قيد الانتظار",
+    "statusUnknown": "غير معروف",
+    "successTitle": "نجاح",
+    "termsAndConditions": "الشروط والأحكام",
+    "timeAgoDay": "منذ يوم",
+    "timeAgoDays": "منذ {days} أيام",
+    "@timeAgoDays": {
+        "placeholders": {
+            "days": {}
+        }
+    },
+    "timeAgoHours": "منذ {hours} ساعة",
+    "@timeAgoHours": {
+        "placeholders": {
+            "hours": {}
+        }
+    },
+    "timeAgoMinutes": "منذ {minutes} دقيقة",
+    "@timeAgoMinutes": {
+        "placeholders": {
+            "minutes": {}
+        }
+    },
+    "timeAgoMonth": "منذ شهر",
+    "timeAgoMonths": "منذ {months} أشهر",
+    "@timeAgoMonths": {
+        "placeholders": {
+            "months": {}
+        }
+    },
+    "timeAgoNow": "الآن",
+    "timeAgoTwoDays": "منذ يومين",
+    "timeAgoYears": "منذ {years} سنة",
+    "@timeAgoYears": {
+        "placeholders": {
+            "years": {}
+        }
+    },
+    "todayLabel": "اليوم",
+    "userNotFoundByEmail": "لا يوجد مستخدم بهذا البريد الإلكتروني",
+    "validationEnterEmail": "يرجى إدخال البريد الإلكتروني",
+    "validationEnterFullName": "يرجى إدخال الاسم بالكامل",
+    "validationEnterPassword": "يرجى إدخال كلمة المرور",
+    "validationEnterPhone": "يرجى إدخال رقم الهاتف",
+    "validationEnterValidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "validationEnterValidPhone": "يرجى إدخال رقم هاتف صحيح",
+    "validationNameMinLength": "الاسم يجب أن يكون 3 أحرف على الأقل",
+    "validationPasswordLowercase": "أضف حرفاً صغيراً",
+    "validationPasswordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+    "validationPasswordNumber": "أضف رقمًا",
+    "validationPasswordSpecial": "أضف رمزاً خاصاً",
+    "validationPasswordUppercase": "أضف حرفاً كبيراً",
+    "yesLabel": "نعم",
+    "yesterdayLabel": "أمس"
 }

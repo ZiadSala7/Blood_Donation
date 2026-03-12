@@ -12,12 +12,7 @@ class DonationCubit extends Cubit<DonationStates> {
     final response = await repo.donateTo(id: id);
     response.fold(
       (err) => emit(FailureDonation(errMsg: err)),
-      (data) => emit(
-        SuccessDonation(
-          message: "يمكنك الآن التوجه للتبرع",
-          phoneNumber: data.phoneNumber,
-        ),
-      ),
+      (data) => emit(SuccessDonation(phoneNumber: data.phoneNumber)),
     );
   }
 }

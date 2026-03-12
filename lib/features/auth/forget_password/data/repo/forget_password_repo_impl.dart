@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../../core/api/api_keys.dart';
 import '../../../../../core/api/dio_consumer.dart';
+import '../../../../../generated/l10n.dart';
 import '../../domain/repo/forget_password_repo.dart';
 
 class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
@@ -15,9 +16,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
       await dio.post(EndPoints.forgPass, data: {ApiKeys.email: email});
       return const Right(true);
     } catch (e) {
-      return const Left(
-        "لم يتم العثور على المستخدم الذي يحمل البريد الإلكتروني",
-      );
+      return Left(S.current.userNotFoundByEmail);
     }
   }
 }

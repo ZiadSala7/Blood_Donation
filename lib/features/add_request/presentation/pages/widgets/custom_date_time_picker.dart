@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class CustomDateTimePicker extends StatefulWidget {
   final Function(DateTime) onDateSelected;
@@ -33,7 +34,7 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
   }
 
   String get formattedDate {
-    if (selectedDate == null) return 'اختر التاريخ';
+    if (selectedDate == null) return S.of(context).selectDate;
     setState(() {});
     return '${selectedDate!.day} / ${selectedDate!.month} / ${selectedDate!.year}';
   }
@@ -43,7 +44,10 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('آخر موعد للتبرع', style: AppTextStyles.b20(context)),
+        Text(
+          S.of(context).donationDeadlineLabel,
+          style: AppTextStyles.b20(context),
+        ),
         const SizedBox(height: 8),
         InkWell(
           onTap: () => pickDate(context),
@@ -59,7 +63,7 @@ class _CustomDateTimePickerState extends State<CustomDateTimePicker> {
               child: Text(
                 formattedDate,
                 style: TextStyle(
-                  color: formattedDate == 'اختر التاريخ'
+                  color: selectedDate == null
                       ? AppColors.greyBorder
                       : Colors.black,
                   fontSize: 14,

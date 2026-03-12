@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class OtpResendTimer extends StatelessWidget {
   final int remainingSeconds;
@@ -18,13 +19,15 @@ class OtpResendTimer extends StatelessWidget {
     return Center(
       child: remainingSeconds > 0
           ? Text(
-              "إعادة الإرسال خلال ${formatTime(remainingSeconds)}",
+              S.of(context).otpResendIn(
+                formatTime(remainingSeconds),
+              ),
               style: AppTextStyles.r16(context),
             )
           : TextButton(
               onPressed: onResend,
               child: Text(
-                "إعادة إرسال الكود",
+                S.of(context).otpResendCode,
                 style: AppTextStyles.r16(context),
               ),
             ),

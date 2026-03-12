@@ -8,8 +8,10 @@ import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/di/injection.dart';
 import '../../../../core/services/signalr/signalr_service.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/request_status_utils.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
 import '../../data/repo/donation_repo_impl.dart';
 import '../cubit/donation_cubit.dart';
@@ -34,19 +36,13 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
   Timer? _refreshTimer;
   late final DonationCubit _donationCubit;
 
-  bool _isExpired(DateTime? deadline) {
-    if (deadline == null) return false;
-    return DateTime.now().isAfter(deadline);
-  }
-
-  String _displayStatus(RequestModel request) {
-    final total = request.bagsCount ?? 1;
-    final collected = request.collectedBags ?? 0;
-    final progress = (collected / total).clamp(0.0, 1.0);
-    if (_isExpired(request.deadline)) {
-      return progress >= 1.0 ? 'مكتمل' : 'مغلق';
-    }
-    return request.status ?? 'مفتوح';
+  RequestStatusType _displayStatusType(RequestModel request) {
+    return resolveRequestStatus(
+      deadline: request.deadline,
+      total: request.bagsCount ?? 1,
+      collected: request.collectedBags ?? 0,
+      status: request.status,
+    );
   }
 
   @override
@@ -91,23 +87,29 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
       child: BlocConsumer<DonationCubit, DonationStates>(
         listener: (context, state) {
           if (state is FailureDonation) {
-            showAwesomeDialog(context, "خطأ", state.errMsg, false, () {});
+            showAwesomeDialog(
+              context,
+              S.of(context).errorTitle,
+              state.errMsg,
+              false,
+              () {},
+            );
           } else if (state is SuccessDonation) {
             final phoneLine = (state.phoneNumber != null &&
                     state.phoneNumber!.isNotEmpty)
-                ? '\nرقم الهاتف: ${state.phoneNumber}'
+                ? '\n${S.of(context).phoneNumberLabel}: ${state.phoneNumber}'
                 : '';
             showAwesomeDialog(
               context,
-              "تم بنجاح",
-              '${state.message}$phoneLine',
+              S.of(context).successTitle,
+              '${S.of(context).donationSuccessMessage}$phoneLine',
               true,
               () {},
             );
           }
         },
         builder: (context, state) {
-          final isOpen = _displayStatus(widget.request) == 'مفتوح';
+          final isOpen = isOpenStatus(_displayStatusType(widget.request));
           final isLoading = state is LoadingDonation;
           return ModalProgressHUD(
             inAsyncCall: isLoading,
@@ -116,7 +118,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
               appBar: AppBar(
                 scrolledUnderElevation: 0,
                 backgroundColor: AppColors.white,
-                title: const Text('تفاصيل طلب التبرع'),
+                title: Text(S.of(context).requestDetailsTitle),
                 centerTitle: true,
                 actions: const [Icon(Icons.share), SizedBox(width: 12)],
               ),
@@ -152,7 +154,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
                             .read<DonationCubit>()
                             .donateTo(id: widget.request.id!)
                         : null,
-                    label: "تبرّع الآن",
+                    label: S.of(context).donateNow,
                   ),
                 ],
               ),

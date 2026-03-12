@@ -41,7 +41,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               label: S.of(context).email,
               hint: S.of(context).entrEmail,
               keyboardType: TextInputType.emailAddress,
-              validator: emailValidator,
+              validator: (context, value) => emailValidator(context, value),
             ),
             const SizedBox(height: 16),
             // password
@@ -49,7 +49,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               controller: loginCubit.password,
               label: S.of(context).password,
               hint: S.of(context).entrPassw,
-              validator: passwordValidator,
+              validator: (context, value) =>
+                  passwordValidator(context, value),
             ),
             const SizedBox(height: 16),
             Row(

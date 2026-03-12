@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 
 class LiveBadge extends StatelessWidget {
   const LiveBadge({super.key, required this.scale, required this.opacity});
@@ -37,7 +38,7 @@ class LiveBadge extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            "مباشر",
+            S.of(context).liveLabel,
             style: AppTextStyles.r14(context).copyWith(
               color: Colors.green.shade800,
               fontWeight: FontWeight.w600,

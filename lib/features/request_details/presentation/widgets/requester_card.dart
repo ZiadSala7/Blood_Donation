@@ -4,6 +4,7 @@ import '../../../../core/helper/date_time_helper.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
 
 class RequesterCard extends StatelessWidget {
@@ -26,7 +27,7 @@ class RequesterCard extends StatelessWidget {
               crossAxisAlignment: .start,
               children: [
                 Text(
-                  "ناشر الطلب",
+                  S.of(context).requestPublisher,
                   style: AppTextStyles.r16(
                     context,
                   ).copyWith(color: AppColors.caseStat),
@@ -36,7 +37,9 @@ class RequesterCard extends StatelessWidget {
                   style: AppTextStyles.b20(context),
                 ),
                 Text(
-                  "تاريخ الطلب . ${formatDateDMYLocale(request.createdAt!, isArabic: false)}",
+                  S.of(context).requestDate(
+                    formatDateDMYLocale(request.createdAt!, isArabic: false),
+                  ),
                 ),
               ],
             ),

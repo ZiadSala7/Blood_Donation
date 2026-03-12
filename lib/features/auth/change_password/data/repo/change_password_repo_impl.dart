@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../../core/api/end_points.dart';
 import '../../../../../core/errors/exception.dart';
 import '../../../../../core/api/dio_consumer.dart';
+import '../../../../../generated/l10n.dart';
 import '../../domain/repo/change_password_repo.dart';
 
 class ChangePasswordRepoImpl implements ChangePasswordRepo {
@@ -19,7 +20,7 @@ class ChangePasswordRepoImpl implements ChangePasswordRepo {
         EndPoints.changePass,
         data: {'oldPassword': oldPassword, 'newPassword': newPassword},
       );
-      return const Right('نم تغيير كلمة مرورك بنجاح');
+      return Right(S.current.passwordChangedSuccess);
     } on ServerException catch (e) {
       return Left(e.errorModel.errorMessage!);
     }

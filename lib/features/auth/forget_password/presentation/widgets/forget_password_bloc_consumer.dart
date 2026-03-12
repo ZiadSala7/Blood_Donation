@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../core/utils/app_routes.dart';
 import '../../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../../generated/l10n.dart';
 import '../cubit/forget_cubit.dart';
 import '../cubit/forget_state.dart';
 import 'forget_password_view_body.dart';
@@ -25,7 +26,7 @@ class ForgetPasswordBlocConsumer extends StatelessWidget {
         } else if (state is FailureForgetState) {
           showAwesomeDialog(
             context,
-            "فشلت العملية",
+            S.of(context).operationFailedTitle,
             state.errMsg,
             false,
             () {},

@@ -38,7 +38,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
               label: S.of(context).email,
               hint: S.of(context).entrEmail,
               keyboardType: TextInputType.emailAddress,
-              validator: emailValidator,
+              validator: (context, value) => emailValidator(context, value),
               autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(height: 200),

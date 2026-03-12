@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
+
 abstract class AppConstants {
   static final List<String> ages = List.generate(
     83,
@@ -17,6 +19,5 @@ abstract class AppConstants {
   ];
 
   static final PageController onbrdngPageCntroller = PageController();
-  static const String errMsg =
-      'حدث خطأ أثناء تحميل البيانات، يرجى إعادة المحاولة.';
+  static String get errMsg => S.current.genericLoadError;
 }

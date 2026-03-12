@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../generated/l10n.dart';
 import '../cubit/add_request_cubit.dart';
 import '../cubit/add_request_states.dart';
 import 'widgets/add_request_view_body.dart';
@@ -25,15 +26,15 @@ class AddRequestView extends StatelessWidget {
             if (state is SuccessAddRequestState) {
               showAwesomeDialog(
                 context,
-                "عملية ناجحة",
-                "تم انشاء طلبك بنجاح",
+                S.of(context).operationSuccessTitle,
+                S.of(context).requestCreatedSuccessDesc,
                 true,
                 () {},
               );
             } else if (state is FailureAddRequestState) {
               showAwesomeDialog(
                 context,
-                "فشلت العملية",
+                S.of(context).operationFailedTitle,
                 state.errMsg,
                 false,
                 () {},

@@ -6,6 +6,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../../core/helper/add_user_to_cache_helper.dart';
 import '../../../../../../core/utils/app_routes.dart';
 import '../../../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../cubit/login_cubit.dart';
 import '../../cubit/login_states.dart';
 import 'login_view_body.dart';
@@ -27,7 +28,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
         } else if (state is LoginFailure) {
           showAwesomeDialog(
             context,
-            "فشلت العملية",
+            S.of(context).operationFailedTitle,
             state.errMsg,
             false,
             () {},

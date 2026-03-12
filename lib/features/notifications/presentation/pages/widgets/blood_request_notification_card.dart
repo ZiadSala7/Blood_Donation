@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../generated/l10n.dart';
 import 'notification_card_base.dart';
 
 /// New blood donation request notification (طلب تبرع دم جديد).
@@ -26,7 +27,7 @@ class BloodRequestNotificationCard extends StatelessWidget {
     return NotificationCardBase(
       icon: const Icon(Symbols.water_drop_rounded, color: AppColors.commonClr, size: 24),
       iconBackgroundColor: const Color(0xFFFFE5E5),
-      title: 'طلب تبرع دم جديد',
+      title: S.of(context).notificationBloodRequestTitle,
       body: body,
       subtitle: subtitle,
       receivedAt: receivedAt,

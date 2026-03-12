@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class RequestDeadline extends StatelessWidget {
   final DateTime deadline;
@@ -16,7 +17,7 @@ class RequestDeadline extends StatelessWidget {
       children: [
         const Icon(Icons.access_time, color: AppColors.grey2),
         Text(
-          "اّخر موعد للتبرع : ",
+          S.of(context).donationDeadlineLabel,
           style: AppTextStyles.b14(context).copyWith(color: AppColors.grey),
         ),
         Text(

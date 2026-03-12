@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
 
 class CaseDetailsCard extends StatelessWidget {
@@ -23,30 +24,30 @@ class CaseDetailsCard extends StatelessWidget {
               spacing: 5,
               children: [
                 Image.asset(AppAssets.assetsImagesStatusDetails, height: 20),
-                const Text(
-                  'تفاصيل الحالة',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Text(
+                  S.of(context).caseDetailsTitle,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             const SizedBox(height: 8),
             Text(
-              "اسم الحالة:",
+              S.of(context).caseNameLabel,
               style: AppTextStyles.b18(
                 context,
               ).copyWith(color: AppColors.caseStat),
             ),
             const SizedBox(height: 5),
-            Text(request.patientName ?? '-'),
+            Text(request.patientName ?? S.of(context).dash),
             const SizedBox(height: 15),
             Text(
-              "وصف الحالة:",
+              S.of(context).caseDescriptionLabel,
               style: AppTextStyles.b18(
                 context,
               ).copyWith(color: AppColors.caseStat),
             ),
             const SizedBox(height: 5),
-            Text(request.description ?? '-'),
+            Text(request.description ?? S.of(context).dash),
             const SizedBox(height: 8),
           ],
         ),

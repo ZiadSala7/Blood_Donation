@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class HomeEmptyState extends StatelessWidget {
   const HomeEmptyState({super.key});
@@ -46,13 +47,13 @@ class HomeEmptyState extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'لا يوجد طلبات لعرضها',
+                S.of(context).noRequestsTitle,
                 style: AppTextStyles.b22(context),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
               Text(
-                'سيتم عرض الطلبات هنا فور توفرها.',
+                S.of(context).noRequestsDescription,
                 style: AppTextStyles.r16(
                   context,
                 ).copyWith(color: AppColors.hintClr),

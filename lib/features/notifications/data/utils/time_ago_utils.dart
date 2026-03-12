@@ -1,16 +1,26 @@
-/// Arabic relative time strings for notification "time ago" display.
-String timeAgoFromDateTime(DateTime dateTime) {
+import 'package:flutter/material.dart';
+
+import '../../../../generated/l10n.dart';
+
+String timeAgoFromDateTime(BuildContext context, DateTime dateTime) {
   final now = DateTime.now();
   final diff = now.difference(dateTime);
+  final s = S.of(context);
 
-  if (diff.isNegative) return 'الآن';
-  if (diff.inSeconds < 60) return 'الآن';
-  if (diff.inMinutes < 60) return 'منذ ${diff.inMinutes} دقيقة';
-  if (diff.inHours < 24) return 'منذ ${diff.inHours} ساعة';
-  if (diff.inDays == 1) return 'منذ يوم';
-  if (diff.inDays == 2) return 'منذ يومان';
-  if (diff.inDays < 31) return 'منذ ${diff.inDays} يوم';
-  if (diff.inDays < 60) return 'منذ شهر';
-  if (diff.inDays < 365) return 'منذ ${(diff.inDays / 30).floor()} أشهر';
-  return 'منذ ${(diff.inDays / 365).floor()} سنة';
+  if (diff.isNegative) return s.timeAgoNow;
+  if (diff.inSeconds < 60) return s.timeAgoNow;
+  if (diff.inMinutes < 60) {
+    return s.timeAgoMinutes(diff.inMinutes);
+  }
+  if (diff.inHours < 24) {
+    return s.timeAgoHours(diff.inHours);
+  }
+  if (diff.inDays == 1) return s.timeAgoDay;
+  if (diff.inDays == 2) return s.timeAgoTwoDays;
+  if (diff.inDays < 31) return s.timeAgoDays(diff.inDays);
+  if (diff.inDays < 60) return s.timeAgoMonth;
+  if (diff.inDays < 365) {
+    return s.timeAgoMonths((diff.inDays / 30).floor());
+  }
+  return s.timeAgoYears((diff.inDays / 365).floor());
 }

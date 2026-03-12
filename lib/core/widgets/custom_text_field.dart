@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String hint;
   final TextInputType? keyboardType;
-  final String? Function(String?)? validator;
+  final String? Function(BuildContext, String?)? validator;
   final void Function(String)? onChanged;
   final VoidCallback? onTap;
   final bool readOnly;
@@ -80,7 +80,7 @@ class CustomTextField extends StatelessWidget {
                 vertical: 16,
               ),
             ),
-            validator: validator,
+            validator: (value) => validator?.call(context, value),
           ),
         ),
       ],

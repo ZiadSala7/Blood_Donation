@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_auth_view.dart';
 import '../../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../../generated/l10n.dart';
 import 'widgets/login_view_body_bloc_consumer.dart';
 
 class LoginView extends StatefulWidget {
@@ -33,8 +34,8 @@ class _LoginViewState extends State<LoginView> {
         if (!mounted) return;
         showAwesomeDialog(
           context,
-          "تم انشاء الحساب بنجاح",
-          "افحص رسائل بريدك الالكنروني لتفعيل حسابك",
+          S.of(context).registerSuccessTitle,
+          S.of(context).registerSuccessDesc,
           true,
           () {},
         );
@@ -48,8 +49,8 @@ class _LoginViewState extends State<LoginView> {
         if (!mounted) return;
         showAwesomeDialog(
           context,
-          "تم بنجاح",
-          "تمت إعادة تعيين كلمة المرور بنجاح",
+          S.of(context).successTitle,
+          S.of(context).resetPasswordSuccessDesc,
           true,
           () {},
         );

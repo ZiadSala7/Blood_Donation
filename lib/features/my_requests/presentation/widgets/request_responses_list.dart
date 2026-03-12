@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/request_status_utils.dart';
 import '../../../notifications/data/utils/time_ago_utils.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/models/personal_request_response.dart';
 import 'request_status_card.dart';
 
@@ -19,21 +21,23 @@ class RequestResponsesList extends StatelessWidget {
           color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Text('لا توجد استجابات حتى الآن'),
+        child: Text(S.of(context).noResponsesYet),
       );
     }
     return Column(
       children: item.responses.map((r) {
-        final timeText =
-            r.createdAt != null ? timeAgoFromDateTime(r.createdAt!) : 'الآن';
+        final timeText = r.createdAt != null
+            ? timeAgoFromDateTime(context, r.createdAt!)
+            : S.of(context).timeAgoNow;
         final avatarColor = r.avatarColorHex != null
             ? _hexToColor(r.avatarColorHex!)
             : AppColors.commonClr;
+        final statusType = parseRequestStatus(r.status);
         return RequestStatusCard(
           name: r.name,
-          status: r.status,
+          statusType: statusType,
           time: timeText,
-          avatarText: r.avatarText ?? 'م',
+          avatarText: r.avatarText ?? S.of(context).defaultAvatarInitial,
           avatarColor: avatarColor,
           onAccept: () {},
           onReject: () {},

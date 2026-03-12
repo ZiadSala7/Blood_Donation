@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/services/notifications/api_notification.dart';
 import '../utils/time_ago_utils.dart';
 import 'notification_item.dart';
 
 /// Maps API notification (or raw JSON) to UI [NotificationItem].
 NotificationItem notificationItemFromApi(
-  ApiNotification api, {
+  ApiNotification api,
+  BuildContext context, {
   bool isRead = false,
 }) {
   return NotificationItem(
@@ -13,7 +16,7 @@ NotificationItem notificationItemFromApi(
     title: api.title,
     body: api.body,
     subtitle: api.data?['subtitle']?.toString() ?? api.screen,
-    timeAgo: timeAgoFromDateTime(api.receivedAt),
+    timeAgo: timeAgoFromDateTime(context, api.receivedAt),
     isRead: isRead,
     receivedAt: api.receivedAt,
   );

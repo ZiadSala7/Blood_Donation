@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../../core/utils/app_routes.dart';
 import '../../../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../cubit/register_cubit.dart';
 import '../../cubit/register_states.dart';
 import 'register_view_body.dart';
@@ -24,7 +25,7 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
         } else if (state is RegisterFailure) {
           showAwesomeDialog(
             context,
-            "خطأ",
+            S.of(context).errorTitle,
             state.errMsg,
             false,
             () {},
@@ -32,8 +33,8 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
         } else if (state is RegisterTimeout) {
           showAwesomeDialog(
             context,
-            "فشل الاتصال بالخادم",
-            "تأكد من الاتصال بالإنترنت ثم حاول مرة أخرى.",
+            S.of(context).serverConnectionFailedTitle,
+            S.of(context).serverConnectionFailedDesc,
             false,
             () {},
           );

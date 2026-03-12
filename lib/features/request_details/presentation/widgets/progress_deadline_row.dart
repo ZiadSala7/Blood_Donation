@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/helper/date_time_helper.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 
 class ProgressDeadlineRow extends StatelessWidget {
   final bool isExpired;
@@ -24,13 +25,16 @@ class ProgressDeadlineRow extends StatelessWidget {
         ),
         if (isExpired) ...[
           Text(
-            'لم تعد الحالة تستقبل الطلبات',
+            S.of(context).requestClosedMessage,
             style: AppTextStyles.b16(context).copyWith(
               color: AppColors.caseStat,
             ),
           ),
         ] else ...[
-          Text('اخر موعد للتبرع : ', style: AppTextStyles.b16(context)),
+          Text(
+            S.of(context).donationDeadlineLabel,
+            style: AppTextStyles.b16(context),
+          ),
           Text(
             ' ${deadline!.day} ${getMonthName(deadline!)} ',
             style: AppTextStyles.s16(
@@ -38,7 +42,9 @@ class ProgressDeadlineRow extends StatelessWidget {
             ).copyWith(color: AppColors.commonClr),
           ),
           Text(
-            '(ينتهي خلال ${daysBetween(DateTime.now(), deadline!)} أيام)',
+            S.of(context).endsInDays(
+              daysBetween(DateTime.now(), deadline!),
+            ),
             style: AppTextStyles.r16(
               context,
             ).copyWith(color: AppColors.commonClr),

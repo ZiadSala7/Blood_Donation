@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/request_status_utils.dart';
 import '../../../home/data/models/request_model.dart';
 import '../../../home/presentation/pages/widgets/blood_type_and_needed.dart';
 
@@ -8,36 +9,16 @@ class HeaderCard extends StatelessWidget {
   final RequestModel request;
   const HeaderCard(this.request, {super.key});
 
-  bool _isExpired(DateTime? deadline) {
-    if (deadline == null) return false;
-    return DateTime.now().isAfter(deadline);
-  }
-
-  String _statusText() {
-    final total = request.bagsCount ?? 1;
-    final collected = request.collectedBags ?? 0;
-    final progress = (collected / total).clamp(0.0, 1.0);
-    if (_isExpired(request.deadline)) {
-      return progress >= 1.0 ? 'مكتمل' : 'مغلق';
-    }
-    return request.status ?? 'مفتوح';
-  }
-
-  Color _statusColor(String status) {
-    switch (status) {
-      case 'مكتمل':
-        return Colors.green;
-      case 'مغلق':
-        return Colors.grey;
-      default:
-        return Colors.green;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final statusText = _statusText();
-    final statusColor = _statusColor(statusText);
+    final statusType = resolveRequestStatus(
+      deadline: request.deadline,
+      total: request.bagsCount ?? 1,
+      collected: request.collectedBags ?? 0,
+      status: request.status,
+    );
+    final statusText = statusLabel(context, statusType);
+    final statusTint = statusColor(statusType);
 
     return Card(
       color: AppColors.white,
@@ -52,18 +33,18 @@ class HeaderCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               decoration: BoxDecoration(
                 // ignore: deprecated_member_use
-                color: statusColor.withOpacity(0.15),
+                color: statusTint.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
                 mainAxisAlignment: .center,
                 spacing: 10,
                 children: [
-                  Icon(Icons.circle, color: statusColor, size: 10),
+                  Icon(Icons.circle, color: statusTint, size: 10),
                   Text(
                     statusText,
                     style: TextStyle(
-                      color: statusColor,
+                      color: statusTint,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

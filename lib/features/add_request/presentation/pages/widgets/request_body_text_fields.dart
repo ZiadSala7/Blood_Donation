@@ -6,6 +6,7 @@ import '../../../../../core/helper/lookup_api_functions.dart';
 import '../../../../../core/managers/location_cubit/cubit/location_cubit.dart';
 import '../../../../../core/managers/location_cubit/cubit/location_states.dart';
 import '../../../../../core/utils/validators.dart';
+import '../../../../../generated/l10n.dart';
 import 'donors_counter.dart';
 import 'custom_date_time_picker.dart';
 import '../../cubit/add_request_cubit.dart';
@@ -47,30 +48,33 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                   hintClr: AppColors.hintClr,
                   maxLines: 2,
                   controller: cubit.patientName,
-                  label: 'معلومات الحالة ',
-                  hint: 'اسم الحالة\nمثال: طارئة - حادث سير',
-                  validator: nameValidator,
+                  label: S.of(context).caseInfoLabel,
+                  hint: S.of(context).caseNameHint,
+                  validator: (context, value) =>
+                      nameValidator(context, value),
                 ),
                 CustomTextField(
                   hintClr: AppColors.hintClr,
                   maxLines: 2,
                   controller: cubit.dscrptionName,
                   label: '',
-                  hint: 'وصف الحالة\nاكتب تفاصيل الحالة الطبية...',
-                  validator: nameValidator,
+                  hint: S.of(context).caseDescriptionHint,
+                  validator: (context, value) =>
+                      nameValidator(context, value),
                 ),
                 const SizedBox(height: 16),
                 CustomTextField(
                   hintClr: AppColors.hintClr,
                   controller: cubit.hsptalName,
-                  label: 'معلومات المكان ',
-                  hint: "اسم المستشفى",
-                  validator: nameValidator,
+                  label: S.of(context).placeInfoLabel,
+                  hint: S.of(context).hospitalNameHint,
+                  validator: (context, value) =>
+                      nameValidator(context, value),
                 ),
                 CustomDropdown(
                   hintClr: AppColors.hintClr,
                   label: '',
-                  hint: 'اختر المحافظة ',
+                  hint: S.of(context).selectGovernorate,
                   value: cubit.selectedGovernorate,
                   items: locCubit.cities,
                   onChanged: (value) {
@@ -92,8 +96,8 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                   hint:
                       locCubit.state is LoadingLocState &&
                           cubit.selectedGovernorate != null
-                      ? 'جاري التحميل...'
-                      : 'اختر المدينة ',
+                      ? S.of(context).loadingLabel
+                      : S.of(context).selectCity,
                   value: cubit.selectedTown,
                   items: locCubit.towns,
                   onChanged: (value) {
@@ -105,8 +109,8 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                 const SizedBox(height: 20),
                 CustomDropdown(
                   hintClr: AppColors.hintClr,
-                  label: "معلومات التبرع ",
-                  hint: "نوع التبرع ",
+                  label: S.of(context).donationInfoLabel,
+                  hint: S.of(context).donationTypeHint,
                   value: cubit.selectedDonCat,
                   items: donationCats,
                   onChanged: (value) {
@@ -118,7 +122,7 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                 CustomDropdown(
                   hintClr: AppColors.hintClr,
                   label: "",
-                  hint: "فصيلة الدم",
+                  hint: S.of(context).bloodTypeLabel,
                   value: cubit.selectedBloodType,
                   items: AppConstants.bloodTypes,
                   onChanged: (value) {
@@ -145,9 +149,10 @@ class _RequestBodyTextFieldsState extends State<RequestBodyTextFields> {
                     hintClr: AppColors.hintClr,
                     maxLines: 1,
                     controller: cubit.phoneNum,
-                    label: "رقم الهاتف",
+                    label: S.of(context).phoneNumberLabel,
                     hint: "01xxxxxxxxx",
-                    validator: nameValidator,
+                    validator: (context, value) =>
+                        phoneValidator(context, value),
                   ),
                 ),
                 const SizedBox(height: 20),

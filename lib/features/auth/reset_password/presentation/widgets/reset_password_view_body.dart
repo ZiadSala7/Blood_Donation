@@ -43,7 +43,8 @@ class ResetPasswordViewBody extends StatelessWidget {
               controller: cubit.newPassword,
               label: S.of(context).newPass,
               hint: S.of(context).entrPassw,
-              validator: passwordValidator,
+              validator: (context, value) =>
+                  passwordValidator(context, value),
               autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(height: 16),
@@ -51,8 +52,12 @@ class ResetPasswordViewBody extends StatelessWidget {
               controller: cubit.confirmNewPassword,
               label: S.of(context).confirmNewPass,
               hint: S.of(context).entrPassw,
-              validator: (value) =>
-                  confirmPasswordValidator(value, cubit.newPassword.text),
+              validator: (context, value) =>
+                  confirmPasswordValidator(
+                    context,
+                    value,
+                    cubit.newPassword.text,
+                  ),
               autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
             const SizedBox(height: 200),

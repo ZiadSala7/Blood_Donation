@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class FiltrationSortSection extends StatelessWidget {
   const FiltrationSortSection({
@@ -12,30 +13,29 @@ class FiltrationSortSection extends StatelessWidget {
   final int selectedSort;
   final ValueChanged<int> onSortSelected;
 
-  static const List<({String text, IconData icon})> _sortOptions = [
-    (text: 'الأحدث', icon: Icons.access_time_sharp),
-    (text: 'الأقدم', icon: Icons.history),
-    (text: 'أقرب موعد', icon: Icons.event_available_outlined),
-    (text: 'أبعد موعد', icon: Icons.event_busy_outlined),
-    (text: 'الأكثر اكتمالاً', icon: Icons.trending_up),
-    (text: 'الأقل اكتمالاً', icon: Icons.trending_down),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final sortOptions = [
+      (text: S.of(context).sortNewest, icon: Icons.access_time_sharp),
+      (text: S.of(context).sortOldest, icon: Icons.history),
+      (text: S.of(context).sortNearestDeadline, icon: Icons.event_available_outlined),
+      (text: S.of(context).sortFarthestDeadline, icon: Icons.event_busy_outlined),
+      (text: S.of(context).sortMostComplete, icon: Icons.trending_up),
+      (text: S.of(context).sortLeastComplete, icon: Icons.trending_down),
+    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('الترتيب حسب', style: AppTextStyles.s18(context)),
+        Text(S.of(context).sortByLabel, style: AppTextStyles.s18(context)),
         const SizedBox(height: 10),
         Wrap(
           spacing: 10,
           runSpacing: 10,
           children: List.generate(
-            _sortOptions.length,
+            sortOptions.length,
             (index) => SortChip(
-              text: _sortOptions[index].text,
-              icon: _sortOptions[index].icon,
+              text: sortOptions[index].text,
+              icon: sortOptions[index].icon,
               selected: selectedSort == index,
               onTap: () => onSortSelected(index),
             ),

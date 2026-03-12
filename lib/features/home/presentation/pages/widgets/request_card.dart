@@ -5,7 +5,9 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_routes.dart';
+import '../../../../../core/utils/request_status_utils.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../data/models/request_model.dart';
 import '../../../domain/entities/request_entity.dart';
 import '../../cubit/home_cubit.dart';
@@ -19,19 +21,13 @@ class RequestCard extends StatelessWidget {
   final RequestEntity entity;
   const RequestCard({super.key, required this.entity});
 
-  bool _isExpired(DateTime? deadline) {
-    if (deadline == null) return false;
-    return DateTime.now().isAfter(deadline);
-  }
-
-  String _displayStatus() {
-    final total = entity.bagsCnt ?? 1;
-    final collected = entity.collectedBags ?? 0;
-    final progress = (collected / total).clamp(0.0, 1.0);
-    if (_isExpired(entity.deadline)) {
-      return progress >= 1.0 ? 'مكتمل' : 'مغلق';
-    }
-    return entity.status ?? 'مفتوح';
+  RequestStatusType _displayStatusType() {
+    return resolveRequestStatus(
+      deadline: entity.deadline,
+      total: entity.bagsCnt ?? 1,
+      collected: entity.collectedBags ?? 0,
+      status: entity.status,
+    );
   }
 
   @override
@@ -52,7 +48,7 @@ class RequestCard extends StatelessWidget {
             /// request title and status of the request (open or close)
             RequestTitleAndStatus(
               title: entity.patientName!,
-              status: _displayStatus(),
+              statusType: _displayStatusType(),
             ),
 
             /// Hospital name and location
@@ -97,7 +93,7 @@ class RequestCard extends StatelessWidget {
                       extra: model,
                     );
                   },
-                  label: "تبرّع الآن",
+                  label: S.of(context).donateNow,
                   height: buttonHeight,
                 ),
               ],

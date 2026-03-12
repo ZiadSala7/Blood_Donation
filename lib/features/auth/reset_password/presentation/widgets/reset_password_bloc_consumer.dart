@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../core/utils/app_routes.dart';
 import '../../../../../core/widgets/show_awesome_dialog.dart';
+import '../../../../../generated/l10n.dart';
 import '../cubit/reset_password_cubit.dart';
 import '../cubit/reset_password_state.dart';
 import 'reset_password_view_body.dart';
@@ -29,7 +30,13 @@ class ResetPasswordBlocConsumer extends StatelessWidget {
             extra: {'showResetSuccessDialog': true},
           );
         } else if (state is FailureResetPasswordState) {
-          showAwesomeDialog(context, "خطأ", state.errMsg, false, () {});
+          showAwesomeDialog(
+            context,
+            S.of(context).errorTitle,
+            state.errMsg,
+            false,
+            () {},
+          );
         }
       },
       builder: (context, state) {

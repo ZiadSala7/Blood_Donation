@@ -66,8 +66,8 @@ class _AddRequestViewBodyState extends State<AddRequestViewBody> {
                 } else {
                   showAwesomeDialog(
                     context,
-                    "بيانات غير مكتملة",
-                    "من فضلك اكمل كل الحقول المطلوبة قبل إرسال الطلب.",
+                    S.of(context).incompleteDataTitle,
+                    S.of(context).incompleteDataDesc,
                     false,
                     () {},
                   );

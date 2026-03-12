@@ -4,6 +4,7 @@ import '../../../../../core/constants/app_constants.dart';
 import '../../../../../core/helper/get_user.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class FiltrationMedicalOnlySwitch extends StatelessWidget {
   const FiltrationMedicalOnlySwitch({
@@ -37,13 +38,13 @@ class FiltrationMedicalOnlySwitch extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'فصيلتي فقط',
+                  S.of(context).myBloodTypeOnly,
                   textAlign: TextAlign.right,
                   style: AppTextStyles.b18(context),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'عرض الطلبات المطابقة لفصيلتي ($bloodType)',
+                  S.of(context).matchingBloodType(bloodType),
                   textAlign: TextAlign.right,
                   style: AppTextStyles.r14(
                     context,

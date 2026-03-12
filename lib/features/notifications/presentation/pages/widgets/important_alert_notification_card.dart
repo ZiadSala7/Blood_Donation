@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import '../../../../../generated/l10n.dart';
 import 'notification_card_base.dart';
 
 /// Important alert notification (تنبيه هام).
@@ -29,7 +30,7 @@ class ImportantAlertNotificationCard extends StatelessWidget {
         size: 24,
       ),
       iconBackgroundColor: const Color(0xFFFFF3E0),
-      title: 'تنبيه هام',
+      title: S.of(context).notificationImportantAlertTitle,
       body: body,
       subtitle: subtitle,
       receivedAt: receivedAt,
