@@ -25,7 +25,6 @@ class SignalRService {
     _registerConnectionEvents();
 
     await _connection!.start();
-    print("✅ SignalR Connected");
   }
 
   // ============================
@@ -41,12 +40,10 @@ class SignalRService {
       try {
         await _connection!.invoke("JoinRequestRealTime");
       } catch (e) {
-        print("⚠️ JoinRequestRealTime failed: $e");
         return;
       }
     }
 
-    print("📌 Joined Request Group: $requestId");
   }
 
   // ============================
@@ -63,12 +60,10 @@ class SignalRService {
       try {
         await _connection!.invoke("LeaveRequestRealTime");
       } catch (e) {
-        print("⚠️ LeaveRequestRealTime is unavailable on server: $e");
         return;
       }
     }
 
-    print("🚪 Left Request Group: $requestId");
   }
 
   // ============================
@@ -85,7 +80,6 @@ class SignalRService {
       final int requestId = parameters[0] as int;
       final dynamic data = parameters[1];
 
-      print("🔥 Update Received for Request: $requestId");
 
       onUpdate(requestId, data);
     });
@@ -110,15 +104,12 @@ class SignalRService {
   // ============================
   void _registerConnectionEvents() {
     _connection?.onclose(({Exception? error}) {
-      print("🔴 Connection Closed");
     });
 
     _connection?.onreconnecting(({Exception? error}) {
-      print("🟡 Reconnecting...");
     });
 
     _connection?.onreconnected(({String? connectionId}) {
-      print("🟢 Reconnected");
     });
   }
 }

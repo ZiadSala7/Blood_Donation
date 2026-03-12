@@ -177,6 +177,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     cityId,
                   );
                   if (mounted) {
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pop();
                   }
                 },

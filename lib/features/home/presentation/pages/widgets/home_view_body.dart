@@ -95,6 +95,20 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     }
   }
 
+  Future<void> _onSearchChanged(String value) async {
+    final trimmed = value.trim();
+    setState(() {
+      nextPage = 2;
+      isLoading = false;
+      hasMore = true;
+    });
+    if (trimmed.length > 3) {
+      await context.read<HomeCubit>().applySearch(trimmed);
+    } else {
+      await context.read<HomeCubit>().applySearch('');
+    }
+  }
+
   @override
   void dispose() {
     scrollController.dispose();
@@ -136,7 +150,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               DetailsSliverAppBar(model: model),
               SearchAndFilteringSliverAppBar(
                 searchController: searchController,
-                onSearchChanged: (_) {},
+                onSearchChanged: _onSearchChanged,
                 onSearchSubmitted: (value) => _onSearchSubmitted(value),
                 onApplyFiltration: _onApplyFiltration,
               ),
