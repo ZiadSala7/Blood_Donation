@@ -19,6 +19,21 @@ class RequestCard extends StatelessWidget {
   final RequestEntity entity;
   const RequestCard({super.key, required this.entity});
 
+  bool _isExpired(DateTime? deadline) {
+    if (deadline == null) return false;
+    return DateTime.now().isAfter(deadline);
+  }
+
+  String _displayStatus() {
+    final total = entity.bagsCnt ?? 1;
+    final collected = entity.collectedBags ?? 0;
+    final progress = (collected / total).clamp(0.0, 1.0);
+    if (_isExpired(entity.deadline)) {
+      return progress >= 1.0 ? 'مكتمل' : 'مغلق';
+    }
+    return entity.status ?? 'مفتوح';
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -37,7 +52,7 @@ class RequestCard extends StatelessWidget {
             /// request title and status of the request (open or close)
             RequestTitleAndStatus(
               title: entity.patientName!,
-              status: entity.status!,
+              status: _displayStatus(),
             ),
 
             /// Hospital name and location

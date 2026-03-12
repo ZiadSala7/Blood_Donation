@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/services/signalr/signalr_service.dart';
@@ -21,6 +23,22 @@ class RequestDetailsView extends StatefulWidget {
 
 class _RequestDetailsViewState extends State<RequestDetailsView> {
   late SignalRService signalR;
+  Timer? _refreshTimer;
+
+  bool _isExpired(DateTime? deadline) {
+    if (deadline == null) return false;
+    return DateTime.now().isAfter(deadline);
+  }
+
+  String _displayStatus(RequestModel request) {
+    final total = request.bagsCount ?? 1;
+    final collected = request.collectedBags ?? 0;
+    final progress = (collected / total).clamp(0.0, 1.0);
+    if (_isExpired(request.deadline)) {
+      return progress >= 1.0 ? 'مكتمل' : 'مغلق';
+    }
+    return request.status ?? 'مفتوح';
+  }
 
   @override
   void initState() {
@@ -37,10 +55,17 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
         });
       }
     });
+
+    _refreshTimer = Timer.periodic(const Duration(minutes: 1), (_) {
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
 
   @override
   void dispose() {
+    _refreshTimer?.cancel();
     signalR.leaveRequest(widget.request.id!);
     signalR.stopListening();
     super.dispose();
@@ -48,6 +73,8 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    final isOpen = _displayStatus(widget.request) == 'مفتوح';
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -83,7 +110,10 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
           const SizedBox(height: 12),
           RequesterCard(widget.request),
           const SizedBox(height: 12),
-          CustomButton(onPressed: () {}, label: "تبرّع الآن"),
+          CustomButton(
+            onPressed: isOpen ? () {} : null,
+            label: "تبرّع الآن",
+          ),
         ],
       ),
     );

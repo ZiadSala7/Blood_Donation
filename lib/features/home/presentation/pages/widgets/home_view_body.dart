@@ -82,12 +82,17 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   }
 
   Future<void> _onSearchSubmitted(String value) async {
+    final trimmed = value.trim();
     setState(() {
       nextPage = 2;
       isLoading = false;
       hasMore = true;
     });
-    await context.read<HomeCubit>().applySearch(value);
+    if (trimmed.length > 3) {
+      await context.read<HomeCubit>().applySearch(trimmed);
+    } else {
+      await context.read<HomeCubit>().applySearch('');
+    }
   }
 
   @override
