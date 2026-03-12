@@ -10,4 +10,9 @@ class FailureDonation extends DonationStates {
   FailureDonation({required this.errMsg});
 }
 
-class SuccessDonation extends DonationStates {}
+class SuccessDonation extends DonationStates {
+  final String message;
+  final String? phoneNumber;
+
+  SuccessDonation({required this.message, this.phoneNumber});
+}

@@ -7,7 +7,7 @@ import 'notification_card_base.dart';
 class DonorAcceptedNotificationCard extends StatelessWidget {
   final String body;
   final String? subtitle;
-  final String timeAgo;
+  final DateTime receivedAt;
   final bool isRead;
   final VoidCallback? onTap;
 
@@ -15,7 +15,7 @@ class DonorAcceptedNotificationCard extends StatelessWidget {
     super.key,
     required this.body,
     this.subtitle,
-    required this.timeAgo,
+    required this.receivedAt,
     this.isRead = false,
     this.onTap,
   });
@@ -28,7 +28,7 @@ class DonorAcceptedNotificationCard extends StatelessWidget {
       title: 'متبرع وافق على الطلب',
       body: body,
       subtitle: subtitle,
-      timeAgo: timeAgo,
+      receivedAt: receivedAt,
       isRead: isRead,
       onTap: onTap,
     );

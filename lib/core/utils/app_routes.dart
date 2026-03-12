@@ -9,7 +9,9 @@ import '../../features/auth/register/presentation/pages/register_view.dart';
 import '../../features/auth/reset_password/presentation/screens/reset_passwod_view.dart';
 import '../../features/home/data/models/request_model.dart';
 import '../../features/home/presentation/pages/home_view.dart';
+import '../../features/notifications/presentation/pages/notification_details_view.dart';
 import '../../features/request_details/presentation/pages/request_details_view.dart';
+import '../../features/notifications/data/models/notification_item.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
@@ -24,6 +26,7 @@ abstract class AppRoutes {
   static const String resetPassView = '/resetPassView';
   static const String changePass = '/changePassword';
   static const String requestDetails = '/requestDetails';
+  static const String notificationDetails = '/notificationDetails';
 
   static const String registerName = 'register';
   static const String loginName = 'login';
@@ -35,6 +38,7 @@ abstract class AppRoutes {
   static const String resetPasswordName = 'resetPasswordName';
   static const String changePassName = 'changePasswordName';
   static const String requestDetailsName = 'requestDetailsName';
+  static const String notificationDetailsName = 'notificationDetailsName';
 
   static final appRouter = GoRouter(
     routes: [
@@ -111,6 +115,12 @@ abstract class AppRoutes {
         name: requestDetailsName,
         builder: (context, state) =>
             RequestDetailsView(request: state.extra as RequestModel),
+      ),
+      GoRoute(
+        path: notificationDetails,
+        name: notificationDetailsName,
+        builder: (context, state) =>
+            NotificationDetailsView(item: state.extra as NotificationItem),
       ),
     ],
   );

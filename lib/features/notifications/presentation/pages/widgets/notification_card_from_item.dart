@@ -25,7 +25,7 @@ class NotificationCardFromItem extends StatelessWidget {
         return BloodRequestNotificationCard(
           body: item.body,
           subtitle: item.subtitle,
-          timeAgo: item.timeAgo,
+          receivedAt: item.receivedAt,
           isRead: item.isRead,
         onTap: onTap,
         );
@@ -33,7 +33,7 @@ class NotificationCardFromItem extends StatelessWidget {
         return DonorAcceptedNotificationCard(
           body: item.body,
           subtitle: item.subtitle,
-          timeAgo: item.timeAgo,
+          receivedAt: item.receivedAt,
           isRead: item.isRead,
           onTap: onTap,
         );
@@ -41,7 +41,7 @@ class NotificationCardFromItem extends StatelessWidget {
         return ThankYouNotificationCard(
           body: item.body,
           subtitle: item.subtitle,
-          timeAgo: item.timeAgo,
+          receivedAt: item.receivedAt,
           isRead: item.isRead,
           onTap: onTap,
         );
@@ -49,7 +49,7 @@ class NotificationCardFromItem extends StatelessWidget {
         return ImportantAlertNotificationCard(
           body: item.body,
           subtitle: item.subtitle,
-          timeAgo: item.timeAgo,
+          receivedAt: item.receivedAt,
           isRead: item.isRead,
           onTap: onTap,
         );
@@ -57,7 +57,7 @@ class NotificationCardFromItem extends StatelessWidget {
         return RequestCompletedNotificationCard(
           body: item.body,
           subtitle: item.subtitle,
-          timeAgo: item.timeAgo,
+          receivedAt: item.receivedAt,
           isRead: item.isRead,
           onTap: onTap,
         );

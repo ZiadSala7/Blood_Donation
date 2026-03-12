@@ -62,13 +62,21 @@ class NotificationsRepoImpl implements NotificationsRepo {
     final date =
         raw['received_at'] ??
         raw['receivedAt'] ??
+        raw['CreatedAt'] ??
         raw['createdAt'] ??
         raw['created_at'] ??
         raw['date'];
     if (date != null && map['received_at'] == null) {
-      map['received_at'] = date is String
-          ? date
-          : (date as DateTime).toIso8601String();
+      if (date is String) {
+        map['received_at'] = date;
+      } else if (date is DateTime) {
+        map['received_at'] = date.toIso8601String();
+      } else if (date is int) {
+        final ms = date > 1000000000000 ? date : date * 1000;
+        map['received_at'] = DateTime.fromMillisecondsSinceEpoch(
+          ms,
+        ).toIso8601String();
+      }
     }
     return map;
   }

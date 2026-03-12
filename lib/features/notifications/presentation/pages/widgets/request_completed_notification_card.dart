@@ -7,7 +7,7 @@ import 'notification_card_base.dart';
 class RequestCompletedNotificationCard extends StatelessWidget {
   final String body;
   final String? subtitle;
-  final String timeAgo;
+  final DateTime receivedAt;
   final bool isRead;
   final VoidCallback? onTap;
 
@@ -15,7 +15,7 @@ class RequestCompletedNotificationCard extends StatelessWidget {
     super.key,
     required this.body,
     this.subtitle,
-    required this.timeAgo,
+    required this.receivedAt,
     this.isRead = false,
     this.onTap,
   });
@@ -32,7 +32,7 @@ class RequestCompletedNotificationCard extends StatelessWidget {
       title: 'اكتمال الطلب',
       body: body,
       subtitle: subtitle,
-      timeAgo: timeAgo,
+      receivedAt: receivedAt,
       isRead: isRead,
       onTap: onTap,
     );

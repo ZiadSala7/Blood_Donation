@@ -38,9 +38,7 @@ class ApiNotification {
       imageUrl: json['image_url'] as String?,
       actionUrl: json['action_url'] as String?,
       screen: json['screen'] as String?,
-      receivedAt: json['received_at'] != null
-          ? DateTime.parse(json['received_at'])
-          : DateTime.now(),
+      receivedAt: _parseReceivedAt(json['received_at']),
     );
   }
 
@@ -77,6 +75,18 @@ class ApiNotification {
       (e) => e.toString().split('.').last.toLowerCase() == priorityStr,
       orElse: () => NotificationPriority.normal,
     );
+  }
+
+  static DateTime _parseReceivedAt(dynamic value) {
+    if (value == null) return DateTime.now();
+    if (value is DateTime) return value;
+    final raw = value.toString();
+    if (raw.isEmpty) return DateTime.now();
+    final hasTimezone =
+        raw.contains('Z') || raw.contains('+') || raw.lastIndexOf('-') > 9;
+    final parsed = DateTime.tryParse(raw);
+    if (parsed == null) return DateTime.now();
+    return hasTimezone ? parsed.toLocal() : parsed;
   }
 }
 

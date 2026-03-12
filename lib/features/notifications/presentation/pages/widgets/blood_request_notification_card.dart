@@ -8,7 +8,7 @@ import 'notification_card_base.dart';
 class BloodRequestNotificationCard extends StatelessWidget {
   final String body;
   final String? subtitle;
-  final String timeAgo;
+  final DateTime receivedAt;
   final bool isRead;
   final VoidCallback? onTap;
 
@@ -16,7 +16,7 @@ class BloodRequestNotificationCard extends StatelessWidget {
     super.key,
     required this.body,
     this.subtitle,
-    required this.timeAgo,
+    required this.receivedAt,
     this.isRead = false,
     this.onTap,
   });
@@ -29,7 +29,7 @@ class BloodRequestNotificationCard extends StatelessWidget {
       title: 'طلب تبرع دم جديد',
       body: body,
       subtitle: subtitle,
-      timeAgo: timeAgo,
+      receivedAt: receivedAt,
       isRead: isRead,
       cardColor: const Color(0xFFFFF5F5),
       onTap: onTap,

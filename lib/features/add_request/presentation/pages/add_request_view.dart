@@ -26,7 +26,7 @@ class AddRequestView extends StatelessWidget {
               showAwesomeDialog(
                 context,
                 "عملية ناجحة",
-                "نم انشاء طلبك بنجاح",
+                "تم انشاء طلبك بنجاح",
                 true,
                 () {},
               );

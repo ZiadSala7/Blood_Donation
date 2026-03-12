@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/di/injection.dart';
+import '../../../../core/utils/app_routes.dart';
 import '../../data/repo/notifications_repo_impl.dart';
 import '../cubit/notifications_cubit.dart';
 import '../cubit/notifications_states.dart';
@@ -85,8 +87,13 @@ class NotificationsView extends StatelessWidget {
                     olderItems: state.olderItems,
                     onMarkAllRead: () =>
                         context.read<NotificationsCubit>().markAllAsRead(),
-                    onNotificationTap: (item) =>
-                        context.read<NotificationsCubit>().markAsRead(item),
+                    onNotificationTap: (item) {
+                      context.read<NotificationsCubit>().markAsRead(item);
+                      context.pushNamed(
+                        AppRoutes.notificationDetailsName,
+                        extra: item,
+                      );
+                    },
                   );
                 }
                 return const SizedBox.shrink();

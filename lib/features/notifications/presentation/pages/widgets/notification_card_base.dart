@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../data/utils/time_ago_utils.dart';
 
 /// Base card for all notification types. Used by the five custom notification widgets.
 class NotificationCardBase extends StatelessWidget {
@@ -9,7 +10,7 @@ class NotificationCardBase extends StatelessWidget {
   final String title;
   final String body;
   final String? subtitle;
-  final String timeAgo;
+  final DateTime receivedAt;
   final bool isRead;
   final Color? cardColor;
   final VoidCallback? onTap;
@@ -21,7 +22,7 @@ class NotificationCardBase extends StatelessWidget {
     required this.title,
     required this.body,
     this.subtitle,
-    required this.timeAgo,
+    required this.receivedAt,
     this.isRead = false,
     this.cardColor,
     this.onTap,
@@ -29,8 +30,10 @@ class NotificationCardBase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveColor =
+        cardColor ?? (isRead ? AppColors.white : AppColors.rqstGrey);
     return Card(
-      color: cardColor ?? AppColors.white,
+      color: effectiveColor,
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
@@ -77,10 +80,7 @@ class NotificationCardBase extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         subtitle!,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: AppColors.grey,
-                        ),
+                        style: TextStyle(fontSize: 12, color: AppColors.grey),
                       ),
                     ],
                     const SizedBox(height: 8),
@@ -88,11 +88,8 @@ class NotificationCardBase extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          timeAgo,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: AppColors.grey,
-                          ),
+                          timeAgoFromDateTime(receivedAt),
+                          style: TextStyle(fontSize: 12, color: AppColors.grey),
                         ),
                         const SizedBox(width: 6),
                         Container(
@@ -100,7 +97,9 @@ class NotificationCardBase extends StatelessWidget {
                           height: 6,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: isRead ? AppColors.grey2 : AppColors.commonClr,
+                            color: isRead
+                                ? AppColors.grey2
+                                : AppColors.commonClr,
                           ),
                         ),
                       ],

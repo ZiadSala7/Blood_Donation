@@ -4,19 +4,9 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../home/data/models/request_model.dart';
 import '../../../home/presentation/pages/widgets/blood_type_and_needed.dart';
 
-class HeaderCard extends StatefulWidget {
+class HeaderCard extends StatelessWidget {
   final RequestModel request;
   const HeaderCard(this.request, {super.key});
-
-  @override
-  State<HeaderCard> createState() => _HeaderCardState();
-}
-
-class _HeaderCardState extends State<HeaderCard>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _pulseController;
-  late final Animation<double> _pulseScale;
-  late final Animation<double> _pulseOpacity;
 
   bool _isExpired(DateTime? deadline) {
     if (deadline == null) return false;
@@ -24,13 +14,13 @@ class _HeaderCardState extends State<HeaderCard>
   }
 
   String _statusText() {
-    final total = widget.request.bagsCount ?? 1;
-    final collected = widget.request.collectedBags ?? 0;
+    final total = request.bagsCount ?? 1;
+    final collected = request.collectedBags ?? 0;
     final progress = (collected / total).clamp(0.0, 1.0);
-    if (_isExpired(widget.request.deadline)) {
+    if (_isExpired(request.deadline)) {
       return progress >= 1.0 ? 'مكتمل' : 'مغلق';
     }
-    return widget.request.status ?? 'مفتوح';
+    return request.status ?? 'مفتوح';
   }
 
   Color _statusColor(String status) {
@@ -45,32 +35,9 @@ class _HeaderCardState extends State<HeaderCard>
   }
 
   @override
-  void initState() {
-    super.initState();
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 900),
-    )..repeat(reverse: true);
-
-    _pulseScale = Tween<double>(begin: 0.8, end: 1.3).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
-    );
-    _pulseOpacity = Tween<double>(begin: 0.5, end: 1.0).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
-    );
-  }
-
-  @override
-  void dispose() {
-    _pulseController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final statusText = _statusText();
     final statusColor = _statusColor(statusText);
-    final isOpen = statusText == 'مفتوح';
 
     return Card(
       color: AppColors.white,
@@ -92,20 +59,7 @@ class _HeaderCardState extends State<HeaderCard>
                 mainAxisAlignment: .center,
                 spacing: 10,
                 children: [
-                  if (isOpen)
-                    FadeTransition(
-                      opacity: _pulseOpacity,
-                      child: ScaleTransition(
-                        scale: _pulseScale,
-                        child: Icon(
-                          Icons.circle,
-                          color: statusColor,
-                          size: 10,
-                        ),
-                      ),
-                    )
-                  else
-                    Icon(Icons.circle, color: statusColor, size: 10),
+                  Icon(Icons.circle, color: statusColor, size: 10),
                   Text(
                     statusText,
                     style: TextStyle(
@@ -118,7 +72,7 @@ class _HeaderCardState extends State<HeaderCard>
             ),
             const SizedBox(height: 12),
             Text(
-              widget.request.patientName ?? '',
+              request.patientName ?? '',
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 6),
@@ -127,7 +81,7 @@ class _HeaderCardState extends State<HeaderCard>
               children: [
                 const Icon(Icons.local_hospital, size: 16),
                 const SizedBox(width: 4),
-                Text(widget.request.hospitalName ?? ''),
+                Text(request.hospitalName ?? ''),
               ],
             ),
             const SizedBox(height: 6),
@@ -140,7 +94,7 @@ class _HeaderCardState extends State<HeaderCard>
                   size: 16,
                 ),
                 const SizedBox(width: 4),
-                Text(widget.request.cityAr ?? ''),
+                Text(request.cityAr ?? ''),
               ],
             ),
             const SizedBox(height: 12),
@@ -149,8 +103,8 @@ class _HeaderCardState extends State<HeaderCard>
               children: [
                 BloodTypeAndNeeded(
                   isRequest: true,
-                  bldType: widget.request.requiredBloodType!,
-                  donationCat: widget.request.donationCategoryAr!,
+                  bldType: request.requiredBloodType!,
+                  donationCat: request.donationCategoryAr!,
                 ),
               ],
             ),

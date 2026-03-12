@@ -3,6 +3,7 @@ String timeAgoFromDateTime(DateTime dateTime) {
   final now = DateTime.now();
   final diff = now.difference(dateTime);
 
+  if (diff.isNegative) return 'الآن';
   if (diff.inSeconds < 60) return 'الآن';
   if (diff.inMinutes < 60) return 'منذ ${diff.inMinutes} دقيقة';
   if (diff.inHours < 24) return 'منذ ${diff.inHours} ساعة';
