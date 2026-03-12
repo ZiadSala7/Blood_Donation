@@ -28,6 +28,7 @@ class EndPoints {
   static const String getRspnsToRqust = 'Request/Responses';
   static const String createRspnsToRqust = 'Response/respond';
   static const String confirmRqust = 'Response/confirm';
+  static const String getPersonalRqsts = 'Request/personal-requests';
 
   /// ================= notifications =========================
   static const String getAllNotifications = 'Notification/notifications';

@@ -8,6 +8,7 @@ import '../di/injection.dart';
 import '../../features/home/data/repo/home_repo_impl.dart';
 import '../../features/home/presentation/cubit/home_cubit.dart';
 import '../../features/home/presentation/pages/home_view.dart';
+import '../../features/my_requests/presentation/pages/my_requests_view.dart';
 import '../../features/notifications/presentation/pages/notifications_view.dart';
 import '../../features/profile/presentation/pages/profile_view.dart';
 import '../utils/app_colors.dart';
@@ -40,7 +41,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> _pages = [
     const HomeView(),
-    const Center(child: Text('الطلبات', style: TextStyle(fontSize: 24))),
+    const MyRequestsView(),
     const NotificationsView(),
     const ProfileView(),
   ];

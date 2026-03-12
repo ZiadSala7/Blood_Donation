@@ -97,7 +97,7 @@ class HeaderCard extends StatelessWidget {
                 Text(request.cityAr ?? ''),
               ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 30),
             Column(
               mainAxisAlignment: .center,
               children: [
