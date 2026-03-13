@@ -1,4 +1,5 @@
 import '../../../home/data/models/request_model.dart';
+import '../../../../core/utils/request_status_utils.dart';
 
 class PersonalRequestResponse {
   final int pageSize;
@@ -48,32 +49,59 @@ class PersonalRequestItem {
 
 class ResponseDto {
   final String name;
-  final String status;
+  final RequestStatusType statusType;
   final DateTime? createdAt;
   final String? avatarText;
   final String? avatarColorHex;
+  final String? donorId;
 
   const ResponseDto({
     required this.name,
-    required this.status,
+    required this.statusType,
     this.createdAt,
     this.avatarText,
     this.avatarColorHex,
+    this.donorId,
   });
 
   factory ResponseDto.fromJson(Map<String, dynamic> json) {
     final name =
-        json['donorName']?.toString() ?? json['name']?.toString() ?? '';
-    final status =
-        json['statusAr']?.toString() ?? json['status']?.toString() ?? '';
-    final createdAt = _parseDate(json['createdAt'] ?? json['created_at']);
+        json['fullName']?.toString() ??
+        json['donorName']?.toString() ??
+        json['name']?.toString() ??
+        '';
+    final statusText =
+        json['statusAr']?.toString() ?? json['status']?.toString();
+    final statusCode = (json['responseStatus'] as num?)?.toInt();
+    final statusType = statusCode != null
+        ? _statusFromCode(statusCode)
+        : parseRequestStatus(statusText);
+    final createdAt = _parseDate(
+      json['responseAt'] ?? json['createdAt'] ?? json['created_at'],
+    );
     return ResponseDto(
       name: name,
-      status: status,
+      statusType: statusType,
       createdAt: createdAt,
       avatarText: name.isEmpty ? null : _initials(name),
       avatarColorHex: json['avatarColor']?.toString(),
+      donorId: json['donorUserId']?.toString() ?? json['donorId']?.toString(),
     );
+  }
+
+  static RequestStatusType _statusFromCode(int code) {
+    switch (code) {
+      case 0:
+        return RequestStatusType.pending;
+      case 1:
+        return RequestStatusType.inTransit;
+      case 2:
+        return RequestStatusType.completed;
+      case 3:
+        return RequestStatusType.closed;
+      default:
+        return RequestStatusType.unknown;
+    }
   }
 
   static DateTime? _parseDate(dynamic value) {

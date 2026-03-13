@@ -89,6 +89,7 @@
     "donationSuccessMessage": "تم تسجيل التبرع بنجاح",
     "donationTypeHint": "اختر نوع التبرع",
     "donorResponsesTitle": "استجابات المتبرعين",
+    "donorIdLabel": "معرّف المتبرع",
     "donorsLabel": "المتبرعون",
     "earlierLabel": "أقدم",
     "endsInDays": "ينتهي خلال {days} أيام",
@@ -181,7 +182,7 @@
     "profileActivityTitle": "النشاط",
     "registerSuccessDesc": "فعّل حسابك ثم سجّل الدخول",
     "registerSuccessTitle": "تم التسجيل بنجاح",
-    "requestArrived": "وصلوا",
+    "requestArrived": "تم وصول",
     "requestClosedMessage": "لم تعد الحالة تستقبل الطلبات",
     "requestCompletionPercent": "نسبة الاكتمال {percent}%",
     "@requestCompletionPercent": {

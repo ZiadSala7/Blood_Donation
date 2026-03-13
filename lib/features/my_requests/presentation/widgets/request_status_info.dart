@@ -8,12 +8,14 @@ class RequestStatusInfo extends StatelessWidget {
   final String name;
   final RequestStatusType statusType;
   final String time;
+  final String? donorId;
 
   const RequestStatusInfo({
     super.key,
     required this.name,
     required this.statusType,
     required this.time,
+    this.donorId,
   });
 
   @override
@@ -21,13 +23,14 @@ class RequestStatusInfo extends StatelessWidget {
     final statusColorValue = statusColor(statusType);
     final statusText = statusLabel(context, statusType);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           name,
           style: AppTextStyles.b16(context),
           textDirection: TextDirection.rtl,
         ),
+
         const SizedBox(height: 4),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -43,8 +46,9 @@ class RequestStatusInfo extends StatelessWidget {
             const SizedBox(width: 6),
             Text(
               statusText,
-              style:
-                  AppTextStyles.s14(context).copyWith(color: statusColorValue),
+              style: AppTextStyles.s14(
+                context,
+              ).copyWith(color: statusColorValue),
               textDirection: TextDirection.rtl,
             ),
           ],

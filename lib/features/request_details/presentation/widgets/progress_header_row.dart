@@ -22,10 +22,7 @@ class ProgressHeaderRow extends StatelessWidget {
       mainAxisAlignment: .spaceBetween,
       children: [
         Text(
-          S.of(context).collectedBagsCount(
-            collectedBags ?? 0,
-            bagsCount ?? 0,
-          ),
+          S.of(context).collectedBagsCount(collectedBags ?? 0, bagsCount ?? 0),
           style: AppTextStyles.r16(
             context,
           ).copyWith(color: AppColors.commonClr),

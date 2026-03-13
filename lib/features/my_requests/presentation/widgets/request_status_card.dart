@@ -12,6 +12,7 @@ class RequestStatusCard extends StatelessWidget {
   final String time;
   final String avatarText;
   final Color avatarColor;
+  final String? donorId;
   final VoidCallback? onAccept;
   final VoidCallback? onReject;
 
@@ -22,6 +23,7 @@ class RequestStatusCard extends StatelessWidget {
     required this.time,
     required this.avatarText,
     required this.avatarColor,
+    this.donorId,
     this.onAccept,
     this.onReject,
   });
@@ -50,7 +52,12 @@ class RequestStatusCard extends StatelessWidget {
             color: avatarColor,
             statusColor: statusColor(statusType),
           ),
-          RequestStatusInfo(name: name, statusType: statusType, time: time),
+          RequestStatusInfo(
+            name: name,
+            statusType: statusType,
+            time: time,
+            donorId: donorId,
+          ),
           const Spacer(),
           RequestStatusActions(onAccept: onAccept, onReject: onReject),
         ],

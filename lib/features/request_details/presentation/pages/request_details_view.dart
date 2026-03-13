@@ -9,18 +9,14 @@ import '../../../../core/di/injection.dart';
 import '../../../../core/services/signalr/signalr_service.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/request_status_utils.dart';
-import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/show_awesome_dialog.dart';
 import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
 import '../../data/repo/donation_repo_impl.dart';
 import '../cubit/donation_cubit.dart';
 import '../cubit/donation_states.dart';
-import '../widgets/case_details_card.dart';
-import '../widgets/header_card.dart';
-import '../widgets/progress_card.dart';
-import '../widgets/requester_card.dart';
-import '../widgets/stats_card.dart';
+import '../widgets/request_details_appbar.dart';
+import '../widgets/request_details_view_body.dart';
 
 class RequestDetailsView extends StatefulWidget {
   final RequestModel request;
@@ -95,8 +91,8 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
               () {},
             );
           } else if (state is SuccessDonation) {
-            final phoneLine = (state.phoneNumber != null &&
-                    state.phoneNumber!.isNotEmpty)
+            final phoneLine =
+                (state.phoneNumber != null && state.phoneNumber!.isNotEmpty)
                 ? '\n${S.of(context).phoneNumberLabel}: ${state.phoneNumber}'
                 : '';
             showAwesomeDialog(
@@ -115,48 +111,11 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
             inAsyncCall: isLoading,
             child: Scaffold(
               backgroundColor: AppColors.white,
-              appBar: AppBar(
-                scrolledUnderElevation: 0,
-                backgroundColor: AppColors.white,
-                title: Text(S.of(context).requestDetailsTitle),
-                centerTitle: true,
-                actions: const [Icon(Icons.share), SizedBox(width: 12)],
-              ),
-              body: ListView(
-                padding: const EdgeInsets.all(8),
-                children: [
-                  HeaderCard(widget.request),
-                  const SizedBox(height: 12),
-                  Card(
-                    color: AppColors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        spacing: 15,
-                        children: [
-                          StatsCard(widget.request),
-                          ProgressCard(widget.request),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  CaseDetailsCard(widget.request),
-                  const SizedBox(height: 12),
-                  RequesterCard(widget.request),
-                  const SizedBox(height: 12),
-                  CustomButton(
-                    onPressed: isOpen && !isLoading
-                        ? () => context
-                            .read<DonationCubit>()
-                            .donateTo(id: widget.request.id!)
-                        : null,
-                    label: S.of(context).donateNow,
-                  ),
-                ],
+              appBar: requestDetailsAppBar(context),
+              body: RequestDetailsViewBody(
+                widget: widget,
+                isOpen: isOpen,
+                isLoading: isLoading,
               ),
             ),
           );

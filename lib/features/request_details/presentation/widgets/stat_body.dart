@@ -19,10 +19,16 @@ class StatBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       spacing: 6,
+      mainAxisAlignment: .center,
+      crossAxisAlignment: .center,
       children: [
         widget,
         Text(title, style: const TextStyle(color: Colors.grey)),
-        Text('${value ?? 0} $desc', style: AppTextStyles.b18(context)),
+        Text(
+          '${value ?? 0} $desc',
+          style: AppTextStyles.b16(context),
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }

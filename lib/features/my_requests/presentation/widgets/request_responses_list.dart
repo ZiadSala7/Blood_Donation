@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/request_status_utils.dart';
 import '../../../notifications/data/utils/time_ago_utils.dart';
 import '../../../../generated/l10n.dart';
 import '../../data/models/personal_request_response.dart';
@@ -32,13 +31,13 @@ class RequestResponsesList extends StatelessWidget {
         final avatarColor = r.avatarColorHex != null
             ? _hexToColor(r.avatarColorHex!)
             : AppColors.commonClr;
-        final statusType = parseRequestStatus(r.status);
         return RequestStatusCard(
           name: r.name,
-          statusType: statusType,
+          statusType: r.statusType,
           time: timeText,
           avatarText: r.avatarText ?? S.of(context).defaultAvatarInitial,
           avatarColor: avatarColor,
+          donorId: r.donorId,
           onAccept: () {},
           onReject: () {},
         );

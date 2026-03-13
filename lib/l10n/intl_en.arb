@@ -89,6 +89,7 @@
     "donationSuccessMessage": "Donation recorded successfully",
     "donationTypeHint": "Select donation type",
     "donorResponsesTitle": "Donor responses",
+    "donorIdLabel": "Donor ID",
     "donorsLabel": "Donors",
     "earlierLabel": "Earlier",
     "endsInDays": "Ends in {days} days",
