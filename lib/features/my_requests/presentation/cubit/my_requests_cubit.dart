@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/personal_request_response.dart';
-import '../../data/repo/my_requests_repo.dart';
+import '../../domain/repo/my_requests_repo.dart';
+import '../models/confirm_request_result.dart';
 import 'my_requests_states.dart';
 
 class MyRequestsCubit extends Cubit<MyRequestsState> {
@@ -41,6 +42,25 @@ class MyRequestsCubit extends Cubit<MyRequestsState> {
 
   Future<void> refresh() async {
     await loadPage(_pageIndex);
+  }
+
+  Future<ConfirmRequestResult> confirmRequest({
+    required int requestId,
+    required String donorId,
+    required int hasDonated,
+  }) async {
+    final result = await repo.confirmRequest(
+      id: requestId,
+      donorId: donorId,
+      hasDonated: hasDonated,
+    );
+    return await result.fold(
+      (err) async => ConfirmRequestResult(success: false, message: err),
+      (msg) async {
+        await refresh();
+        return ConfirmRequestResult(success: true, message: msg);
+      },
+    );
   }
 
   int _calculateTotalPages(int totalSize, int pageSize) {

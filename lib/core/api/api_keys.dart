@@ -32,4 +32,7 @@ abstract class ApiKeys {
   static const String phoneNumber = 'phoneNumber';
   static const String otp = 'OTP';
   static const String search = 'search';
+  static const String donorId = 'DonorId';
+  static const String requestId = 'RequestId';
+  static const String hasDonated = 'HasDonated';
 }
