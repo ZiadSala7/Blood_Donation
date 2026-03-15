@@ -47,7 +47,8 @@ class ProfileView extends StatelessWidget {
                       ProfileMenuTile(
                         title: S.of(context).profileDonationHistoryTitle,
                         icon: Icons.history_rounded,
-                        onTap: () {},
+                        onTap: () =>
+                            context.pushNamed(AppRoutes.donationHistoryName),
                       ),
                       const SizedBox(height: 12),
                       ProfileMenuTile(

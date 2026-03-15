@@ -106,6 +106,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "donationDeadlineLabel": MessageLookupByLibrary.simpleMessage(
       "آخر موعد للتبرع:",
     ),
+    "donationHistoryEmpty": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد تبرعات بعد",
+    ),
+    "donationHistoryPreviousTitle": MessageLookupByLibrary.simpleMessage(
+      "التبرعات السابقة",
+    ),
+    "donationHistorySummaryTitle": MessageLookupByLibrary.simpleMessage(
+      "اجمالي عدد التبرعات",
+    ),
+    "donationHistoryUnknownType": MessageLookupByLibrary.simpleMessage(
+      "نوع غير محدد",
+    ),
     "donationInfoLabel": MessageLookupByLibrary.simpleMessage("بيانات التبرع"),
     "donationSuccessMessage": MessageLookupByLibrary.simpleMessage(
       "تم تسجيل التبرع بنجاح",

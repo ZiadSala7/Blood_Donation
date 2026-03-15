@@ -26,9 +26,17 @@ class AppAssets {
   /// assets/images/bldOnbrd4.png
   static const String assetsImagesBldOnbrd4 = "assets/images/bldOnbrd4.png";
 
+  /// Assets for assetsImagesBlood
+  /// assets/images/blood.png
+  static const String assetsImagesBlood = "assets/images/blood.png";
+
   /// Assets for assetsImagesComeSoon
   /// assets/images/comeSoon.png
   static const String assetsImagesComeSoon = "assets/images/comeSoon.png";
+
+  /// Assets for assetsImagesDonationHistory
+  /// assets/images/donationHistory.png
+  static const String assetsImagesDonationHistory = "assets/images/donationHistory.png";
 
   /// Assets for assetsImagesDonationType
   /// assets/images/donationType.png
@@ -46,9 +54,21 @@ class AppAssets {
   /// assets/images/matlop.png
   static const String assetsImagesMatlop = "assets/images/matlop.png";
 
+  /// Assets for assetsImagesMyRequests
+  /// assets/images/myRequests.png
+  static const String assetsImagesMyRequests = "assets/images/myRequests.png";
+
+  /// Assets for assetsImagesPagination
+  /// assets/images/pagination.png
+  static const String assetsImagesPagination = "assets/images/pagination.png";
+
   /// Assets for assetsImagesPhone
   /// assets/images/Phone.png
   static const String assetsImagesPhone = "assets/images/Phone.png";
+
+  /// Assets for assetsImagesProfileView
+  /// assets/images/profileView.png
+  static const String assetsImagesProfileView = "assets/images/profileView.png";
 
   /// Assets for assetsImagesRqustr
   /// assets/images/rqustr.png

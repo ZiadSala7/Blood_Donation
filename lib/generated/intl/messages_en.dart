@@ -104,6 +104,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "donationDeadlineLabel": MessageLookupByLibrary.simpleMessage(
       "Donation deadline:",
     ),
+    "donationHistoryEmpty": MessageLookupByLibrary.simpleMessage(
+      "No donations yet",
+    ),
+    "donationHistoryPreviousTitle": MessageLookupByLibrary.simpleMessage(
+      "Previous donations",
+    ),
+    "donationHistorySummaryTitle": MessageLookupByLibrary.simpleMessage(
+      "Total donations",
+    ),
+    "donationHistoryUnknownType": MessageLookupByLibrary.simpleMessage(
+      "Unknown type",
+    ),
     "donationInfoLabel": MessageLookupByLibrary.simpleMessage(
       "Donation information",
     ),

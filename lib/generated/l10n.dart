@@ -709,6 +709,46 @@ class S {
     );
   }
 
+  /// `No donations yet`
+  String get donationHistoryEmpty {
+    return Intl.message(
+      'No donations yet',
+      name: 'donationHistoryEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Previous donations`
+  String get donationHistoryPreviousTitle {
+    return Intl.message(
+      'Previous donations',
+      name: 'donationHistoryPreviousTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total donations`
+  String get donationHistorySummaryTitle {
+    return Intl.message(
+      'Total donations',
+      name: 'donationHistorySummaryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown type`
+  String get donationHistoryUnknownType {
+    return Intl.message(
+      'Unknown type',
+      name: 'donationHistoryUnknownType',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Donation information`
   String get donationInfoLabel {
     return Intl.message(
