@@ -73,9 +73,7 @@ class ResponseDto {
     final statusText =
         json['statusAr']?.toString() ?? json['status']?.toString();
     final statusCode = (json['responseStatus'] as num?)?.toInt();
-    final statusType = statusCode != null
-        ? _statusFromCode(statusCode)
-        : parseRequestStatus(statusText);
+    final statusType = _mapToTwoStates(statusCode, statusText);
     final createdAt = _parseDate(
       json['responseAt'] ?? json['createdAt'] ?? json['created_at'],
     );
@@ -89,19 +87,16 @@ class ResponseDto {
     );
   }
 
-  static RequestStatusType _statusFromCode(int code) {
-    switch (code) {
-      case 0:
-        return RequestStatusType.pending;
-      case 1:
-        return RequestStatusType.inTransit;
-      case 2:
-        return RequestStatusType.completed;
-      case 3:
-        return RequestStatusType.closed;
-      default:
-        return RequestStatusType.unknown;
-    }
+  static RequestStatusType _mapToTwoStates(
+    int? statusCode,
+    String? statusText,
+  ) {
+    if (statusCode == 1) return RequestStatusType.completed;
+    if (statusCode == 0) return RequestStatusType.inTransit;
+    final parsed = parseRequestStatus(statusText);
+    return parsed == RequestStatusType.completed
+        ? RequestStatusType.completed
+        : RequestStatusType.inTransit;
   }
 
   static DateTime? _parseDate(dynamic value) {

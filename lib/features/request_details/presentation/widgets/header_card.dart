@@ -33,7 +33,7 @@ class HeaderCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               decoration: BoxDecoration(
                 // ignore: deprecated_member_use
-                color: statusTint.withOpacity(0.15),
+                color: statusTint.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
@@ -43,8 +43,8 @@ class HeaderCard extends StatelessWidget {
                   Icon(Icons.circle, color: statusTint, size: 10),
                   Text(
                     statusText,
-                    style: TextStyle(
-                      color: statusTint,
+                    style: const TextStyle(
+                      color: Colors.green,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

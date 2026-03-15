@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
@@ -30,7 +29,7 @@ class StatsCard extends StatelessWidget {
               child: StatBody(
                 S.of(context).requestRequired,
                 request.bagsCount,
-                widget: Image.asset(AppAssets.assetsImagesMatlop),
+                widget: const Icon(Icons.people, color: AppColors.commonClr),
                 desc: S.of(context).donorsLabel,
               ),
             ),
@@ -49,7 +48,10 @@ class StatsCard extends StatelessWidget {
               child: StatBody(
                 S.of(context).requestArrived,
                 request.collectedBags,
-                widget: Image.asset(AppAssets.assetsImagesArriveDone),
+                widget: const Icon(
+                  Icons.verified_user_outlined,
+                  color: AppColors.commonClr,
+                ),
                 desc: S.of(context).donorsLabel,
               ),
             ),

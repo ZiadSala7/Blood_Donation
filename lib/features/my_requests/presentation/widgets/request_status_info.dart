@@ -9,6 +9,7 @@ class RequestStatusInfo extends StatelessWidget {
   final RequestStatusType statusType;
   final String time;
   final String? donorId;
+  final bool isConfirmed;
 
   const RequestStatusInfo({
     super.key,
@@ -16,11 +17,12 @@ class RequestStatusInfo extends StatelessWidget {
     required this.statusType,
     required this.time,
     this.donorId,
+    this.isConfirmed = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final statusColorValue = statusColor(statusType);
+    final statusColorValue = isConfirmed ? Colors.grey : statusColor(statusType);
     final statusText = statusLabel(context, statusType);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -20,7 +20,7 @@ class MyRequestsRepoImpl implements MyRequestsRepo {
     int pageSize = 5,
   }) async {
     try {
-      final payload = {'PageNumber': pageIndex, 'pagesize': pageSize};
+      final payload = {'PageNumber': pageIndex, 'pageSize': pageSize};
       final response = await dio.get<dynamic>(
         EndPoints.getPersonalRqsts,
         data: payload,

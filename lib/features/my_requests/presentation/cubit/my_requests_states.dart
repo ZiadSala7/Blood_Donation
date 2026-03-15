@@ -14,11 +14,13 @@ class MyRequestsFailure extends MyRequestsState {
 
 class MyRequestsSuccess extends MyRequestsState {
   final int pageIndex;
+  final int selectedIndex;
   final int totalPages;
   final List<PersonalRequestItem> items;
 
   MyRequestsSuccess({
     required this.pageIndex,
+    required this.selectedIndex,
     required this.totalPages,
     required this.items,
   });

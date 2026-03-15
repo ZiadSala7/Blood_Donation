@@ -37,6 +37,11 @@ class RequestResponsesList extends StatelessWidget {
             item.request.id != null &&
             r.donorId != null &&
             r.donorId!.isNotEmpty;
+        final isConfirmedOverride = canUpdate &&
+            context.read<MyRequestsCubit>().isConfirmed(
+                  item.request.id!,
+                  r.donorId!,
+                );
         return RequestStatusCard(
           name: r.name,
           statusType: r.statusType,
@@ -44,6 +49,7 @@ class RequestResponsesList extends StatelessWidget {
           avatarText: r.avatarText ?? S.of(context).defaultAvatarInitial,
           avatarColor: avatarColor,
           donorId: r.donorId,
+          forceCompleted: isConfirmedOverride,
           onAccept: canUpdate
               ? () => context.read<MyRequestsCubit>().confirmRequest(
                   requestId: item.request.id!,

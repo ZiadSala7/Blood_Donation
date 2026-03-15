@@ -16,6 +16,7 @@ class RequestStatusCard extends StatefulWidget {
   final String avatarText;
   final Color avatarColor;
   final String? donorId;
+  final bool forceCompleted;
   final Future<ConfirmRequestResult> Function()? onAccept;
   final Future<ConfirmRequestResult> Function()? onReject;
 
@@ -27,6 +28,7 @@ class RequestStatusCard extends StatefulWidget {
     required this.avatarText,
     required this.avatarColor,
     this.donorId,
+    this.forceCompleted = false,
     this.onAccept,
     this.onReject,
   });
@@ -43,13 +45,16 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
   @override
   void initState() {
     super.initState();
-    _isConfirmed = widget.statusType == RequestStatusType.completed;
+    _isConfirmed =
+        widget.forceCompleted || widget.statusType == RequestStatusType.completed;
   }
 
   @override
   void didUpdateWidget(covariant RequestStatusCard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.statusType == RequestStatusType.completed && !_isConfirmed) {
+    if ((widget.forceCompleted ||
+            widget.statusType == RequestStatusType.completed) &&
+        !_isConfirmed) {
       _isConfirmed = true;
     }
   }
@@ -120,9 +125,12 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
           ),
           RequestStatusInfo(
             name: widget.name,
-            statusType: widget.statusType,
+            statusType: _isConfirmed
+                ? RequestStatusType.completed
+                : widget.statusType,
             time: widget.time,
             donorId: widget.donorId,
+            isConfirmed: _isConfirmed,
           ),
           const Spacer(),
           trailing,

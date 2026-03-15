@@ -26,9 +26,6 @@ class _MyRequestsViewState extends State<MyRequestsView> {
     super.initState();
     _cubit = MyRequestsCubit(MyRequestsRepoImpl(dio: getIt.get<DioConsumer>()))
       ..loadPage(1);
-    _refreshTimer = Timer.periodic(const Duration(minutes: 1), (_) {
-      _cubit.refresh();
-    });
   }
 
   @override

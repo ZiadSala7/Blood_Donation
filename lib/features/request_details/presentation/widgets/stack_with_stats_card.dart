@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../generated/l10n.dart';
 import '../../../home/data/models/request_model.dart';
@@ -90,7 +89,7 @@ class _StackWithStatCardState extends State<StackWithStatCard>
         child: StatBody(
           S.of(context).onTheWay,
           widget.request.responsesCount,
-          widget: Image.asset(AppAssets.assetsImagesComeSoon),
+          widget: const Icon(Icons.directions_run, color: AppColors.commonClr),
           desc: S.of(context).donorsLabel,
         ),
       ),

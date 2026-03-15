@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import '../../generated/l10n.dart';
 import 'app_colors.dart';
 
-enum RequestStatusType {
-  open,
-  closed,
-  completed,
-  inTransit,
-  pending,
-  unknown,
-}
+enum RequestStatusType { open, closed, completed, inTransit, pending, unknown }
 
 RequestStatusType parseRequestStatus(String? status) {
   if (status == null) return RequestStatusType.unknown;
@@ -25,7 +18,9 @@ RequestStatusType parseRequestStatus(String? status) {
   if (normalized == 'completed' || status == 'مكتمل') {
     return RequestStatusType.completed;
   }
-  if (normalized == 'in_transit' || normalized == 'intransit' || status == 'في الطريق') {
+  if (normalized == 'in_transit' ||
+      normalized == 'intransit' ||
+      status == 'في الطريق') {
     return RequestStatusType.inTransit;
   }
   if (normalized == 'pending' || status == 'قيد الانتظار') {

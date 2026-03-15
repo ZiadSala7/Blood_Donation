@@ -19,7 +19,10 @@ class MyRequestsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = state.items.isNotEmpty ? state.items.first : null;
+    final itemIndex = state.selectedIndex - 1;
+    final item = state.items.isNotEmpty && itemIndex < state.items.length
+        ? state.items[itemIndex]
+        : null;
     return ListView(
       padding: const EdgeInsets.all(5),
       children: [
@@ -56,10 +59,10 @@ class MyRequestsContent extends StatelessWidget {
           ),
         ],
         PaginationBar(
-          currentPage: state.pageIndex,
+          currentPage: state.selectedIndex,
           totalPages: state.totalPages,
           onPageSelected: (page) =>
-              context.read<MyRequestsCubit>().loadPage(page),
+              context.read<MyRequestsCubit>().selectIndex(page),
         ),
       ],
     );
