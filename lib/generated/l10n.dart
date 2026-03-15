@@ -759,6 +759,11 @@ class S {
     );
   }
 
+  /// `Donor ID`
+  String get donorIdLabel {
+    return Intl.message('Donor ID', name: 'donorIdLabel', desc: '', args: []);
+  }
+
   /// `Donors`
   String get donorsLabel {
     return Intl.message('Donors', name: 'donorsLabel', desc: '', args: []);
@@ -1319,6 +1324,36 @@ class S {
     return Intl.message(
       'Activity',
       name: 'profileActivityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Donation history`
+  String get profileDonationHistoryTitle {
+    return Intl.message(
+      'Donation history',
+      name: 'profileDonationHistoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal data`
+  String get profilePersonalDataTitle {
+    return Intl.message(
+      'Personal data',
+      name: 'profilePersonalDataTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get profileSettingsTitle {
+    return Intl.message(
+      'Settings',
+      name: 'profileSettingsTitle',
       desc: '',
       args: [],
     );

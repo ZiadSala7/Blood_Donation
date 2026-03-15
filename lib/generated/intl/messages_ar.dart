@@ -54,12 +54,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "bloodType": MessageLookupByLibrary.simpleMessage("فصيلة الدم "),
     "bloodTypeLabel": MessageLookupByLibrary.simpleMessage("فصيلة الدم"),
     "caseDescriptionHint": MessageLookupByLibrary.simpleMessage(
-      "أدخل وصف الحالة",
+      "وصف الحالة\n اكتب تفاصيل الحالة الطبية...",
     ),
     "caseDescriptionLabel": MessageLookupByLibrary.simpleMessage("وصف الحالة"),
     "caseDetailsTitle": MessageLookupByLibrary.simpleMessage("تفاصيل الحالة"),
     "caseInfoLabel": MessageLookupByLibrary.simpleMessage("بيانات الحالة"),
-    "caseNameHint": MessageLookupByLibrary.simpleMessage("أدخل اسم الحالة"),
+    "caseNameHint": MessageLookupByLibrary.simpleMessage(
+      "اسم الحالة \nمثال : طارئة -حادث سير",
+    ),
     "caseNameLabel": MessageLookupByLibrary.simpleMessage("اسم الحالة"),
     "changePass": MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
     "changePassDesc": MessageLookupByLibrary.simpleMessage(
@@ -110,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "donationTypeHint": MessageLookupByLibrary.simpleMessage("اختر نوع التبرع"),
     "donationsCountLabel": MessageLookupByLibrary.simpleMessage("التبرعات"),
+    "donorIdLabel": MessageLookupByLibrary.simpleMessage("معرّف المتبرع"),
     "donorResponsesTitle": MessageLookupByLibrary.simpleMessage(
       "استجابات المتبرعين",
     ),
@@ -272,6 +275,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "placeInfoLabel": MessageLookupByLibrary.simpleMessage("معلومات المكان"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "profileActivityTitle": MessageLookupByLibrary.simpleMessage("النشاط"),
+    "profileDonationHistoryTitle": MessageLookupByLibrary.simpleMessage(
+      "سجل التبرعات",
+    ),
+    "profilePersonalDataTitle": MessageLookupByLibrary.simpleMessage(
+      "بياناتي الشخصية",
+    ),
+    "profileSettingsTitle": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "regFail": MessageLookupByLibrary.simpleMessage("فشلت العملية"),
     "regSucc": MessageLookupByLibrary.simpleMessage("تم انشاء حساب بنجاح"),
     "regSuccDesc": MessageLookupByLibrary.simpleMessage(

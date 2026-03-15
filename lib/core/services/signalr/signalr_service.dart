@@ -34,7 +34,7 @@ class SignalRService {
     if (!isConnected) await connect();
 
     try {
-      await _connection!.invoke("JoinRequestRealTime");
+      await _connection!.invoke("JoinRequestRealTime", args: [requestId]);
     } catch (_) {
       // Fallback for backends that define JoinRequestRealTime with no args.
       try {

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,6 +32,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
   late SignalRService signalR;
   Timer? _refreshTimer;
   late final DonationCubit _donationCubit;
+  late RequestModel _request;
 
   RequestStatusType _displayStatusType(RequestModel request) {
     return resolveRequestStatus(
@@ -46,6 +48,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
     super.initState();
 
     signalR = SignalRService();
+    _request = widget.request;
     _donationCubit = DonationCubit(
       DonationRepoImpl(dio: getIt.get<DioConsumer>()),
     );
@@ -54,9 +57,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
 
     signalR.listenToRequestUpdates((id, data) {
       if (id == widget.request.id) {
-        setState(() {
-          // حدث البيانات هنا
-        });
+        _applyRequestUpdate(data);
       }
     });
 
@@ -105,7 +106,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
           }
         },
         builder: (context, state) {
-          final isOpen = isOpenStatus(_displayStatusType(widget.request));
+          final isOpen = isOpenStatus(_displayStatusType(_request));
           final isLoading = state is LoadingDonation;
           return ModalProgressHUD(
             inAsyncCall: isLoading,
@@ -113,7 +114,7 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
               backgroundColor: AppColors.white,
               appBar: requestDetailsAppBar(context),
               body: RequestDetailsViewBody(
-                widget: widget,
+                request: _request,
                 isOpen: isOpen,
                 isLoading: isLoading,
               ),
@@ -122,5 +123,74 @@ class _RequestDetailsViewState extends State<RequestDetailsView> {
         },
       ),
     );
+  }
+
+  void _applyRequestUpdate(dynamic data) {
+    final json = _extractRequestJson(data);
+    if (json == null) return;
+    setState(() {
+      _request = RequestModel(
+        id: _request.id,
+        status: json['status']?.toString() ?? _request.status,
+        patientName: json['patientName']?.toString() ?? _request.patientName,
+        hospitalName: json['hospitalName']?.toString() ?? _request.hospitalName,
+        description: json['description']?.toString() ?? _request.description,
+        bagsCount: _intFrom(json['bagsCount']) ?? _request.bagsCount,
+        responsesCount:
+            _intFrom(json['responsesCount']) ?? _request.responsesCount,
+        collectedBags:
+            _intFrom(json['collectedBags']) ?? _request.collectedBags,
+        phoneNumber: json['phoneNumber']?.toString() ?? _request.phoneNumber,
+        latitude: _doubleFrom(json['latitude']) ?? _request.latitude,
+        longitude: _doubleFrom(json['longitude']) ?? _request.longitude,
+        createdAt: _parseDate(json['createdAt']) ?? _request.createdAt,
+        requesterName:
+            json['requesterName']?.toString() ?? _request.requesterName,
+        donationCategoryAr: json['donationCategoryAr']?.toString() ??
+            _request.donationCategoryAr,
+        requiredBloodType: json['requiredBloodType']?.toString() ??
+            _request.requiredBloodType,
+        cityAr: json['cityAr']?.toString() ?? _request.cityAr,
+        cityEn: json['cityEn']?.toString() ?? _request.cityEn,
+        deadline: _parseDate(json['deadline']) ?? _request.deadline,
+      );
+    });
+  }
+
+  Map<String, dynamic>? _extractRequestJson(dynamic data) {
+    if (data == null) return null;
+    if (data is Map<String, dynamic>) {
+      if (data['bloodRequestDTo'] is Map) {
+        return Map<String, dynamic>.from(data['bloodRequestDTo'] as Map);
+      }
+      return data;
+    }
+    if (data is String) {
+      try {
+        final decoded = jsonDecode(data);
+        if (decoded is Map<String, dynamic>) return decoded;
+      } catch (_) {}
+    }
+    return null;
+  }
+
+  int? _intFrom(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is num) return value.toInt();
+    return int.tryParse(value.toString());
+  }
+
+  double? _doubleFrom(dynamic value) {
+    if (value == null) return null;
+    if (value is double) return value;
+    if (value is num) return value.toDouble();
+    return double.tryParse(value.toString());
+  }
+
+  DateTime? _parseDate(dynamic value) {
+    if (value == null) return null;
+    if (value is DateTime) return value;
+    return DateTime.tryParse(value.toString());
   }
 }

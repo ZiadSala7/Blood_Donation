@@ -18,6 +18,18 @@ class NotificationsLoaded extends NotificationsState {
   });
 }
 
+class NotificationsRefreshing extends NotificationsState {
+  final List<NotificationItem> todayItems;
+  final List<NotificationItem> yesterdayItems;
+  final List<NotificationItem> olderItems;
+
+  NotificationsRefreshing({
+    required this.todayItems,
+    required this.yesterdayItems,
+    required this.olderItems,
+  });
+}
+
 class NotificationsError extends NotificationsState {
   final String message;
 

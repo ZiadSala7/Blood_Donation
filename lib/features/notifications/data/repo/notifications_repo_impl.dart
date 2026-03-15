@@ -37,8 +37,19 @@ class NotificationsRepoImpl implements NotificationsRepo {
               raw['isRead'] == true ||
               raw['is_read'] == true ||
               raw['read'] == true;
+          final notificationType = _parseNotificationTypeInt(
+            raw['notificationType'],
+          );
           // ignore: use_build_context_synchronously
-          items.add(notificationItemFromApi(api, context, isRead: isRead));
+          items.add(
+            notificationItemFromApi(
+              api,
+              // ignore: use_build_context_synchronously
+              context,
+              isRead: isRead,
+              notificationType: notificationType,
+            ),
+          );
         } catch (_) {
           // skip malformed item
         }
@@ -85,10 +96,20 @@ class NotificationsRepoImpl implements NotificationsRepo {
     return map;
   }
 
+  int? _parseNotificationTypeInt(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is String) return int.tryParse(value);
+    return null;
+  }
+
   @override
   Future<Either<String, void>> markAsRead(String notificationId) async {
     try {
-      await dio.put<void>('${EndPoints.readNotification}$notificationId');
+      await dio.patch<void>(
+        EndPoints.readNotification,
+        queryParameters: {'Id': notificationId},
+      );
       return right(null);
     } catch (e) {
       return left(
@@ -100,7 +121,7 @@ class NotificationsRepoImpl implements NotificationsRepo {
   @override
   Future<Either<String, void>> markAllAsRead() async {
     try {
-      await dio.put<void>(EndPoints.readAllNotifications);
+      await dio.patch<void>(EndPoints.readAllNotifications);
       return right(null);
     } catch (e) {
       return left(

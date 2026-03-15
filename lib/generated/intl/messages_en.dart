@@ -114,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Select donation type",
     ),
     "donationsCountLabel": MessageLookupByLibrary.simpleMessage("Donations"),
+    "donorIdLabel": MessageLookupByLibrary.simpleMessage("Donor ID"),
     "donorResponsesTitle": MessageLookupByLibrary.simpleMessage(
       "Donor responses",
     ),
@@ -288,6 +289,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy policy"),
     "profileActivityTitle": MessageLookupByLibrary.simpleMessage("Activity"),
+    "profileDonationHistoryTitle": MessageLookupByLibrary.simpleMessage(
+      "Donation history",
+    ),
+    "profilePersonalDataTitle": MessageLookupByLibrary.simpleMessage(
+      "Personal data",
+    ),
+    "profileSettingsTitle": MessageLookupByLibrary.simpleMessage("Settings"),
     "regFail": MessageLookupByLibrary.simpleMessage("Register Failed"),
     "regSucc": MessageLookupByLibrary.simpleMessage("Successful Register"),
     "regSuccDesc": MessageLookupByLibrary.simpleMessage(

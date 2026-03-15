@@ -9,10 +9,14 @@ NotificationItem notificationItemFromApi(
   ApiNotification api,
   BuildContext context, {
   bool isRead = false,
+  int? notificationType,
 }) {
   return NotificationItem(
     id: api.id,
-    type: _mapApiTypeToCardType(api.type),
+    type: _mapApiTypeToCardType(
+      api.type,
+      notificationType: notificationType,
+    ),
     title: api.title,
     body: api.body,
     subtitle: api.data?['subtitle']?.toString() ?? api.screen,
@@ -22,7 +26,24 @@ NotificationItem notificationItemFromApi(
   );
 }
 
-NotificationCardType _mapApiTypeToCardType(NotificationType type) {
+NotificationCardType _mapApiTypeToCardType(
+  NotificationType type, {
+  int? notificationType,
+}) {
+  if (notificationType != null) {
+    switch (notificationType) {
+      case 1:
+        return NotificationCardType.bloodRequest;
+      case 2:
+        return NotificationCardType.donorAccepted;
+      case 3:
+        return NotificationCardType.thankYou;
+      case 4:
+        return NotificationCardType.requestCompleted;
+      default:
+        return NotificationCardType.importantAlert;
+    }
+  }
   switch (type) {
     case NotificationType.bloodRequest:
       return NotificationCardType.bloodRequest;

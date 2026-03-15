@@ -1,14 +1,17 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/di/injection.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_routes.dart';
+import '../../../../core/widgets/custom_buttom_sheet.dart';
+import '../../../../generated/l10n.dart';
 import '../../data/repo/profile_repo_impl.dart';
 import '../cubit/profile_view_model.dart';
 import 'widgets/profile_header.dart';
-import 'widgets/profile_info_card.dart';
-import 'widgets/profile_settings_card.dart';
-import 'widgets/profile_stats_card.dart';
+import 'widgets/profile_menu_tile.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -30,17 +33,41 @@ class ProfileView extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 }
                 return SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   child: Column(
                     children: [
                       ProfileHeader(vm: vm),
                       const SizedBox(height: 16),
-                      ProfileInfoCard(vm: vm),
-                      const SizedBox(height: 16),
-                      ProfileStatsCard(vm: vm),
-                      const SizedBox(height: 16),
-                      ProfileSettingsCard(vm: vm),
-                      const SizedBox(height: 24),
+                      ProfileMenuTile(
+                        title: S.of(context).profilePersonalDataTitle,
+                        icon: Icons.person_outline_rounded,
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 12),
+                      ProfileMenuTile(
+                        title: S.of(context).profileDonationHistoryTitle,
+                        icon: Icons.history_rounded,
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 12),
+                      ProfileMenuTile(
+                        title: S.of(context).changePass,
+                        icon: Icons.lock_outline_rounded,
+                        onTap: () => context.pushNamed(AppRoutes.changePassName),
+                      ),
+                      const SizedBox(height: 12),
+                      ProfileMenuTile(
+                        title: S.of(context).profileSettingsTitle,
+                        icon: Icons.tune_rounded,
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 12),
+                      ProfileMenuTile(
+                        title: S.of(context).logoutLabel,
+                        icon: Icons.logout_rounded,
+                        iconColor: AppColors.commonClr,
+                        onTap: () => _showLogoutSheet(context, vm),
+                      ),
                     ],
                   ),
                 );
@@ -51,4 +78,19 @@ class ProfileView extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showLogoutSheet(BuildContext context, ProfileViewModel vm) {
+  final parentContext = context;
+  showModalBottomSheet<void>(
+    context: context,
+    backgroundColor: Colors.transparent,
+    builder: (sheetContext) => CustomBottomSheetBody(
+      message: S.of(context).logoutConfirmMessage,
+      onTapYes: () async {
+        Navigator.of(sheetContext).pop();
+        await vm.logout(parentContext);
+      },
+    ),
+  );
 }

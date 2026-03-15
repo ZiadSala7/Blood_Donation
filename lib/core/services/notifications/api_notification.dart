@@ -86,7 +86,18 @@ class ApiNotification {
         raw.contains('Z') || raw.contains('+') || raw.lastIndexOf('-') > 9;
     final parsed = DateTime.tryParse(raw);
     if (parsed == null) return DateTime.now();
-    return hasTimezone ? parsed.toLocal() : parsed;
+    if (hasTimezone) return parsed.toLocal();
+    // Treat timestamps without timezone as UTC from API, then convert to local.
+    return DateTime.utc(
+      parsed.year,
+      parsed.month,
+      parsed.day,
+      parsed.hour,
+      parsed.minute,
+      parsed.second,
+      parsed.millisecond,
+      parsed.microsecond,
+    ).toLocal();
   }
 }
 

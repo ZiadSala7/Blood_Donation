@@ -19,7 +19,28 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   List<NotificationItem> get olderItems => _olderItems;
 
   Future<void> loadNotifications(BuildContext context) async {
-    emit(NotificationsLoading());
+    await _loadNotifications(context, isRefresh: false);
+  }
+
+  Future<void> refreshNotifications(BuildContext context) async {
+    await _loadNotifications(context, isRefresh: true);
+  }
+
+  Future<void> _loadNotifications(
+    BuildContext context, {
+    required bool isRefresh,
+  }) async {
+    if (isRefresh) {
+      emit(
+        NotificationsRefreshing(
+          todayItems: _todayItems,
+          yesterdayItems: _yesterdayItems,
+          olderItems: _olderItems,
+        ),
+      );
+    } else {
+      emit(NotificationsLoading());
+    }
     final result = await repo.getAllNotifications(context);
     result.fold((error) => emit(NotificationsError(error)), (items) {
       final now = DateTime.now();
@@ -61,95 +82,17 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     });
   }
 
-  Future<void> markAllAsRead() async {
+  Future<void> markAllAsRead(BuildContext context) async {
     final result = await repo.markAllAsRead();
-    result.fold((_) {}, (_) {
-      _todayItems = _todayItems
-          .map(
-            (e) => NotificationItem(
-              id: e.id,
-              type: e.type,
-              title: e.title,
-              body: e.body,
-              subtitle: e.subtitle,
-              timeAgo: e.timeAgo,
-              isRead: true,
-              receivedAt: e.receivedAt,
-            ),
-          )
-          .toList();
-      _yesterdayItems = _yesterdayItems
-          .map(
-            (e) => NotificationItem(
-              id: e.id,
-              type: e.type,
-              title: e.title,
-              body: e.body,
-              subtitle: e.subtitle,
-              timeAgo: e.timeAgo,
-              isRead: true,
-              receivedAt: e.receivedAt,
-            ),
-          )
-          .toList();
-      _olderItems = _olderItems
-          .map(
-            (e) => NotificationItem(
-              id: e.id,
-              type: e.type,
-              title: e.title,
-              body: e.body,
-              subtitle: e.subtitle,
-              timeAgo: e.timeAgo,
-              isRead: true,
-              receivedAt: e.receivedAt,
-            ),
-          )
-          .toList();
-      emit(
-        NotificationsLoaded(
-          todayItems: _todayItems,
-          yesterdayItems: _yesterdayItems,
-          olderItems: _olderItems,
-        ),
-      );
+    await result.fold((_) async {}, (_) async {
+      await refreshNotifications(context);
     });
   }
 
-  Future<void> markAsRead(NotificationItem item) async {
+  Future<void> markAsRead(BuildContext context, NotificationItem item) async {
     final result = await repo.markAsRead(item.id);
-    result.fold((_) {}, (_) {
-      final updated = NotificationItem(
-        id: item.id,
-        type: item.type,
-        title: item.title,
-        body: item.body,
-        subtitle: item.subtitle,
-        timeAgo: item.timeAgo,
-        isRead: true,
-        receivedAt: item.receivedAt,
-      );
-      final ti = _todayItems.indexOf(item);
-      if (ti >= 0) {
-        _todayItems = List.from(_todayItems)..[ti] = updated;
-      } else {
-        final yi = _yesterdayItems.indexOf(item);
-        if (yi >= 0) {
-          _yesterdayItems = List.from(_yesterdayItems)..[yi] = updated;
-        } else {
-          final oi = _olderItems.indexOf(item);
-          if (oi >= 0) {
-            _olderItems = List.from(_olderItems)..[oi] = updated;
-          }
-        }
-      }
-      emit(
-        NotificationsLoaded(
-          todayItems: _todayItems,
-          yesterdayItems: _yesterdayItems,
-          olderItems: _olderItems,
-        ),
-      );
+    await result.fold((_) async {}, (_) async {
+      await refreshNotifications(context);
     });
   }
 }

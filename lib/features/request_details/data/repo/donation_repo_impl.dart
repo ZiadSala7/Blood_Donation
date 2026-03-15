@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/api/end_points.dart';
+import '../../../../core/errors/error_model.dart';
 import '../../../../core/errors/exception.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../models/donation_response_model.dart';
@@ -27,7 +28,20 @@ class DonationRepoImpl implements DonationRepo {
           : raw;
       return Right(DonationResponseModel.fromJson(data));
     } on ServerException catch (e) {
-      return Left(e.errorModel.errorMessage!);
+      return Left(_composeErrorMessage(e.errorModel));
     }
+  }
+
+  String _composeErrorMessage(ErrorModel error) {
+    final base = (error.errorMessage ?? '').trim();
+    final extra =
+        error.errors != null &&
+            error.errors!.isNotEmpty &&
+            error.errors!.first != null
+        ? error.errors!.first.toString().trim()
+        : '';
+    if (base.isEmpty) return extra;
+    if (extra.isEmpty || extra == base) return base;
+    return '$base\n$extra';
   }
 }

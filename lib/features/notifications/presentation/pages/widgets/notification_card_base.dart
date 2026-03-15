@@ -31,10 +31,10 @@ class NotificationCardBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final effectiveColor =
-        cardColor ?? (isRead ? AppColors.white : AppColors.rqstGrey);
+        cardColor ?? (isRead ? AppColors.white : AppColors.green);
     return Card(
-      color: effectiveColor,
-      elevation: 0,
+      color: isRead ? AppColors.white : effectiveColor,
+      elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: onTap,

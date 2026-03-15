@@ -56,10 +56,11 @@ class NotificationsView extends StatelessWidget {
                   );
                 }
                 if (state is NotificationsLoaded) {
+                  final items = state;
                   final isEmpty =
-                      state.todayItems.isEmpty &&
-                      state.yesterdayItems.isEmpty &&
-                      state.olderItems.isEmpty;
+                      items.todayItems.isEmpty &&
+                      items.yesterdayItems.isEmpty &&
+                      items.olderItems.isEmpty;
                   if (isEmpty) {
                     return Center(
                       child: Column(
@@ -83,13 +84,64 @@ class NotificationsView extends StatelessWidget {
                     );
                   }
                   return NotificationsViewBody(
-                    todayItems: state.todayItems,
-                    yesterdayItems: state.yesterdayItems,
-                    olderItems: state.olderItems,
+                    todayItems: items.todayItems,
+                    yesterdayItems: items.yesterdayItems,
+                    olderItems: items.olderItems,
                     onMarkAllRead: () =>
-                        context.read<NotificationsCubit>().markAllAsRead(),
+                        context.read<NotificationsCubit>().markAllAsRead(
+                          context,
+                        ),
                     onNotificationTap: (item) {
-                      context.read<NotificationsCubit>().markAsRead(item);
+                      context
+                          .read<NotificationsCubit>()
+                          .markAsRead(context, item);
+                      context.pushNamed(
+                        AppRoutes.notificationDetailsName,
+                        extra: item,
+                      );
+                    },
+                  );
+                }
+                if (state is NotificationsRefreshing) {
+                  final items = state;
+                  final isEmpty =
+                      items.todayItems.isEmpty &&
+                      items.yesterdayItems.isEmpty &&
+                      items.olderItems.isEmpty;
+                  if (isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.notifications_none,
+                            size: 64,
+                            color: Colors.grey[400],
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            S.of(context).noNotifications,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  return NotificationsViewBody(
+                    todayItems: items.todayItems,
+                    yesterdayItems: items.yesterdayItems,
+                    olderItems: items.olderItems,
+                    onMarkAllRead: () =>
+                        context.read<NotificationsCubit>().markAllAsRead(
+                          context,
+                        ),
+                    onNotificationTap: (item) {
+                      context
+                          .read<NotificationsCubit>()
+                          .markAsRead(context, item);
                       context.pushNamed(
                         AppRoutes.notificationDetailsName,
                         extra: item,

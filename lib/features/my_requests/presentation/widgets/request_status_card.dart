@@ -17,7 +17,7 @@ class RequestStatusCard extends StatefulWidget {
   final Color avatarColor;
   final String? donorId;
   final Future<ConfirmRequestResult> Function()? onAccept;
-  final VoidCallback? onReject;
+  final Future<ConfirmRequestResult> Function()? onReject;
 
   const RequestStatusCard({
     super.key,
@@ -38,6 +38,7 @@ class RequestStatusCard extends StatefulWidget {
 class _RequestStatusCardState extends State<RequestStatusCard> {
   bool _isLoading = false;
   late bool _isConfirmed;
+  bool _isHidden = false;
 
   @override
   void initState() {
@@ -71,8 +72,29 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
     );
   }
 
+  Future<void> _handleReject() async {
+    if (widget.onReject == null || _isLoading || _isConfirmed) return;
+    setState(() => _isLoading = true);
+    final result = await widget.onReject!.call();
+    if (!mounted) return;
+    setState(() {
+      _isLoading = false;
+      if (result.success) _isHidden = true;
+    });
+    showAwesomeDialog(
+      context,
+      result.success ? S.of(context).successTitle : S.of(context).errorTitle,
+      result.message,
+      result.success,
+      () {},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_isHidden) {
+      return const SizedBox.shrink();
+    }
     final trailing = _buildTrailing(context);
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
@@ -125,7 +147,7 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
     }
     return RequestStatusActions(
       onAccept: _handleAccept,
-      onReject: widget.onReject,
+      onReject: _handleReject,
     );
   }
 }

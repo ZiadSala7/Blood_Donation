@@ -33,6 +33,10 @@ class RequestResponsesList extends StatelessWidget {
         final avatarColor = r.avatarColorHex != null
             ? _hexToColor(r.avatarColorHex!)
             : AppColors.commonClr;
+        final canUpdate =
+            item.request.id != null &&
+            r.donorId != null &&
+            r.donorId!.isNotEmpty;
         return RequestStatusCard(
           name: r.name,
           statusType: r.statusType,
@@ -40,16 +44,20 @@ class RequestResponsesList extends StatelessWidget {
           avatarText: r.avatarText ?? S.of(context).defaultAvatarInitial,
           avatarColor: avatarColor,
           donorId: r.donorId,
-          onAccept: (item.request.id != null &&
-                  r.donorId != null &&
-                  r.donorId!.isNotEmpty)
+          onAccept: canUpdate
               ? () => context.read<MyRequestsCubit>().confirmRequest(
-                    requestId: item.request.id!,
-                    donorId: r.donorId!,
-                    hasDonated: 1,
-                  )
+                  requestId: item.request.id!,
+                  donorId: r.donorId!,
+                  hasDonated: 1,
+                )
               : null,
-          onReject: () {},
+          onReject: canUpdate
+              ? () => context.read<MyRequestsCubit>().confirmRequest(
+                  requestId: item.request.id!,
+                  donorId: r.donorId!,
+                  hasDonated: 0,
+                )
+              : null,
         );
       }).toList(),
     );
