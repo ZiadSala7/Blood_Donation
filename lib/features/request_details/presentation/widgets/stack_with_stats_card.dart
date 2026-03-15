@@ -89,7 +89,7 @@ class _StackWithStatCardState extends State<StackWithStatCard>
         padding: const EdgeInsets.only(top: 8),
         child: StatBody(
           S.of(context).onTheWay,
-          widget.request.collectedBags,
+          widget.request.responsesCount,
           widget: Image.asset(AppAssets.assetsImagesComeSoon),
           desc: S.of(context).donorsLabel,
         ),

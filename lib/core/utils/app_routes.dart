@@ -13,6 +13,7 @@ import '../../features/notifications/presentation/pages/notification_details_vie
 import '../../features/request_details/presentation/pages/request_details_view.dart';
 import '../../features/notifications/data/models/notification_item.dart';
 import '../../features/donation_history/presentation/pages/donation_history_view.dart';
+import '../../features/personal_data/presentation/pages/personal_data_view.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
@@ -29,6 +30,7 @@ abstract class AppRoutes {
   static const String requestDetails = '/requestDetails';
   static const String notificationDetails = '/notificationDetails';
   static const String donationHistory = '/donationHistory';
+  static const String personalData = '/personalData';
 
   static const String registerName = 'register';
   static const String loginName = 'login';
@@ -42,6 +44,7 @@ abstract class AppRoutes {
   static const String requestDetailsName = 'requestDetailsName';
   static const String notificationDetailsName = 'notificationDetailsName';
   static const String donationHistoryName = 'donationHistoryName';
+  static const String personalDataName = 'personalDataName';
 
   static final appRouter = GoRouter(
     routes: [
@@ -129,6 +132,11 @@ abstract class AppRoutes {
         path: donationHistory,
         name: donationHistoryName,
         builder: (context, state) => const DonationHistoryView(),
+      ),
+      GoRoute(
+        path: personalData,
+        name: personalDataName,
+        builder: (context, state) => const PersonalDataView(),
       ),
     ],
   );

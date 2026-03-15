@@ -7,6 +7,7 @@ import '../utils/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
+  final Widget? widget;
   final String label;
   final String hint;
   final TextInputType? keyboardType;
@@ -31,6 +32,7 @@ class CustomTextField extends StatelessWidget {
     this.autovalidateMode = AutovalidateMode.disabled,
     this.maxLines = 1,
     this.hintClr,
+    this.widget,
   });
 
   @override
@@ -64,6 +66,7 @@ class CustomTextField extends StatelessWidget {
             onTap: onTap,
             readOnly: readOnly,
             decoration: InputDecoration(
+              prefixIcon: widget,
               hintText: hint,
               hintStyle: TextStyle(
                 color: hintClr ?? AppColors.greyBorder,

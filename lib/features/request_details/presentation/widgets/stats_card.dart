@@ -48,7 +48,7 @@ class StatsCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5),
               child: StatBody(
                 S.of(context).requestArrived,
-                request.responsesCount,
+                request.collectedBags,
                 widget: Image.asset(AppAssets.assetsImagesArriveDone),
                 desc: S.of(context).donorsLabel,
               ),

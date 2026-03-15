@@ -19,9 +19,9 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ProfileViewModel(
-        repo: ProfileRepoImpl(dio: getIt.get<DioConsumer>()),
-      )..loadProfile(),
+      create: (_) =>
+          ProfileViewModel(repo: ProfileRepoImpl(dio: getIt.get<DioConsumer>()))
+            ..loadProfile(),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
@@ -41,7 +41,8 @@ class ProfileView extends StatelessWidget {
                       ProfileMenuTile(
                         title: S.of(context).profilePersonalDataTitle,
                         icon: Icons.person_outline_rounded,
-                        onTap: () {},
+                        onTap: () =>
+                            context.pushNamed(AppRoutes.personalDataName),
                       ),
                       const SizedBox(height: 12),
                       ProfileMenuTile(
@@ -54,7 +55,8 @@ class ProfileView extends StatelessWidget {
                       ProfileMenuTile(
                         title: S.of(context).changePass,
                         icon: Icons.lock_outline_rounded,
-                        onTap: () => context.pushNamed(AppRoutes.changePassName),
+                        onTap: () =>
+                            context.pushNamed(AppRoutes.changePassName),
                       ),
                       const SizedBox(height: 12),
                       ProfileMenuTile(
