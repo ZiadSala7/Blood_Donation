@@ -5,11 +5,7 @@ import '../../../../auth/login/presentation/cubit/login_cubit.dart';
 import '../../../../auth/register/data/models/register_model.dart';
 import '../../cubit/home_cubit.dart';
 import '../../cubit/home_states.dart';
-import 'details_sliver_appbar.dart';
-import 'home_empty_state.dart';
-import 'nearby_requests_divider.dart';
-import 'request_card.dart';
-import 'search_and_filtering_sliver_appbar.dart';
+import 'home_view_content.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -42,15 +38,28 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     final currentPosition = scrollController.position.pixels;
     final maxScroll = scrollController.position.maxScrollExtent;
 
-    // On larger screens (e.g. tablets) the list might not be scrollable at all.
-    // In that case maxScroll will be 0, so we avoid triggering pagination
-    // to prevent showing a loading indicator without real pagination.
-    if (maxScroll <= 0) return;
-
     if (currentPosition >= maxScroll - 200) {
-      isLoading = true;
-      context.read<HomeCubit>().getRequestsWithPagination(index: nextPage++);
+      _loadNextPage();
     }
+  }
+
+  void _checkIfNeedsPagination() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (!scrollController.hasClients || isLoading || !hasMore) return;
+
+      final maxScroll = scrollController.position.maxScrollExtent;
+      // Content doesn't fill the screen — load more immediately
+      if (maxScroll <= 0) {
+        _loadNextPage();
+      }
+    });
+  }
+
+  void _loadNextPage() {
+    if (isLoading || !hasMore) return;
+    setState(() => isLoading = true);
+    context.read<HomeCubit>().getRequestsWithPagination(index: nextPage++);
   }
 
   Future<void> _onRefresh() async {
@@ -60,6 +69,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       hasMore = true;
     });
     await context.read<HomeCubit>().refreshRequests();
+    _checkIfNeedsPagination();
   }
 
   Future<void> _onApplyFiltration(
@@ -79,6 +89,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       governorateId: governorateId,
       cityId: cityId,
     );
+    _checkIfNeedsPagination();
   }
 
   Future<void> _onSearchSubmitted(String value) async {
@@ -93,6 +104,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     } else {
       await context.read<HomeCubit>().applySearch('');
     }
+    _checkIfNeedsPagination();
   }
 
   Future<void> _onSearchChanged(String value) async {
@@ -107,6 +119,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     } else {
       await context.read<HomeCubit>().applySearch('');
     }
+    _checkIfNeedsPagination();
   }
 
   @override
@@ -119,77 +132,45 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {
-        if (state is HomeSuccess) {
-          setState(() {
-            isLoading = false;
-          });
-          if (state.requestEntities.isEmpty) {
-            setState(() {
-              hasMore = false;
-            });
-          }
-        } else if (state is HomeFailure) {
-          setState(() {
-            isLoading = false;
-          });
-        }
-      },
-      builder: (context, state) {
-        final allRequests = context.read<HomeCubit>().allEntities;
-        final requests = allRequests;
-        final isInitialLoading = state is HomeLoading && allRequests.isEmpty;
-        final showEmptyState = requests.isEmpty && !isInitialLoading;
+      listener: _onHomeStateChanged,
+      builder: (context, state) => _buildBody(state),
+    );
+  }
 
-        return RefreshIndicator(
-          onRefresh: _onRefresh,
-          child: CustomScrollView(
-            controller: scrollController,
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: [
-              DetailsSliverAppBar(model: model),
-              SearchAndFilteringSliverAppBar(
-                searchController: searchController,
-                onSearchChanged: _onSearchChanged,
-                onSearchSubmitted: (value) => _onSearchSubmitted(value),
-                onApplyFiltration: _onApplyFiltration,
-              ),
-              const SliverToBoxAdapter(child: NearbyRequestsDivider()),
+  void _onHomeStateChanged(BuildContext context, HomeStates state) {
+    if (state is HomeSuccess) {
+      setState(() => isLoading = false);
+      if (state.requestEntities.isEmpty) {
+        setState(() => hasMore = false);
+      } else {
+        _checkIfNeedsPagination();
+      }
+    } else if (state is HomeFailure) {
+      setState(() => isLoading = false);
+    }
+  }
 
-              if (isInitialLoading)
-                const SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Center(child: CircularProgressIndicator()),
-                )
-              else if (showEmptyState)
-                const SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: HomeEmptyState(),
-                )
-              else
-                SliverList(
-                  delegate: SliverChildBuilderDelegate((context, index) {
-                    if (index < requests.length) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: RequestCard(entity: requests[index]),
-                      );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Center(
-                          child: isLoading
-                              ? const CircularProgressIndicator()
-                              : const SizedBox(),
-                        ),
-                      );
-                    }
-                  }, childCount: requests.length + (hasMore ? 1 : 0)),
-                ),
-            ],
-          ),
-        );
-      },
+  Widget _buildBody(HomeStates state) {
+    final allRequests = context.read<HomeCubit>().allEntities;
+    final requests = allRequests;
+    final isInitialLoading = state is HomeLoading && allRequests.isEmpty;
+    final showEmptyState = requests.isEmpty && !isInitialLoading;
+
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      child: HomeViewContent(
+        model: model,
+        scrollController: scrollController,
+        searchController: searchController,
+        onSearchChanged: _onSearchChanged,
+        onSearchSubmitted: _onSearchSubmitted,
+        onApplyFiltration: _onApplyFiltration,
+        requests: requests,
+        isInitialLoading: isInitialLoading,
+        showEmptyState: showEmptyState,
+        isLoading: isLoading,
+        hasMore: hasMore,
+      ),
     );
   }
 }

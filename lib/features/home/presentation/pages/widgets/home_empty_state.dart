@@ -5,7 +5,8 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../generated/l10n.dart';
 
 class HomeEmptyState extends StatelessWidget {
-  const HomeEmptyState({super.key});
+  final IconData? icon;
+  const HomeEmptyState({super.key, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +40,8 @@ class HomeEmptyState extends StatelessWidget {
                   color: AppColors.commonClr.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(
-                  Icons.inbox_rounded,
+                child: Icon(
+                  icon ?? Icons.inbox_rounded,
                   color: AppColors.commonClr,
                   size: 34,
                 ),

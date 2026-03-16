@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../generated/l10n.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
 
 class CreateDonationRequestDivider extends StatelessWidget {
   const CreateDonationRequestDivider({super.key});

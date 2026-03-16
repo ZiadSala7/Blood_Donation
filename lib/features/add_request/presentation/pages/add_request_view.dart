@@ -6,7 +6,7 @@ import '../../../../core/widgets/show_awesome_dialog.dart';
 import '../../../../generated/l10n.dart';
 import '../cubit/add_request_cubit.dart';
 import '../cubit/add_request_states.dart';
-import 'widgets/add_request_view_body.dart';
+import '../widgets/add_request_view_body.dart';
 
 class AddRequestView extends StatelessWidget {
   const AddRequestView({super.key});
