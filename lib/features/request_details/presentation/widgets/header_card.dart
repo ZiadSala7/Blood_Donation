@@ -43,8 +43,8 @@ class HeaderCard extends StatelessWidget {
                   Icon(Icons.circle, color: statusTint, size: 10),
                   Text(
                     statusText,
-                    style: const TextStyle(
-                      color: Colors.green,
+                    style: TextStyle(
+                      color: statusText == 'مفتوح' ? Colors.green : statusTint,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -66,7 +66,7 @@ String statusLabel(BuildContext context, RequestStatusType type) {
 Color statusColor(RequestStatusType type) {
   switch (type) {
     case RequestStatusType.open:
-      return AppColors.openStatus;
+      return AppColors.green;
     case RequestStatusType.closed:
       return Colors.grey;
     case RequestStatusType.completed:
