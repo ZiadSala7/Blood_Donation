@@ -72,6 +72,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
         return d != today && d != yesterday;
       }).toList();
 
+      // Re-emit the grouped items after a refresh or initial load.
       emit(
         NotificationsLoaded(
           todayItems: _todayItems,

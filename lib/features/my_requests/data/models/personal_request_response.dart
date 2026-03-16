@@ -91,6 +91,7 @@ class ResponseDto {
     int? statusCode,
     String? statusText,
   ) {
+    // Only two UI states are used for donor responses.
     if (statusCode == 1) return RequestStatusType.completed;
     if (statusCode == 0) return RequestStatusType.inTransit;
     final parsed = parseRequestStatus(statusText);

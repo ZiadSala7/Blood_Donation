@@ -59,6 +59,7 @@ dependencies:
   shared_preferences: ^2.5.4
   signalr_netcore: ^1.4.4
   timezone: ^0.10.1
+  url_launcher: ^6.3.0
 
 dependency_overrides:
   rive_native: ^0.1.3

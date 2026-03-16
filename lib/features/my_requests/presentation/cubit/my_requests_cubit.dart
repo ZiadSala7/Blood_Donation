@@ -29,6 +29,7 @@ class MyRequestsCubit extends Cubit<MyRequestsState> {
     result.fold((err) => emit(MyRequestsFailure(errMsg: err)), (data) {
       _pageIndex = data.pageIndex;
       _items = data.items;
+      // Pagination bar here selects within the current page's items.
       _selectedIndex = 1;
       _totalPages = _items.isEmpty ? 1 : _items.length;
       emit(

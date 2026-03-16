@@ -28,6 +28,7 @@ class SearchAndFilterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double fieldHeight = 56;
     return SizedBox(
       height: 100,
       child: Row(
@@ -47,22 +48,29 @@ class SearchAndFilterSection extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (_) => FilterBottomSheet(onApply: onApplyFiltration),
-                );
-              },
-              child: Container(
-                height: 48,
-                decoration: BoxDecoration(
-                  color: AppColors.commonClr,
-                  borderRadius: BorderRadius.circular(15),
+            child: SizedBox(
+              width: fieldHeight,
+              child: InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (_) =>
+                        FilterBottomSheet(onApply: onApplyFiltration),
+                  );
+                },
+                child: Container(
+                  height: fieldHeight,
+                  decoration: BoxDecoration(
+                    color: AppColors.commonClr,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: const Icon(
+                    Symbols.tune_rounded,
+                    color: AppColors.white,
+                  ),
                 ),
-                child: const Icon(Symbols.tune_rounded, color: AppColors.white),
               ),
             ),
           ),

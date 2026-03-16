@@ -24,6 +24,7 @@ class NotificationsRepoImpl implements NotificationsRepo {
         data: {'pageNumber': 1, 'pageSize': 50},
       );
       final list = _extractList(response);
+      // API may return an empty envelope or a non-list payload.
       if (list == null || list.isEmpty) {
         return right([]);
       }

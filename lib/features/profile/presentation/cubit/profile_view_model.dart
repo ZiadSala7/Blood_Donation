@@ -56,6 +56,7 @@ class ProfileViewModel extends ChangeNotifier {
 
     final apiProfile = await repo.getProfile();
     if (apiProfile != null) {
+      // API result is the source of truth when available.
       _profile = apiProfile;
       _name = apiProfile.name;
       _phone = apiProfile.phone;
@@ -66,7 +67,7 @@ class ProfileViewModel extends ChangeNotifier {
       _donationsCount = apiProfile.donationsCount;
       _requestsCount = apiProfile.requestsCount;
     } else {
-      // Fallback to cached user
+      // Fallback to cached user if the profile endpoint fails.
       final cachedUser = getCachedUser();
       if (cachedUser != null) {
         _name = cachedUser.name ?? '';

@@ -45,6 +45,7 @@ class ProfileMenuSection extends StatelessWidget {
           title: S.of(context).logoutLabel,
           icon: Icons.logout_rounded,
           iconColor: AppColors.commonClr,
+          // Logout uses a confirmation sheet to avoid accidental exits.
           onTap: () => _showLogoutSheet(context, vm),
         ),
       ],
