@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../generated/l10n.dart';
+import '../cubit/my_requests_cubit.dart';
+import '../cubit/my_requests_states.dart';
+import '../../data/models/personal_request_response.dart';
+import 'show_share_dialog.dart';
 
 class MyRequestsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyRequestsAppBar({super.key});
@@ -16,7 +21,29 @@ class MyRequestsAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Text(S.of(context).myRequestsTitle),
       leading: const Icon(Icons.arrow_back_ios),
-      actions: const [Icon(Icons.share), SizedBox(width: 12)],
+      actions: [
+        BlocBuilder<MyRequestsCubit, MyRequestsState>(
+          builder: (context, state) {
+            final item = _selectedItem(state);
+            final requestId = item?.request.id;
+            return IconButton(
+              icon: const Icon(Icons.share),
+              onPressed: requestId == null
+                  ? null
+                  : () => showShareDialog(context, requestId),
+              tooltip: 'Share',
+            );
+          },
+        ),
+        const SizedBox(width: 12),
+      ],
     );
+  }
+
+  PersonalRequestItem? _selectedItem(MyRequestsState state) {
+    if (state is! MyRequestsSuccess) return null;
+    final itemIndex = state.selectedIndex - 1;
+    if (itemIndex < 0 || itemIndex >= state.items.length) return null;
+    return state.items[itemIndex];
   }
 }
