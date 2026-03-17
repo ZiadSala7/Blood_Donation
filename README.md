@@ -107,15 +107,21 @@ linux/
 
 ## Screenshots
 
-> Replace the placeholders below with real screenshots.
+| Onboarding 1                                             | Onboarding 2                                             | Onboarding 3                                             |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| ![Onboarding 1](assets/images/readme/Onboarding%201.png) | ![Onboarding 2](assets/images/readme/Onboarding%202.png) | ![Onboarding 3](assets/images/readme/Onboarding%203.png) |
 
-| Onboarding                                              | Home                                        | Request Details                                   |
-| ------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------- |
-| ![Onboarding](assets/images/placeholder_onboarding.png) | ![Home](assets/images/placeholder_home.png) | ![Details](assets/images/placeholder_details.png) |
+| Onboarding 4                                             | Splash                                              | Home                                   |
+| -------------------------------------------------------- | --------------------------------------------------- | -------------------------------------- |
+| ![Onboarding 4](assets/images/readme/Onboarding%204.png) | ![Splash](assets/images/readme/Splash%20screen.png) | ![Home](assets/images/readme/Home.png) |
 
-| My Requests                                               | Notifications                                                 | Profile                                           |
-| --------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- |
-| ![My Requests](assets/images/placeholder_my_requests.png) | ![Notifications](assets/images/placeholder_notifications.png) | ![Profile](assets/images/placeholder_profile.png) |
+| Requests                                       | Request Details                                                | Notifications                                           |
+| ---------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------- |
+| ![Requests](assets/images/readme/Requests.png) | ![Request Details](assets/images/readme/Request%20Details.png) | ![Notifications](assets/images/readme/Notification.png) |
+
+| Filtration                                         | Profile                                      |     |
+| -------------------------------------------------- | -------------------------------------------- | --- |
+| ![Filtration](assets/images/readme/Filtration.png) | ![Profile](assets/images/readme/Profile.png) |     |
 
 ## Social Links
 
