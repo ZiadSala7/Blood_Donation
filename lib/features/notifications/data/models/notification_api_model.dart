@@ -23,7 +23,15 @@ NotificationItem notificationItemFromApi(
     timeAgo: timeAgoFromDateTime(context, api.receivedAt),
     isRead: isRead,
     receivedAt: api.receivedAt,
+    bloodRequestId: _readRequestId(
+      api.data?['bloodRequestId'] ?? api.data?['requestId'],
+    ),
   );
+}
+
+String? _readRequestId(dynamic value) {
+  if (value == null) return null;
+  return value.toString();
 }
 
 NotificationCardType _mapApiTypeToCardType(

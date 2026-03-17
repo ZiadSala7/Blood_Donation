@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/notification_item.dart';
+import '../../data/models/notification_item.dart';
 import 'notification_card_from_item.dart';
 
 class NotificationsSectionList extends StatelessWidget {

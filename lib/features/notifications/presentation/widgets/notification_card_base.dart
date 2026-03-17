@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-import '../../../data/utils/time_ago_utils.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../data/utils/time_ago_utils.dart';
 
 /// Base card for all notification types. Used by the five custom notification widgets.
 class NotificationCardBase extends StatelessWidget {
@@ -14,6 +14,7 @@ class NotificationCardBase extends StatelessWidget {
   final bool isRead;
   final Color? cardColor;
   final VoidCallback? onTap;
+  final Widget? footer;
 
   const NotificationCardBase({
     super.key,
@@ -26,6 +27,7 @@ class NotificationCardBase extends StatelessWidget {
     this.isRead = false,
     this.cardColor,
     this.onTap,
+    this.footer,
   });
 
   @override
@@ -82,6 +84,10 @@ class NotificationCardBase extends StatelessWidget {
                         subtitle!,
                         style: TextStyle(fontSize: 12, color: AppColors.grey),
                       ),
+                    ],
+                    if (footer != null) ...[
+                      const SizedBox(height: 8),
+                      footer!,
                     ],
                     const SizedBox(height: 8),
                     Row(

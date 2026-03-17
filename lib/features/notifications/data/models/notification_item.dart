@@ -16,6 +16,7 @@ class NotificationItem {
   final String timeAgo;
   final bool isRead;
   final DateTime receivedAt;
+  final String? bloodRequestId;
 
   const NotificationItem({
     required this.id,
@@ -26,5 +27,6 @@ class NotificationItem {
     required this.timeAgo,
     this.isRead = false,
     required this.receivedAt,
+    this.bloodRequestId,
   });
 }

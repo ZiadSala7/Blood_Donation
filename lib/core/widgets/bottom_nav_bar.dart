@@ -56,9 +56,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(
-        HomeRepoImpl(dio: getIt.get<DioConsumer>()),
-      )..getRequestsWithPagination(),
+      create: (context) =>
+          HomeCubit(HomeRepoImpl(dio: getIt.get<DioConsumer>()))
+            ..getRequestsWithPagination(),
       child: Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(

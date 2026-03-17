@@ -1,12 +1,13 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/request_model.dart';
-import '../../data/repo/home_repo_impl.dart';
 import '../../domain/entities/request_entity.dart';
+import '../../domain/repo/home_repo.dart';
 import 'home_states.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
-  final HomeRepoImpl repo;
+  final HomeRepo repo;
   List<RequestEntity> allEntities = [];
   List<RequestModel> allModels = [];
   String? searchFilter;
@@ -73,5 +74,9 @@ class HomeCubit extends Cubit<HomeStates> {
       allModels.addAll(requests);
       emit(HomeSuccess(requestEntities: entities));
     });
+  }
+
+  Future<Either<String, RequestModel>> getRequestById({required int id}) {
+    return repo.getRequestById(id: id);
   }
 }

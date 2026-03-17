@@ -9,9 +9,9 @@ import '../../data/repo/notifications_repo_impl.dart';
 import '../../data/models/notification_item.dart';
 import '../cubit/notifications_cubit.dart';
 import '../cubit/notifications_states.dart';
-import 'widgets/notifications_empty_state.dart';
-import 'widgets/notifications_error_state.dart';
-import 'widgets/notifications_loaded_content.dart';
+import '../widgets/notifications_empty_state.dart';
+import '../widgets/notifications_error_state.dart';
+import '../widgets/notifications_loaded_content.dart';
 
 class NotificationsView extends StatelessWidget {
   const NotificationsView({super.key});

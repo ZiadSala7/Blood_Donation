@@ -34,27 +34,47 @@ class RequestStatusInfo extends StatelessWidget {
         ),
 
         const SizedBox(height: 4),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              width: 6,
-              height: 6,
-              decoration: BoxDecoration(
-                color: statusColorValue,
-                shape: BoxShape.circle,
+        if (isConfirmed)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              const Icon(
+                Icons.check_circle,
+                size: 14,
+                color: Colors.green,
               ),
-            ),
-            const SizedBox(width: 6),
-            Text(
-              statusText,
-              style: AppTextStyles.s14(
-                context,
-              ).copyWith(color: statusColorValue),
-              textDirection: TextDirection.rtl,
-            ),
-          ],
-        ),
+              const SizedBox(width: 6),
+              Text(
+                'تم التبرع',
+                style: AppTextStyles.s14(
+                  context,
+                ).copyWith(color: Colors.green),
+                textDirection: TextDirection.rtl,
+              ),
+            ],
+          )
+        else
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                width: 6,
+                height: 6,
+                decoration: BoxDecoration(
+                  color: statusColorValue,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                statusText,
+                style: AppTextStyles.s14(
+                  context,
+                ).copyWith(color: statusColorValue),
+                textDirection: TextDirection.rtl,
+              ),
+            ],
+          ),
         const SizedBox(height: 2),
         Text(
           time,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/notification_item.dart';
+import '../../data/models/notification_item.dart';
 import 'blood_request_notification_card.dart';
 import 'donor_accepted_notification_card.dart';
 import 'important_alert_notification_card.dart';

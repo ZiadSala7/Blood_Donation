@@ -13,6 +13,18 @@ class RequestResponsesList extends StatelessWidget {
 
   const RequestResponsesList({super.key, required this.item});
 
+  static const List<Color> _avatarColors = [
+    Color(0xFFEF4444),
+    Color(0xFFF59E0B),
+    Color(0xFF10B981),
+    Color(0xFF3B82F6),
+    Color(0xFF8B5CF6),
+    Color(0xFFEC4899),
+    Color(0xFF14B8A6),
+    Color(0xFF22C55E),
+    Color(0xFF6366F1),
+  ];
+
   @override
   Widget build(BuildContext context) {
     if (item.responses.isEmpty) {
@@ -32,16 +44,17 @@ class RequestResponsesList extends StatelessWidget {
             : S.of(context).timeAgoNow;
         final avatarColor = r.avatarColorHex != null
             ? _hexToColor(r.avatarColorHex!)
-            : AppColors.commonClr;
+            : _pickAvatarColor(r);
         final canUpdate =
             item.request.id != null &&
             r.donorId != null &&
             r.donorId!.isNotEmpty;
-        final isConfirmedOverride = canUpdate &&
+        final isConfirmedOverride =
+            canUpdate &&
             context.read<MyRequestsCubit>().isConfirmed(
-                  item.request.id!,
-                  r.donorId!,
-                );
+              item.request.id!,
+              r.donorId!,
+            );
         return RequestStatusCard(
           name: r.name,
           statusType: r.statusType,
@@ -76,5 +89,11 @@ class RequestResponsesList extends StatelessWidget {
       radix: 16,
     );
     return value != null ? Color(value) : AppColors.commonClr;
+  }
+
+  Color _pickAvatarColor(ResponseDto r) {
+    final seed = (r.donorId ?? r.name).hashCode;
+    final index = seed.abs() % _avatarColors.length;
+    return _avatarColors[index];
   }
 }

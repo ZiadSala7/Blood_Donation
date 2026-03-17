@@ -1,63 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/api/dio_consumer.dart';
+import '../../../../core/di/injection.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_styles.dart';
+import '../../../../core/utils/app_routes.dart';
 import '../../../../generated/l10n.dart';
+import '../../../home/data/repo/home_repo_impl.dart';
+import '../../../home/presentation/cubit/home_cubit.dart';
 import '../../data/models/notification_item.dart';
-import '../../data/utils/time_ago_utils.dart';
+import 'widgets/notification_details_body.dart';
 
-class NotificationDetailsView extends StatelessWidget {
+class NotificationDetailsView extends StatefulWidget {
   final NotificationItem item;
   const NotificationDetailsView({super.key, required this.item});
 
   @override
+  State<NotificationDetailsView> createState() =>
+      _NotificationDetailsViewState();
+}
+
+class _NotificationDetailsViewState extends State<NotificationDetailsView> {
+  bool _isLoading = false;
+
+  Future<void> _handleOpenRequest(BuildContext blocContext) async {
+    if (_isLoading) return;
+    final requestId = widget.item.bloodRequestId;
+    if (requestId == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(S.of(context).genericErrorRetry)));
+      return;
+    }
+
+    setState(() => _isLoading = true);
+    int id = int.parse(requestId);
+    final result = await blocContext.read<HomeCubit>().getRequestById(id: id);
+    if (!mounted) return;
+    setState(() => _isLoading = false);
+
+    result.fold(
+      (err) => ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(err))),
+      (model) => context.pushNamed(AppRoutes.requestDetailsName, extra: model),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        scrolledUnderElevation: 0,
-        title: Text(S.of(context).notificationDetailsTitle),
-        centerTitle: true,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppColors.rqstGrey,
-              borderRadius: BorderRadius.circular(16),
+    return BlocProvider(
+      create: (context) =>
+          HomeCubit(HomeRepoImpl(dio: getIt.get<DioConsumer>())),
+      child: Builder(
+        builder: (blocContext) {
+          return Scaffold(
+            backgroundColor: AppColors.white,
+            appBar: AppBar(
+              backgroundColor: AppColors.white,
+              scrolledUnderElevation: 0,
+              title: Text(S.of(context).notificationDetailsTitle),
+              centerTitle: true,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(item.title, style: AppTextStyles.b20(context)),
-                const SizedBox(height: 6),
-                Text(
-                  timeAgoFromDateTime(context, item.receivedAt),
-                  style: AppTextStyles.r14(context).copyWith(
-                    color: AppColors.grey,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  item.body,
-                  style: AppTextStyles.r16(context),
-                ),
-                if (item.subtitle != null && item.subtitle!.isNotEmpty) ...[
-                  const SizedBox(height: 10),
-                  Text(
-                    item.subtitle!,
-                    style: AppTextStyles.s14(context).copyWith(
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ],
-              ],
+            body: NotificationDetailsBody(
+              item: widget.item,
+              isLoading: _isLoading,
+              onOpenRequest: () => _handleOpenRequest(blocContext),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

@@ -150,7 +150,10 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
     if (_isConfirmed) {
       return Text(
         S.of(context).statusCompleted,
-        style: const TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppColors.grey,
+        ),
       );
     }
     return RequestStatusActions(

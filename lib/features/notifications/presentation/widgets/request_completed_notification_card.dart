@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import '../../../../../generated/l10n.dart';
+import '../../../../generated/l10n.dart';
 import 'notification_card_base.dart';
 
-/// Donor accepted the request notification (متبرع وافق على الطلب).
-class DonorAcceptedNotificationCard extends StatelessWidget {
+/// Request completion notification (اكتمال الطلب).
+class RequestCompletedNotificationCard extends StatelessWidget {
   final String body;
   final String? subtitle;
   final DateTime receivedAt;
   final bool isRead;
   final VoidCallback? onTap;
 
-  const DonorAcceptedNotificationCard({
+  const RequestCompletedNotificationCard({
     super.key,
     required this.body,
     this.subtitle,
@@ -24,9 +24,13 @@ class DonorAcceptedNotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NotificationCardBase(
-      icon: const Icon(Symbols.check_circle_rounded, color: Colors.white, size: 24),
-      iconBackgroundColor: const Color(0xFF81C784),
-      title: S.of(context).notificationDonorAcceptedTitle,
+      icon: const Icon(
+        Symbols.check_circle_rounded,
+        color: Color(0xFF2E7D32),
+        size: 24,
+      ),
+      iconBackgroundColor: const Color(0xFFE8F5E9),
+      title: S.of(context).notificationRequestCompletedTitle,
       body: body,
       subtitle: subtitle,
       receivedAt: receivedAt,

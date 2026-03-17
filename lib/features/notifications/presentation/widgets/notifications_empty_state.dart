@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../generated/l10n.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../generated/l10n.dart';
 import 'notifications_sliver_app_bar.dart';
 
 class NotificationsEmptyState extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../generated/l10n.dart';
-import '../../../data/models/notification_item.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_styles.dart';
+import '../../../../generated/l10n.dart';
+import '../../data/models/notification_item.dart';
 import 'notifications_section_header.dart';
 import 'notifications_section_list.dart';
 import 'notifications_sliver_app_bar.dart';

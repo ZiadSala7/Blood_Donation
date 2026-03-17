@@ -12,9 +12,17 @@ class HomeRepoImpl implements HomeRepo {
 
   HomeRepoImpl({required this.dio});
   @override
-  Future<Either<String, RequestModel>> getRequestById({required int id}) {
-    // todo: implement getRequestById
-    throw UnimplementedError();
+  Future<Either<String, RequestModel>> getRequestById({required int id}) async {
+    try {
+      final response = await dio.get(
+        EndPoints.getBldRqustById,
+        queryParameters: {'Id': id.toString()},
+      );
+      final RequestModel requestModel = RequestModel.fromJson(response);
+      return Right(requestModel);
+    } catch (e) {
+      return Left(AppConstants.errMsg);
+    }
   }
 
   @override
