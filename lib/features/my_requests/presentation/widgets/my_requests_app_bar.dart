@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/utils/app_routes.dart';
 import '../../../../generated/l10n.dart';
 import '../cubit/my_requests_cubit.dart';
 import '../cubit/my_requests_states.dart';
@@ -20,7 +22,16 @@ class MyRequestsAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       centerTitle: true,
       title: Text(S.of(context).myRequestsTitle),
-      leading: const Icon(Icons.arrow_back_ios),
+      leading: IconButton(
+        icon: Icon(Icons.chevron_left, color: Colors.grey[700]),
+        onPressed: () {
+          if (context.canPop()) {
+            context.pop();
+          } else {
+            context.go(AppRoutes.btmNavBar);
+          }
+        },
+      ),
       actions: [
         BlocBuilder<MyRequestsCubit, MyRequestsState>(
           builder: (context, state) {

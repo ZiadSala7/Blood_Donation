@@ -5,7 +5,7 @@ import '../../../../auth/login/presentation/cubit/login_cubit.dart';
 import '../../../../auth/register/data/models/register_model.dart';
 import '../../cubit/home_cubit.dart';
 import '../../cubit/home_states.dart';
-import 'home_view_content.dart';
+import 'home_view_body_content.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -156,21 +156,19 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     final isInitialLoading = state is HomeLoading && allRequests.isEmpty;
     final showEmptyState = requests.isEmpty && !isInitialLoading;
 
-    return RefreshIndicator(
+    return HomeViewBodyContent(
+      model: model,
+      scrollController: scrollController,
+      searchController: searchController,
+      onSearchChanged: _onSearchChanged,
+      onSearchSubmitted: _onSearchSubmitted,
+      onApplyFiltration: _onApplyFiltration,
       onRefresh: _onRefresh,
-      child: HomeViewContent(
-        model: model,
-        scrollController: scrollController,
-        searchController: searchController,
-        onSearchChanged: _onSearchChanged,
-        onSearchSubmitted: _onSearchSubmitted,
-        onApplyFiltration: _onApplyFiltration,
-        requests: requests,
-        isInitialLoading: isInitialLoading,
-        showEmptyState: showEmptyState,
-        isLoading: isLoading,
-        hasMore: hasMore,
-      ),
+      requests: requests,
+      isInitialLoading: isInitialLoading,
+      showEmptyState: showEmptyState,
+      isLoading: isLoading,
+      hasMore: hasMore,
     );
   }
 }

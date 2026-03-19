@@ -34,8 +34,9 @@ class SearchAndFilterSection extends StatelessWidget {
       child: Row(
         crossAxisAlignment: .center,
         mainAxisAlignment: .start,
-        spacing: 20,
+        spacing: 10,
         children: [
+          const SizedBox(),
           Expanded(
             flex: 5,
             child: CustomHomeTextField(
@@ -49,7 +50,6 @@ class SearchAndFilterSection extends StatelessWidget {
           Expanded(
             flex: 1,
             child: SizedBox(
-              width: fieldHeight,
               child: InkWell(
                 onTap: () {
                   showModalBottomSheet(
@@ -74,6 +74,7 @@ class SearchAndFilterSection extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(),
         ],
       ),
     );

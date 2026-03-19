@@ -22,60 +22,50 @@ class ProfileView extends StatelessWidget {
       create: (_) =>
           ProfileViewModel(repo: ProfileRepoImpl(dio: getIt.get<DioConsumer>()))
             ..loadProfile(),
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
-          backgroundColor: Colors.grey.shade100,
-          body: SafeArea(
-            child: Consumer<ProfileViewModel>(
-              builder: (context, vm, _) {
-                if (vm.isLoading && vm.name.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                return SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-                  child: Column(
-                    children: [
-                      ProfileHeader(vm: vm),
-                      const SizedBox(height: 16),
-                      ProfileMenuTile(
-                        title: S.of(context).profilePersonalDataTitle,
-                        icon: Icons.person_outline_rounded,
-                        onTap: () =>
-                            context.pushNamed(AppRoutes.personalDataName),
-                      ),
-                      const SizedBox(height: 12),
-                      ProfileMenuTile(
-                        title: S.of(context).profileDonationHistoryTitle,
-                        icon: Icons.history_rounded,
-                        onTap: () =>
-                            context.pushNamed(AppRoutes.donationHistoryName),
-                      ),
-                      const SizedBox(height: 12),
-                      ProfileMenuTile(
-                        title: S.of(context).changePass,
-                        icon: Icons.lock_outline_rounded,
-                        onTap: () =>
-                            context.pushNamed(AppRoutes.changePassName),
-                      ),
-                      const SizedBox(height: 12),
-                      ProfileMenuTile(
-                        title: S.of(context).profileSettingsTitle,
-                        icon: Icons.tune_rounded,
-                        onTap: () {},
-                      ),
-                      const SizedBox(height: 12),
-                      ProfileMenuTile(
-                        title: S.of(context).logoutLabel,
-                        icon: Icons.logout_rounded,
-                        iconColor: AppColors.commonClr,
-                        onTap: () => _showLogoutSheet(context, vm),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade100,
+        body: SafeArea(
+          child: Consumer<ProfileViewModel>(
+            builder: (context, vm, _) {
+              if (vm.isLoading && vm.name.isEmpty) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                child: Column(
+                  children: [
+                    ProfileHeader(vm: vm),
+                    const SizedBox(height: 16),
+                    ProfileMenuTile(
+                      title: S.of(context).profilePersonalDataTitle,
+                      icon: Icons.person_outline_rounded,
+                      onTap: () =>
+                          context.pushNamed(AppRoutes.personalDataName),
+                    ),
+                    const SizedBox(height: 12),
+                    ProfileMenuTile(
+                      title: S.of(context).profileDonationHistoryTitle,
+                      icon: Icons.history_rounded,
+                      onTap: () =>
+                          context.pushNamed(AppRoutes.donationHistoryName),
+                    ),
+                    const SizedBox(height: 12),
+                    ProfileMenuTile(
+                      title: S.of(context).changePass,
+                      icon: Icons.lock_outline_rounded,
+                      onTap: () => context.pushNamed(AppRoutes.changePassName),
+                    ),
+                    const SizedBox(height: 12),
+                    ProfileMenuTile(
+                      title: S.of(context).logoutLabel,
+                      icon: Icons.logout_rounded,
+                      iconColor: AppColors.commonClr,
+                      onTap: () => _showLogoutSheet(context, vm),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ),

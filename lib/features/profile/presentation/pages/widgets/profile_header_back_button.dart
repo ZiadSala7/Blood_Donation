@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_routes.dart';
@@ -11,8 +11,14 @@ class ProfileHeaderBackButton extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: IconButton(
-        icon: Icon(Icons.chevron_right, color: Colors.grey[700]),
-        onPressed: () => context.go('${AppRoutes.btmNavBar}?tab=0'),
+        icon: Icon(Icons.chevron_left, color: Colors.grey[700]),
+        onPressed: () {
+          if (context.canPop()) {
+            context.pop();
+          } else {
+            context.go(AppRoutes.btmNavBar);
+          }
+        },
       ),
     );
   }

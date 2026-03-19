@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/utils/app_routes.dart';
 import '../../../../generated/l10n.dart';
 
 class NotificationsSliverAppBar extends StatelessWidget {
-  const NotificationsSliverAppBar({
-    super.key,
-  });
+  const NotificationsSliverAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,16 @@ class NotificationsSliverAppBar extends StatelessWidget {
       centerTitle: true,
       backgroundColor: Colors.white,
       elevation: 1,
-      automaticallyImplyLeading: false,
+      leading: IconButton(
+        icon: Icon(Icons.chevron_left, color: Colors.grey[700]),
+        onPressed: () {
+          if (context.canPop()) {
+            context.pop();
+          } else {
+            context.go(AppRoutes.btmNavBar);
+          }
+        },
+      ),
     );
   }
 }
