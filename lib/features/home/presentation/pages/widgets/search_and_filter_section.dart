@@ -28,45 +28,45 @@ class SearchAndFilterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double fieldHeight = 56;
+    const double fieldHeight = 51;
     return SizedBox(
-      height: 100,
+      height: 80,
       child: Row(
-        crossAxisAlignment: .center,
-        mainAxisAlignment: .center,
+        crossAxisAlignment: .end,
+        mainAxisAlignment: .end,
         spacing: 10,
         children: [
           const SizedBox(),
           Expanded(
             flex: 5,
-            child: CustomHomeTextField(
-              controller: searchController,
-              label: '',
-              hint: S.of(context).hosName,
-              onChange: onSearchChanged,
-              onSubmit: onSearchSubmitted,
+            child: SizedBox(
+              height: 75,
+              child: CustomHomeTextField(
+                controller: searchController,
+                label: '',
+                hint: S.of(context).hosName,
+                onChange: onSearchChanged,
+                onSubmit: onSearchSubmitted,
+              ),
             ),
           ),
-          SizedBox(
-            height: 50,
-            width: 50,
-            child: InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (_) => FilterBottomSheet(onApply: onApplyFiltration),
-                );
-              },
-              child: Container(
-                height: fieldHeight,
-                decoration: BoxDecoration(
-                  color: AppColors.commonClr,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: const Icon(Symbols.tune_rounded, color: AppColors.white),
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (_) => FilterBottomSheet(onApply: onApplyFiltration),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+              height: fieldHeight,
+              decoration: BoxDecoration(
+                color: AppColors.commonClr,
+                borderRadius: BorderRadius.circular(16),
               ),
+              child: const Icon(Symbols.tune_rounded, color: AppColors.white),
             ),
           ),
           const SizedBox(),

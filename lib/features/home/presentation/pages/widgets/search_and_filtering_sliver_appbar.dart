@@ -29,11 +29,13 @@ class SearchAndFilteringSliverAppBar extends StatelessWidget {
       floating: false,
       snap: false,
       scrolledUnderElevation: 0,
-      toolbarHeight: 100,
+      toolbarHeight: 80,
+      expandedHeight: 80,
+      collapsedHeight: 100,
       backgroundColor: Colors.grey[100],
       elevation: 0,
       automaticallyImplyLeading: false,
-      title: SearchAndFilterSection(
+      flexibleSpace: SearchAndFilterSection(
         searchController: searchController,
         onSearchChanged: onSearchChanged,
         onSearchSubmitted: onSearchSubmitted,

@@ -30,7 +30,7 @@ class RequestCardActions extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context1) {
     final isOpen = isOpenStatus(statusType);
     return Row(
       mainAxisAlignment: .spaceBetween,
@@ -53,14 +53,14 @@ class RequestCardActions extends StatelessWidget {
           ],
         ),
         BlocProvider(
-          create: (context) =>
+          create: (context1) =>
               DonationCubit(DonationRepoImpl(dio: getIt.get<DioConsumer>())),
           child: BlocConsumer<DonationCubit, DonationStates>(
-            listener: (context, donationState) {
+            listener: (context1, donationState) {
               if (donationState is FailureDonation) {
                 showAwesomeDialog(
-                  context,
-                  S.of(context).errorTitle,
+                  context1,
+                  S.of(context1).errorTitle,
                   donationState.errMsg,
                   false,
                   () {},
@@ -69,12 +69,12 @@ class RequestCardActions extends StatelessWidget {
                 final phoneLine =
                     (donationState.phoneNumber != null &&
                         donationState.phoneNumber!.isNotEmpty)
-                    ? '\n${S.of(context).phoneNumberLabel}: ${donationState.phoneNumber}'
+                    ? '\n${S.of(context1).phoneNumberLabel}: ${donationState.phoneNumber}'
                     : '';
                 showAwesomeDialog(
-                  context,
-                  S.of(context).successTitle,
-                  '${S.of(context).donationSuccessMessage}$phoneLine',
+                  context1,
+                  S.of(context1).successTitle,
+                  '${S.of(context1).donationSuccessMessage}$phoneLine',
                   true,
                   () {
                     final refresh = onRefresh;

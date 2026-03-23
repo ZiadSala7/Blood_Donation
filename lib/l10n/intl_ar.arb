@@ -94,7 +94,7 @@
     "donationTypeHint": "اختر نوع التبرع",
     "donorResponsesTitle": "استجابات المتبرعين",
     "donorIdLabel": "معرّف المتبرع",
-    "donorsLabel": "المتبرعون",
+    "donorsLabel": "متبرعين",
     "earlierLabel": "أقدم",
     "endsInDays": "ينتهي خلال {days} أيام",
     "@endsInDays": {

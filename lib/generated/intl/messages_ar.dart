@@ -128,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "donorResponsesTitle": MessageLookupByLibrary.simpleMessage(
       "استجابات المتبرعين",
     ),
-    "donorsLabel": MessageLookupByLibrary.simpleMessage("المتبرعون"),
+    "donorsLabel": MessageLookupByLibrary.simpleMessage("متبرعين"),
     "dontHaveAcc": MessageLookupByLibrary.simpleMessage("ليس لديك حساب ؟"),
     "earlierLabel": MessageLookupByLibrary.simpleMessage("أقدم"),
     "email": MessageLookupByLibrary.simpleMessage(" البريد الإلكتروني "),

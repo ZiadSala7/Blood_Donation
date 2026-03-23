@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
+import '../helper/get_root_context.dart';
 import '../utils/app_text_styles.dart';
 
 Future<dynamic> showAwesomeDialog(
@@ -11,7 +12,7 @@ Future<dynamic> showAwesomeDialog(
   Function() btnOkOnPress,
 ) {
   return AwesomeDialog(
-    context: context,
+    context: getRootContext(context),
     dialogType: isSuccess ? DialogType.success : DialogType.error,
     animType: AnimType.bottomSlide,
     title: title,
