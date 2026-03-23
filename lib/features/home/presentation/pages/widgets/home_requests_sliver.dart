@@ -7,12 +7,14 @@ class HomeRequestsSliver extends StatelessWidget {
   final List<RequestEntity> requests;
   final bool isLoading;
   final bool hasMore;
+  final Future<void> Function()? onRefresh;
 
   const HomeRequestsSliver({
     super.key,
     required this.requests,
     required this.isLoading,
     required this.hasMore,
+    this.onRefresh,
   });
 
   @override
@@ -20,9 +22,14 @@ class HomeRequestsSliver extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
         if (index < requests.length) {
+          final request = requests[index];
           return Padding(
+            key: ValueKey(request.id),
             padding: const EdgeInsets.symmetric(horizontal: 6),
-            child: RequestCard(entity: requests[index]),
+            child: RequestCard(
+              entity: request,
+              onRefresh: onRefresh,
+            ),
           );
         }
         return Padding(

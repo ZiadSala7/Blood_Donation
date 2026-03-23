@@ -7,7 +7,8 @@ import 'request_card_details.dart';
 
 class RequestCard extends StatelessWidget {
   final RequestEntity entity;
-  const RequestCard({super.key, required this.entity});
+  final Future<void> Function()? onRefresh;
+  const RequestCard({super.key, required this.entity, this.onRefresh});
 
   RequestStatusType _displayStatusType() {
     return resolveRequestStatus(
@@ -31,7 +32,11 @@ class RequestCard extends StatelessWidget {
           children: [
             RequestCardDetails(entity: entity, statusType: statusType),
             const SizedBox(height: 15),
-            RequestCardActions(entity: entity, statusType: statusType),
+            RequestCardActions(
+              entity: entity,
+              statusType: statusType,
+              onRefresh: onRefresh,
+            ),
           ],
         ),
       ),

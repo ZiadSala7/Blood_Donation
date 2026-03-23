@@ -51,6 +51,7 @@ class HomeViewBodyContent extends StatelessWidget {
         onSearchChanged: onSearchChanged,
         onSearchSubmitted: onSearchSubmitted,
         onApplyFiltration: onApplyFiltration,
+        onRefresh: onRefresh,
         requests: requests,
         isInitialLoading: isInitialLoading,
         showEmptyState: showEmptyState,

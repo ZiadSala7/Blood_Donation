@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/errors/exception.dart';
 import '../models/request_model.dart';
 import '../../domain/repo/home_repo.dart';
 import '../../../../core/api/api_keys.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/api/dio_consumer.dart';
-import '../../../../core/constants/app_constants.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final DioConsumer dio;
@@ -20,8 +20,10 @@ class HomeRepoImpl implements HomeRepo {
       );
       final RequestModel requestModel = RequestModel.fromJson(response);
       return Right(requestModel);
-    } catch (e) {
-      return Left(AppConstants.errMsg);
+    } on ServerException catch (e) {
+      return Left(
+        "${e.errorModel.errorMessage}\n${e.errorModel.errors.toString()}",
+      );
     }
   }
 
@@ -62,8 +64,10 @@ class HomeRepoImpl implements HomeRepo {
         models.add(model);
       }
       return right(models);
-    } catch (e) {
-      return left(AppConstants.errMsg);
+    } on ServerException catch (e) {
+      return Left(
+        "${e.errorModel.errorMessage}\n${e.errorModel.errors.toString()}",
+      );
     }
   }
 }

@@ -18,7 +18,8 @@ class SliderAndProgressCount extends StatefulWidget {
 class _SliderAndProgressCountState extends State<SliderAndProgressCount> {
   @override
   Widget build(BuildContext context) {
-    double progress = widget.collected / widget.total;
+    final total = widget.total <= 0 ? 1 : widget.total;
+    final progress = (widget.collected / total).clamp(0.0, 1.0);
     return Row(
       spacing: 16,
       children: [

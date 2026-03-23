@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "1077293288373-q5enp8n0m7eq39knmo4dtbsauiti3gic.apps.googleusercontent.com",
+          "client_id": "1077293288373-6heksmeuo86u1n6mle5pc565g9s1q9la.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.elixir.blood_donation",
@@ -22,7 +22,23 @@
           }
         },
         {
-          "client_id": "1077293288373-tefk1e0hoo8uqo0h0rti1qpu7ek1vlqm.apps.googleusercontent.com",
+          "client_id": "1077293288373-flmkg1jvj8uhq4g89fs3632ivf0cdb1o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elixir.blood_donation",
+            "certificate_hash": "d3540a1da91c75f1439cb51ca2d4782c2358e5c6"
+          }
+        },
+        {
+          "client_id": "1077293288373-nhc8p3tqnr0rfbj9ii8cksgbpmhlg55l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elixir.blood_donation",
+            "certificate_hash": "3e782b2e1154b0abec44cc855260fb59836f99ac"
+          }
+        },
+        {
+          "client_id": "1077293288373-j881731enskmul23j3u5hjf1bg2iutpj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,8 +51,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1077293288373-tefk1e0hoo8uqo0h0rti1qpu7ek1vlqm.apps.googleusercontent.com",
+              "client_id": "1077293288373-j881731enskmul23j3u5hjf1bg2iutpj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1077293288373-gq53ncur0a0shs5e4tl3lkon044nt954.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bloodDonation"
+              }
             }
           ]
         }

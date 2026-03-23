@@ -17,6 +17,8 @@ import 'features/auth/login/presentation/cubit/login_cubit.dart';
 import 'features/add_request/data/repo/add_request_repo_impl.dart';
 import 'core/managers/location_cubit/repo/location_repo_impl.dart';
 import 'features/add_request/presentation/cubit/add_request_cubit.dart';
+import 'features/home/data/repo/home_repo_impl.dart';
+import 'features/home/presentation/cubit/home_cubit.dart';
 import 'package:nested/nested.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -62,6 +64,11 @@ List<SingleChildWidget> multiBlocProviderList(DioConsumer dioConsumer) {
     BlocProvider(
       create: (context) =>
           AddRequestCubit(AddRequestRepoImpl(dio: dioConsumer)),
+    ),
+    BlocProvider(
+      create: (context) =>
+          HomeCubit(HomeRepoImpl(dio: dioConsumer))
+            ..getRequestsWithPagination(),
     ),
   ];
 }

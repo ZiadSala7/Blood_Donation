@@ -33,7 +33,7 @@ class SearchAndFilterSection extends StatelessWidget {
       height: 100,
       child: Row(
         crossAxisAlignment: .center,
-        mainAxisAlignment: .start,
+        mainAxisAlignment: .center,
         spacing: 10,
         children: [
           const SizedBox(),
@@ -47,30 +47,25 @@ class SearchAndFilterSection extends StatelessWidget {
               onSubmit: onSearchSubmitted,
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: SizedBox(
-              child: InkWell(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (_) =>
-                        FilterBottomSheet(onApply: onApplyFiltration),
-                  );
-                },
-                child: Container(
-                  height: fieldHeight,
-                  decoration: BoxDecoration(
-                    color: AppColors.commonClr,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: const Icon(
-                    Symbols.tune_rounded,
-                    color: AppColors.white,
-                  ),
+          SizedBox(
+            height: 50,
+            width: 50,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (_) => FilterBottomSheet(onApply: onApplyFiltration),
+                );
+              },
+              child: Container(
+                height: fieldHeight,
+                decoration: BoxDecoration(
+                  color: AppColors.commonClr,
+                  borderRadius: BorderRadius.circular(15),
                 ),
+                child: const Icon(Symbols.tune_rounded, color: AppColors.white),
               ),
             ),
           ),

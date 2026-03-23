@@ -8,6 +8,8 @@ class SignalRService {
   final String _serverUrl = "https://elixir.runasp.net/requestsHub";
 
   HubConnection? _connection;
+  final Set<void Function(int requestId, dynamic data)> _updateListeners = {};
+  bool _updateHandlerRegistered = false;
 
   bool get isConnected => _connection?.state == HubConnectionState.Connected;
 
@@ -25,6 +27,7 @@ class SignalRService {
     _registerConnectionEvents();
 
     await _connection!.start();
+    _ensureUpdateHandler();
   }
 
   // ============================
@@ -72,24 +75,25 @@ class SignalRService {
   void listenToRequestUpdates(
     void Function(int requestId, dynamic data) onUpdate,
   ) {
-    _connection?.off("UpdateRequest"); // منع التكرار
-
-    _connection?.on("UpdateRequest", (parameters) {
-      if (parameters == null || parameters.length < 2) return;
-
-      final int requestId = parameters[0] as int;
-      final dynamic data = parameters[1];
-
-
-      onUpdate(requestId, data);
-    });
+    _updateListeners.add(onUpdate);
+    _ensureUpdateHandler();
   }
 
   // ============================
   // STOP LISTENING
   // ============================
+  void removeListener(void Function(int requestId, dynamic data) onUpdate) {
+    _updateListeners.remove(onUpdate);
+    if (_updateListeners.isEmpty) {
+      _connection?.off("UpdateRequest");
+      _updateHandlerRegistered = false;
+    }
+  }
+
   void stopListening() {
+    _updateListeners.clear();
     _connection?.off("UpdateRequest");
+    _updateHandlerRegistered = false;
   }
 
   // ============================
@@ -110,6 +114,19 @@ class SignalRService {
     });
 
     _connection?.onreconnected(({String? connectionId}) {
+    });
+  }
+
+  void _ensureUpdateHandler() {
+    if (_updateHandlerRegistered || _connection == null) return;
+    _updateHandlerRegistered = true;
+    _connection?.on("UpdateRequest", (parameters) {
+      if (parameters == null || parameters.length < 2) return;
+      final int requestId = parameters[0] as int;
+      final dynamic data = parameters[1];
+      for (final listener in _updateListeners.toList()) {
+        listener(requestId, data);
+      }
     });
   }
 }

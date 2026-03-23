@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,11 +20,13 @@ import 'slider_and_progress_count.dart';
 class RequestCardActions extends StatelessWidget {
   final RequestEntity entity;
   final RequestStatusType statusType;
+  final Future<void> Function()? onRefresh;
 
   const RequestCardActions({
     super.key,
     required this.entity,
     required this.statusType,
+    this.onRefresh,
   });
 
   @override
@@ -72,7 +76,12 @@ class RequestCardActions extends StatelessWidget {
                   S.of(context).successTitle,
                   '${S.of(context).donationSuccessMessage}$phoneLine',
                   true,
-                  () {},
+                  () {
+                    final refresh = onRefresh;
+                    if (refresh != null) {
+                      unawaited(refresh());
+                    }
+                  },
                 );
               }
             },

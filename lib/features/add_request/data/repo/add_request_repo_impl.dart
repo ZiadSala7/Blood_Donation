@@ -3,9 +3,9 @@ import 'package:location/location.dart';
 
 import '../../../../core/api/api_keys.dart';
 import '../../../../core/api/end_points.dart';
+import '../../../../core/errors/exception.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../../domain/repo/add_request_repo.dart';
-import '../../../../core/constants/app_constants.dart';
 
 class AddRequestRepoImpl implements AddRequestRepo {
   final DioConsumer dio;
@@ -46,9 +46,11 @@ class AddRequestRepoImpl implements AddRequestRepo {
           ApiKeys.phoneNumber: phoneNumber,
         },
       );
-      return right(true);
-    } catch (e) {
-      return left(AppConstants.errMsg);
+      return const Right(true);
+    } on ServerException catch (e) {
+      return Left(
+        "${e.errorModel.errorMessage}\n ${e.errorModel.errors.toString()}",
+      );
     }
   }
 
@@ -60,9 +62,11 @@ class AddRequestRepoImpl implements AddRequestRepo {
       for (int i = 0; i < response.length!; i++) {
         donationCat.add(response[i]['NameAr']);
       }
-      return right(donationCat);
-    } catch (e) {
-      return left(AppConstants.errMsg);
+      return Right(donationCat);
+    } on ServerException catch (e) {
+      return Left(
+        "${e.errorModel.errorMessage}\n ${e.errorModel.errors.toString()}",
+      );
     }
   }
 }

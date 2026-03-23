@@ -24,6 +24,7 @@ class _MyRequestsViewState extends State<MyRequestsView> {
   Timer? _refreshTimer;
   final SignalRService _signalR = SignalRService();
   final Set<int> _joinedRequestIds = {};
+  void Function(int requestId, dynamic data)? _signalrListener;
 
   @override
   void initState() {
@@ -34,11 +35,12 @@ class _MyRequestsViewState extends State<MyRequestsView> {
       _cubit.refresh();
     });
     _signalR.connect().then((_) {
-      _signalR.listenToRequestUpdates((requestId, _) {
+      _signalrListener = (requestId, _) {
         // Any request update should refresh the current list.
         if (!mounted) return;
         _cubit.refresh();
-      });
+      };
+      _signalR.listenToRequestUpdates(_signalrListener!);
     });
   }
 
@@ -48,7 +50,10 @@ class _MyRequestsViewState extends State<MyRequestsView> {
     for (final id in _joinedRequestIds) {
       _signalR.leaveRequest(id);
     }
-    _signalR.stopListening();
+    if (_signalrListener != null) {
+      _signalR.removeListener(_signalrListener!);
+      _signalrListener = null;
+    }
     _cubit.close();
     super.dispose();
   }

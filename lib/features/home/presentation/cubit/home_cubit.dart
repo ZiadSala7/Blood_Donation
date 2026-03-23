@@ -79,4 +79,37 @@ class HomeCubit extends Cubit<HomeStates> {
   Future<Either<String, RequestModel>> getRequestById({required int id}) {
     return repo.getRequestById(id: id);
   }
+
+  void updateRequest(RequestModel updated) {
+    final id = updated.id;
+    if (id == null) return;
+
+    final modelIndex = allModels.indexWhere((model) => model.id == id);
+    if (modelIndex != -1) {
+      allModels[modelIndex] = updated;
+    }
+
+    final entityIndex = allEntities.indexWhere((entity) => entity.id == id);
+    if (entityIndex != -1) {
+      final current = allEntities[entityIndex];
+      allEntities[entityIndex] = RequestEntity(
+        id: id,
+        bagsCnt: updated.bagsCount ?? current.bagsCnt,
+        collectedBags: updated.collectedBags ?? current.collectedBags,
+        status: updated.status ?? current.status,
+        patientName: updated.patientName ?? current.patientName,
+        hospitalName: updated.hospitalName ?? current.hospitalName,
+        cityAr: updated.cityAr ?? current.cityAr,
+        deadline: updated.deadline ?? current.deadline,
+        donationCategoryAr:
+            updated.donationCategoryAr ?? current.donationCategoryAr,
+        requiredBloodType:
+            updated.requiredBloodType ?? current.requiredBloodType,
+      );
+    }
+
+    if (state is HomeSuccess) {
+      emit(HomeSuccess(requestEntities: List<RequestEntity>.from(allEntities)));
+    }
+  }
 }

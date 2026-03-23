@@ -14,8 +14,13 @@ import 'request_details_state.dart';
 
 class RequestDetailsScaffold extends StatelessWidget {
   final RequestDetailsState state;
+  final VoidCallback onRefresh;
 
-  const RequestDetailsScaffold({super.key, required this.state});
+  const RequestDetailsScaffold({
+    super.key,
+    required this.state,
+    required this.onRefresh,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +39,9 @@ class RequestDetailsScaffold extends StatelessWidget {
           } else if (donationState is SuccessDonation) {
             final phoneLine =
                 (donationState.phoneNumber != null &&
-                        donationState.phoneNumber!.isNotEmpty)
-                    ? '\n${S.of(context).phoneNumberLabel}: ${donationState.phoneNumber}'
-                    : '';
+                    donationState.phoneNumber!.isNotEmpty)
+                ? '\n${S.of(context).phoneNumberLabel}: ${donationState.phoneNumber}'
+                : '';
             showAwesomeDialog(
               context,
               S.of(context).successTitle,
@@ -44,6 +49,7 @@ class RequestDetailsScaffold extends StatelessWidget {
               true,
               () {},
             );
+            onRefresh();
           }
         },
         builder: (context, donationState) {

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import '../api/dio_consumer.dart';
-import '../di/injection.dart';
-import '../../features/home/data/repo/home_repo_impl.dart';
-import '../../features/home/presentation/cubit/home_cubit.dart';
 import '../../features/home/presentation/pages/home_view.dart';
 import '../../features/my_requests/presentation/pages/my_requests_view.dart';
 import '../../features/notifications/presentation/pages/notifications_view.dart';
@@ -55,52 +50,44 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          HomeCubit(HomeRepoImpl(dio: getIt.get<DioConsumer>()))
-            ..getRequestsWithPagination(),
-      child: Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: Colors.grey[100],
-        body: _pages[_selectedIndex],
-        floatingActionButton: FloatingActionButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.circular(30),
-          ),
-          onPressed: () {
-            // Add action
-            GoRouter.of(context).pushNamed('addRequest');
-          },
-          backgroundColor: AppColors.commonClr,
-          child: const Icon(Icons.add, size: 32, color: AppColors.white),
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      body: _pages[_selectedIndex],
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(30),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 8.0,
-          color: Colors.white,
-          elevation: 8,
-          child: Container(
-            height: 70,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildNavItem(0, Symbols.home, S.of(context).navHome),
-                _buildNavItem(1, Symbols.checklist, S.of(context).navRequests),
-                const SizedBox(width: 40), // Space for FAB
-                _buildNavItem(
-                  2,
-                  Symbols.notifications,
-                  S.of(context).navNotifications,
-                ),
-                _buildNavItem(3, Symbols.person, S.of(context).navProfile),
-              ],
-            ),
-          ),
-        ),
+        onPressed: () {
+          // Add action
+          GoRouter.of(context).pushNamed('addRequest');
+        },
+        backgroundColor: AppColors.commonClr,
+        child: const Icon(Icons.add, size: 32, color: AppColors.white),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        color: Colors.white,
+        elevation: 8,
+        child: Container(
+          height: 70,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(0, Symbols.home, S.of(context).navHome),
+              _buildNavItem(1, Symbols.checklist, S.of(context).navRequests),
+              const SizedBox(width: 40), // Space for FAB
+              _buildNavItem(
+                2,
+                Symbols.notifications,
+                S.of(context).navNotifications,
+              ),
+              _buildNavItem(3, Symbols.person, S.of(context).navProfile),
+            ],
+          ),
+        ),
       ),
     );
   }

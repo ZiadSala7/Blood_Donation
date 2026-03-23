@@ -16,6 +16,7 @@ class HomeViewContent extends StatelessWidget {
   final ValueChanged<String> onSearchChanged;
   final ValueChanged<String> onSearchSubmitted;
   final Future<void> Function(bool, int, int?, int?) onApplyFiltration;
+  final Future<void> Function() onRefresh;
   final List<RequestEntity> requests;
   final bool isInitialLoading;
   final bool showEmptyState;
@@ -30,6 +31,7 @@ class HomeViewContent extends StatelessWidget {
     required this.onSearchChanged,
     required this.onSearchSubmitted,
     required this.onApplyFiltration,
+    required this.onRefresh,
     required this.requests,
     required this.isInitialLoading,
     required this.showEmptyState,
@@ -60,6 +62,7 @@ class HomeViewContent extends StatelessWidget {
             requests: requests,
             isLoading: isLoading,
             hasMore: hasMore,
+            onRefresh: onRefresh,
           ),
       ],
     );
